@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane fx:id="APMain" prefHeight="430.0" prefWidth="400.0" styleClass="rootActive" stylesheets="@../CSS/PopupVerifyEmail.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PopupVerifyEmailController">
+    <children>
+        <ScrollPane fx:id="SPMain" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox alignment="TOP_CENTER" spacing="16.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <ImageView fx:id="IMGIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label styleClass="header" text="Verifica tu correo electrónico" />
+                  <TextFlow fx:id="TFLShowMessageAndEmail" prefHeight="0.0" prefWidth="200.0" textAlignment="JUSTIFY" />
+                  <StackPane fx:id="SPTimeRemaining" prefHeight="0.0">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <VBox fx:id="VBTimeRemaining" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                 <children>
+                                    <ImageView fx:id="IMGTimeRemaining" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label fx:id="LBLTimeRemainingTitle" text="Label" />
+                                    <Label fx:id="LBLTimeRemainingDays" layoutX="41.0" layoutY="10.0" text="Label" />
+                                 </children>
+                              </HBox>
+                              <TextFlow fx:id="TFLTimeRemainingContent" prefHeight="200.0" prefWidth="200.0" textAlignment="JUSTIFY" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <Label styleClass="LBLContent" text="Ingresa aquí el código que enviamos a tu correo" />
+                  <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <TextField fx:id="TXT1" styleClass="TXTBegin" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="TXT2" layoutX="10.0" layoutY="10.0" styleClass="TXTMiddle" />
+                        <TextField fx:id="TXT3" layoutX="233.0" layoutY="10.0" styleClass="TXTMiddle" />
+                        <TextField fx:id="TXT4" layoutX="264.0" layoutY="10.0" styleClass="TXTMiddle" />
+                        <TextField fx:id="TXT5" layoutX="295.0" layoutY="10.0" styleClass="TXTMiddle" />
+                        <TextField fx:id="TXT6" layoutX="314.0" layoutY="10.0" styleClass="TXTMiddle" />
+                        <TextField fx:id="TXT7" layoutX="327.0" layoutY="10.0" styleClass="TXTMiddle" />
+                        <TextField fx:id="TXT8" layoutX="336.0" layoutY="10.0" styleClass="TXTMiddle" />
+                        <TextField fx:id="TXT9" layoutX="343.0" layoutY="10.0" styleClass="TXTMiddle" />
+                        <TextField fx:id="TXT10" layoutX="348.0" layoutY="10.0" styleClass="TXTEnd" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="BTNVerifyEmail" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNVerifyEmailOnMouseClicked" onMouseEntered="#BTNVerifyEmailOnMouseEntered" onMouseExited="#BTNVerifyEmailOnMouseExited" text="Verificar tu correo electrónico">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <HBox prefHeight="0.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <AnchorPane fx:id="APResendEmail" onMouseClicked="#APResendEmailOnMouseClicked" onMouseEntered="#APResendEmailOnMouseEntered" onMouseExited="#APResendEmailOnMouseExited" prefHeight="0.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <StackPane prefHeight="16.0" prefWidth="16.0">
+                                       <children>
+                                          <ImageView fx:id="IMGResendEmail" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="IMGResendEmailHover" fitHeight="16.0" fitWidth="16.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </StackPane>
+                                    <Label fx:id="LBLResendEmail" text="Reenviar código" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </AnchorPane>
+                        <Button fx:id="BTNClose" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNCloseOnMouseClicked" onMouseEntered="#BTNCloseOnMouseEntered" onMouseExited="#BTNCloseOnMouseExited" text="X Cerrar">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label styleClass="footer" text="¿No ves el correo electrónico?" />
+                  <Label layoutX="129.0" layoutY="351.0" styleClass="footer" text="Prueba revisar tu bandeja de spam o tu conexión a internet" textAlignment="JUSTIFY" />
+               </children>
+            </VBox>
+         </content>
+        </ScrollPane>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <StackPane fx:id="SPToast" maxWidth="Infinity">
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+               <children>
+                   <TextFlow fx:id="TFLToast" textAlignment="CENTER" />
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,252 @@
+package logical;
+
+import connections.Users;
+import user.UserData;
+
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.*;
+import java.awt.datatransfer.*;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.Locale;
+import java.util.Random;
+
+public class ValidateOutputs {
+
+    private static final String[] chars = {
+            "A","B","C","D","E","F","G","H","I","J","K","L","M",
+            "N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
+            "0","1","2","3","4","5","6","7","8","9"
+    };
+
+    public static String getPreferredWayToCallThem(){
+
+        String call = "";
+
+        if(UserData.getName() == null && UserData.getNickname() == null){
+
+            System.out.println("No hay información valida de como llamar al usuario");
+            return null;
+
+        }
+
+        if(UserData.getName() != null){
+
+            call = getUserFirstName();
+
+        }
+
+        if(UserData.getNickname() != null){
+
+            call = UserData.getNickname();
+
+        }
+
+        return call;
+
+    }
+
+    /**
+     * Genera el correo escondido del usuario
+     * @return correo oculto
+     */
+
+    public static String getEmailHide(){
+
+        String email = UserData.getEmail();
+        if (email == null || !email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
+            return email;
+        }
+
+        int atPos = email.indexOf('@');
+        int visibleChars = Math.min(3, atPos);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(email, 0, visibleChars)
+                .append("●●●")
+                .append(email.substring(atPos));
+
+        return sb.toString();
+
+    }
+
+    /**
+     * Extrae el primer nombre del usuario
+     * @return letras hasta el primer espacio.
+     */
+
+    public static String getUserFirstName(){
+
+        if(UserData.getName() == null) return null;
+
+        String [] parts = UserData.getName().trim().split("\\s+");;
+
+        return parts[0];
+
+    }
+
+    /**
+     * Genera un código de 10 carácteres aleatorios
+     * @return Código generado
+     */
+
+    public static String generateCode10Chars(){
+
+        StringBuilder code = new StringBuilder();
+
+        Random rand = new Random();
+
+        for(int i = 0; i <10 ; i++){
+
+            code.append(chars[rand.nextInt(chars.length)]);
+
+        }
+
+        return code.toString();
+
+    }
+
+    /**
+     * Encripta una contraseña en formato sha256Hexadecimal
+     * @param input string a encriptar
+     * @return string ya encriptado
+     */
+
+    public static String sha256Hex(String input) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(input.getBytes(StandardCharsets.UTF_8));
+            return bytesToHex(hashBytes);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("SHA-256 no está disponible", e);
+        }
+    }
+
+
+    private static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder(bytes.length * 2);
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b & 0xFF));
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Genera un UserID y lo pone automaticamente si es correcto
+     */
+
+    public static void createUserID(){
+
+        Users users = new Users();
+
+        StringBuilder sb = new StringBuilder();
+
+        Random rand = new Random();
+
+        do{
+
+            sb.setLength(0);
+
+            for(int i = 0; i < 24; i++){
+
+                sb.append(chars[rand.nextInt(chars.length)]);
+
+            }
+
+            UserData.setUserID(sb.toString());
+
+        }while(!users.isUniqueUserID());
+
+    }
+
+    /**
+     * Obtiene el mes en español de una fecha y retorna el mes en un String ya sea en formato con el primer caracter en mayúscula o con todas las letras en minúsculas
+     * @param date fecha de la que se quiere saber el mes en LocalDate
+     * @param minus true si se quiere en minúsculas, false si no
+     * @return mes según el formato escogido
+     */
+
+    public static String getMonthOfYearString(LocalDate date, boolean minus){
+
+        if(date == null) return "No hay ninguna fecha ingresada";
+
+        Locale  locale = new Locale("es", "MX");
+
+        Month month = date.getMonth();
+
+        String result = month.getDisplayName(TextStyle.FULL, locale);
+
+        return minus ? result.toLowerCase() : result.substring(0,1).toUpperCase() + result.substring(1);
+
+    }
+
+    /**
+     * Obtiene el día de la semana de una fecha y retorna el día en un String ya sea en formato con el primer caracter en mayúscula o con todas las letras en minúsculas
+     * @param date fecha de la que se quiere saber en LocalDate
+     * @param minus true si se quiere en minúsculas, false si no
+     * @return día de la semana según el formato escogido
+     */
+
+    public static String getDayOfWeekString(LocalDate date, boolean minus){
+
+        if(date == null) return "No hay ninguna fecha ingresada";
+
+        Locale dayOfWeek = new Locale("es", "MX");
+
+        DayOfWeek day = date.getDayOfWeek();
+
+        String result = day.getDisplayName(TextStyle.FULL, dayOfWeek);
+
+        return minus ? result.toLowerCase() : result.substring(0,1).toUpperCase() + result.substring(1);
+
+    }
+
+    /**
+     * Copia un String al portapapeles y devuelve true si se pudo copiar y false si no
+     * @param text texto a copiar
+     * @return validación de si se pudo copiar o no
+     */
+
+    public static boolean copyStringToClipboard(String text) {
+
+        if(text == null) return false;
+
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+        StringSelection seleccion = new StringSelection(text);
+
+        clipboard.setContents(seleccion, null);
+
+        if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
+
+            try {
+
+                String content = (String) clipboard.getData(DataFlavor.stringFlavor);
+                if (text.equals(content)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception e){
+
+                e.printStackTrace();
+
+            }
+
+        }else{
+            return false;
+        }
+
+        return false;
+
+    }
+
+}

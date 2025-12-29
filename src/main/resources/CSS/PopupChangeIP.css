@@ -1,0 +1,115 @@
+@font-face {
+
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.root {
+
+    -fx-background-color: #f5f5f5;
+    -fx-border-width: 1px;
+    -fx-border-color: #192d91;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.header {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-text-fill: #192d91;
+    -fx-font-size: 16px;
+
+}
+
+.content {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-text-fill: #121212;
+    -fx-font-size: 12px;
+
+}
+
+.text-field {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #121212;
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 10px;
+    -fx-prompt-text-fill: #747474;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.text-field:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #4D5CA7;
+    -fx-background-radius: 10px;
+    -fx-border-color: #4D5CA7;
+    -fx-prompt-text-fill: #8592d2;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+
+}
+
+.rootActive {
+
+    -fx-background-color: #282c34;
+    -fx-border-width: 1px;
+    -fx-border-color: #4dc0d4;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .header {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-text-fill: #4dc0d4;
+    -fx-font-size: 16px;
+
+}
+
+.rootActive .content {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-text-fill: #d5d5d5;
+    -fx-font-size: 12px;
+
+}
+
+.rootActive .text-field {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #f5f5f5;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 10px;
+    -fx-prompt-text-fill: #d5d5d5;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.rootActive .text-field:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #73DCE6;
+    -fx-background-radius: 10px;
+    -fx-border-color: #73DCE6;
+    -fx-prompt-text-fill: #73DCE6;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="400.0" styleClass="rootActive" stylesheets="@../CSS/LoadScreens.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoadScreensController">
+   <children>
+      <AnchorPane layoutX="94.0" layoutY="100.0" prefHeight="295.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="14.0" layoutY="-14.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/danvlec-icon-150-x-150.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="header" text="DANVLEC" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <VBox alignment="BOTTOM_CENTER" layoutX="58.0" layoutY="395.0" prefHeight="106.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="LBLContent" styleClass="content" text="Texto de ejemplo" />
+            <ProgressBar fx:id="PBProgress" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="1.0">
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
+            </ProgressBar>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

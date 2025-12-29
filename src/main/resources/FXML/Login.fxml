@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="APMain" prefHeight="550.0" prefWidth="830.0" stylesheets="@../CSS/Login.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<children>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="28.0" prefHeight="530.0" prefWidth="830.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+        <content>
+
+            <VBox layoutX="54.0" layoutY="53.0" prefHeight="500.0" prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <padding>
+                    <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                </padding>
+                <children>
+                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="30.0">
+                        <children>
+                            <Button fx:id="BTNBack" mnemonicParsing="false" onMouseClicked="#BTNBackOnMouseClicked" onMouseEntered="#BTNBackOnMouseEntered" onMouseExited="#BTNBackOnMouseExited" text="←">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor></Button>
+                            <ImageView fx:id="IMGIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                            <Label styleClass="header" text="Inicia sesión" />
+                        </children>
+                    </HBox>
+                    <VBox prefHeight="0.0" prefWidth="0.0" spacing="10.0">
+                        <children>
+                            <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="10.0">
+                                <children>
+                                    <ImageView fx:id="IMGEmail" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label styleClass="subtitle" text="¿Cuál es tu correo electrónico?" />
+                                </children>
+                            </HBox>
+                            <TextField fx:id="TXTEmail" promptText="Escribe tu correo electrónico aquí" />
+                        </children>
+                    </VBox>
+                    <VBox prefHeight="0.0" prefWidth="100.0" spacing="10.0">
+                        <children>
+                            <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="10.0">
+                                <children>
+                                    <ImageView fx:id="IMGShield" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label styleClass="subtitle" text="¿Cuál es tu contraseña?" />
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="0.0" prefWidth="200.0" spacing="10.0">
+                                <children>
+                                    <StackPane maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <TextField fx:id="TXTPassword" promptText="Escribe tu contraseña aquí" />
+                                            <PasswordField fx:id="PSFPassword" promptText="Escribe tu contraseña aquí" />
+                                        </children>
+                                    </StackPane>
+                                    <StackPane fx:id="SPPassword" onMouseClicked="#IMGPasswordOnMouseClicked" onMouseEntered="#IMGPasswordOnMouseEntered" onMouseExited="#IMGPasswordOnMouseExited" prefHeight="0.0" prefWidth="32.0">
+                                        <children>
+                                            <ImageView fx:id="IMGPasswordIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                            <ImageView fx:id="IMGPasswordIconHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+                                        </children>
+                                        <cursor>
+                                            <Cursor fx:constant="HAND" />
+                                        </cursor>
+                                    </StackPane>
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                    <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0">
+                        <children>
+                            <Label fx:id="LBLProblemsLoggingIn" onMouseClicked="#LBLProblemsLoggingInOnMouseClicked" styleClass="LBLProblems" text="¿Problemas para iniciar sesión?">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </Label>
+                        </children>
+                    </StackPane>
+                    <Button fx:id="BTNLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNLoginOnMouseClicked" onMouseEntered="#BTNLoginOnMouseEntered" onMouseExited="#BTNLoginOnMouseExited" text="✓ Inicia sesión" VBox.vgrow="ALWAYS">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor></Button>
+                </children>
+            </VBox>
+
+        </content>
+    </ScrollPane>
+    <AnchorPane fx:id="APTitleBar" layoutX="45.0" layoutY="33.0" onMouseDragged="#APTitleBarOnMouseDragged" onMouseEntered="#APTitleBarOnMouseEntered" onMouseExited="#APTitleBarOnMouseExited" onMousePressed="#APTitleBarOnMousePressed" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <HBox alignment="CENTER_RIGHT" layoutX="-71.0" layoutY="-43.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../Images/WindowIcon.png" />
+                        </image>
+                    </ImageView>
+                    <Label fx:id="LBLTitleBar" maxWidth="1.7976931348623157E308" styleClass="windowPaneLabel" text="Label" HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="SPTheme" prefHeight="30.0" prefWidth="30.0">
+                        <children>
+                            <ImageView fx:id="IMGTheme" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#IMGThemeOnMouseClicked" onMouseEntered="#IMGThemeOnMouseEntered" onMouseExited="#IMGThemeOnMouseExited" pickOnBounds="true" preserveRatio="true">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </ImageView>
+                            <ImageView fx:id="IMGThemeHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#IMGThemeOnMouseClicked" onMouseEntered="#IMGThemeOnMouseEntered" onMouseExited="#IMGThemeOnMouseExited" pickOnBounds="true" preserveRatio="true">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </ImageView>
+                            <ImageView fx:id="IMGThemeInit" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#IMGThemeOnMouseClicked" onMouseEntered="#IMGThemeOnMouseEntered" onMouseExited="#IMGThemeOnMouseExited" pickOnBounds="true" preserveRatio="true">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </ImageView>
+                        </children></StackPane>
+                    <Button fx:id="BTNMinimize" mnemonicParsing="false" onMouseClicked="#BTNMinimizeOnMouseClicked" onMouseEntered="#BTNMinimizeOnMouseEntered" onMouseExited="#BTNMinimizeOnMouseExited" text="-">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor></Button>
+                    <Button fx:id="BTNClose" layoutX="1148.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#BTNCloseOnMouseClicked" onMouseEntered="#BTNCloseOnMouseEntered" onMouseExited="#BTNCloseOnMouseExited" text="X">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor></Button>
+                </children>
+                <padding>
+                    <Insets left="30.0" right="30.0" />
+                </padding>
+            </HBox>
+        </children>
+    </AnchorPane>
+</children>
+</AnchorPane>

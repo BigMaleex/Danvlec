@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="APMain" prefHeight="550.0" prefWidth="830.0" styleClass="rootActive" stylesheets="@../CSS/AccountMenu.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccountMenuController">
+   <children>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="14.0" layoutY="37.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+         <content>
+            <AnchorPane prefHeight="1000.0" prefWidth="780.0">
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="95.0" layoutY="58.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
+                           <children>
+                              <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/danvlec-icon-100-x-100.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </StackPane>
+                              <Label styleClass="header" text="DANVLEC" />
+                           </children>
+                        </VBox>
+                        <Label layoutX="494.0" layoutY="140.0" styleClass="title" text="Cuida tu bienestar emocional día a día" />
+                        <AnchorPane fx:id="APLogin" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="25.0" layoutY="-21.0" prefHeight="0.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="30.0">
+                                       <children>
+                                          <ImageView fx:id="IMGLogin" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label styleClass="subtitle" text="Iniciar sesión" />
+                                       </children>
+                                    </HBox>
+                                    <Label styleClass="content" text="Accede con una cuenta existente" />
+                                    <Button fx:id="BTNLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNLoginOnMouseClicked" onMouseEntered="#BTNLoginOnMouseEntered" onMouseExited="#BTNLoginOnMouseExited" text="Continuar →" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane fx:id="APSignUp" layoutX="30.0" layoutY="254.0" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="25.0" layoutY="-21.0" prefHeight="0.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="30.0">
+                                       <children>
+                                          <ImageView fx:id="IMGAddUser" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label styleClass="subtitle" text="Crear cuenta" />
+                                       </children>
+                                    </HBox>
+                                    <Label styleClass="content" text="Registro completo con sincronización en la nube" />
+                                    <Button fx:id="BTNSignUp" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNSignUpOnMouseClicked" onMouseEntered="#BTNSignUpOnMouseEntered" onMouseExited="#BTNSignUpOnMouseExited" text="Registrarse →" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane fx:id="APGuest" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="25.0" layoutY="-21.0" prefHeight="0.0" prefWidth="0.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="30.0">
+                                       <children>
+                                          <ImageView fx:id="IMGHeart" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label styleClass="subtitle" text="Modo invitado" />
+                                       </children>
+                                    </HBox>
+                                    <Label styleClass="content" text="Acceso rápido sin cuenta, solo datos locales" />
+                                    <Button fx:id="BTNGuest" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNGuestOnMouseClicked" onMouseEntered="#BTNGuestOnMouseEntered" onMouseExited="#BTNGuestOnMouseExited" text="Acceso de invitad@ →" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" top="20.0" />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </AnchorPane>
+                        <Label styleClass="footer" text="Tu privacidad es importante para nosotros" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <AnchorPane fx:id="APTitleBar" layoutX="45.0" layoutY="33.0" onMouseDragged="#APTitleBarOnMouseDragged" onMouseEntered="#APTitleBarOnMouseEntered" onMouseExited="#APTitleBarOnMouseExited" onMousePressed="#APTitleBarOnMousePressed" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" layoutX="-71.0" layoutY="-43.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/WindowIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="LBLTitleBar" maxWidth="1.7976931348623157E308" styleClass="windowPaneLabel" text="Label" HBox.hgrow="ALWAYS" />
+                  <StackPane fx:id="SPTheme" prefHeight="30.0" prefWidth="30.0">
+                     <children>
+                        <ImageView fx:id="IMGTheme" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#IMGThemeOnMouseClicked" onMouseEntered="#IMGThemeOnMouseEntered" onMouseExited="#IMGThemeOnMouseExited" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="IMGThemeHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#IMGThemeOnMouseClicked" onMouseEntered="#IMGThemeOnMouseEntered" onMouseExited="#IMGThemeOnMouseExited" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="IMGThemeInit" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#IMGThemeOnMouseClicked" onMouseEntered="#IMGThemeOnMouseEntered" onMouseExited="#IMGThemeOnMouseExited" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children></StackPane>
+                  <Button fx:id="BTNMinimize" mnemonicParsing="false" onMouseClicked="#BTNMinimizeOnMouseClicked" onMouseEntered="#BTNMinimizeOnMouseEntered" onMouseExited="#BTNMinimizeOnMouseExited" text="-">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="BTNClose" layoutX="1148.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#BTNCloseOnMouseClicked" onMouseEntered="#BTNCloseOnMouseEntered" onMouseExited="#BTNCloseOnMouseExited" text="X">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

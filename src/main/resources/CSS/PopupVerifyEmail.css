@@ -1,0 +1,381 @@
+@font-face {
+
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.root {
+
+    -fx-background-color: #f5f5f5;
+    -fx-border-width: 1px;
+    -fx-border-color: #192d91;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.header {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #192d91;
+
+}
+
+.LBLContent {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 12px;
+    -fx-text-fill: #192d91;
+
+}
+
+.TXTBegin {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #121212;
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 10px 0px 0px 10px;
+    -fx-prompt-text-fill: #747474;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px 0px 0px 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.TXTBegin:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #4D5CA7;
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 10px 0px 0px 10px;
+    -fx-border-color: #4D5CA7;
+    -fx-prompt-text-fill: #8592d2;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px 0px 0px 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.TXTMiddle {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #121212;
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 0px;
+    -fx-prompt-text-fill: #747474;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.TXTMiddle:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #4D5CA7;
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 0px;
+    -fx-border-color: #4D5CA7;
+    -fx-prompt-text-fill: #8592d2;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.TXTEnd {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #121212;
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 0px 10px 10px 0px;
+    -fx-prompt-text-fill: #747474;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px 10px 10px 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.TXTEnd:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #4D5CA7;
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 0px 10px 10px 0px;
+    -fx-border-color: #4D5CA7;
+    -fx-prompt-text-fill: #8592d2;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px 10px 10px 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.footer {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 10px;
+    -fx-text-fill: #a7a7a7;
+
+}
+
+.rootActive {
+
+    -fx-background-color: #282c34;
+    -fx-border-width: 1px;
+    -fx-border-color: #4dc0d4;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .header {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #4dc0d4;
+
+}
+
+.rootActive .title {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 12px;
+    -fx-text-fill: #d5d5d5;
+
+}
+
+.rootActive .LBLContent {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 12px;
+    -fx-text-fill: #4dc0d4;
+
+}
+
+.rootActive .TXTBegin {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #f5f5f5;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 10px 0px 0px 10px;
+    -fx-prompt-text-fill: #d5d5d5;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px 0px 0px 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.rootActive .TXTBegin:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #73DCE6;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 10px 0px 0px 10px;
+    -fx-border-color: #73DCE6;
+    -fx-prompt-text-fill: #73DCE6;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px 0px 0px 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.rootActive .TXTMiddle {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #f5f5f5;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 0px;
+    -fx-prompt-text-fill: #d5d5d5;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.rootActive .TXTMiddle:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #73DCE6;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 0px;
+    -fx-border-color: #73DCE6;
+    -fx-prompt-text-fill: #73DCE6;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.rootActive .TXTEnd {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #f5f5f5;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 0px 10px 10px 0px;
+    -fx-prompt-text-fill: #d5d5d5;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px 10px 10px 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.rootActive .TXTEnd:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #73DCE6;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 0px 10px 10px 0px;
+    -fx-border-color: #73DCE6;
+    -fx-prompt-text-fill: #73DCE6;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0px 10px 10px 0px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.rootActive .footer {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 10px;
+    -fx-text-fill: #dcdcdc;
+
+}
+
+/* ---------------------- ScrollPane (solo lo necesario) ---------------------- */
+
+/* No usar selectores globales que afecten al contenido del viewport.
+   Aquí solo hacemos transparente el fondo del control (si hace falta)
+   y estilizamos la barra de scroll y su thumb. */
+
+.scroll-pane {
+    -fx-background-color: transparent;     /* deja el contenido gestionado por sus propios panes */
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    /* NO tocar -fx-padding aquí: dejar que el contenido (AnchorPane/VBox) controle su padding */
+}
+
+/* viewport: transparente (pero NO eliminamos el padding del contenido) */
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    /* No pongas -fx-padding: 0 aquí a menos que quieras forzar el padding del viewport */
+}
+
+/* scroll-bar y piezas internas */
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 0;        /* padding interno de la scroll-bar, no afecta al contenido dentro del viewport */
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-pref-width: 7;     /* ancho de la barra/thumb */
+    -fx-padding: 0;
+}
+
+/* track (fondo de la barra) */
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+/* Quitar/ocultar los botones increment/decrement (si prefieres, puedes ajustar en lugar de ocultar) */
+.scroll-pane .scroll-bar .increment-button,
+.scroll-pane .scroll-bar .decrement-button {
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-max-height: 0;
+    -fx-max-width: 0;
+    -fx-opacity: 0;
+}
+
+/* esquina (cuando hay dos scrollbars) */
+.scroll-pane .corner {
+    -fx-padding: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+    -fx-background-color: transparent;
+}
+
+/* thumb: el que te interesa estilizar */
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-insets: 0;
+    -fx-background-color: #192D91;
+    -fx-background-radius: 6px;
+    -fx-effect: null; /* evita efectos heredados que cambien dimensiones aparente */
+}
+
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #4055BE;
+}
+
+.scroll-pane .scroll-bar .thumb:pressed {
+    -fx-background-color: #677DEB;
+}
+
+/* ---------------------- Variante rootActive (tema oscuro) ---------------------- */
+
+/* ScrollPane en tema activo oscuro: solo colores distintos para la thumb */
+.rootActive .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+.rootActive .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.rootActive .scroll-pane .scroll-bar:vertical {
+    -fx-pref-width: 7;
+}
+
+.rootActive .scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #4DC0D4;
+    -fx-background-radius: 6px;
+}
+
+.rootActive .scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #45B1C4;
+}
+
+.rootActive .scroll-pane .scroll-bar .thumb:pressed {
+    -fx-background-color: #3CA1B3;
+}
