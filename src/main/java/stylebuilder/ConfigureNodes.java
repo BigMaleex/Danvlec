@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 import utilities.Colors;
 import utilities.FileConstants;
@@ -59,6 +60,34 @@ public class ConfigureNodes {
     private static String tooltipBorder;
     private static String tooltipFontColor;
 
+    //Fases de activación del correo
+    private static String emailNotVerifiedBackground;
+    private static String emailNotVerifiedBorder;
+    private static String emailNotVerifiedFontColor;
+
+    //Toast notification
+    private static String toastNotificationBackground;
+    private static String toastNotificationBorder;
+
+    //Popup Card
+    private static String popupCardBackground;
+    private static String popupCardBorder;
+
+    //Popup Card Button
+    private static String popupCardButtonBackground;
+    private static String popupCardButtonBorder;
+    private static String popupCardButtonFontColor;
+
+    //PopupTitleBarButton
+    private static String popupTitleBarCloseButtonBackground;
+    private static String popupTitleBarCloseButtonBorder;
+    private static String popupTitleBarCloseButtonFontColor;
+
+    //PopupThirdButton
+    private static String popupThirdButtonBackground;
+    private static String popupThirdButtonBorder;
+    private static String popupThirdButtonFontColor;
+
     private static void changeColors(boolean isDarkMode){
 
         //Botón secundario
@@ -104,6 +133,168 @@ public class ConfigureNodes {
         tooltipBackground = Colors.getColor("tooltip-background", isDarkMode);
         tooltipBorder = Colors.getColor("tooltip-border", isDarkMode);
         tooltipFontColor = Colors.getColor("tooltip-font-color", isDarkMode);
+
+        //Toast Notifications
+        toastNotificationBackground = Colors.getColor("toast-notification-background", isDarkMode);
+        toastNotificationBorder = Colors.getColor("toast-notification-border", isDarkMode);
+
+        //Popup card
+        popupCardBackground = Colors.getColor("popup-card-background", isDarkMode);
+        popupCardBorder = Colors.getColor("popup-card-border", isDarkMode);
+
+        //Popup Card Button
+        popupCardButtonBackground = Colors.getColor("popup-card-button-background", isDarkMode);
+        popupCardButtonBorder = Colors.getColor("popup-card-button-border", isDarkMode);
+        popupCardButtonFontColor = Colors.getColor("popup-card-button-font-color", isDarkMode);
+
+        //PopupTitleBarButton
+        popupTitleBarCloseButtonBackground = Colors.getColor("popup-title-bar-close-button-background", isDarkMode);
+        popupTitleBarCloseButtonBorder = Colors.getColor("popup-title-bar-close-button-border", isDarkMode);
+        popupTitleBarCloseButtonFontColor = Colors.getColor("popup-title-bar-close-button-font-color", isDarkMode);
+
+        //PopupThirdButton
+        popupThirdButtonBackground = Colors.getColor("popup-third-button-background", isDarkMode);
+        popupThirdButtonBorder = Colors.getColor("popup-third-button-border", isDarkMode);
+        popupThirdButtonFontColor = Colors.getColor("popup-third-button-font-color", isDarkMode);
+
+    }
+
+    public static void configureNodesForPopupSecurityCodesController(Button BTNClose, Button BTNCopy1, Button BTNCopy2, Button BTNCopy3, Button BTNCopy4, Button BTNCopy5, Button BTNCopy6, Button BTNCopy7, Button BTNCopy8, Button BTNCopy9, Button BTNCopy10, Button BTNCopyAllCodes, Button BTNDownloadCodes, Button BTNGenerateNewCodes, ImageView IMGButtonCopy1, ImageView IMGButtonCopy1Hover, ImageView IMGButtonCopy2, ImageView IMGButtonCopy2Hover, ImageView IMGButtonCopy3, ImageView IMGButtonCopy3Hover, ImageView IMGButtonCopy4, ImageView IMGButtonCopy4Hover, ImageView IMGButtonCopy5, ImageView IMGButtonCopy5Hover, ImageView IMGButtonCopy6, ImageView IMGButtonCopy6Hover, ImageView IMGButtonCopy7, ImageView IMGButtonCopy7Hover, ImageView IMGButtonCopy8, ImageView IMGButtonCopy8Hover, ImageView IMGButtonCopy9, ImageView IMGButtonCopy9Hover, ImageView IMGButtonCopy10, ImageView IMGButtonCopy10Hover, ImageView IMGCopyAllCodes, ImageView IMGCopyAllCodesHover, ImageView IMGDownloadCodes, ImageView IMGDownloadCodesHover, ImageView IMGGenerateNewCodes, ImageView IMGGenerateNewCodesHover, ImageView IMGIconSecurity, ImageView IMGIcon, Label LBLButtonCopy1, Label LBLButtonCopy2, Label LBLButtonCopy3, Label LBLButtonCopy4, Label LBLButtonCopy5, Label LBLButtonCopy6, Label LBLButtonCopy7, Label LBLButtonCopy8, Label LBLButtonCopy9, Label LBLButtonCopy10, Label LBLCopyAllCodes, Label LBLDownloadCodes, Label LBLGenerateNewCodes, StackPane SPCode1, StackPane SPCode2, StackPane SPCode3, StackPane SPCode4, StackPane SPCode5, StackPane SPCode6, StackPane SPCode7, StackPane SPCode8, StackPane SPCode9, StackPane SPCode10, boolean isDM){
+
+        changeColors(isDM);
+
+        applyStylesToContents(popupCardBackground, popupCardBorder, Styles.px2, Styles.px10,SPCode1, SPCode2, SPCode3, SPCode4, SPCode5, SPCode6, SPCode7, SPCode8, SPCode9, SPCode10);
+
+        applyStylesToLabels(principalButtonFontColor, Styles.px12, LBLDownloadCodes);
+
+        applyStylesToLabels(secondaryButtonFontColor, Styles.px12, LBLCopyAllCodes);
+
+        applyStylesToLabels(popupThirdButtonFontColor, Styles.px12, LBLGenerateNewCodes);
+
+        applyStylesToLabels(popupCardButtonFontColor, Styles.px12, LBLButtonCopy1, LBLButtonCopy2, LBLButtonCopy3, LBLButtonCopy4, LBLButtonCopy5, LBLButtonCopy6, LBLButtonCopy7, LBLButtonCopy8, LBLButtonCopy9, LBLButtonCopy10);
+
+        setImages(FileConstants.shieldIconDm, FileConstants.shieldIconLm, isDM, IMGIconSecurity, IMGIcon);
+
+        setImages(FileConstants.arrowClockwisePopupThirdLmdmnormalhover, FileConstants.arrowClockwisePopupThirdLmdmnormalhover, isDM, IMGGenerateNewCodes, IMGGenerateNewCodesHover);
+
+        setImages(FileConstants.filetypePdfPrincipalHoverDm, FileConstants.filetypePdfPrincipalHoverLm, isDM, IMGDownloadCodesHover);
+
+        setImages(FileConstants.filetypePdfPrincipalDm, FileConstants.filetypePdfPrincipalLm, isDM, IMGDownloadCodes);
+
+        setImages(FileConstants.copySecondaryHoverDm, FileConstants.copySecondaryHoverLm, isDM, IMGCopyAllCodesHover);
+
+        setImages(FileConstants.copySecondaryDm, FileConstants.copySecondaryLm, isDM, IMGCopyAllCodes);
+
+        setImages(FileConstants.copyPopupCardButtonHoverDm, FileConstants.copyPopupCardButtonHoverLm, isDM, IMGButtonCopy1Hover, IMGButtonCopy2Hover, IMGButtonCopy3Hover, IMGButtonCopy4Hover, IMGButtonCopy5Hover, IMGButtonCopy6Hover, IMGButtonCopy7Hover, IMGButtonCopy8Hover, IMGButtonCopy9Hover, IMGButtonCopy10Hover);
+
+        setImages(FileConstants.copyPopupCardButtonDm, FileConstants.copyPopupCardButtonLm, isDM, IMGButtonCopy1, IMGButtonCopy2, IMGButtonCopy3, IMGButtonCopy4, IMGButtonCopy5, IMGButtonCopy6, IMGButtonCopy7, IMGButtonCopy8, IMGButtonCopy9, IMGButtonCopy10);
+
+        applyStylesToButtons(popupThirdButtonBackground, popupThirdButtonBorder, popupThirdButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNGenerateNewCodes);
+
+        applyStylesToButtons(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNDownloadCodes);
+
+        applyStylesToButtons(secondaryButtonBackground, secondaryButtonBorder, secondaryButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNCopyAllCodes);
+
+        applyStylesToButtons(popupCardButtonBackground, popupCardButtonBorder, popupCardButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNCopy1, BTNCopy2, BTNCopy3, BTNCopy4, BTNCopy5, BTNCopy6, BTNCopy7, BTNCopy8, BTNCopy9, BTNCopy10);
+
+        applyStylesToButtons(popupTitleBarCloseButtonBackground, popupTitleBarCloseButtonBorder, popupTitleBarCloseButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNClose);
+
+    }
+
+    public static void configureNodesForPopupVerifyEmailController(AnchorPane APResendEmail, Button BTNClose, Button BTNVerifyEmail, ImageView IMGIcon, ImageView IMGResendEmail, ImageView IMGResendEmailHover, ImageView IMGTimeRemaining, Label LBLResendEmail, Label LBLTimeRemainingDays, Label LBLTimeRemainingTitle, StackPane SPTimeRemaining, StackPane SPToast, boolean isDM, boolean allConditionsMet, boolean theUserCanForwardTheEmail, long daysThatHavePassed ){
+
+        changeColors(isDM);
+
+        setImages(
+
+                daysThatHavePassed >= 0 && daysThatHavePassed < 6 ? FileConstants.calendarTimeRemainingFirstFaseIconDm :
+                        daysThatHavePassed >=6 &&  daysThatHavePassed < 10 ? FileConstants.calendarTimeRemainingSecondFaseIcon :
+                                FileConstants.calendarTimeRemainingThirdFaseIcon,
+                daysThatHavePassed >= 0 && daysThatHavePassed < 6 ? FileConstants.calendarTimeRemainingFirstFaseIconLm :
+                        daysThatHavePassed >=6 &&  daysThatHavePassed < 10 ? FileConstants.calendarTimeRemainingSecondFaseIcon :
+                                FileConstants.calendarTimeRemainingThirdFaseIcon,
+                isDM, IMGTimeRemaining
+
+
+        );
+
+        emailNotVerifiedBackground = Colors.getColor(
+
+                daysThatHavePassed >= 0 && daysThatHavePassed < 6 ? "email-not-verified-first-fase-background":
+                        daysThatHavePassed >=6 &&  daysThatHavePassed < 10 ? "email-not-verified-second-fase-background":
+                                "email-not-verified-third-fase-background"
+                , isDM
+
+        );
+        emailNotVerifiedBorder = Colors.getColor(
+
+                daysThatHavePassed >= 0 && daysThatHavePassed < 6 ? "email-not-verified-first-fase-border":
+                        daysThatHavePassed >=6 &&  daysThatHavePassed < 10 ? "email-not-verified-second-fase-border":
+                                "email-not-verified-third-fase-border"
+                , isDM
+
+        );
+        emailNotVerifiedFontColor = Colors.getColor(
+
+                daysThatHavePassed >= 0 && daysThatHavePassed < 6 ? "email-not-verified-first-fase-font-color":
+                        daysThatHavePassed >=6 &&  daysThatHavePassed < 10 ? "email-not-verified-second-fase-font-color":
+                                "email-not-verified-third-fase-font-color"
+                , isDM
+
+        );
+
+        applyStylesToContents(toastNotificationBackground, toastNotificationBorder, Styles.px1, Styles.px10, SPToast);
+
+        applyStylesToContents(emailNotVerifiedBackground, emailNotVerifiedBorder, Styles.px1, Styles.px10, SPTimeRemaining);
+
+        setImages(FileConstants.sendSecondaryHoverDm, FileConstants.sendSecondaryHoverLm, isDM, IMGResendEmailHover);
+
+        setImages(FileConstants.sendSecondaryDm, FileConstants.sendSecondaryLm, isDM, IMGResendEmail);
+
+        setImages(FileConstants.atIconDm, FileConstants.atIconLm, isDM, IMGIcon);
+
+        LBLTimeRemainingDays.setStyle(
+
+                buildStylesForLabels((daysThatHavePassed >= 15 ? "#ffffffff" : emailNotVerifiedFontColor), Styles.px12) +
+                        Styles.borderColor + emailNotVerifiedFontColor + Styles.end +
+                        Styles.borderWidth + Styles.px1 + Styles.end +
+                        Styles.borderRadius + Styles.px10 + Styles.end +
+                        Styles.backgroundColor + (daysThatHavePassed >= 15 ? emailNotVerifiedFontColor : "#00000000") + Styles.end +
+                        Styles.backgroundRadius + Styles.px10 + Styles.end +
+                        Styles.padding + "2 6;"
+        );
+
+        applyStylesToLabels(emailNotVerifiedFontColor, Styles.px12, LBLTimeRemainingTitle);
+
+        if(allConditionsMet){
+
+            applyStylesToButtons(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNVerifyEmail);
+            BTNVerifyEmail.setOpacity(1.0);
+
+        }else{
+
+            applyStylesToButtons(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, BTNVerifyEmail);
+            BTNVerifyEmail.setOpacity(0.66);
+
+        }
+
+        applyStylesToButtons(hideButtonBackground, hideButtonBorder, hideButtonFontColor, Styles.px12, Styles.px1,Styles.px10, BTNClose);
+
+        if(theUserCanForwardTheEmail){
+
+            applyStylesToContents(secondaryButtonBackground, secondaryButtonBorder, Styles.px1, Styles.px10,APResendEmail);
+            applyStylesToLabels(secondaryButtonFontColor, Styles.px12, LBLResendEmail);
+            LBLResendEmail.setOpacity(1);
+            APResendEmail.setOpacity(1);
+
+        }else{
+
+            applyStylesToContents(buttonBackgroundDisabled, buttonBorderDisabled, Styles.px1, Styles.px10, APResendEmail);
+            applyStylesToLabels(buttonFontColorDisabled, Styles.px12, LBLResendEmail);
+            LBLResendEmail.setOpacity(0.66);
+            APResendEmail.setOpacity(0.66);
+
+        }
 
     }
 

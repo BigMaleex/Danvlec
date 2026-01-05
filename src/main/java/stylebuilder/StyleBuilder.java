@@ -24,7 +24,34 @@ public class StyleBuilder {
     private static final String BACKGROUND_COLOR_REGEX = "-fx-background-color:[^;]*;?";
     private static final String BORDER_COLOR_REGEX = "-fx-border-color:[^;]*;?";
     private static final String TEXT_FILL_REGEX = "-fx-text-fill:[^;]*;?";
-    private static final String BORDER_WIDTH_REGEX = "-fx-border-width:[^;]*;?";
+
+
+    public static void animateButtonColorsWithImagesAndLabels(String bgStart, String bgEnd, String brStart, String brEnd, String fColorStart, String fColorEnd, Button button, ImageView image, ImageView imageHover, Label label){
+
+        animateButtonColors(button, bgStart, bgEnd,brStart, brEnd, fColorStart, fColorEnd);
+        animateLabelTextColor(label, fColorStart, fColorEnd);
+        fadeAndChangeImage(image, imageHover);
+
+    }
+
+    public static void showAndHideToastNotification(StackPane sp, boolean isLong){
+
+        double transition = 0.3d;
+
+        sp.setOpacity(0.0);
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(transition), sp);
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(transition), sp);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        PauseTransition pause = new PauseTransition(Duration.seconds(isLong ? 3 : 2));
+
+        SequentialTransition sequential = new SequentialTransition(fadeIn,pause, fadeOut);
+
+        sequential.play();
+
+    }
 
     /**
      * Cambia el estado del passwordField y de las imágenes

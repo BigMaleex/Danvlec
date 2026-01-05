@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 public class UserDataLS {
 
+    public boolean haveAnyAccount;
     public String userID;
     public String name;
     public String lastname;
@@ -20,6 +21,7 @@ public class UserDataLS {
 
     public void copyAllData(){
 
+        haveAnyAccount = UserData.isHaveAnyAccount();
         userID = UserData.getUserID();
         name = UserData.getName();
         email = UserData.getEmail();
@@ -37,6 +39,7 @@ public class UserDataLS {
 
     public void copyOnlyUserID(){
 
+        haveAnyAccount = UserData.isHaveAnyAccount();
         userID = UserData.getUserID();
         name = null;
         email = null;
@@ -52,8 +55,9 @@ public class UserDataLS {
 
     }
 
-    public void load (){
+    public void load () {
 
+        UserData.setHaveAnyAccount(haveAnyAccount);
         UserData.setUserID(userID);
         UserData.setLastConnection(lastConnection);
         UserData.setMotivation(motivation);

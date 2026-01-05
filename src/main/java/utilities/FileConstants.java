@@ -13,6 +13,7 @@ public class FileConstants {
     public static final String PopupChangeIPFXML = "PopupChangeIP.fxml";
     public static final String PopupTwoButtonFXML = "PopupTwoButton.fxml";
     public static final String PopupVerifyEmailFXML = "PopupVerifyEmail.fxml";
+    public static final String PopupSecurityCodesFXML = "PopupSecurityCodes.fxml";
 
     //ScreenID
     public static final String LoadScreens = "LoadScreens";
@@ -83,6 +84,28 @@ public class FileConstants {
     public static final String shieldIconDm = "shield-icon-dm.png";
     public static final String envelopeAtIconLm = "envelope-at-icon-lm.png";
     public static final String envelopeAtIconDm = "envelope-at-icon-dm.png";
+    public static final String sendSecondaryLm = "send-secondary-lm.png";
+    public static final String sendSecondaryDm = "send-secondary-dm.png";
+    public static final String sendSecondaryHoverLm = "send-secondary-hover-lm.png";
+    public static final String sendSecondaryHoverDm = "send-secondary-hover-dm.png";
+    public static final String calendarTimeRemainingFirstFaseIconLm = "calendar-time-remaining-first-fase-icon-lm.png";
+    public static final String calendarTimeRemainingFirstFaseIconDm = "calendar-time-remaining-first-fase-icon-dm.png";
+    public static final String calendarTimeRemainingSecondFaseIcon = "calendar-time-remaining-second-fase-icon.png";
+    public static final String calendarTimeRemainingThirdFaseIcon = "calendar-time-remaining-third-fase-icon.png";
+    public static final String copySecondaryLm = "copy-secondary-lm.png";
+    public static final String copySecondaryDm = "copy-secondary-dm.png";
+    public static final String copySecondaryHoverLm = "copy-secondary-hover-lm.png";
+    public static final String copySecondaryHoverDm = "copy-secondary-hover-dm.png";
+    public static final String copyPopupCardButtonDm = "copy-popup-card-button-dm.png";
+    public static final String copyPopupCardButtonLm = "copy-popup-card-button-lm.png";
+    public static final String copyPopupCardButtonHoverLm = "copy-popup-card-button-hover-lm.png";
+    public static final String copyPopupCardButtonHoverDm = "copy-popup-card-button-hover-dm.png";
+    public static final String filetypePdfPrincipalLm = "filetype-pdf-principal-lm.png";
+    public static final String filetypePdfPrincipalDm = "filetype-pdf-principal-dm.png";
+    public static final String filetypePdfPrincipalHoverLm = "filetype-pdf-principal-hover-lm.png";
+    public static final String filetypePdfPrincipalHoverDm = "filetype-pdf-principal-hover-dm.png";
+    public static final String arrowClockwisePopupThirdLmdmnormalhover = "arrow-clockwise-popup-third-lmdmnormalhover.png";
+
 
     //Fuente
     public static final String oswaldSemiBold = "Oswald-SemiBold.ttf";

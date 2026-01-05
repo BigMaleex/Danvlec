@@ -168,6 +168,102 @@ public class Colors {
             Map.entry("content-font-color-dm", "#D5D5D5FF"), //COLOR DEL CONTENIDO
             Map.entry("content-font-color-lm", "#121212FF"), //COLOR DEL CONTENIDO
 
+            //Fases de verificación del email
+            //Primera fase
+            Map.entry("email-not-verified-first-fase-font-color-lm", "#192D91FF"), //COLOR DE LA LETRA DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU PRIMERA FASE
+            Map.entry("email-not-verified-first-fase-background-lm", "#192D9133"), //COLOR DEL FONDO DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU PRIMERA FASE
+            Map.entry("email-not-verified-first-fase-border-lm", "#192D91FF"), //COLOR DEL BORDE DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU PRIMERA FASE
+
+            //Segunda fase
+            Map.entry("email-not-verified-second-fase-background-lm", "#F9862633"), //COLOR DEL FONDO DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU SEGUNDA FASE
+            Map.entry("email-not-verified-second-fase-border-lm", "#F98626FF"), //COLOR DEL BORDE DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU SEGUNDA FASE
+            Map.entry("email-not-verified-second-fase-font-color-lm", "#F98626FF"), //COLOR DE LA LETRA DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU SEGUNDA FASE
+
+            //Tercera fase
+            Map.entry("email-not-verified-third-fase-background-lm", "#E2423733"), //COLOR DEL FONDO DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU TERCERA FASE
+            Map.entry("email-not-verified-third-fase-border-lm", "#E24237FF"), //COLOR DEL BORDE DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU TERCERA FASE
+            Map.entry("email-not-verified-third-fase-font-color-lm", "#E24237FF"), //COLOR DE LA LETRA DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU TERCERA FASE
+
+            //Primera fase
+            Map.entry("email-not-verified-first-fase-font-color-dm", "#4DC0D4FF"), //COLOR DE LA LETRA DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU PRIMERA FASE
+            Map.entry("email-not-verified-first-fase-background-dm", "#4DC0D433"), //COLOR DEL FONDO DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU PRIMERA FASE
+            Map.entry("email-not-verified-first-fase-border-dm", "#4DC0D4FF"), //COLOR DEL BORDE DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU PRIMERA FASE
+
+            //Segunda fase
+            Map.entry("email-not-verified-second-fase-background-dm", "#F9862633"), //COLOR DEL FONDO DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU SEGUNDA FASE
+            Map.entry("email-not-verified-second-fase-border-dm", "#F98626FF"), //COLOR DEL BORDE DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU SEGUNDA FASE
+            Map.entry("email-not-verified-second-fase-font-color-dm", "#F98626FF"), //COLOR DE LA LETRA DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU SEGUNDA FASE
+
+            //Tercera fase
+            Map.entry("email-not-verified-third-fase-background-dm", "#E2423733"), //COLOR DEL FONDO DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU TERCERA FASE
+            Map.entry("email-not-verified-third-fase-border-dm", "#E24237FF"), //COLOR DEL BORDE DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU TERCERA FASE
+            Map.entry("email-not-verified-third-fase-font-color-dm","#E24237FF"), //COLOR DE LA LETRA DEL CONTENEDOR DEL EMAIL NO VERIFICADO EN SU TERCERA FASE
+
+            //Toast Notification
+            Map.entry("toast-notification-background-lm", "#F5F5F5FF"), //COLOR DEL FONDO DEL TOAST NOTIFICATION
+            Map.entry("toast-notification-border-lm", "#192D91FF"), //COLOR DEL BORDE DEL TOAST NOTIFICATION
+            Map.entry("toast-notification-font-color-lm", "#121212FF"), //COLOR DE LA FUENTE DEL TOAST NOTIFICATION
+
+            Map.entry("toast-notification-background-dm", "#282C34FF"), //COLOR DEL FONDO DEL TOAST NOTIFICATION
+            Map.entry("toast-notification-border-dm", "#4DC0D4"), //COLOR DEL BORDE DEL TOAST NOTIFICATION
+            Map.entry("toast-notification-font-color-dm", "#D5D5D5FF"), //COLOR DE LA FUENTE DEL TOAST NOTIFICATION
+
+            //Tarjetas de Popup
+            Map.entry("popup-card-background-lm", "#FFFFFFFF"), //COLOR DEL FONDO DE LA TARJETA EN POPUP
+            Map.entry("popup-card-border-lm", "#E8EAF4FF"), //COLOR DEL BORDE DE LA TARJETA EN POPUP
+            Map.entry("popup-card-background-hover-lm", "#F3F4F9FF"), //COLOR DEL FONDO DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-card-border-hover-lm", "#B1B8D9FF"), //COLOR DEL BORDE DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+
+            Map.entry("popup-card-background-dm", "#2E3442FF"), //COLOR DEL FONDO DE LA TARJETA EN POPUP
+            Map.entry("popup-card-border-dm", "#35505FFF"), //COLOR DEL BORDE DE LA TARJETA EN POPUP
+            Map.entry("popup-card-background-hover-dm", "#2F3542FF"), //COLOR DEL FONDO DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-card-border-hover-dm", "#3C6C7DFF"), //COLOR DEL BORDE DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+
+            //Botón de tarjetas de Popup
+            Map.entry("popup-card-button-background-lm", "#F3F4F9FF"), //COLOR DEL FONDO DEL BOTÓN DE LA TARJETA EN POPUP
+            Map.entry("popup-card-button-border-lm", "#F3F4F9FF"), //COLOR DEL BORDE DEL BOTÓN DE LA TARJETA EN POPUP
+            Map.entry("popup-card-button-font-color-lm", "#29292AFF"), //COLOR DE LA FUENTE DEL BOTÓN DE LA TARJETA EN POPUP
+            Map.entry("popup-card-button-background-hover-lm", "#DDDFEFFF"), //COLOR DEL FONDO DEL BOTÓN DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-card-button-border-hover-lm", "#DDDFEFFF"), //COLOR DEL BORDE DEL BOTÓN DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-card-button-font-color-hover-lm", "#293C98FF"), //COLOR DE LA FUENTE DEL BOTÓN DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+
+            Map.entry("popup-card-button-background-dm", "#2F3542FF"), //COLOR DEL FONDO DEL BOTÓN DE LA TARJETA EN POPUP
+            Map.entry("popup-card-button-border-dm", "#2F3542FF"), //COLOR DEL BORDE DEL BOTÓN DE LA TARJETA EN POPUP
+            Map.entry("popup-card-button-font-color-dm", "#FFFFFFFF"), //COLOR DE LA FUENTE DEL BOTÓN DE LA TARJETA EN POPUP
+            Map.entry("popup-card-button-background-hover-dm", "#353C4BFF"), //COLOR DEL FONDO DEL BOTÓN DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-card-button-border-hover-dm", "#353C4BFF"), //COLOR DEL BORDE DEL BOTÓN DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-card-button-font-color-hover-dm", "#4AB0C4FF"), //COLOR DE LA FUENTE DEL BOTÓN DE LA TARJETA EN POPUP CUANDO EL USUARIO HACE HOVER
+
+            //Botón terciario del popup
+            Map.entry("popup-third-button-background-lm", "#FFFFFFFF"), //COLOR DEL FONDO DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-border-lm", "#FF7210FF"), //COLOR DEL BORDE DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-font-color-lm", "#FF7210FF"), //COLOR DE LA FUENTE DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-background-hover-lm", "#FFF0E6FF"), //COLOR DEL FONDO DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-border-hover-lm", "#FF7210FF"), //COLOR DEL BORDE DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-font-color-hover-lm", "#FF7210FF"), //COLOR DE LA FUENTE DEL BOTÓN TERCIARIO DEL POPUP
+
+            Map.entry("popup-third-button-background-dm", "#333947FF"), //COLOR DEL FONDO DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-border-dm", "#3C4454FF"), //COLOR DEL BORDE DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-font-color-dm", "#FF7210FF"), //COLOR DE LA FUENTE DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-background-hover-dm", "#353C4BFF"), //COLOR DEL FONDO DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-border-hover-dm", "#3A4252FF"), //COLOR DEL BORDE DEL BOTÓN TERCIARIO DEL POPUP
+            Map.entry("popup-third-button-font-color-hover-dm", "#FF7210FF"), //COLOR DE LA FUENTE DEL BOTÓN TERCIARIO DEL POPUP
+
+            //Botón para cerrar el popup en la barra de título
+            Map.entry("popup-title-bar-close-button-background-lm", "#F5F5F5FE"), //COLOR DEL FONDO DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP
+            Map.entry("popup-title-bar-close-button-border-lm", "#F5F5F5FE"), //COLOR DEL BORDE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP
+            Map.entry("popup-title-bar-close-button-font-color-lm", "#535355FF"), //COLOR DE LA FUENTE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP
+            Map.entry("popup-title-bar-close-button-background-hover-lm", "#FAE9ECFF"), //COLOR DEL FONDO DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-title-bar-close-button-border-hover-lm", "#FAE9ECFF"), //COLOR DEL BORDE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-title-bar-close-button-font-color-hover-lm", "#DD3D4CFF"), //COLOR DE LA FUENTE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP CUANDO EL USUARIO HACE HOVER
+
+            Map.entry("popup-title-bar-close-button-background-dm", "#282C34FE"), //COLOR DEL FONDO DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP
+            Map.entry("popup-title-bar-close-button-border-dm", "#282C34FE"), //COLOR DEL BORDE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP
+            Map.entry("popup-title-bar-close-button-font-color-dm", "#FFFFFFFF"), //COLOR DE LA FUENTE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP
+            Map.entry("popup-title-bar-close-button-background-hover-dm", "#353D4CFF"), //COLOR DEL FONDO DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-title-bar-close-button-border-hover-dm", "#353D4CFF"), //COLOR DEL BORDE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-title-bar-close-button-font-color-hover-dm", "#DF4B3CFF"), //COLOR DE LA FUENTE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP CUANDO EL USUARIO HACE HOVER
+
             //Error
             Map.entry("error", "#1818FFFF") //COLOR QUE APARECERÁ CUANDO NO SE ENCUENTRE UNA VARIABLE
 

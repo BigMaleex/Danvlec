@@ -1,10 +1,12 @@
 package connections;
 
+import logical.ValidateOutputs;
 import user.UserData;
 import utilities.FileConstants;
 import utilities.ScreenManager;
 import utilities.Titles;
 
+import javax.xml.crypto.Data;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,6 +15,34 @@ import java.time.temporal.ChronoUnit;
 public class Users {
 
     private final String table = "users";
+
+    public boolean theUserHaveVerifiedTheirEmail(){
+
+        String query = "SELECT EmailVerified FROM danvlec." + table + " WHERE UserID=?";
+
+        try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query) ){
+
+            ps.setString(1, UserData.getUserID());
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                System.out.println(rs.getBoolean("EmailVerified"));
+
+                return rs.getBoolean("EmailVerified");
+            }
+
+        }catch(SQLException e){
+
+            e.printStackTrace();
+            DataManager.showError(e.toString());
+
+        }
+
+        return false;
+
+    }
 
     public boolean getUserIDWithEmailAndPassword(String email, String password){
 
@@ -124,7 +154,7 @@ public class Users {
                             rs.getTimestamp("LastConnection").toLocalDateTime(),
                             rs.getInt("Sex") == 1 ? UserData.Sex.MAN : UserData.Sex.WOMAN,
                             rs.getString("Email"), rs.getString("Motivation"),
-                            rs.getBoolean("EmailVerified")
+                            rs.getBoolean("EmailVerified"), true
 
                     );
 
@@ -152,7 +182,7 @@ public class Users {
 
     public boolean registerUser(){
 
-        String query = "INSERT INTO danvlec." + table + " (UserID, Name, Lastname, Nickname, Password, Birthday, FirstConnection, LastConnection, Sex, Email) VALUES(?,?,?,?,?,?,?,?,?,?)" ;
+        String query = "INSERT INTO danvlec." + table + " (UserID, Name, Lastname, Nickname, Password, Birthday, FirstConnection, LastConnection, Sex, Email, FirstEmail, LatestPassword) VALUES(?,?,?,?,?,?,?,?,?,?, ?, ?)" ;
 
         try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
 
@@ -166,6 +196,8 @@ public class Users {
             ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
             ps.setInt(9, UserData.getSex() == UserData.Sex.MAN ? 1 : 0);
             ps.setString(10, UserData.getEmail());
+            ps.setString(11, ValidateOutputs.sha256Hex(UserData.getEmail()));
+            ps.setString(12, UserData.getPassword());
 
             return ps.executeUpdate() == 1;
 

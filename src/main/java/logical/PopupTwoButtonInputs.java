@@ -1,6 +1,7 @@
 package logical;
 
 import connections.Users;
+import controllers.LoginController;
 import files.FileManager;
 import files.UserDataFile;
 import messagebuilder.MessageBuilder;
@@ -31,6 +32,8 @@ public class PopupTwoButtonInputs {
             UserDataFile.deleteFile();
 
         }
+
+        StepsAfterLoggingIn.stepsAfterLoggingIn();
 
     }
 
@@ -65,7 +68,10 @@ public class PopupTwoButtonInputs {
 
             //El usuario se registró correctamente
             MessageBuilder.showOkMessageFromAllInfoUploadToTheBD();
-            sm.setScreenAtPosition(FileConstants.Login, Titles.Login);
+            LoginController controller = (LoginController) sm.getController(FileConstants.Login);
+            controller.initialize();
+            sm.setScreen(FileConstants.Login, Titles.Login);
+
 
         }else{
 

@@ -1,0 +1,368 @@
+@font-face {
+
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.root {
+
+    -fx-background-color: #f5f5f5;
+    -fx-border-width: 1px;
+    -fx-border-color: #192d91;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.titleBar{
+
+    -fx-background-color: #f5f5f5fe;
+    -fx-background-radius: 10px 10px 0px 0px;
+    -fx-border-color: #192d91;
+    -fx-border-width: 0px 0px 1px 0px;
+
+}
+
+.footerBar{
+
+    -fx-background-color: #f5f5f5fe;
+    -fx-background-radius: 0px 0px 10px 10px;
+    -fx-border-color: #192d91;
+    -fx-border-width: 1px 0px 0px 0px;
+
+
+}
+
+.LBLTitleBarHeader{
+
+    -fx-text-fill: #192d91;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.1em;
+
+}
+
+.LBLTitleBarContent{
+
+    -fx-text-fill: #6c757d;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.LBLNumber{
+
+    -fx-text-fill: #273a98;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.SPNumber{
+
+    -fx-background-color: #e8e9f4;
+    -fx-background-radius: 10px;
+
+}
+
+.LBLCode {
+
+    -fx-text-fill: #232323;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.SPTitleBarIcon {
+
+    -fx-background-color: #d7daec;
+    -fx-background-radius: 10px;
+
+}
+
+.LBLSecurityHeaderTitle{
+
+    -fx-text-fill: #aa441b;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.LBLSecurityHeaderContent{
+
+    -fx-text-fill: #d04d1d;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.SPSecurityHeader{
+
+    -fx-background-color: #fd987333;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-border-color: #fd9873;
+    -fx-border-radius: 10px;
+
+}
+
+.LBLSecurityFooterTitle {
+
+    -fx-text-fill: #192d91;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.LBLSecurityFooterContent {
+
+    -fx-text-fill: #6c757d;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.SPSecurityFooter {
+
+    -fx-background-color: #fbfbfb;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-border-color: #192d91;
+    -fx-border-radius: 10px;
+
+}
+
+.rootActive {
+
+    -fx-background-color: #282c34;
+    -fx-border-width: 1px;
+    -fx-border-color: #4dc0d4;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .titleBar{
+
+    -fx-background-color: #282c34fe;
+    -fx-background-radius: 10px 10px 0px 0px;
+    -fx-border-color: #4dc0d4;
+    -fx-border-width: 0px 0px 1px 0px;
+
+
+}
+
+.rootActive .footerBar{
+
+    -fx-background-color: #282c34fe;
+    -fx-background-radius:0px 0px 10px 10px;
+    -fx-border-color: #4dc0d4;
+    -fx-border-width: 1px 0px 0px 0px;
+
+
+}
+
+.rootActive .LBLTitleBarHeader{
+
+    -fx-text-fill: #4dc0d4;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.1em;
+
+}
+
+.rootActive .LBLTitleBarContent{
+
+    -fx-text-fill: #d5d5d5;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.rootActive .LBLNumber{
+
+    -fx-text-fill: #4cbcd0;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.rootActive .SPNumber{
+
+    -fx-background-color: #34505f;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .LBLCode {
+
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.rootActive .SPTitleBarIcon {
+
+    -fx-background-color: #396473;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .LBLSecurityHeaderTitle{
+
+    -fx-text-fill: #eec89f;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.rootActive .LBLSecurityHeaderContent{
+
+    -fx-text-fill: #ffb86a;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.rootActive .SPSecurityHeader{
+
+    -fx-background-color: #fd987333;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-border-color: #724026;
+    -fx-border-radius: 10px;
+
+}
+
+.rootActive .LBLSecurityFooterTitle {
+
+    -fx-text-fill: #fdfdfd;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.rootActive .LBLSecurityFooterContent {
+
+    -fx-text-fill: #a8b0c1;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.rootActive .SPSecurityFooter {
+
+    -fx-background-color: #333947;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-border-color: #3b6271;
+    -fx-border-radius: 10px;
+
+}
+
+/* ---------------------- ScrollPane (solo lo necesario) ---------------------- */
+
+/* No usar selectores globales que afecten al contenido del viewport.
+   Aquí solo hacemos transparente el fondo del control (si hace falta)
+   y estilizamos la barra de scroll y su thumb. */
+
+.scroll-pane {
+    -fx-background-color: transparent;     /* deja el contenido gestionado por sus propios panes */
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    /* NO tocar -fx-padding aquí: dejar que el contenido (AnchorPane/VBox) controle su padding */
+}
+
+/* viewport: transparente (pero NO eliminamos el padding del contenido) */
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    /* No pongas -fx-padding: 0 aquí a menos que quieras forzar el padding del viewport */
+}
+
+/* scroll-bar y piezas internas */
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 0;        /* padding interno de la scroll-bar, no afecta al contenido dentro del viewport */
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-pref-width: 7;     /* ancho de la barra/thumb */
+    -fx-padding: 0;
+}
+
+/* track (fondo de la barra) */
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+/* Quitar/ocultar los botones increment/decrement (si prefieres, puedes ajustar en lugar de ocultar) */
+.scroll-pane .scroll-bar .increment-button,
+.scroll-pane .scroll-bar .decrement-button {
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+    -fx-max-height: 0;
+    -fx-max-width: 0;
+    -fx-opacity: 0;
+}
+
+/* esquina (cuando hay dos scrollbars) */
+.scroll-pane .corner {
+    -fx-padding: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+    -fx-background-color: transparent;
+}
+
+/* thumb: el que te interesa estilizar */
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-insets: 0;
+    -fx-background-color: #192D91;
+    -fx-background-radius: 6px;
+    -fx-effect: null; /* evita efectos heredados que cambien dimensiones aparente */
+}
+
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #4055BE;
+}
+
+.scroll-pane .scroll-bar .thumb:pressed {
+    -fx-background-color: #677DEB;
+}
+
+/* ---------------------- Variante rootActive (tema oscuro) ---------------------- */
+
+/* ScrollPane en tema activo oscuro: solo colores distintos para la thumb */
+.rootActive .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+}
+
+.rootActive .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.rootActive .scroll-pane .scroll-bar:vertical {
+    -fx-pref-width: 7;
+}
+
+.rootActive .scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #4DC0D4;
+    -fx-background-radius: 6px;
+}
+
+.rootActive .scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #45B1C4;
+}
+
+.rootActive .scroll-pane .scroll-bar .thumb:pressed {
+    -fx-background-color: #3CA1B3;
+}

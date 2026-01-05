@@ -80,7 +80,7 @@ public class SendEmail {
 
 
         MimeBodyPart imageBodyPart = new MimeBodyPart();
-        String imageResourcePath = PathManager.getImagePath("FaviconImage.png");
+        String imageResourcePath = PathManager.getImagePath("danvlec-icon-150-x-150.png");
 
         try (InputStream imageStream = getClass().getResourceAsStream(imageResourcePath)) {
             if (imageStream == null) {

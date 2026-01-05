@@ -11,6 +11,7 @@ public class UserData {
 
     }
 
+    private static boolean haveAnyAccount;
     private static String userID ;
     private static String name;
     private static String lastname;
@@ -24,8 +25,9 @@ public class UserData {
     private static String motivation;
     private static boolean emailVerified;
 
-    public UserData(String newUserID, String newName, String newLastname, String newNickname, String newPassword, LocalDate newBirthday, LocalDateTime newFirstConnection, LocalDateTime newLastConnection, Sex newSex, String newEmail, String newMotivation, boolean newEmailVerified) {
+    public UserData(String newUserID, String newName, String newLastname, String newNickname, String newPassword, LocalDate newBirthday, LocalDateTime newFirstConnection, LocalDateTime newLastConnection, Sex newSex, String newEmail, String newMotivation, boolean newEmailVerified, boolean newHaveAnyAccount) {
 
+        haveAnyAccount = newHaveAnyAccount;
         userID = newUserID;
         name = newName;
         lastname = newLastname;
@@ -41,8 +43,9 @@ public class UserData {
 
     }
 
-    public UserData(String newName, String newLastname, String newNickname, LocalDate newBirthday, LocalDateTime newFirstConnection, LocalDateTime newLastConnection, Sex newSex, String newMotivation) {
+    public UserData(String newName, String newLastname, String newNickname, LocalDate newBirthday, LocalDateTime newFirstConnection, LocalDateTime newLastConnection, Sex newSex, String newMotivation, boolean newHaveAnyAccount) {
 
+        haveAnyAccount = newHaveAnyAccount;
         userID = null;
         name = newName;
         lastname = newLastname;
@@ -60,6 +63,7 @@ public class UserData {
 
     public static void logout(){
 
+        haveAnyAccount = false;
         userID = null;
         name = null;
         lastname = null;
@@ -165,6 +169,14 @@ public class UserData {
 
     public static boolean getEmailVerified() {
         return emailVerified;
+    }
+
+    public static boolean isHaveAnyAccount() {
+        return haveAnyAccount;
+    }
+
+    public static void setHaveAnyAccount(boolean haveAnyAccount) {
+        UserData.haveAnyAccount = haveAnyAccount;
     }
 
     public static void setEmailVerified(boolean emailVerified) {

@@ -27,6 +27,60 @@ public class ValidateOutputs {
             "0","1","2","3","4","5","6","7","8","9"
     };
 
+    public static String[] generateSecurityCodes(){
+
+        String[] codes = new String[10];
+        StringBuilder sb = new StringBuilder();
+        Random rand = new Random();
+
+        for(int i = 0; i < codes.length; i++){
+
+            do {
+
+                sb.setLength(0);
+
+                for(int j = 0; j<24; j++){
+
+                    if(j > 0 && j % 4 == 0){
+
+                        sb.append("-");
+
+                    }
+
+                    sb.append(chars[rand.nextInt(chars.length)]);
+
+                }
+
+            }while(!isUniqueCode(sb.toString(), codes));
+
+            codes[i] = sb.toString();
+
+        }
+
+        return codes;
+
+    }
+
+    private static boolean isUniqueCode(String newCode, String [] codes){
+
+        for(String code : codes){
+
+            if(code != null){
+
+                if(code.equalsIgnoreCase(newCode)){
+
+                    return false;
+
+                }
+
+            }
+
+        }
+
+        return true;
+
+    }
+
     public static String getPreferredWayToCallThem(){
 
         String call = "";

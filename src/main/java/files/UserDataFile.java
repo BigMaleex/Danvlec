@@ -1,11 +1,13 @@
 package files;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import connections.Users;
 import controllers.AccountMenuController;
+import logical.StepsAfterLoggingIn;
 import user.UserData;
 import user.UserDataLS;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import user.UserPreferencesData;
 import utilities.FileConstants;
 import utilities.ScreenManager;
@@ -29,6 +31,8 @@ public class UserDataFile {
     public static void createFile(boolean copyAllData){
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         UserDataLS userDataLS = new UserDataLS();
 
         if(copyAllData){
@@ -67,34 +71,30 @@ public class UserDataFile {
             try {
 
                 UserDataLS userData = mapper.readValue(new File(FileManager.projectFolder.resolve("UserData.json").toString()), UserDataLS.class);
+                mapper.registerModule(new JavaTimeModule());
                 userData.load();
-                if(UserData.getUserID() == null && UserData.getName() != null){
+                if(!UserData.isHaveAnyAccount()){
 
                     //El usuario es Local, envíar al FXML del inicio
                     System.out.println("Sesión local");
 
 
-                } else if (UserData.getUserID() != null) {
+
+
+                } else {
 
                     //El usuario no es local, pero sí existe
                     Users us = new Users();
                     if(us.loginWithUserID()){
 
                         //Se pudo acceder, envíar al FXML del inicio
-
+                        StepsAfterLoggingIn.stepsAfterLoggingIn();
 
                     }else{
 
-                        System.out.println("Login Failed");
 
-                        sm.setScreen(FileConstants.AccountMenu, Titles.AccountMenu);
 
                     }
-
-                }else{
-
-                    //Los datos del usuario están corrompidos
-                    sm.setScreen(FileConstants.AccountMenu, Titles.AccountMenu);
 
                 }
 

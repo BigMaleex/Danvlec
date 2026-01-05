@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
+<?import javafx.scene.layout.Region?>
 <AnchorPane fx:id="APMain" prefHeight="430.0" prefWidth="400.0" styleClass="rootActive" stylesheets="@../CSS/PopupVerifyEmail.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PopupVerifyEmailController">
     <children>
         <ScrollPane fx:id="SPMain" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -97,17 +98,26 @@
             </VBox>
          </content>
         </ScrollPane>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-         <children>
-            <StackPane fx:id="SPToast" maxWidth="Infinity">
-               <padding>
-                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-               </padding>
-               <children>
-                   <TextFlow fx:id="TFLToast" textAlignment="CENTER" />
-               </children>
-            </StackPane>
-         </children>
-      </HBox>
+       <HBox fx:id="HBToast" alignment="CENTER" prefHeight="50.0"
+             AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+          <children>
+             <!-- Spacer izquierdo -->
+             <Region HBox.hgrow="ALWAYS"/>
+
+             <!-- Toast que se ajusta al contenido -->
+             <StackPane fx:id="SPToast">
+                <padding>
+                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                </padding>
+                <children>
+                   <TextFlow fx:id="TFLToast"
+                             textAlignment="CENTER"/>
+                </children>
+             </StackPane>
+
+             <!-- Spacer derecho -->
+             <Region HBox.hgrow="ALWAYS"/>
+          </children>
+       </HBox>
     </children>
 </AnchorPane>
