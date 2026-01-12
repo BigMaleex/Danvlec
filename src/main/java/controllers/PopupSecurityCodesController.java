@@ -1,5 +1,7 @@
 package controllers;
 
+import connections.SecurityCodes;
+import files.SecurityCodesFile;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,12 +15,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import logical.ValidateOutputs;
 import messagebuilder.Notifications;
+import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserPreferences;
 import utilities.Colors;
 
-public class PopupSecurityCodesController extends ConfigureNodes {
+public class PopupSecurityCodesController extends ConfigureInitializeStyles {
 
     //Variables
     private static boolean isDarkMode;
@@ -313,8 +316,8 @@ public class PopupSecurityCodesController extends ConfigureNodes {
     private StackPane SPTitleBar;
 
     //Arreglos
-    private Label[] codeLabels;
-    private Button[] copyButtons;
+    private static Label[] codeLabels;
+    private static Button[] copyButtons;
     private static boolean[] theUserCanCopyText = new boolean[10];
 
     @FXML
@@ -345,7 +348,32 @@ public class PopupSecurityCodesController extends ConfigureNodes {
         changeColors();
         StyleBuilder.setAnchorPaneClass(APMain);
 
-        configureNodesForPopupSecurityCodesController(BTNClose, BTNCopy1, BTNCopy2, BTNCopy3, BTNCopy4, BTNCopy5, BTNCopy6, BTNCopy7, BTNCopy8, BTNCopy9, BTNCopy10,BTNCopyAllCodes, BTNDownloadCodes, BTNGenerateNewCodes, IMGButtonCopy1, IMGButtonCopy1Hover, IMGButtonCopy2, IMGButtonCopy2Hover, IMGButtonCopy3, IMGButtonCopy3Hover, IMGButtonCopy4, IMGButtonCopy4Hover, IMGButtonCopy5, IMGButtonCopy5Hover, IMGButtonCopy6, IMGButtonCopy6Hover, IMGButtonCopy7, IMGButtonCopy7Hover,IMGButtonCopy8, IMGButtonCopy8Hover, IMGButtonCopy9, IMGButtonCopy9Hover,IMGButtonCopy10,IMGButtonCopy10Hover,IMGCopyAllCodes,IMGCopyAllCodesHover,IMGDownloadCodes,IMGDownloadCodesHover,IMGGenerateNewCodes,IMGGenerateNewCodesHover,IMGIconSecurity, IMGIcon,LBLButtonCopy1, LBLButtonCopy2, LBLButtonCopy3, LBLButtonCopy4, LBLButtonCopy5, LBLButtonCopy6, LBLButtonCopy7, LBLButtonCopy8, LBLButtonCopy9, LBLButtonCopy10, LBLCopyAllCodes, LBLDownloadCodes, LBLGenerateNewCodes, SPCode1, SPCode2, SPCode3, SPCode4, SPCode5, SPCode6, SPCode7, SPCode8, SPCode9, SPCode10, isDarkMode);
+        ConfigureNodes.configureNodesForPopupSecurityCodesController(BTNClose, BTNCopy1, BTNCopy2, BTNCopy3, BTNCopy4, BTNCopy5, BTNCopy6, BTNCopy7, BTNCopy8, BTNCopy9, BTNCopy10,BTNCopyAllCodes, BTNDownloadCodes, BTNGenerateNewCodes, IMGButtonCopy1, IMGButtonCopy1Hover, IMGButtonCopy2, IMGButtonCopy2Hover, IMGButtonCopy3, IMGButtonCopy3Hover, IMGButtonCopy4, IMGButtonCopy4Hover, IMGButtonCopy5, IMGButtonCopy5Hover, IMGButtonCopy6, IMGButtonCopy6Hover, IMGButtonCopy7, IMGButtonCopy7Hover,IMGButtonCopy8, IMGButtonCopy8Hover, IMGButtonCopy9, IMGButtonCopy9Hover,IMGButtonCopy10,IMGButtonCopy10Hover,IMGCopyAllCodes,IMGCopyAllCodesHover,IMGDownloadCodes,IMGDownloadCodesHover,IMGGenerateNewCodes,IMGGenerateNewCodesHover,IMGIconSecurity, IMGIcon,LBLButtonCopy1, LBLButtonCopy2, LBLButtonCopy3, LBLButtonCopy4, LBLButtonCopy5, LBLButtonCopy6, LBLButtonCopy7, LBLButtonCopy8, LBLButtonCopy9, LBLButtonCopy10, LBLCopyAllCodes, LBLDownloadCodes, LBLGenerateNewCodes, SPCode1, SPCode2, SPCode3, SPCode4, SPCode5, SPCode6, SPCode7, SPCode8, SPCode9, SPCode10, isDarkMode);
+
+    }
+
+    public void initializeLabels(boolean haveAnyCode){
+
+        if(haveAnyCode){
+
+            //Hay códigos
+            SecurityCodes securityCodes = new SecurityCodes();
+            String[] codes = securityCodes.getCodes();
+
+            for(int i = 0; i < codes.length; i++){
+
+                codeLabels[i].setText(codes[i]);
+
+            }
+
+            theUserCanCopyText();
+
+        }else{
+
+            //No hay ningún código
+            generateNewCodes();
+
+        }
 
     }
 
@@ -925,6 +953,48 @@ public class PopupSecurityCodesController extends ConfigureNodes {
     void BTNDownloadCodesOnMouseClicked(MouseEvent event) {
 
         //Crear PDF
+        boolean save = false;
+        SecurityCodesFile PDF = new SecurityCodesFile();
+        SecurityCodes sc = new SecurityCodes();
+
+        try{
+
+            PDF.setData();
+            save = PDF.generarPdf(new String [] {LBLCode1.getText(),LBLCode2.getText(), LBLCode3.getText(), LBLCode4.getText(), LBLCode5.getText(), LBLCode6.getText(), LBLCode7.getText(), LBLCode8.getText(), LBLCode9.getText(), LBLCode10.getText()});
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }
+
+        if(save){
+
+            //El usuario si guardo el archivo
+            sc.deleteCodes();
+
+            String [] encryptCodes = {LBLCode1.getText(),LBLCode2.getText(), LBLCode3.getText(), LBLCode4.getText(), LBLCode5.getText(), LBLCode6.getText(), LBLCode7.getText(), LBLCode8.getText(), LBLCode9.getText(), LBLCode10.getText()};
+
+            for(int i = 0; i<10; i++){
+
+                try{
+
+                    encryptCodes[i] = ValidateOutputs.encrypt(encryptCodes[i]);
+
+                }catch(Exception e){
+
+                    e.printStackTrace();
+
+                }
+
+            }
+
+            sc.insertCodes(encryptCodes);
+
+            Stage stage = (Stage)BTNDownloadCodes.getScene().getWindow();
+            stage.close();
+
+        }
 
     }
 
@@ -1307,7 +1377,7 @@ public class PopupSecurityCodesController extends ConfigureNodes {
 
     }
 
-    private void generateNewCodes(){
+    private static void generateNewCodes(){
 
         String [] newCodes = ValidateOutputs.generateSecurityCodes();
 
@@ -1321,7 +1391,7 @@ public class PopupSecurityCodesController extends ConfigureNodes {
 
     }
 
-    private void theUserCanCopyText(){
+    private static void theUserCanCopyText(){
 
         StringBuilder sb = new StringBuilder();
 

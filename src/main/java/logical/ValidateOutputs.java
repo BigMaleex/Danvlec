@@ -3,6 +3,9 @@ package logical;
 import connections.Users;
 import user.UserData;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -21,11 +24,33 @@ import java.util.Random;
 
 public class ValidateOutputs {
 
+    private static final String ALGORITHM = "AES";
+    private static final byte[] KEY = "1234567890123456".getBytes();
+
     private static final String[] chars = {
             "A","B","C","D","E","F","G","H","I","J","K","L","M",
             "N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
             "0","1","2","3","4","5","6","7","8","9"
     };
+
+    public static String encrypt(String data) throws Exception {
+        SecretKeySpec key = new SecretKeySpec(KEY, ALGORITHM);
+        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+
+        byte[] encrypted = cipher.doFinal(data.getBytes());
+        return Base64.getEncoder().encodeToString(encrypted);
+    }
+
+    public static String decrypt(String encryptedData) throws Exception {
+        SecretKeySpec key = new SecretKeySpec(KEY, ALGORITHM);
+        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        cipher.init(Cipher.DECRYPT_MODE, key);
+
+        byte[] decoded = Base64.getDecoder().decode(encryptedData);
+        return new String(cipher.doFinal(decoded));
+    }
+
 
     public static String[] generateSecurityCodes(){
 

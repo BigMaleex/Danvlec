@@ -264,6 +264,29 @@ public class Colors {
             Map.entry("popup-title-bar-close-button-border-hover-dm", "#353D4CFF"), //COLOR DEL BORDE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP CUANDO EL USUARIO HACE HOVER
             Map.entry("popup-title-bar-close-button-font-color-hover-dm", "#DF4B3CFF"), //COLOR DE LA FUENTE DEL BOTÓN PARA CERRAR EN LA BARRA DE TÍTULO EN UN POPUP CUANDO EL USUARIO HACE HOVER
 
+            //Popup ToggleButton
+            Map.entry("popup-toggle-button-background-lm", "#FFFFFFFF"),//COLOR DEL FONDO DEL TOGGLE BUTTON EN POPUP
+            Map.entry("popup-toggle-button-border-lm", "#D1D5E9FF"),//COLOR DEL BORDE DEL TOGGLE BUTTON EN POPUP
+            Map.entry("popup-toggle-button-font-color-lm", "#232323FF"),//COLOR DE LA FUENTE DEL TOGGLE BUTTON EN POPUP
+            Map.entry("popup-toggle-button-background-hover-lm", "#F3F4F9FF"),//COLOR DEL FONDO DEL TOGGLE BUTTON EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-toggle-button-border-hover-lm", "#B1B8D9FF"),//COLOR DEL BORDE DEL TOGGLE BUTTON EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-toggle-button-font-color-hover-lm", "#1E1E1EFF"),//COLOR DE LA FUENTE DEL TOGGLE BUTTON EN POPUP CUANDO EL USUARIO HACE HOVER
+
+            Map.entry("popup-toggle-button-background-dm", "#2E3442FF"),//COLOR DEL FONDO DEL TOGGLE BUTTON EN POPUP
+            Map.entry("popup-toggle-button-border-dm", "#375E6EFF"),//COLOR DEL BORDE DEL TOGGLE BUTTON EN POPUP
+            Map.entry("popup-toggle-button-font-color-dm", "#EBECEDFF"),//COLOR DE LA FUENTE DEL TOGGLE BUTTON EN POPUP
+            Map.entry("popup-toggle-button-background-hover-dm", "#2F3542FF"),//COLOR DEL FONDO DEL TOGGLE BUTTON EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-toggle-button-border-hover-dm", "#3E7A8AFF"),//COLOR DEL BORDE DEL TOGGLE BUTTON EN POPUP CUANDO EL USUARIO HACE HOVER
+            Map.entry("popup-toggle-button-font-color-hover-dm", "#F7F7F7FF"),//COLOR DE LA FUENTE DEL TOGGLE BUTTON EN POPUP CUANDO EL USUARIO HACE HOVER
+
+            Map.entry("popup-toggle-button-background-active-lm", "#E8E9F4FF"),//COLOR DEL FONDO DEL TOGGLE BUTTON EN POPUP CUANDO ESTÁ ACTIVO
+            Map.entry("popup-toggle-button-border-active-lm", "#192D91FF"),//COLOR DEL BORDE DEL TOGGLE BUTTON EN POPUP CUANDO ESTÁ ACTIVO
+            Map.entry("popup-toggle-button-font-color-active-lm", "#223494FF"),//COLOR DE LA FUENTE DEL TOGGLE BUTTON EN POPUP CUANDO ESTÁ ACTIVO
+
+            Map.entry("popup-toggle-button-background-active-dm", "#35505FFF"),//COLOR DEL FONDO DEL TOGGLE BUTTON EN POPUP CUANDO ESTÁ ACTIVO
+            Map.entry("popup-toggle-button-border-active-dm", "#4DC0D4FF"),//COLOR DEL BORDE DEL TOGGLE BUTTON EN POPUP CUANDO ESTÁ ACTIVO
+            Map.entry("popup-toggle-button-font-color-active-dm", "#4AB4C8FF"),//COLOR DE LA FUENTE DEL TOGGLE BUTTON EN POPUP CUANDO ESTÁ ACTIVO
+
             //Error
             Map.entry("error", "#1818FFFF") //COLOR QUE APARECERÁ CUANDO NO SE ENCUENTRE UNA VARIABLE
 

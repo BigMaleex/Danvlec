@@ -14,7 +14,7 @@ import utilities.FileConstants;
 import utilities.Images;
 import utilities.Styles;
 
-public class ConfigureNodes {
+public class ConfigureNodes extends ConfigureInitializeStyles{
 
     //Botón secundario
     private static String secondaryButtonBackground;
@@ -88,6 +88,19 @@ public class ConfigureNodes {
     private static String popupThirdButtonBorder;
     private static String popupThirdButtonFontColor;
 
+    //PopupToggleButton
+    private static String popupToggleButtonBackground;
+    private static String popupToggleButtonBorder;
+    private static String popupToggleButtonFontColor;
+
+    private static String popupToggleButtonBackgroundHover;
+    private static String popupToggleButtonBorderHover;
+    private static String popupToggleButtonFontColorHover;
+
+    private static String popupToggleButtonBackgroundActive;
+    private static String popupToggleButtonBorderActive;
+    private static String popupToggleButtonFontColorActive;
+
     private static void changeColors(boolean isDarkMode){
 
         //Botón secundario
@@ -156,6 +169,47 @@ public class ConfigureNodes {
         popupThirdButtonBackground = Colors.getColor("popup-third-button-background", isDarkMode);
         popupThirdButtonBorder = Colors.getColor("popup-third-button-border", isDarkMode);
         popupThirdButtonFontColor = Colors.getColor("popup-third-button-font-color", isDarkMode);
+
+        //PopupToggleButton
+        popupToggleButtonBackground = Colors.getColor("popup-toggle-button-background", isDarkMode);
+        popupToggleButtonBorder = Colors.getColor("popup-toggle-button-border", isDarkMode);
+        popupToggleButtonFontColor = Colors.getColor("popup-toggle-button-font-color", isDarkMode);
+
+        popupToggleButtonBackgroundHover = Colors.getColor("popup-toggle-button-background-hover", isDarkMode);
+        popupToggleButtonBorderHover = Colors.getColor("popup-toggle-button-border-hover", isDarkMode);
+        popupToggleButtonFontColorHover = Colors.getColor("popup-toggle-button-font-color-hover", isDarkMode);
+
+        popupToggleButtonBackgroundActive = Colors.getColor("popup-toggle-button-background-active", isDarkMode);
+        popupToggleButtonBorderActive = Colors.getColor("popup-toggle-button-border-active", isDarkMode);
+        popupToggleButtonFontColorActive = Colors.getColor("popup-toggle-button-font-color-active", isDarkMode);
+
+    }
+
+    public static void configureNodesForPopupSetClockController(Button BTNClose, Button BTNStart, ImageView IMGDate, ImageView IMGDateHour, ImageView IMGFocus1, ImageView IMGFocus2, ImageView IMGFocus3, ImageView IMGFocus4, ImageView IMGFocus5, ImageView IMGHabits1, ImageView IMGHabits2, ImageView IMGHabits3, ImageView IMGHabits4, ImageView IMGHabits5, ImageView IMGHour, ImageView IMGIcon, ImageView IMGOther, ImageView IMGPersonalGrowth1, ImageView IMGPersonalGrowth2, ImageView IMGPersonalGrowth3, ImageView IMGPersonalGrowth4, ImageView IMGPersonalGrowth5, ImageView IMGRelations1, ImageView IMGRelations2, ImageView IMGRelations3, ImageView IMGRelations4, ImageView IMGRelations5, ImageView IMGSubIcon, ImageView IMGStart, ImageView IMGStartHover, ImageView IMGTech1, ImageView IMGTech2, ImageView IMGTech3, ImageView IMGTech4, Label LBLFocus1, Label LBLFocus2, Label LBLFocus3, Label LBLFocus4, Label LBLFocus5, Label LBLHabits1, Label LBLHabits2, Label LBLHabits3, Label LBLHabits4, Label LBLHabits5, Label LBLOther, Label LBLPersonalGrowth1, Label LBLPersonalGrowth2, Label LBLPersonalGrowth3, Label LBLPersonalGrowth4, Label LBLPersonalGrowth5, Label LBLRelations1, Label LBLRelations2, Label LBLRelations3, Label LBLRelations4, Label LBLRelations5, Label LBLStart, Label LBLTech1, Label LBLTech2, Label LBLTech3, Label LBLTech4, StackPane SPDate, StackPane SPDateHourSelector, StackPane SPOther, ToggleButton TBTButtonFocus1, ToggleButton TBTButtonFocus2, ToggleButton TBTButtonFocus3, ToggleButton TBTButtonFocus4, ToggleButton TBTButtonFocus5, ToggleButton TBTButtonHabits1, ToggleButton TBTButtonHabits2, ToggleButton TBTButtonHabits3, ToggleButton TBTButtonHabits4, ToggleButton TBTButtonHabits5, ToggleButton TBTButtonOther, ToggleButton TBTButtonPersonalGrowth1, ToggleButton TBTButtonPersonalGrowth2, ToggleButton TBTButtonPersonalGrowth3, ToggleButton TBTButtonPersonalGrowth4, ToggleButton TBTButtonPersonalGrowth5, ToggleButton TBTButtonRelations1, ToggleButton TBTButtonRelations2, ToggleButton TBTButtonRelations3, ToggleButton TBTButtonRelations4, ToggleButton TBTButtonRelations5, ToggleButton TBTButtonTech1, ToggleButton TBTButtonTech2, ToggleButton TBTButtonTech3, ToggleButton TBTButtonTech4, ToggleButton TBTDateHour, boolean isDM){
+
+        changeColors(isDM);
+
+        
+
+        applyStylesToContents(popupCardBackground, popupCardBorder, Styles.px1, Styles.px10, SPDate, SPDateHourSelector, SPOther);
+
+        applyStylesToButtonsWithLabel(popupToggleButtonBackground, popupToggleButtonBorder, popupToggleButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase[] {TBTButtonFocus1, TBTButtonFocus2, TBTButtonFocus3, TBTButtonFocus4, TBTButtonFocus5, TBTButtonHabits1, TBTButtonHabits2, TBTButtonHabits3, TBTButtonHabits4, TBTButtonHabits5, TBTButtonOther, TBTButtonPersonalGrowth1, TBTButtonPersonalGrowth2, TBTButtonPersonalGrowth3, TBTButtonPersonalGrowth4, TBTButtonPersonalGrowth5, TBTButtonRelations1, TBTButtonRelations2, TBTButtonRelations3, TBTButtonRelations4, TBTButtonRelations5, TBTButtonTech1, TBTButtonTech2, TBTButtonTech3, TBTButtonTech4}, new Label [] {LBLFocus1, LBLFocus2, LBLFocus3, LBLFocus4, LBLFocus5, LBLHabits1, LBLHabits2, LBLHabits3, LBLHabits4, LBLHabits5, LBLOther, LBLPersonalGrowth1, LBLPersonalGrowth2, LBLPersonalGrowth3, LBLPersonalGrowth4, LBLPersonalGrowth5, LBLRelations1, LBLRelations2, LBLRelations3, LBLRelations4, LBLRelations5, LBLTech1, LBLTech2, LBLTech3, LBLTech4});
+
+        setImages(FileConstants.bullseyeIconDm, FileConstants.bullseyeIconLm, isDM, IMGIcon, IMGSubIcon);
+
+        setImages(FileConstants.hammerPrimaryHoverDm, FileConstants.hammerPrimaryHoverLm, isDM, IMGStartHover);
+
+        setImages(FileConstants.hammerPrimaryDm, FileConstants.hammerPrimaryLm, isDM, IMGStart);
+
+        setImages(FileConstants.clockIconDm, FileConstants.clockIconLm, isDM, IMGHour);
+
+        setImages(FileConstants.checkCircleFillPopupToggleButtonActiveDM, FileConstants.checkCircleFillPopupToggleButtonActiveLM, isDM, IMGFocus1, IMGFocus2, IMGFocus3, IMGFocus4, IMGFocus5, IMGHabits1, IMGHabits2, IMGHabits3, IMGHabits4, IMGHabits5, IMGOther, IMGPersonalGrowth1, IMGPersonalGrowth2, IMGPersonalGrowth3, IMGPersonalGrowth4, IMGPersonalGrowth5, IMGRelations1, IMGRelations2, IMGRelations3, IMGRelations4, IMGRelations5,IMGTech1, IMGTech2, IMGTech3, IMGTech4);
+
+        setImages(FileConstants.calendarTimeRemainingFirstFaseIconDm, FileConstants.calendarTimeRemainingFirstFaseIconLm, isDM, IMGDate, IMGDateHour);
+
+        applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNStart}, new Label [] {LBLStart});
+
+        applyStylesToButtons(popupTitleBarCloseButtonBackground, popupTitleBarCloseButtonBorder, popupTitleBarCloseButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNClose);
 
     }
 
@@ -302,11 +356,11 @@ public class ConfigureNodes {
 
         changeColors(isDM);
 
-        addToolTip("Minimizar",  BTNMinimize);
+        addToolTip("Minimizar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNMinimize);
 
-        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), SPTheme);
+        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), tooltipBackground, tooltipBorder, tooltipFontColor, SPTheme);
 
-        addToolTip("Cerrar", BTNClose);
+        addToolTip("Cerrar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNClose);
 
         applyStylesToLabels(titleBarFontColorWithoutFocus, Styles.px14, LBLTitleBar);
 
@@ -356,11 +410,11 @@ public class ConfigureNodes {
 
         changeColors(isDM);
 
-        addToolTip("Minimizar",  BTNMinimize);
+        addToolTip("Minimizar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNMinimize);
 
-        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), SPTheme);
+        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), tooltipBackground, tooltipBorder, tooltipFontColor, SPTheme);
 
-        addToolTip("Cerrar", BTNClose);
+        addToolTip("Cerrar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNClose);
 
         applyStylesToContents(hideButtonBackground, hideButtonBorder, Styles.px1, Styles.px10, SPConfirmPassword, SPPassword);
 
@@ -430,11 +484,11 @@ public class ConfigureNodes {
 
         changeColors(isDM);
 
-        addToolTip("Minimizar", BTNMinimize);
+        addToolTip("Minimizar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNMinimize);
 
-        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), SPTheme);
+        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), tooltipBackground, tooltipBorder, tooltipFontColor, SPTheme);
 
-        addToolTip("Cerrar", BTNClose);
+        addToolTip("Cerrar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNClose);
 
         applyStylesToButtons(secondaryButtonBackground, secondaryButtonBorder, secondaryButtonFontColor, Styles.px12, Styles.px1, Styles.px10, TBTToggle, BTNBack);
 
@@ -476,11 +530,11 @@ public class ConfigureNodes {
 
         changeColors(isDM);
 
-        addToolTip("Minimizar", BTNMinimize);
+        addToolTip("Minimizar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNMinimize);
 
-        addToolTip("Cerrar", BTNClose);
+        addToolTip("Cerrar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNClose);
 
-        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), SPTheme);
+        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), tooltipBackground, tooltipBorder, tooltipFontColor, SPTheme);
 
         applyStylesToContents(cardBackground, cardBorder, Styles.px1, Styles.px10, APGuest, APLogin, APSignUp);
 
@@ -575,264 +629,6 @@ public class ConfigureNodes {
 
         applyStylesToLabels(principalButtonFontColor, Styles.px12, LBLReload);
 
-    }
-
-    protected static void setImages(String darkSRC, String lightSRC, boolean isDM, ImageView... images){
-
-        Image img = Images.getImage(isDM ? darkSRC : lightSRC);
-
-        if(img == null) return;
-
-        for(ImageView image: images){
-
-            if(image != null){
-
-                image.setImage(img);
-
-            }
-
-        }
-
-    }
-
-    protected static void applyStylesToContents(String background, String border, String borderWidth, String radius, Region... panes){
-
-        String style = buildStylesForContents(background, border, borderWidth, radius);
-
-        for(Region pane: panes){
-
-            if(pane != null){
-
-                pane.setStyle(style);
-
-            }
-
-        }
-
-    }
-
-    private static String buildStylesForContents(String background, String border, String borderWidth, String radius){
-
-        StringBuilder style = new StringBuilder();
-
-            if(background != null && !background.trim().isBlank()){
-
-                style.append(Styles.backgroundColor + background + Styles.end);
-
-            }
-
-            if(border != null && !border.trim().isBlank()){
-
-                style.append(Styles.borderColor + border + Styles.end);
-
-            }
-
-            if(borderWidth != null && !borderWidth.trim().isBlank()){
-
-                style.append(Styles.borderWidth + borderWidth + Styles.end);
-
-            }
-
-            if(radius != null && !radius.trim().isBlank()){
-
-                style.append(Styles.borderRadius + radius + Styles.end);
-                style.append(Styles.backgroundRadius + radius + Styles.end);
-
-            }
-
-        return style.toString();
-
-    }
-
-    protected static void applyStylesToButtons(String background, String border, String fontColor, String fontSize, String borderWidth, String radius, ButtonBase... buttons){
-
-        String style = buildStylesForButtons(background, border, fontColor, fontSize, borderWidth, radius);
-
-        for(ButtonBase button: buttons){
-
-            if(button != null){
-
-                button.setStyle(style);
-
-            }
-
-        }
-
-    }
-
-    private static String buildStylesForButtons(String background, String border, String fontColor, String fontSize, String borderWidth, String radius){
-
-        StringBuilder style = new StringBuilder();
-
-        style.append(Styles.fontFamily);
-
-        if(fontColor != null && !fontColor.trim().isBlank()){
-
-            style.append(Styles.textColor + fontColor + Styles.end);
-
-        }
-
-        if(fontSize != null && !fontSize.trim().isBlank()){
-
-            style.append(Styles.fontSize + fontSize + Styles.end);
-
-        }
-
-        if(background != null && !background.trim().isBlank()){
-
-            style.append(Styles.backgroundColor + background + Styles.end);
-
-        }
-
-        if(border != null && !border.trim().isBlank()){
-
-            style.append(Styles.borderColor + border + Styles.end);
-
-        }
-
-        if(borderWidth != null && !borderWidth.trim().isBlank()){
-
-            style.append(Styles.borderWidth + borderWidth + Styles.end);
-
-        }
-
-        if(radius != null && !radius.trim().isBlank()){
-
-            style.append(Styles.borderRadius + radius + Styles.end);
-            style.append(Styles.backgroundRadius + radius + Styles.end);
-
-        }
-
-        return style.toString();
-
-    }
-
-    protected static void applyStylesToLabels(String fontColor, String fontSize, Label... labels){
-
-        String style = buildStylesForLabels(fontColor, fontSize);
-
-        for(Label label: labels){
-
-            if(label != null){
-
-                label.setStyle(style);
-
-            }
-
-        }
-
-    }
-
-    private static String buildStylesForLabels(String fontColor, String fontSize){
-
-        StringBuilder style = new StringBuilder();
-
-        style.append(Styles.fontFamily);
-
-        if(fontColor != null && !fontColor.trim().isBlank()){
-
-            style.append(Styles.textColor + fontColor + Styles.end);
-
-        }
-
-        if(fontSize != null && !fontSize.trim().isBlank()){
-
-            style.append(Styles.fontSize + fontSize + Styles.end);
-
-        }
-
-        return style.toString();
-
-    }
-
-    private static void setPasswordImages(String darkVisible, String darkVisibleHover, String lightVisible, String lightVisibleHover, String darkHide, String darkHideHover, String lightHide, String lightHideHover, boolean isDarkMode, boolean visible, ImageView image, ImageView imageHover){
-
-        if(visible){
-
-            setImages(darkVisible, lightVisible, isDarkMode, image);
-            setImages(darkVisibleHover, lightVisibleHover, isDarkMode, imageHover);
-
-        }else{
-
-            setImages(darkHide, lightHide, isDarkMode, image);
-            setImages(darkHideHover, lightHideHover, isDarkMode, imageHover);
-
-        }
-
-    }
-
-    private static void addToolTip(String message, Node... nodes){
-
-        Tooltip tooltip = new Tooltip();
-
-        tooltip.setText(message);
-        tooltip.setStyle(buildStylesForButtons(tooltipBackground, tooltipBorder, tooltipFontColor, Styles.px10, Styles.px1, Styles.px10));
-        tooltip.setShowDelay(Duration.millis(500));
-        tooltip.setHideDelay(Duration.millis(100));
-
-        for(Node node: nodes){
-
-            if(node != null){
-
-                Tooltip.install(node, tooltip);
-
-            }
-
-        }
-
-    }
-
-    private static void setThemeImages(ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, boolean isDarkMode){
-
-        if(IMGTheme != null){
-
-            IMGTheme.setImage(Images.getImage(isDarkMode ? FileConstants.brightnessHighIcon : FileConstants.moonIcon));
-
-        }
-
-        if(IMGThemeHover != null){
-
-            IMGThemeHover.setImage(Images.getImage(isDarkMode ? FileConstants.brightnessHighIconHover : FileConstants.moonIconHover));
-
-        }
-
-        if(IMGThemeInit != null){
-
-            IMGThemeInit.setImage(Images.getImage(isDarkMode ? FileConstants.brightnessHighIconInit : FileConstants.moonIconInit));
-
-        }
-
-    }
-
-    protected static void applyStylesToTitleBar(String background, String border, AnchorPane APTitleBar){
-
-        if(APTitleBar != null){
-
-            APTitleBar.setStyle(buildStylesForTitleBar(background, border));
-
-        }
-
-    }
-
-    private static String buildStylesForTitleBar(String background, String border) {
-
-        StringBuilder styles = new StringBuilder();
-
-        if (background != null && !background.isBlank()) {
-            styles.append(Styles.backgroundColor).append(background).append(Styles.end);
-        }
-
-        if (border != null && !border.isBlank()) {
-
-            styles.append(Styles.borderColor).append(border).append(Styles.end);
-
-        }
-
-        styles.append(Styles.backgroundRadius).append("10px 10px 0px 0px").append(Styles.end);
-        styles.append(Styles.borderRadius).append("10px 10px 0px 0px").append(Styles.end);
-        styles.append(Styles.borderWidth).append("0px 0px 1px 0px").append(Styles.end);
-
-        return styles.toString();
     }
 
 }

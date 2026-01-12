@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import logical.ValidateOutputs;
 import messagebuilder.MessageBuilder;
+import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserData;
@@ -31,7 +32,7 @@ import utilities.Styles;
 import java.io.IOException;
 import java.util.Map;
 
-public class PopupVerifyEmailController extends ConfigureNodes {
+public class PopupVerifyEmailController extends ConfigureInitializeStyles {
 
     //Variables
     private boolean isDarkMode;
@@ -220,7 +221,7 @@ public class PopupVerifyEmailController extends ConfigureNodes {
         TFLTimeRemainingContent.getChildren().clear();
         TFLTimeRemainingContent.getChildren().addAll(MessageBuilder.buildMessagesAboutTimeRemainingFromPopupVerifyEmail(daysThatHavePassed, isDarkMode));
 
-        configureNodesForPopupVerifyEmailController(APResendEmail, BTNClose, BTNVerifyEmail, IMGIcon, IMGResendEmail, IMGResendEmailHover, IMGTimeRemaining, LBLResendEmail, LBLTimeRemainingDays, LBLTimeRemainingTitle, SPTimeRemaining, SPToast, isDarkMode, allConditionsMet, theUserCanForwardTheEmail, daysThatHavePassed);
+        ConfigureNodes.configureNodesForPopupVerifyEmailController(APResendEmail, BTNClose, BTNVerifyEmail, IMGIcon, IMGResendEmail, IMGResendEmailHover, IMGTimeRemaining, LBLResendEmail, LBLTimeRemainingDays, LBLTimeRemainingTitle, SPTimeRemaining, SPToast, isDarkMode, allConditionsMet, theUserCanForwardTheEmail, daysThatHavePassed);
 
     }
 
@@ -256,7 +257,7 @@ public class PopupVerifyEmailController extends ConfigureNodes {
 
         hideButtonBackgroundHover = Colors.getColor("hide-button-background-hover", isDarkMode);
         hideButtonBorderHover = Colors.getColor("hide-button-border-hover", isDarkMode);
-        hideButtonFontColor  = Colors.getColor("hide-button-font-color", isDarkMode);
+        hideButtonFontColorHover  = Colors.getColor("hide-button-font-color-hover", isDarkMode);
 
         //Toast Notifications
         toastNotificationFontColor = Colors.getColor("toast-notification-font-color", isDarkMode);
@@ -371,10 +372,10 @@ public class PopupVerifyEmailController extends ConfigureNodes {
 
         StyleBuilder.animateButtonColors(
 
-             BTNClose,
-             hideButtonBackground, hideButtonBackgroundHover,
-             hideButtonBorder, hideButtonBorderHover,
-             hideButtonFontColor, hideButtonFontColorHover
+                BTNClose,
+                hideButtonBackground, hideButtonBackgroundHover,
+                hideButtonBorder, hideButtonBorderHover,
+                hideButtonFontColor, hideButtonFontColorHover
 
         );
 
@@ -390,7 +391,7 @@ public class PopupVerifyEmailController extends ConfigureNodes {
                 hideButtonBorderHover, hideButtonBorder,
                 hideButtonFontColorHover, hideButtonFontColor
 
-        );
+                );
 
     }
 
@@ -477,7 +478,7 @@ public class PopupVerifyEmailController extends ConfigureNodes {
 
         APResendEmail.setDisable(true);
 
-        configureNodesForPopupVerifyEmailController(APResendEmail, BTNClose, BTNVerifyEmail, IMGIcon, IMGResendEmail, IMGResendEmailHover, IMGTimeRemaining, LBLResendEmail, LBLTimeRemainingDays, LBLTimeRemainingTitle, SPTimeRemaining, SPToast, isDarkMode, allConditionsMet, theUserCanForwardTheEmail, daysThatHavePassed);
+        ConfigureNodes.configureNodesForPopupVerifyEmailController(APResendEmail, BTNClose, BTNVerifyEmail, IMGIcon, IMGResendEmail, IMGResendEmailHover, IMGTimeRemaining, LBLResendEmail, LBLTimeRemainingDays, LBLTimeRemainingTitle, SPTimeRemaining, SPToast, isDarkMode, allConditionsMet, theUserCanForwardTheEmail, daysThatHavePassed);
 
         final int[] secondsRemaining = {60};
 
@@ -505,7 +506,7 @@ public class PopupVerifyEmailController extends ConfigureNodes {
 
                 LBLResendEmail.setText("Reenviar código");
 
-                configureNodesForPopupVerifyEmailController(APResendEmail, BTNClose, BTNVerifyEmail, IMGIcon, IMGResendEmail, IMGResendEmailHover, IMGTimeRemaining, LBLResendEmail, LBLTimeRemainingDays, LBLTimeRemainingTitle, SPTimeRemaining, SPToast, isDarkMode, allConditionsMet, theUserCanForwardTheEmail, daysThatHavePassed);
+                ConfigureNodes.configureNodesForPopupVerifyEmailController(APResendEmail, BTNClose, BTNVerifyEmail, IMGIcon, IMGResendEmail, IMGResendEmailHover, IMGTimeRemaining, LBLResendEmail, LBLTimeRemainingDays, LBLTimeRemainingTitle, SPTimeRemaining, SPToast, isDarkMode, allConditionsMet, theUserCanForwardTheEmail, daysThatHavePassed);
 
                 APResendEmail.setDisable(false);
 

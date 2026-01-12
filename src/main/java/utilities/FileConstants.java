@@ -14,6 +14,7 @@ public class FileConstants {
     public static final String PopupTwoButtonFXML = "PopupTwoButton.fxml";
     public static final String PopupVerifyEmailFXML = "PopupVerifyEmail.fxml";
     public static final String PopupSecurityCodesFXML = "PopupSecurityCodes.fxml";
+    public static final String PopupSetClockFXML = "PopupSetClock.fxml";
 
     //ScreenID
     public static final String LoadScreens = "LoadScreens";
@@ -105,7 +106,16 @@ public class FileConstants {
     public static final String filetypePdfPrincipalHoverLm = "filetype-pdf-principal-hover-lm.png";
     public static final String filetypePdfPrincipalHoverDm = "filetype-pdf-principal-hover-dm.png";
     public static final String arrowClockwisePopupThirdLmdmnormalhover = "arrow-clockwise-popup-third-lmdmnormalhover.png";
-
+    public static final String checkCircleFillPopupToggleButtonActiveLM = "check-circle-fill-popup-toggle-button-active-lm.png";
+    public static final String checkCircleFillPopupToggleButtonActiveDM = "check-circle-fill-popup-toggle-button-active-dm.png";
+    public static final String clockIconLm = "clock-icon-lm.png";
+    public static final String clockIconDm = "clock-icon-dm.png";
+    public static final String hammerPrimaryLm = "hammer-primary-lm.png";
+    public static final String hammerPrimaryDm = "hammer-primary-dm.png";
+    public static final String hammerPrimaryHoverLm = "hammer-primary-hover-lm.png";
+    public static final String hammerPrimaryHoverDm = "hammer-primary-hover-dm.png";
+    public static final String bullseyeIconLm = "bullseye-icon-lm.png";
+    public static final String bullseyeIconDm = "bullseye-icon-dm.png";
 
     //Fuente
     public static final String oswaldSemiBold = "Oswald-SemiBold.ttf";

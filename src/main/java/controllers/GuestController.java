@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import logical.ValidateFormInputs;
+import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserData;
@@ -21,7 +22,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.function.UnaryOperator;
 
-public class GuestController extends ConfigureNodes {
+public class GuestController extends ConfigureInitializeStyles {
 
     //Clases
     ScreenManager sm = ScreenManager.getInstance();

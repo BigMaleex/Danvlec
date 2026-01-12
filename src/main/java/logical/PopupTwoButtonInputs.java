@@ -2,7 +2,6 @@ package logical;
 
 import connections.Users;
 import controllers.LoginController;
-import files.FileManager;
 import files.UserDataFile;
 import messagebuilder.MessageBuilder;
 import user.UserData;
@@ -33,7 +32,7 @@ public class PopupTwoButtonInputs {
 
         }
 
-        StepsAfterLoggingIn.stepsAfterLoggingIn();
+        StepsAfterLoggingIn.stepsAfterLoggingInWithAccount();
 
     }
 

@@ -8,13 +8,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserPreferences;
 import utilities.Colors;
 import utilities.Styles;
 
-public class PopupChangeIPController extends ConfigureNodes {
+public class PopupChangeIPController extends ConfigureInitializeStyles {
 
     //Variables
     private boolean isDarkMode, allConditionsMet;

@@ -10,12 +10,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserPreferences;
 import utilities.*;
 
-public class AccountMenuController extends ConfigureNodes {
+public class AccountMenuController extends ConfigureInitializeStyles {
 
     //Clases
     ScreenManager sm = ScreenManager.getInstance();

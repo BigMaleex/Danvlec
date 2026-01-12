@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="APMain" prefHeight="500.0" prefWidth="700.0" styleClass="rootActive" stylesheets="@../CSS/PopupSetClock.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PopupSetClockController">
+   <children>
+      <ScrollPane fitToWidth="true" layoutX="57.0" layoutY="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+         <content>
+            <StackPane prefHeight="0.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <ImageView fx:id="IMGSubIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label styleClass="title" text="Selecciona el título de tu marcador de objetivo personal" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/brain-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="sectionTitle" text="Procrastinación / enfoque" />
+                           </children>
+                        </HBox>
+                        <ToggleButton fx:id="TBTButtonFocus1" alignment="CENTER_LEFT" contentDisplay="LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus1OnMouseClicked" onMouseEntered="#TBTButtonFocus1OnMouseEntered" onMouseExited="#TBTButtonFocus1OnMouseExited">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLFocus1" maxWidth="1.7976931348623157E308" text="Tiempo desde que dejé de procrastinar" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ImageView fx:id="IMGFocus1" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="group" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonFocus2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus2OnMouseClicked" onMouseEntered="#TBTButtonFocus2OnMouseEntered" onMouseExited="#TBTButtonFocus2OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLFocus2" maxWidth="1.7976931348623157E308" text="Tiempo desde que elijo enfocarme" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ImageView fx:id="IMGFocus2" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonFocus3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="150.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus3OnMouseClicked" onMouseEntered="#TBTButtonFocus3OnMouseEntered" onMouseExited="#TBTButtonFocus3OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLFocus3" maxWidth="1.7976931348623157E308" text="Tiempo desde que trabajo sin evadir" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ImageView fx:id="IMGFocus3" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonFocus4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="202.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus4OnMouseClicked" onMouseEntered="#TBTButtonFocus4OnMouseEntered" onMouseExited="#TBTButtonFocus4OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLFocus4" maxWidth="1.7976931348623157E308" text="Tiempo desde que empiezo aunque no tenga ganas" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ImageView fx:id="IMGFocus4" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonFocus5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="254.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus5OnMouseClicked" onMouseEntered="#TBTButtonFocus5OnMouseEntered" onMouseExited="#TBTButtonFocus5OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLFocus5" maxWidth="1.7976931348623157E308" text="Tiempo desde que hago lo importante" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGFocus5" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/fire-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="sectionTitle" text="Autocontrol / hábitos" />
+                           </children>
+                        </HBox>
+                        <ToggleButton fx:id="TBTButtonHabits1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits1OnMouseClicked" onMouseEntered="#TBTButtonHabits1OnMouseEntered" onMouseExited="#TBTButtonHabits1OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLHabits1" maxWidth="1.7976931348623157E308" text="Tiempo desde que dejé de fumar" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGHabits1" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonHabits2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="402.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits2OnMouseClicked" onMouseEntered="#TBTButtonHabits2OnMouseEntered" onMouseExited="#TBTButtonHabits2OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLHabits2" maxWidth="1.7976931348623157E308" text="Tiempo desde que no recaigo" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGHabits2" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonHabits3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="454.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits3OnMouseClicked" onMouseEntered="#TBTButtonHabits3OnMouseEntered" onMouseExited="#TBTButtonHabits3OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLHabits3" maxWidth="1.7976931348623157E308" text="Tiempo desde que controlo mis impulsos" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGHabits3" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonHabits4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="506.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits4OnMouseClicked" onMouseEntered="#TBTButtonHabits4OnMouseEntered" onMouseExited="#TBTButtonHabits4OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLHabits4" maxWidth="1.7976931348623157E308" text="Tiempo desde que no me saboteo" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGHabits4" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonHabits5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="558.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits5OnMouseClicked" onMouseEntered="#TBTButtonHabits5OnMouseEntered" onMouseExited="#TBTButtonHabits5OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLHabits5" maxWidth="1.7976931348623157E308" text="Tiempo desde que sostengo esta decisión" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGHabits5" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/phone-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="sectionTitle" text="Tecnología / distracciones" />
+                           </children>
+                        </HBox>
+                        <ToggleButton fx:id="TBTButtonTech1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonTech1OnMouseClicked" onMouseEntered="#TBTButtonTech1OnMouseEntered" onMouseExited="#TBTButtonTech1OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLTech1" maxWidth="1.7976931348623157E308" text="Tiempo desde que no pierdo mi tiempo en redes sociales" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGTech1" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonTech2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="706.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonTech2OnMouseClicked" onMouseEntered="#TBTButtonTech2OnMouseEntered" onMouseExited="#TBTButtonTech2OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLTech2" maxWidth="1.7976931348623157E308" text="Tiempo desde que uso el celular con intención" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGTech2" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonTech3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="758.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonTech3OnMouseClicked" onMouseEntered="#TBTButtonTech3OnMouseEntered" onMouseExited="#TBTButtonTech3OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLTech3" maxWidth="1.7976931348623157E308" text="Tiempo desde que reduzco distracciones" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGTech3" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonTech4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="810.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonTech4OnMouseClicked" onMouseEntered="#TBTButtonTech4OnMouseEntered" onMouseExited="#TBTButtonTech4OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLTech4" maxWidth="1.7976931348623157E308" text="Tiempo desde que recuperé mi atención" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGTech4" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/speech-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="sectionTitle" text="Relaciones / límites" />
+                           </children>
+                        </HBox>
+                        <ToggleButton fx:id="TBTButtonRelations1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations1OnMouseClicked" onMouseEntered="#TBTButtonRelations1OnMouseEntered" onMouseExited="#TBTButtonRelations1OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLRelations1" maxWidth="1.7976931348623157E308" text="Tiempo desde que no le escribo" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGRelations1" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonRelations2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="958.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations2OnMouseClicked" onMouseEntered="#TBTButtonRelations2OnMouseEntered" onMouseExited="#TBTButtonRelations2OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLRelations2" maxWidth="1.7976931348623157E308" text="Tiempo desde que puse límites" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGRelations2" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonRelations3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1010.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations3OnMouseClicked" onMouseEntered="#TBTButtonRelations3OnMouseEntered" onMouseExited="#TBTButtonRelations3OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLRelations3" maxWidth="1.7976931348623157E308" text="Tiempo desde que no vuelvo atrás" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGRelations3" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonRelations4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1062.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations4OnMouseClicked" onMouseEntered="#TBTButtonRelations4OnMouseEntered" onMouseExited="#TBTButtonRelations4OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLRelations4" maxWidth="1.7976931348623157E308" text="Tiempo desde que me elijo" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGRelations4" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonRelations5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1114.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations5OnMouseClicked" onMouseEntered="#TBTButtonRelations5OnMouseEntered" onMouseExited="#TBTButtonRelations5OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLRelations5" maxWidth="1.7976931348623157E308" text="Tiempo desde que respeté mi decisión" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGRelations5" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/seedling-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="sectionTitle" text="Crecimiento personal" />
+                           </children>
+                        </HBox>
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth1OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth1OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth1OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLPersonalGrowth1" maxWidth="1.7976931348623157E308" text="Tiempo desde que empecé este cambio" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGPersonalGrowth1" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1262.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth2OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth2OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth2OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLPersonalGrowth2" maxWidth="1.7976931348623157E308" text="Tiempo desde que sigo firme" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGPersonalGrowth2" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1314.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth3OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth3OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth3OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLPersonalGrowth3" maxWidth="1.7976931348623157E308" text="Tiempo desde que no rompo la racha" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGPersonalGrowth3" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1366.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth4OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth4OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth4OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLPersonalGrowth4" maxWidth="1.7976931348623157E308" text="Tiempo desde que me comprometí conmigo" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGPersonalGrowth4" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1418.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth5OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth5OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth5OnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLPersonalGrowth5" maxWidth="1.7976931348623157E308" text="Tiempo desde que mantengo el control" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGPersonalGrowth5" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/sparkles-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="sectionTitle" text="Personalizado" />
+                           </children>
+                        </HBox>
+                        <ToggleButton fx:id="TBTButtonOther" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonOtherOnMouseClicked" onMouseEntered="#TBTButtonOtherOnMouseEntered" onMouseExited="#TBTButtonOtherOnMouseExited" toggleGroup="$group">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="LBLOther" maxWidth="1.7976931348623157E308" text="Otra..." HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGOther" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <StackPane fx:id="SPOther" onMouseEntered="#SPOtherOnMouseEntered" onMouseExited="#SPOtherOnMouseExited" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label styleClass="sectionTitle" text="Describe tu objetivo" />
+                                    <TextField fx:id="TXTDescription" promptText="Mi equilibrio entre trabajo y vida personal" />
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label fx:id="LBLMaxChars" maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="Máximo 60 caracteres" HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="LBLMaxCharsCount" layoutX="10.0" layoutY="10.0" styleClass="LBLMaxChars" text="0/60" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Separator maxWidth="1.7976931348623157E308" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" styleClass="title" text="FECHA Y HORA" textAlignment="CENTER" />
+                              <Separator layoutX="10.0" layoutY="59.0" maxWidth="1.7976931348623157E308" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <StackPane fx:id="SPDate" onMouseEntered="#SPDateOnMouseEntered" onMouseExited="#SPDateOnMouseExited" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <ImageView fx:id="IMGDateHour" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                    <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="title" text="Usar fecha y hora actual del dispositivo" />
+                                          <Label fx:id="LBLDateHour" layoutX="10.0" layoutY="10.0" text="dd-mm-yyyy hh:mm" />
+                                       </children>
+                                    </VBox>
+                                    <ToggleButton fx:id="TBTDateHour" mnemonicParsing="false" onMouseClicked="#TBTDateHourOnMouseClicked" onMouseEntered="#TBTDateHourOnMouseEntered" onMouseExited="#TBTDateHourOnMouseExited" selected="true">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ToggleButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </StackPane>
+                        <StackPane fx:id="SPDateHourSelector" onMouseClicked="#SPDateHourSelectorOnMouseClicked" onMouseEntered="#SPDateHourSelectorOnMouseEntered" onMouseExited="#SPDateHourSelectorOnMouseExited" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <ImageView fx:id="IMGDate" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <Label styleClass="sectionTitle" text="Fecha" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <TextField fx:id="TXTDate" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="266.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <ImageView fx:id="IMGHour" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <Label styleClass="sectionTitle" text="Hora" />
+                                                   </children>
+                                                </HBox>
+                                                <TextField fx:id="TXTHour" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Separator prefWidth="200.0" />
+                                    <Label fx:id="LBLBuildDateAndHour" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+         </content>
+      </ScrollPane>
+      <StackPane layoutX="70.0" layoutY="382.0" prefHeight="150.0" prefWidth="200.0" styleClass="footerBar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="450.0">
+
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+               <children>
+                  <Button fx:id="BTNStart" contentDisplay="RIGHT" graphicTextGap="10.0" layoutX="159.0" layoutY="24.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNStartOnMouseClicked" onMouseEntered="#BTNStartOnMouseEntered" onMouseExited="#BTNStartOnMouseExited" prefHeight="34.0" prefWidth="171.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="LBLStart" text="Comenzar a construir" />
+                              <StackPane prefHeight="24.0" prefWidth="24.0">
+                                 <children>
+                                    <ImageView fx:id="IMGStartHover" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="IMGStart" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+
+      </StackPane>
+
+      <StackPane layoutX="10.0" layoutY="360.0" prefHeight="0.0" prefWidth="200.0" styleClass="titleBar" AnchorPane.bottomAnchor="450.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+         <children>
+            <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <children>
+                  <StackPane prefHeight="32.0" prefWidth="32.0" styleClass="SPTitleBarIcon">
+                     <children>
+                        <ImageView fx:id="IMGIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/shield-icon-lm.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="LBLTitleBarHeader" text="¿Qué estás construyendo?" />
+                        <Label styleClass="LBLTitleBarContent" text="Define tu objetivo o proceso de realización personal" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="BTNClose" mnemonicParsing="false" onMouseClicked="#BTNCloseOnMouseClicked" onMouseEntered="#BTNCloseOnMouseEntered" onMouseExited="#BTNCloseOnMouseExited" text="X">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

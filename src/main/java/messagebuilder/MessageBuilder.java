@@ -747,7 +747,7 @@ public class MessageBuilder {
 
                 contentMessage,
                 Styles.px12,
-                daysThatHavePassed >= 0 && daysThatHavePassed < 6 ?  (contentColor) :
+                daysThatHavePassed >= 0 && daysThatHavePassed < 6 ?  (headerColor) :
                         daysThatHavePassed >=6 &&  daysThatHavePassed < 10 ? Colors.getColor("email-not-verified-second-fase-font-color", isDM) : Colors.getColor("email-not-verified-third-fase-font-color", isDM)
 
         ));

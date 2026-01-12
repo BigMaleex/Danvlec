@@ -152,6 +152,7 @@ public class PopupBDErrController {
         principalButtonBackground = Colors.getColor("principal-button-background", isDarkMode);
         principalButtonBorder = Colors.getColor("principal-button-border", isDarkMode);
         principalButtonFontColor = Colors.getColor("principal-button-font-color", isDarkMode);
+
         principalButtonBackgroundHover = Colors.getColor("principal-button-background-hover", isDarkMode);
         principalButtonBorderHover = Colors.getColor("principal-button-border-hover", isDarkMode);
         principalButtonFontColorHover = Colors.getColor("principal-button-font-color-hover", isDarkMode);
@@ -160,6 +161,7 @@ public class PopupBDErrController {
         secondaryButtonBackground = Colors.getColor("secondary-button-background", isDarkMode);
         secondaryButtonBorder = Colors.getColor("secondary-button-border", isDarkMode);
         secondaryButtonFontColor = Colors.getColor("secondary-button-font-color", isDarkMode);
+
         secondaryButtonBackgroundHover = Colors.getColor("secondary-button-background-hover", isDarkMode);
         secondaryButtonBorderHover = Colors.getColor("secondary-button-border-hover", isDarkMode);
         secondaryButtonFontColorHover = Colors.getColor("secondary-button-font-color-hover", isDarkMode);
@@ -168,6 +170,7 @@ public class PopupBDErrController {
         hideButtonBackground = Colors.getColor("hide-button-background", isDarkMode);
         hideButtonBorder = Colors.getColor("hide-button-border", isDarkMode);
         hideButtonFontColor = Colors.getColor("hide-button-font-color", isDarkMode);
+
         hideButtonBackgroundHover = Colors.getColor("hide-button-background-hover", isDarkMode);
         hideButtonBorderHover = Colors.getColor("hide-button-border-hover", isDarkMode);
         hideButtonFontColorHover = Colors.getColor("hide-button-font-color-hover", isDarkMode);

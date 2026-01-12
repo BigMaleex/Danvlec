@@ -1,14 +1,12 @@
 package files;
 
 import connections.Users;
-import controllers.AccountMenuController;
 import logical.StepsAfterLoggingIn;
 import user.UserData;
 import user.UserDataLS;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import user.UserPreferencesData;
 import utilities.FileConstants;
 import utilities.ScreenManager;
 import utilities.Titles;
@@ -88,7 +86,7 @@ public class UserDataFile {
                     if(us.loginWithUserID()){
 
                         //Se pudo acceder, envíar al FXML del inicio
-                        StepsAfterLoggingIn.stepsAfterLoggingIn();
+                        StepsAfterLoggingIn.stepsAfterLoggingInWithAccount();
 
                     }else{
 
