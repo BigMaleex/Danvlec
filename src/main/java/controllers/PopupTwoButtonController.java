@@ -315,6 +315,18 @@ public class PopupTwoButtonController {
 
             }
 
+            case allClockInformationIsCorrectWithAccount -> {
+
+
+
+            }
+
+            case allClockInformationIsCorrectWithoutAccount -> {
+
+                
+
+            }
+
             default ->{
                 System.out.println("La opción " + option + " aún no ha sido configurada");
             }
@@ -364,7 +376,6 @@ public class PopupTwoButtonController {
                 PopupTwoButtonInputs.askTheUserIfTheyWantToSaveTheirInformation(false);
 
             }
-
 
             default ->{
                 System.out.println("La opción " + option + " aún no ha sido configurada");

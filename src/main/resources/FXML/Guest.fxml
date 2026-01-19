@@ -63,7 +63,7 @@
                             </VBox>
                         </children>
                     </HBox>
-                    <VBox prefHeight="0.0" prefWidth="0.0" spacing="10.0">
+                    <VBox fx:id="VBXDate" prefHeight="0.0" prefWidth="0.0" spacing="10.0">
                         <children>
                             <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="10.0">
                                 <children>
@@ -71,8 +71,6 @@
                                     <Label styleClass="subtitle" text="¿Cuándo naciste?" />
                                 </children>
                             </HBox>
-                            <TextField fx:id="TXTBirthday" promptText="DD/MM/AAAA" />
-                            <Label fx:id="LBLBirthdayErr" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="norm" text="Label" />
                         </children>
                     </VBox>
                     <VBox prefHeight="0.0" prefWidth="0.0" spacing="10.0">

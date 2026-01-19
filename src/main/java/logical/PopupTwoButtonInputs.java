@@ -18,7 +18,7 @@ public class PopupTwoButtonInputs {
 
     private static ScreenManager sm = ScreenManager.getInstance();
 
-    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static void askTheUserIfTheyWantToSaveTheirInformation(boolean saveInfo){
 
@@ -42,7 +42,7 @@ public class PopupTwoButtonInputs {
         UserData.setLastname(data.get(1));
         UserData.setNickname(data.get(2));
         UserData.setSex(data.get(3).equalsIgnoreCase("HOMBRE") ? UserData.Sex.MAN : UserData.Sex.WOMAN);
-        UserData.setBirthday(LocalDate.parse(data.get(4), dtf));
+        UserData.setBirthday(LocalDate.parse(data.get(4), localDateFormatter));
 
         UserDataFile.createFile(true);
 
@@ -56,7 +56,7 @@ public class PopupTwoButtonInputs {
         UserData.setEmail(data.get(3));
         UserData.setPassword(ValidateOutputs.sha256Hex(data.get(4)));
         UserData.setSex(data.get(5).equalsIgnoreCase("Hombre") ? UserData.Sex.MAN : UserData.Sex.WOMAN);
-        UserData.setBirthday(LocalDate.parse(data.get(6), dtf));
+        UserData.setBirthday(LocalDate.parse(data.get(6), localDateFormatter));
         UserData.setFirstConnection(LocalDateTime.now());
 
         Users users = new Users();

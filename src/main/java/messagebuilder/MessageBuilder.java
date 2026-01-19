@@ -10,6 +10,7 @@ import user.UserData;
 import utilities.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,114 @@ public class MessageBuilder {
     private static boolean isDarkMode;
     private static String headerColor;
     private static String contentColor;
+
+    public static void showConfirmMessageFromPopupSetClock(String [] data){
+
+        sm.openDynamicPopup(
+
+                FileConstants.PopupTwoButtonFXML,
+                Complements.okTitle,
+                alertController ->{
+
+                    PopupTwoButtonController controller = (PopupTwoButtonController) alertController;
+
+                    controller.initialize();
+                    isDarkMode = controller.getMode();
+
+                    changeColors();
+
+                    String [] messages = {
+
+                        "Tu objetivo es: ",
+                        "La fecha de inicio es el "
+
+                    };
+
+
+
+                    controller.setTFLHeader(Complements.addStringFromTextList("¡Todo ha ido de maravilla!", Styles.px14, headerColor));
+
+                    List<Text> texts = new ArrayList<>();
+
+                    texts.add(Complements.addStringFromTextList("Toda la información que agregaste es válida, por favor confirma que sea correcta tu información:\n\n", Styles.px12, contentColor));
+
+                    texts.add(Complements.addStringFromTextList(Complements.bullet, Styles.px12, headerColor));
+                    texts.add(Complements.addStringFromTextList(messages[0], Styles.px12, contentColor));
+                    texts.add(Complements.addStringFromTextList(data[0]+"\n", Styles.px12, headerColor));
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    LocalDateTime dateTime = LocalDateTime.parse(data[1], formatter);
+
+                    texts.add(Complements.addStringFromTextList(Complements.bullet, Styles.px12, headerColor));
+                    texts.add(Complements.addStringFromTextList(messages[1], Styles.px12, contentColor));
+                    texts.addAll(buildDateAndHour(dateTime, Styles.px12, headerColor, true, true, true, true));
+
+                    controller.setTFLContent(texts);
+
+                    controller.setTFLFooter(Complements.addStringFromTextList("\n\nSi toda tu información es correcta puedes continuar, sino puedes editarla ahora o más tarde", Styles.px12, contentColor));
+
+                    controller.setOption(UserData.isHaveAnyAccount() ? Options.options.allClockInformationIsCorrectWithAccount : Options.options.allClockInformationIsCorrectWithoutAccount);
+
+                    controller.setIcon(FileConstants.personRaisedHandIconDm, FileConstants.personRaisedHandIconLm);
+
+                    controller.setTextButton("Editar información", "Mi información es correcta");
+
+                    controller.setData(data);
+
+                }
+
+        );
+
+    }
+
+    public static void showErrorMessageFromPopupSetClock(boolean [] aspects){
+
+        sm.openDynamicPopup(
+
+                FileConstants.PopupOneButtonFXML,
+                Complements.errorTitle,
+                alertController ->{
+
+                    PopupOneButtonController controller = (PopupOneButtonController) alertController;
+                    isDarkMode = controller.getMode();
+                    changeColors();
+
+                    controller.setIcon(FileConstants.databaseFillExclamationIconDm, FileConstants.databaseFillExclamationIconLm);
+
+                    String [] messages = {
+
+                            "No has ingresado tu objetivo",
+                            "El objetivo que ingresaste es demasiado largo",
+                            "La fecha que ingresaste es inválida",
+                            "La hora que ingresaste es inválida"
+
+                    };
+
+                    controller.setTextButton("Intentar de nuevo");
+
+                    controller.setTFLHeader(Complements.addStringFromTextList("¡Inténtalo de nuevo!", Styles.px14, headerColor));
+
+                    List<Text> text = new ArrayList<>();
+
+                    text.add(Complements.addStringFromTextList("No pudimos registrar tu información debido a lo siguiente:\n\n", Styles.px12, contentColor));
+
+                    for(int i = 0; i < aspects.length; i++){
+
+                        if(!aspects[i]){
+
+                            text.add(Complements.addStringFromTextList(Complements.bullet, Styles.px12, headerColor));
+                            text.add(Complements.addStringFromTextList(messages[i] + "\n", Styles.px12, contentColor));
+
+                        }
+
+                    }
+
+                    controller.setTFLContent(text);
+
+                }
+        );
+
+    }
 
     public static void showErrorMessageFromLogin(boolean [] aspects){
 
@@ -283,7 +392,7 @@ public class MessageBuilder {
                     texts.add(Complements.addStringFromTextList(messages[3], Styles.px12, contentColor));
                     texts.add(Complements.addStringFromTextList(data[3]+"\n", Styles.px12, data[3].equalsIgnoreCase("hombre") ? Complements.manColor : Complements.womanColor));
 
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate date =  LocalDate.parse(data[4], formatter);
 
                     texts.add(Complements.addStringFromTextList(Complements.bullet, Styles.px12, headerColor));
@@ -511,7 +620,7 @@ public class MessageBuilder {
                     texts.add(Complements.addStringFromTextList(messages[5], Styles.px12, contentColor));
                     texts.add(Complements.addStringFromTextList(data[5]+"\n", Styles.px12, data[5].equalsIgnoreCase("hombre") ? Complements.manColor : Complements.womanColor));
 
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate date =  LocalDate.parse(data[6], formatter);
 
                     texts.add(Complements.addStringFromTextList(Complements.bullet, Styles.px12, headerColor));
@@ -676,6 +785,68 @@ public class MessageBuilder {
         return false;
     }
 
+    private static List<Text> buildDateAndHour(LocalDateTime dateTime, String size, String glowColor, boolean dayMinus, boolean monthMinus, boolean dayGlow, boolean monthGlow){
+
+        List<Text> texts = new ArrayList<>();
+
+        if(dateTime != null){
+
+            //Fecha
+            texts.add(Complements.addStringFromTextList(ValidateOutputs.getDayOfWeekString(dateTime.toLocalDate(), dayMinus),size, contentColor));
+            texts.add(Complements.addStringFromTextList(" ", size, contentColor));
+            texts.add(Complements.addStringFromTextList(dateTime.toLocalDate().getDayOfMonth()+"", size, dayGlow ? glowColor : contentColor));
+            texts.add(Complements.addStringFromTextList(" de ", size, contentColor));
+            texts.add(Complements.addStringFromTextList(ValidateOutputs.getMonthOfYearString(dateTime.toLocalDate(), monthMinus), size, monthGlow ? glowColor : contentColor));
+            texts.add(Complements.addStringFromTextList(dateTime.getYear() >= 2000? " del " : " de ", size, contentColor));
+            texts.add(Complements.addStringFromTextList(dateTime.getYear() +"", size, glowColor));
+
+            //Hora
+            String partOfDay;
+            int hour =  dateTime.getHour();
+            int parseHour;
+
+            if(hour >12){
+
+                parseHour = hour -12;
+
+            }else{
+
+                parseHour = hour;
+
+            }
+
+            if(hour >= 0 && hour <12){
+
+                partOfDay = "mañana";
+
+            }
+            else if(hour >= 12 && hour < 18){
+
+                partOfDay = "tarde";
+
+            }else{
+
+                partOfDay = "noche";
+
+            }
+
+            StringBuilder builder = new StringBuilder();
+
+            builder.append(parseHour).append(dateTime.getMinute() != 0 ? ":" : "").append(dateTime.getMinute() != 0 ?String.format("%02d", dateTime.getMinute()) : "").append(" de la ");
+
+            texts.add(Complements.addStringFromTextList(" a las " + builder, size, contentColor));
+            texts.add(Complements.addStringFromTextList(partOfDay, size, glowColor));
+
+        }else{
+
+            texts.add(Complements.addStringFromTextList("¡No se ha ingresado ninguna fecha!", size, glowColor));
+
+        }
+
+        return texts;
+
+    }
+
     private static List<Text> buildDateText(LocalDate date, String size, String glowColor, boolean monthMinus, boolean dayMinus, boolean dayGlow, boolean monthGlow){
 
         List<Text> texts = new ArrayList<>();
@@ -688,7 +859,7 @@ public class MessageBuilder {
             texts.add(Complements.addStringFromTextList(" de ", size, contentColor));
             texts.add(Complements.addStringFromTextList(ValidateOutputs.getMonthOfYearString(date, monthMinus), size, monthGlow ? glowColor : contentColor));
             texts.add(Complements.addStringFromTextList(date.getYear() >= 2000? " del " : " de ", size, contentColor));
-            texts.add(Complements.addStringFromTextList(date.getYear()+"", size, glowColor));
+            texts.add(Complements.addStringFromTextList(date.getYear()+".", size, glowColor));
 
         }else{
 

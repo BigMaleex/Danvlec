@@ -287,6 +287,15 @@ public class Colors {
             Map.entry("popup-toggle-button-border-active-dm", "#4DC0D4FF"),//COLOR DEL BORDE DEL TOGGLE BUTTON EN POPUP CUANDO ESTÁ ACTIVO
             Map.entry("popup-toggle-button-font-color-active-dm", "#4AB4C8FF"),//COLOR DE LA FUENTE DEL TOGGLE BUTTON EN POPUP CUANDO ESTÁ ACTIVO
 
+            //SwitchButton
+            Map.entry("switch-button-off-lm", "#CCCCCCFF"), //COLOR DEL FONDO DEL SWITCH BUTTON CUANDO NO ESTÁ ACTIVO
+            Map.entry("switch-button-on-lm", "#192D91FF"), //COLOR DEL FONDO DEL SWITCH BUTTON CUANDO ESTÁ ACTIVO
+            Map.entry("switch-button-thumb-lm", "#FFFFFFFF"), //COLOR DEL FONDO DEL THUMB DEL SWITCH BUTTON CUANDO NO ESTÁ ACTIVO
+
+            Map.entry("switch-button-off-dm", "#394050FF"), //COLOR DEL FONDO DEL SWITCH BUTTON CUANDO NO ESTÁ ACTIVO
+            Map.entry("switch-button-on-dm", "#4DC0D4FF"), //COLOR DEL FONDO DEL SWITCH BUTTON CUANDO ESTÁ ACTIVO
+            Map.entry("switch-button-thumb-dm", "#2E3442FF"), //COLOR DEL FONDO DEL THUMB DEL SWITCH BUTTON CUANDO NO ESTÁ ACTIVO
+
             //Error
             Map.entry("error", "#1818FFFF") //COLOR QUE APARECERÁ CUANDO NO SE ENCUENTRE UNA VARIABLE
 

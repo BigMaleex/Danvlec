@@ -16,6 +16,8 @@ public class Styles {
     public static final String borderWidth = "-fx-border-width:";
     public static final String backgroundRadius = "-fx-background-radius:";
     public static final String padding  = "-fx-padding:";
+    public static final String minWidth = "-fx-min-width:";
+    public static final String minHeight = "-fx-min-height:";
 
     // Dimensiones
     public static final String px20 = "20px";

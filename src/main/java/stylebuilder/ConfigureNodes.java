@@ -93,14 +93,6 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
     private static String popupToggleButtonBorder;
     private static String popupToggleButtonFontColor;
 
-    private static String popupToggleButtonBackgroundHover;
-    private static String popupToggleButtonBorderHover;
-    private static String popupToggleButtonFontColorHover;
-
-    private static String popupToggleButtonBackgroundActive;
-    private static String popupToggleButtonBorderActive;
-    private static String popupToggleButtonFontColorActive;
-
     private static void changeColors(boolean isDarkMode){
 
         //Botón secundario
@@ -175,21 +167,11 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
         popupToggleButtonBorder = Colors.getColor("popup-toggle-button-border", isDarkMode);
         popupToggleButtonFontColor = Colors.getColor("popup-toggle-button-font-color", isDarkMode);
 
-        popupToggleButtonBackgroundHover = Colors.getColor("popup-toggle-button-background-hover", isDarkMode);
-        popupToggleButtonBorderHover = Colors.getColor("popup-toggle-button-border-hover", isDarkMode);
-        popupToggleButtonFontColorHover = Colors.getColor("popup-toggle-button-font-color-hover", isDarkMode);
-
-        popupToggleButtonBackgroundActive = Colors.getColor("popup-toggle-button-background-active", isDarkMode);
-        popupToggleButtonBorderActive = Colors.getColor("popup-toggle-button-border-active", isDarkMode);
-        popupToggleButtonFontColorActive = Colors.getColor("popup-toggle-button-font-color-active", isDarkMode);
-
     }
 
-    public static void configureNodesForPopupSetClockController(Button BTNClose, Button BTNStart, ImageView IMGDate, ImageView IMGDateHour, ImageView IMGFocus1, ImageView IMGFocus2, ImageView IMGFocus3, ImageView IMGFocus4, ImageView IMGFocus5, ImageView IMGHabits1, ImageView IMGHabits2, ImageView IMGHabits3, ImageView IMGHabits4, ImageView IMGHabits5, ImageView IMGHour, ImageView IMGIcon, ImageView IMGOther, ImageView IMGPersonalGrowth1, ImageView IMGPersonalGrowth2, ImageView IMGPersonalGrowth3, ImageView IMGPersonalGrowth4, ImageView IMGPersonalGrowth5, ImageView IMGRelations1, ImageView IMGRelations2, ImageView IMGRelations3, ImageView IMGRelations4, ImageView IMGRelations5, ImageView IMGSubIcon, ImageView IMGStart, ImageView IMGStartHover, ImageView IMGTech1, ImageView IMGTech2, ImageView IMGTech3, ImageView IMGTech4, Label LBLFocus1, Label LBLFocus2, Label LBLFocus3, Label LBLFocus4, Label LBLFocus5, Label LBLHabits1, Label LBLHabits2, Label LBLHabits3, Label LBLHabits4, Label LBLHabits5, Label LBLOther, Label LBLPersonalGrowth1, Label LBLPersonalGrowth2, Label LBLPersonalGrowth3, Label LBLPersonalGrowth4, Label LBLPersonalGrowth5, Label LBLRelations1, Label LBLRelations2, Label LBLRelations3, Label LBLRelations4, Label LBLRelations5, Label LBLStart, Label LBLTech1, Label LBLTech2, Label LBLTech3, Label LBLTech4, StackPane SPDate, StackPane SPDateHourSelector, StackPane SPOther, ToggleButton TBTButtonFocus1, ToggleButton TBTButtonFocus2, ToggleButton TBTButtonFocus3, ToggleButton TBTButtonFocus4, ToggleButton TBTButtonFocus5, ToggleButton TBTButtonHabits1, ToggleButton TBTButtonHabits2, ToggleButton TBTButtonHabits3, ToggleButton TBTButtonHabits4, ToggleButton TBTButtonHabits5, ToggleButton TBTButtonOther, ToggleButton TBTButtonPersonalGrowth1, ToggleButton TBTButtonPersonalGrowth2, ToggleButton TBTButtonPersonalGrowth3, ToggleButton TBTButtonPersonalGrowth4, ToggleButton TBTButtonPersonalGrowth5, ToggleButton TBTButtonRelations1, ToggleButton TBTButtonRelations2, ToggleButton TBTButtonRelations3, ToggleButton TBTButtonRelations4, ToggleButton TBTButtonRelations5, ToggleButton TBTButtonTech1, ToggleButton TBTButtonTech2, ToggleButton TBTButtonTech3, ToggleButton TBTButtonTech4, ToggleButton TBTDateHour, boolean isDM){
+    public static void configureNodesForPopupSetClockController(Button BTNClose, Button BTNStart, ImageView IMGDate, ImageView IMGDateHour, ImageView IMGFocus1, ImageView IMGFocus2, ImageView IMGFocus3, ImageView IMGFocus4, ImageView IMGFocus5, ImageView IMGHabits1, ImageView IMGHabits2, ImageView IMGHabits3, ImageView IMGHabits4, ImageView IMGHabits5, ImageView IMGHour, ImageView IMGIcon, ImageView IMGOther, ImageView IMGPersonalGrowth1, ImageView IMGPersonalGrowth2, ImageView IMGPersonalGrowth3, ImageView IMGPersonalGrowth4, ImageView IMGPersonalGrowth5, ImageView IMGRelations1, ImageView IMGRelations2, ImageView IMGRelations3, ImageView IMGRelations4, ImageView IMGRelations5, ImageView IMGSubIcon, ImageView IMGStart, ImageView IMGStartHover, ImageView IMGTech1, ImageView IMGTech2, ImageView IMGTech3, ImageView IMGTech4, Label LBLFocus1, Label LBLFocus2, Label LBLFocus3, Label LBLFocus4, Label LBLFocus5, Label LBLHabits1, Label LBLHabits2, Label LBLHabits3, Label LBLHabits4, Label LBLHabits5, Label LBLOther, Label LBLPersonalGrowth1, Label LBLPersonalGrowth2, Label LBLPersonalGrowth3, Label LBLPersonalGrowth4, Label LBLPersonalGrowth5, Label LBLRelations1, Label LBLRelations2, Label LBLRelations3, Label LBLRelations4, Label LBLRelations5, Label LBLStart, Label LBLTech1, Label LBLTech2, Label LBLTech3, Label LBLTech4, StackPane SPDate, StackPane SPDateHourSelector, StackPane SPOther, ToggleButton TBTButtonFocus1, ToggleButton TBTButtonFocus2, ToggleButton TBTButtonFocus3, ToggleButton TBTButtonFocus4, ToggleButton TBTButtonFocus5, ToggleButton TBTButtonHabits1, ToggleButton TBTButtonHabits2, ToggleButton TBTButtonHabits3, ToggleButton TBTButtonHabits4, ToggleButton TBTButtonHabits5, ToggleButton TBTButtonOther, ToggleButton TBTButtonPersonalGrowth1, ToggleButton TBTButtonPersonalGrowth2, ToggleButton TBTButtonPersonalGrowth3, ToggleButton TBTButtonPersonalGrowth4, ToggleButton TBTButtonPersonalGrowth5, ToggleButton TBTButtonRelations1, ToggleButton TBTButtonRelations2, ToggleButton TBTButtonRelations3, ToggleButton TBTButtonRelations4, ToggleButton TBTButtonRelations5, ToggleButton TBTButtonTech1, ToggleButton TBTButtonTech2, ToggleButton TBTButtonTech3, ToggleButton TBTButtonTech4, boolean isDM, boolean allConditionsMet){
 
         changeColors(isDM);
-
-        
 
         applyStylesToContents(popupCardBackground, popupCardBorder, Styles.px1, Styles.px10, SPDate, SPDateHourSelector, SPOther);
 
@@ -207,7 +189,19 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
 
         setImages(FileConstants.calendarTimeRemainingFirstFaseIconDm, FileConstants.calendarTimeRemainingFirstFaseIconLm, isDM, IMGDate, IMGDateHour);
 
-        applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNStart}, new Label [] {LBLStart});
+        if(allConditionsMet){
+
+            applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNStart}, new Label [] {LBLStart});
+            IMGStart.setOpacity(1);
+            BTNStart.setOpacity(1);
+
+        }else{
+
+            applyStylesToButtonsWithLabel(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNStart}, new Label [] {LBLStart});
+            IMGStart.setOpacity(0);
+            BTNStart.setOpacity(0.66);
+
+        }
 
         applyStylesToButtons(popupTitleBarCloseButtonBackground, popupTitleBarCloseButtonBorder, popupTitleBarCloseButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNClose);
 

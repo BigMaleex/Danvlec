@@ -204,10 +204,10 @@ public class PopupVerifyEmailController extends ConfigureInitializeStyles {
         SPToast.setOpacity(0.0);
 
         changeTheme();
-/*
+
         code = ValidateOutputs.generateCode10Chars();
         sendEmail();
-*/
+
     }
 
     private void changeTheme(){

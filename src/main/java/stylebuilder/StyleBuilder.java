@@ -10,7 +10,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import user.UserPreferences;
-import utilities.FileConstants;
 import utilities.Images;
 
 public class StyleBuilder {
@@ -25,8 +24,14 @@ public class StyleBuilder {
     private static final String BORDER_COLOR_REGEX = "-fx-border-color:[^;]*;?";
     private static final String TEXT_FILL_REGEX = "-fx-text-fill:[^;]*;?";
 
+    public static void animateButtonColorsWithLabel(String bgStart, String bgEnd, String brStart, String brEnd, String fColorStart, String fColorEnd, ButtonBase button, Label label){
 
-    public static void animateButtonColorsWithImagesAndLabels(String bgStart, String bgEnd, String brStart, String brEnd, String fColorStart, String fColorEnd, Button button, ImageView image, ImageView imageHover, Label label){
+        animateButtonColors(button, bgStart, bgEnd,brStart, brEnd, fColorStart, fColorEnd);
+        animateLabelTextColor(label, fColorStart, fColorEnd);
+
+    }
+
+    public static void animateButtonColorsWithImagesAndLabel(String bgStart, String bgEnd, String brStart, String brEnd, String fColorStart, String fColorEnd, ButtonBase button, ImageView image, ImageView imageHover, Label label){
 
         animateButtonColors(button, bgStart, bgEnd,brStart, brEnd, fColorStart, fColorEnd);
         animateLabelTextColor(label, fColorStart, fColorEnd);

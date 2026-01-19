@@ -7,6 +7,9 @@ public class Options {
         allUserInformationIsCorrectUploadToTheBD,
         allUserInformationIsCorrectFromGuestGenerateFile,
         askTheUserIfTheyWantToSaveTheirInformation,
+        allClockInformationIsCorrectWithAccount,
+        allClockInformationIsCorrectWithoutAccount,
+
 
     }
 

@@ -43,7 +43,7 @@
                               <Label styleClass="sectionTitle" text="Procrastinación / enfoque" />
                            </children>
                         </HBox>
-                        <ToggleButton fx:id="TBTButtonFocus1" alignment="CENTER_LEFT" contentDisplay="LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus1OnMouseClicked" onMouseEntered="#TBTButtonFocus1OnMouseEntered" onMouseExited="#TBTButtonFocus1OnMouseExited">
+                        <ToggleButton fx:id="TBTButtonFocus1" alignment="CENTER_LEFT" contentDisplay="LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonFocus1OnMouseEntered" onMouseExited="#TBTButtonFocus1OnMouseExited">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -66,7 +66,7 @@
                               <ToggleGroup fx:id="group" />
                            </toggleGroup>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonFocus2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus2OnMouseClicked" onMouseEntered="#TBTButtonFocus2OnMouseEntered" onMouseExited="#TBTButtonFocus2OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonFocus2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonFocus2OnMouseEntered" onMouseExited="#TBTButtonFocus2OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -86,7 +86,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonFocus3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="150.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus3OnMouseClicked" onMouseEntered="#TBTButtonFocus3OnMouseEntered" onMouseExited="#TBTButtonFocus3OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonFocus3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="150.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonFocus3OnMouseEntered" onMouseExited="#TBTButtonFocus3OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -106,7 +106,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonFocus4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="202.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus4OnMouseClicked" onMouseEntered="#TBTButtonFocus4OnMouseEntered" onMouseExited="#TBTButtonFocus4OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonFocus4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="202.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonFocus4OnMouseEntered" onMouseExited="#TBTButtonFocus4OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -126,7 +126,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonFocus5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="254.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonFocus5OnMouseClicked" onMouseEntered="#TBTButtonFocus5OnMouseEntered" onMouseExited="#TBTButtonFocus5OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonFocus5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="254.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonFocus5OnMouseEntered" onMouseExited="#TBTButtonFocus5OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -152,7 +152,7 @@
                               <Label styleClass="sectionTitle" text="Autocontrol / hábitos" />
                            </children>
                         </HBox>
-                        <ToggleButton fx:id="TBTButtonHabits1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits1OnMouseClicked" onMouseEntered="#TBTButtonHabits1OnMouseEntered" onMouseExited="#TBTButtonHabits1OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonHabits1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonHabits1OnMouseEntered" onMouseExited="#TBTButtonHabits1OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -168,7 +168,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonHabits2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="402.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits2OnMouseClicked" onMouseEntered="#TBTButtonHabits2OnMouseEntered" onMouseExited="#TBTButtonHabits2OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonHabits2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="402.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonHabits2OnMouseEntered" onMouseExited="#TBTButtonHabits2OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -184,7 +184,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonHabits3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="454.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits3OnMouseClicked" onMouseEntered="#TBTButtonHabits3OnMouseEntered" onMouseExited="#TBTButtonHabits3OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonHabits3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="454.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonHabits3OnMouseEntered" onMouseExited="#TBTButtonHabits3OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -200,7 +200,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonHabits4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="506.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits4OnMouseClicked" onMouseEntered="#TBTButtonHabits4OnMouseEntered" onMouseExited="#TBTButtonHabits4OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonHabits4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="506.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonHabits4OnMouseEntered" onMouseExited="#TBTButtonHabits4OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -216,7 +216,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonHabits5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="558.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonHabits5OnMouseClicked" onMouseEntered="#TBTButtonHabits5OnMouseEntered" onMouseExited="#TBTButtonHabits5OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonHabits5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="558.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonHabits5OnMouseEntered" onMouseExited="#TBTButtonHabits5OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -242,7 +242,7 @@
                               <Label styleClass="sectionTitle" text="Tecnología / distracciones" />
                            </children>
                         </HBox>
-                        <ToggleButton fx:id="TBTButtonTech1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonTech1OnMouseClicked" onMouseEntered="#TBTButtonTech1OnMouseEntered" onMouseExited="#TBTButtonTech1OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonTech1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonTech1OnMouseEntered" onMouseExited="#TBTButtonTech1OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -258,7 +258,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonTech2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="706.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonTech2OnMouseClicked" onMouseEntered="#TBTButtonTech2OnMouseEntered" onMouseExited="#TBTButtonTech2OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonTech2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="706.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonTech2OnMouseEntered" onMouseExited="#TBTButtonTech2OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -274,7 +274,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonTech3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="758.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonTech3OnMouseClicked" onMouseEntered="#TBTButtonTech3OnMouseEntered" onMouseExited="#TBTButtonTech3OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonTech3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="758.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonTech3OnMouseEntered" onMouseExited="#TBTButtonTech3OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -290,7 +290,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonTech4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="810.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonTech4OnMouseClicked" onMouseEntered="#TBTButtonTech4OnMouseEntered" onMouseExited="#TBTButtonTech4OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonTech4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="810.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonTech4OnMouseEntered" onMouseExited="#TBTButtonTech4OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -316,7 +316,7 @@
                               <Label styleClass="sectionTitle" text="Relaciones / límites" />
                            </children>
                         </HBox>
-                        <ToggleButton fx:id="TBTButtonRelations1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations1OnMouseClicked" onMouseEntered="#TBTButtonRelations1OnMouseEntered" onMouseExited="#TBTButtonRelations1OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonRelations1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonRelations1OnMouseEntered" onMouseExited="#TBTButtonRelations1OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -332,7 +332,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonRelations2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="958.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations2OnMouseClicked" onMouseEntered="#TBTButtonRelations2OnMouseEntered" onMouseExited="#TBTButtonRelations2OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonRelations2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="958.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonRelations2OnMouseEntered" onMouseExited="#TBTButtonRelations2OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -348,7 +348,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonRelations3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1010.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations3OnMouseClicked" onMouseEntered="#TBTButtonRelations3OnMouseEntered" onMouseExited="#TBTButtonRelations3OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonRelations3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1010.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonRelations3OnMouseEntered" onMouseExited="#TBTButtonRelations3OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -364,7 +364,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonRelations4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1062.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations4OnMouseClicked" onMouseEntered="#TBTButtonRelations4OnMouseEntered" onMouseExited="#TBTButtonRelations4OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonRelations4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1062.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonRelations4OnMouseEntered" onMouseExited="#TBTButtonRelations4OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -380,7 +380,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonRelations5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1114.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonRelations5OnMouseClicked" onMouseEntered="#TBTButtonRelations5OnMouseEntered" onMouseExited="#TBTButtonRelations5OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonRelations5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1114.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonRelations5OnMouseEntered" onMouseExited="#TBTButtonRelations5OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -406,7 +406,7 @@
                               <Label styleClass="sectionTitle" text="Crecimiento personal" />
                            </children>
                         </HBox>
-                        <ToggleButton fx:id="TBTButtonPersonalGrowth1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth1OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth1OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth1OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth1" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonPersonalGrowth1OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth1OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -422,7 +422,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonPersonalGrowth2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1262.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth2OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth2OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth2OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth2" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1262.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonPersonalGrowth2OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth2OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -438,7 +438,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonPersonalGrowth3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1314.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth3OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth3OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth3OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth3" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1314.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonPersonalGrowth3OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth3OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -454,7 +454,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonPersonalGrowth4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1366.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth4OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth4OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth4OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth4" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1366.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonPersonalGrowth4OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth4OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -470,7 +470,7 @@
                               </HBox>
                            </graphic>
                         </ToggleButton>
-                        <ToggleButton fx:id="TBTButtonPersonalGrowth5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1418.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonPersonalGrowth5OnMouseClicked" onMouseEntered="#TBTButtonPersonalGrowth5OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth5OnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonPersonalGrowth5" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="1418.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonPersonalGrowth5OnMouseEntered" onMouseExited="#TBTButtonPersonalGrowth5OnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -496,7 +496,7 @@
                               <Label styleClass="sectionTitle" text="Personalizado" />
                            </children>
                         </HBox>
-                        <ToggleButton fx:id="TBTButtonOther" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#TBTButtonOtherOnMouseClicked" onMouseEntered="#TBTButtonOtherOnMouseEntered" onMouseExited="#TBTButtonOtherOnMouseExited" toggleGroup="$group">
+                        <ToggleButton fx:id="TBTButtonOther" alignment="CENTER_LEFT" contentDisplay="LEFT" layoutX="10.0" layoutY="98.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseEntered="#TBTButtonOtherOnMouseEntered" onMouseExited="#TBTButtonOtherOnMouseExited" toggleGroup="$group">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -543,7 +543,7 @@
                         </HBox>
                         <StackPane fx:id="SPDate" onMouseEntered="#SPDateOnMouseEntered" onMouseExited="#SPDateOnMouseExited" prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                              <HBox fx:id="HBODateHour" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                  <padding>
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                  </padding>
@@ -552,14 +552,9 @@
                                     <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                        <children>
                                           <Label styleClass="title" text="Usar fecha y hora actual del dispositivo" />
-                                          <Label fx:id="LBLDateHour" layoutX="10.0" layoutY="10.0" text="dd-mm-yyyy hh:mm" />
+                                          <Label fx:id="LBLDateHour" layoutX="10.0" layoutY="10.0" styleClass="LBLDate" text="dd-mm-yyyy hh:mm" />
                                        </children>
                                     </VBox>
-                                    <ToggleButton fx:id="TBTDateHour" mnemonicParsing="false" onMouseClicked="#TBTDateHourOnMouseClicked" onMouseEntered="#TBTDateHourOnMouseEntered" onMouseExited="#TBTDateHourOnMouseExited" selected="true">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ToggleButton>
                                  </children>
                               </HBox>
                            </children>
@@ -567,7 +562,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </StackPane>
-                        <StackPane fx:id="SPDateHourSelector" onMouseClicked="#SPDateHourSelectorOnMouseClicked" onMouseEntered="#SPDateHourSelectorOnMouseEntered" onMouseExited="#SPDateHourSelectorOnMouseExited" prefHeight="150.0" prefWidth="200.0">
+                        <StackPane fx:id="SPDateHourSelector" onMouseEntered="#SPDateHourSelectorOnMouseEntered" onMouseExited="#SPDateHourSelectorOnMouseExited" prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                  <padding>
@@ -576,36 +571,30 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                        <children>
-                                          <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                          <VBox fx:id="VBXDateSelector" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                                    <children>
-                                                      <ImageView fx:id="IMGDate" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="IMGDate" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                                                       <Label styleClass="sectionTitle" text="Fecha" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                                   <children>
-                                                      <TextField fx:id="TXTDate" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                                                    </children>
                                                 </HBox>
                                              </children>
                                           </VBox>
-                                          <VBox layoutX="266.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                          <VBox fx:id="VBXHourSelector" layoutX="266.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                                    <children>
-                                                      <ImageView fx:id="IMGHour" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                                      <ImageView fx:id="IMGHour" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                                                       <Label styleClass="sectionTitle" text="Hora" />
                                                    </children>
                                                 </HBox>
-                                                <TextField fx:id="TXTHour" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </HBox>
                                     <Separator prefWidth="200.0" />
-                                    <Label fx:id="LBLBuildDateAndHour" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label" />
+                                    <Label fx:id="LBLBuildDateAndHour" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="title" text="Label" />
                                  </children>
                               </VBox>
                            </children>

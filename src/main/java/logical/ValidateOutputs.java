@@ -5,13 +5,12 @@ import user.UserData;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.time.LocalTime;
 import java.util.Base64;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
-import java.awt.*;
-import java.awt.datatransfer.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -26,6 +25,56 @@ public class ValidateOutputs {
 
     private static final String ALGORITHM = "AES";
     private static final byte[] KEY = "1234567890123456".getBytes();
+
+    public static String buildDateAndHour(LocalDate date, LocalTime time, boolean day, boolean month){
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(getDayOfWeekString(date, day)).append(" " + date.getDayOfMonth() + " de ").append(getMonthOfYearString(date, month)).append(date.getYear() < 200 ? " de " : " del ").append(date.getYear());
+        builder.append(" a las ").append(getHourAndMinutesString12HRSFormat(time));
+
+        return builder.toString();
+
+    }
+
+    public static String getHourAndMinutesString12HRSFormat(LocalTime time){
+
+        StringBuilder builder = new StringBuilder();
+
+        String partOfDay;
+        int hour =  time.getHour();
+        int parseHour;
+
+        if(hour >12){
+
+            parseHour = hour -12;
+
+        }else{
+
+            parseHour = hour;
+
+        }
+
+        if(hour >= 0 && hour <12){
+
+            partOfDay = "mañana";
+
+        }
+        else if(hour >= 12 && hour < 18){
+
+            partOfDay = "tarde";
+
+        }else{
+
+            partOfDay = "noche";
+
+        }
+
+        builder.append(parseHour).append(time.getMinute() != 0 ? ":" : "").append(time.getMinute() != 0 ?String.format("%02d", time.getMinute()) : "").append(" de la ").append(partOfDay);
+
+        return builder.toString();
+
+    }
 
     private static final String[] chars = {
             "A","B","C","D","E","F","G","H","I","J","K","L","M",

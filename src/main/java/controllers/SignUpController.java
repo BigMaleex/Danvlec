@@ -1,5 +1,6 @@
 package controllers;
 
+import controls.DateMaskTextField;
 import files.Preferences;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logical.ValidateFormInputs;
 import logical.ValidateInputs;
@@ -109,13 +111,6 @@ public class SignUpController extends ConfigureInitializeStyles {
     private static String titleBarCloseButtonBorderWithFocusHover;
     private static String titleBarCloseButtonFontColorWithFocusHover;
 
-    // Birthday mask constants
-    private static final String BIRTH_TEMPLATE = "dd/mm/aaaa";
-    private static final int BIRTH_LEN = BIRTH_TEMPLATE.length();
-
-    // Track whether user has interacted with the birthday field so we don't show an error immediately
-    private boolean birthdayTouched = false;
-
     @FXML
     private AnchorPane APMain;
 
@@ -192,9 +187,6 @@ public class SignUpController extends ConfigureInitializeStyles {
     private ImageView IMGThemeInit;
 
     @FXML
-    private Label LBLBirthdayErr;
-
-    @FXML
     private Label LBLEmailErr;
 
     @FXML
@@ -225,9 +217,6 @@ public class SignUpController extends ConfigureInitializeStyles {
     private ToggleButton TBTToggle;
 
     @FXML
-    private TextField TXTBirthday;
-
-    @FXML
     private TextField TXTConfirmPassword;
 
     @FXML
@@ -249,14 +238,35 @@ public class SignUpController extends ConfigureInitializeStyles {
     private TextField TXTPassword;
 
     @FXML
+    private VBox VBXDate;
+
+    private DateMaskTextField TXTBirthday = new DateMaskTextField();
+    private Label LBL = new Label();
+
+    @FXML
     public void initialize(){
 
         IMGSex.setImage(Images.getImage(FileConstants.genderAmbiguousIcon));
 
         LBLTitleBar.setText(Titles.SignUp);
-        StyleBuilder.clearControls(TXTBirthday, TXTEmail, TXTLastname, TXTPassword, TXTNickname, TXTConfirmPassword, TXTName, PSFConfirmPassword, PSFPassword, CBXSex);
+        TXTBirthday.clear();
+        StyleBuilder.clearControls(TXTEmail, TXTLastname, TXTPassword, TXTNickname, TXTConfirmPassword, TXTName, PSFConfirmPassword, PSFPassword, CBXSex);
 
         StyleBuilder.normalizeLabels(LBLEmailErr, LBLLastnameErr, LBLNameErr, LBLNicknameErr);
+
+        LBL.setStyle("-fx-background-color: transparent");
+
+        if(!VBXDate.getChildren().contains(TXTBirthday)){
+
+            VBXDate.getChildren().add(TXTBirthday);
+
+        }
+
+        if(!VBXDate.getChildren().contains(LBL)){
+
+            VBXDate.getChildren().add(LBL);
+
+        }
 
         sex = null;
         passwordVisible = false;
@@ -276,42 +286,6 @@ public class SignUpController extends ConfigureInitializeStyles {
         CBXSex.getItems().addAll("Hombre", "Mujer");
         CBXSex.setPromptText("Escoge tu sexo");
         CBXSex.setValue(null);
-
-        // Birthday initial text (mask)
-        TXTBirthday.setText(BIRTH_TEMPLATE);
-
-        // Make sure birthday label and field are neutral at start (no err classes)
-        LBLBirthdayErr.setText("");
-        StyleBuilder.normalizeLabels(LBLBirthdayErr);
-        TXTBirthday.getStyleClass().removeAll("err", "txterr");
-
-        TXTBirthday.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal) {
-                // When focusing, position caret at first editable or current caret if already on editable
-                Platform.runLater(() -> {
-                    int cp = TXTBirthday.getCaretPosition();
-                    int next = nextEditableIndexFrom(cp);
-                    if (next >= BIRTH_LEN) next = nextEditableIndexFrom(0);
-                    TXTBirthday.positionCaret(next);
-                });
-            } else {
-                // lost focus -> if user interacted validate and possibly mark touched
-                if (birthdayTouched) validateBirthdayText(); // will apply err/norm accordingly
-                validateForm();
-            }
-        });
-
-        CBXSex.setButtonCell(new javafx.scene.control.ListCell<String>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(CBXSex.getPromptText());
-                } else {
-                    setText(item);
-                }
-            }
-        });
 
         isDarkMode = UserPreferences.getUserThemeMode();
         TXTNickname.setVisible(false);
@@ -340,11 +314,6 @@ public class SignUpController extends ConfigureInitializeStyles {
             }
             assignGenderAttribute();
         });
-
-        LBLBirthdayErr.setText("");
-
-        // Inicializar comportamiento específico del campo Birthday con TextFormatter robusto
-        initBirthdayField();
 
         assignGenderAttribute();
         changeTheme();
@@ -693,7 +662,7 @@ public class SignUpController extends ConfigureInitializeStyles {
         if (allConditionsMet) {
 
             // Registrar usuario
-            ValidateFormInputs.validateInputsFromSignUp(TXTName.getText(), TXTLastname.getText(), TBTToggle.isSelected() ? TXTNickname.getText() : null, TXTEmail.getText(), passwordVisible ? TXTPassword.getText() : PSFPassword.getText() , confirmPasswordVisible ? TXTConfirmPassword.getText() : PSFConfirmPassword.getText(), sex, TXTBirthday.getText());
+            ValidateFormInputs.validateInputsFromSignUp(TXTName.getText(), TXTLastname.getText(), TBTToggle.isSelected() ? TXTNickname.getText() : null, TXTEmail.getText(), passwordVisible ? TXTPassword.getText() : PSFPassword.getText() , confirmPasswordVisible ? TXTConfirmPassword.getText() : PSFConfirmPassword.getText(), sex, TXTBirthday.getLocalDate());
 
         }
 
@@ -960,8 +929,7 @@ public class SignUpController extends ConfigureInitializeStyles {
         boolean isSexSelected = CBXSex.getValue() != null;
         boolean isNicknameValidOrNotRequired = !TBTToggle.isSelected() || (TBTToggle.isSelected() && !TXTNickname.getText().trim().isBlank());
 
-        // Birthday valid => no placeholders and valid date
-        boolean birthdayIsValid = isBirthdayFullyValid();
+        boolean birthdayIsValid = TXTBirthday.getLocalDate() != null;
 
         allConditionsMet = isNameValid && isLastnameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isSexSelected && isNicknameValidOrNotRequired && birthdayIsValid;
 
@@ -977,268 +945,6 @@ public class SignUpController extends ConfigureInitializeStyles {
             applyStylesToButtons(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, BTNSignUp);
             BTNSignUp.setOpacity(0.66);
 
-        }
-    }
-
-    private static String buildButtonStyle(String bgColor, String textColor, String fontPx, String radiusPx) {
-        return Styles.backgroundColor + bgColor + Styles.end + Styles.backgroundRadius + radiusPx + Styles.end + Styles.fontFamily + Styles.fontSize + fontPx + Styles.end + Styles.textColor + textColor + Styles.end;
-    }
-
-    private static void applyStyleToButtons(String bgColor, String textColor, String fontPx, String radiusPx, Button... buttons) {
-        String style = buildButtonStyle(bgColor, textColor, fontPx, radiusPx);
-        for (Button b : buttons) {
-            b.setStyle(style);
-        }
-    }
-
-    /* ===========================
-       BIRTHDAY FIELD IMPLEMENTATION (TextFormatter FINAL FIX)
-       =========================== */
-
-    private void initBirthdayField() {
-        // start neutral
-        LBLBirthdayErr.setText("");
-        StyleBuilder.normalizeLabels(LBLBirthdayErr);
-        TXTBirthday.getStyleClass().removeAll("err", "txterr");
-        TXTBirthday.setText(BIRTH_TEMPLATE);
-
-        // TextFormatter filter which handles insertion, paste and deletion uniformly.
-        UnaryOperator<TextFormatter.Change> filter = change -> {
-            // Only process changes when the field has focus
-            if (!TXTBirthday.isFocused()) {
-                return change;
-            }
-
-            // control text (before change)
-            String cur = change.getControlText();
-            if (cur == null || cur.length() != BIRTH_LEN) cur = BIRTH_TEMPLATE;
-
-            char[] arr = cur.toCharArray();
-
-            int rangeStart = change.getRangeStart();
-            int rangeEnd = change.getRangeEnd();
-            String inserted = change.getText(); // may be empty when deleting
-
-            // If inserted text exists -> insertion / paste / typing
-            if (inserted != null && !inserted.isEmpty()) {
-                birthdayTouched = true;
-                // keep only digits
-                String digits = inserted.replaceAll("\\D+", "");
-                if (digits.isEmpty()) {
-                    return null; // ignore non-digit insertions
-                }
-
-                // Decide start position:
-                int pos = rangeStart;
-                // If selection covers editable area, start at first editable inside selection
-                if (rangeEnd > rangeStart) {
-                    pos = nextEditableIndexFrom(rangeStart);
-                } else {
-                    // if caret is on a non-editable (slash), go to next editable; otherwise use caret
-                    if (!isEditableIndex(pos)) pos = nextEditableIndexFrom(pos);
-                    // If still at end, try previous editable (covers caret at very end)
-                    if (pos >= BIRTH_LEN) {
-                        int prev = prevEditableIndexFrom(rangeStart);
-                        if (prev >= 0) pos = prev;
-                    }
-                }
-
-                // Insert digits sequentially
-                int di = 0;
-                while (pos < BIRTH_LEN && di < digits.length()) {
-                    arr[pos] = digits.charAt(di++);
-                    pos = nextEditableIndexFrom(pos + 1);
-                }
-
-                String newText = new String(arr);
-                // Replace whole content with newText to keep mask stable
-                change.setRange(0, cur.length());
-                change.setText(newText);
-
-                // place caret at next editable position (or end)
-                int caret = (pos <= BIRTH_LEN) ? pos : BIRTH_LEN;
-                change.setCaretPosition(caret);
-                change.setAnchor(caret);
-
-                // validate after change applied
-                Platform.runLater(() -> {
-                    validateBirthdayText();
-                    validateForm();
-                });
-
-                return change;
-            }
-
-            // No inserted text -> deletion
-            // Mark touched so validation appears after user interacts
-            birthdayTouched = true;
-
-            // If there is a selection: clear only editable positions in selection
-            if (rangeEnd > rangeStart) {
-                boolean any = false;
-                for (int i = rangeStart; i < rangeEnd && i < BIRTH_LEN; i++) {
-                    if (isEditableIndex(i) && arr[i] != BIRTH_TEMPLATE.charAt(i)) {
-                        arr[i] = BIRTH_TEMPLATE.charAt(i);
-                        any = true;
-                    }
-                }
-                if (any) {
-                    String newText = new String(arr);
-                    change.setRange(0, cur.length());
-                    change.setText(newText);
-                    int caret = nextEditableIndexFrom(rangeStart);
-                    if (caret > BIRTH_LEN) caret = BIRTH_LEN;
-                    change.setCaretPosition(caret);
-                    change.setAnchor(caret);
-                    Platform.runLater(() -> {
-                        validateBirthdayText();
-                        validateForm();
-                    });
-                    return change;
-                } else {
-                    // nothing editable to clear inside selection -> ignore
-                    return null;
-                }
-            }
-
-            // No selection: treat as single deletion (try backspace-like removal of previous editable)
-            int backPos = prevEditableIndexFrom(rangeStart);
-            if (backPos >= 0 && arr[backPos] != BIRTH_TEMPLATE.charAt(backPos)) {
-                arr[backPos] = BIRTH_TEMPLATE.charAt(backPos);
-                String newText = new String(arr);
-                change.setRange(0, cur.length());
-                change.setText(newText);
-                int caret = backPos;
-                change.setCaretPosition(caret);
-                change.setAnchor(caret);
-                Platform.runLater(() -> {
-                    validateBirthdayText();
-                    validateForm();
-                });
-                return change;
-            }
-
-            // Otherwise try delete at caret (next editable)
-            int delPos = nextEditableIndexFrom(rangeStart);
-            if (delPos < BIRTH_LEN && arr[delPos] != BIRTH_TEMPLATE.charAt(delPos)) {
-                arr[delPos] = BIRTH_TEMPLATE.charAt(delPos);
-                String newText = new String(arr);
-                change.setRange(0, cur.length());
-                change.setText(newText);
-                int caret = rangeStart;
-                int next = nextEditableIndexFrom(caret);
-                if (next < BIRTH_LEN) caret = next;
-                change.setCaretPosition(caret);
-                change.setAnchor(caret);
-                Platform.runLater(() -> {
-                    validateBirthdayText();
-                    validateForm();
-                });
-                return change;
-            }
-
-            // Nothing to delete -> ignore
-            return null;
-        };
-
-        TextFormatter<String> tf = new TextFormatter<>(filter);
-        TXTBirthday.setTextFormatter(tf);
-    }
-
-    private static boolean isEditableIndex(int idx) {
-        if (idx < 0 || idx >= BIRTH_LEN) return false;
-        char ch = BIRTH_TEMPLATE.charAt(idx);
-        return ch != '/';
-    }
-
-    private static int nextEditableIndexFrom(int start) {
-        int s = Math.max(0, start);
-        for (int i = s; i < BIRTH_LEN; i++) {
-            if (isEditableIndex(i)) return i;
-        }
-        return BIRTH_LEN; // means end / none
-    }
-
-    private static int prevEditableIndexFrom(int start) {
-        int s = Math.min(BIRTH_LEN, start) - 1;
-        for (int i = s; i >= 0; i--) {
-            if (isEditableIndex(i)) return i;
-        }
-        return -1;
-    }
-
-    private void validateBirthdayText() {
-        String text = TXTBirthday.getText();
-        if (text == null || text.length() != BIRTH_LEN) {
-            LBLBirthdayErr.setText("Fecha incompleta");
-            showOrHideLabel(TXTBirthday, LBLBirthdayErr, false);
-            return;
-        }
-
-        // If contains placeholders -> incomplete
-        if (text.contains("d") || text.contains("m") || text.contains("a")) {
-            LBLBirthdayErr.setText("Fecha incompleta");
-            showOrHideLabel(TXTBirthday, LBLBirthdayErr, false);
-            return;
-        }
-
-        // parse numeric parts
-        try {
-            int day = Integer.parseInt(text.substring(0, 2));
-            int month = Integer.parseInt(text.substring(3, 5));
-            int year = Integer.parseInt(text.substring(6, 10));
-
-            // basic range checks
-            if (month < 1 || month > 12) {
-                LBLBirthdayErr.setText("Mes inválido");
-                showOrHideLabel(TXTBirthday, LBLBirthdayErr, false);
-                return;
-            }
-
-            if (year < 1) {
-                LBLBirthdayErr.setText("Año inválido");
-                showOrHideLabel(TXTBirthday, LBLBirthdayErr, false);
-                return;
-            }
-
-            YearMonth ym = YearMonth.of(year, month);
-            int maxDay = ym.lengthOfMonth();
-            if (day < 1 || day > maxDay) {
-                LBLBirthdayErr.setText("Día inválido para ese mes");
-                showOrHideLabel(TXTBirthday, LBLBirthdayErr, false);
-                return;
-            }
-
-            // final check using LocalDate to be strict
-            try {
-                LocalDate ld = LocalDate.of(year, month, day);
-                LBLBirthdayErr.setText(""); // ok
-                showOrHideLabel(TXTBirthday, LBLBirthdayErr, true);
-            } catch (DateTimeException ex) {
-                LBLBirthdayErr.setText("Fecha inválida");
-                showOrHideLabel(TXTBirthday, LBLBirthdayErr, false);
-            }
-
-        } catch (NumberFormatException ex) {
-            LBLBirthdayErr.setText("Formato inválido");
-            showOrHideLabel(TXTBirthday, LBLBirthdayErr, false);
-        }
-    }
-
-    private boolean isBirthdayFullyValid() {
-        String text = TXTBirthday.getText();
-        if (text == null || text.length() != BIRTH_LEN) return false;
-        if (text.contains("d") || text.contains("m") || text.contains("a")) return false;
-
-        try {
-            int day = Integer.parseInt(text.substring(0, 2));
-            int month = Integer.parseInt(text.substring(3, 5));
-            int year = Integer.parseInt(text.substring(6, 10));
-            // strict check
-            LocalDate.of(year, month, day);
-            return true;
-        } catch (Exception ex) {
-            return false;
         }
     }
 

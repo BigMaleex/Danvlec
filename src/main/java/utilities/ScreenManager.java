@@ -153,9 +153,167 @@ public class ScreenManager {
     }
 
     /**
+
      * Abre un popup modal con controlador configurable.
+
      */
+
     public boolean openDynamicPopup(String fxmlFile, String title, PopupControllerConfigurator configurator) {
+
+        Rectangle overlay = null;
+
+        Stage popup = null;
+
+
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(PathManager.getFxmlPath(fxmlFile)));
+
+            Parent root = loader.load();
+
+
+
+            if (configurator != null) {
+
+                configurator.configure(loader.getController());
+
+            }
+
+
+
+// --- crear y agregar overlay ---
+
+            overlay = new Rectangle();
+
+            overlay.widthProperty().bind(mainContainer.widthProperty());
+
+            overlay.heightProperty().bind(mainContainer.heightProperty());
+
+            overlay.setFill(Color.rgb(0, 0, 0, 0.45));
+
+            overlay.setMouseTransparent(false);
+
+            mainContainer.getChildren().add(overlay);
+
+
+
+// --- preparar popup ---
+
+            popup = new Stage();
+
+            configureStage(popup);
+
+            popup.initModality(Modality.APPLICATION_MODAL);
+
+            popup.initOwner(primaryStage);
+
+            popup.setTitle(title);
+
+
+
+            Scene popupScene = new Scene(root);
+
+            popupScene.setFill(Color.TRANSPARENT);
+
+            popup.setScene(popupScene);
+
+
+
+            root.applyCss();
+
+            root.layout();
+
+            popup.sizeToScene();
+
+            popup.centerOnScreen();
+
+
+
+// cuando el popup se cierre, remover overlay (lo hace siempre, incluso si usamos Platform.runLater)
+
+            final Rectangle overlayRef = overlay;
+
+            popup.setOnHidden(evt -> {
+
+                if (overlayRef != null && mainContainer.getChildren().contains(overlayRef)) {
+
+                    mainContainer.getChildren().remove(overlayRef);
+
+                }
+
+            });
+
+
+
+// Mostrar el popup *después* de que termine la animación/layout para evitar IllegalStateException.
+
+// Lo hacemos con Platform.runLater, y dentro intentamos showAndWait; si aún falla, caemos a show().
+
+            final Stage popupRef = popup;
+
+            Platform.runLater(() -> {
+
+                try {
+
+                    popupRef.showAndWait();
+
+                } catch (IllegalStateException ex) {
+
+// Fallback: si por alguna razón aún da error, mostramos sin bloquear
+
+                    try {
+
+                        popupRef.show();
+
+                    } catch (Exception ignore) {
+
+// si esto falla, no hacemos nada más aquí
+
+                        ignore.printStackTrace();
+
+                    }
+
+                }
+
+            });
+
+
+
+// Nota: retornamos true porque la creación/programación del popup fue exitosa.
+
+// Si necesitas comportamiento estrictamente síncrono (esperar hasta que el popup termine),
+
+// debes evitar llamar a este método desde un handler de animación/layout y en su lugar
+
+// llamar a este método desde Platform.runLater() a nivel superior.
+
+            return true;
+
+
+
+        } catch (IOException e) {
+
+            System.err.println("Error en popup: " + fxmlFile);
+
+            e.printStackTrace();
+
+// si algo falló antes de llegar al popup, quitar overlay si fue agregado
+
+            if (overlay != null && mainContainer.getChildren().contains(overlay)) {
+
+                mainContainer.getChildren().remove(overlay);
+
+            }
+
+            return false;
+
+        }
+
+    }
+
+    // Añade el parámetro "Runnable onClose" al final
+    public boolean openDynamicStringPopup(String fxmlFile, String title, PopupControllerConfigurator configurator, Runnable onClose) {
         Rectangle overlay = null;
         Stage popup = null;
 
@@ -167,7 +325,6 @@ public class ScreenManager {
                 configurator.configure(loader.getController());
             }
 
-            // --- crear y agregar overlay ---
             overlay = new Rectangle();
             overlay.widthProperty().bind(mainContainer.widthProperty());
             overlay.heightProperty().bind(mainContainer.heightProperty());
@@ -175,7 +332,6 @@ public class ScreenManager {
             overlay.setMouseTransparent(false);
             mainContainer.getChildren().add(overlay);
 
-            // --- preparar popup ---
             popup = new Stage();
             configureStage(popup);
             popup.initModality(Modality.APPLICATION_MODAL);
@@ -191,44 +347,34 @@ public class ScreenManager {
             popup.sizeToScene();
             popup.centerOnScreen();
 
-            // cuando el popup se cierre, remover overlay (lo hace siempre, incluso si usamos Platform.runLater)
             final Rectangle overlayRef = overlay;
             popup.setOnHidden(evt -> {
                 if (overlayRef != null && mainContainer.getChildren().contains(overlayRef)) {
                     mainContainer.getChildren().remove(overlayRef);
                 }
+                // --- ESTO ES LO NUEVO ---
+                if (onClose != null) {
+                    onClose.run();
+                }
             });
 
-            // Mostrar el popup *después* de que termine la animación/layout para evitar IllegalStateException.
-            // Lo hacemos con Platform.runLater, y dentro intentamos showAndWait; si aún falla, caemos a show().
             final Stage popupRef = popup;
             Platform.runLater(() -> {
                 try {
                     popupRef.showAndWait();
                 } catch (IllegalStateException ex) {
-                    // Fallback: si por alguna razón aún da error, mostramos sin bloquear
                     try {
                         popupRef.show();
                     } catch (Exception ignore) {
-                        // si esto falla, no hacemos nada más aquí
                         ignore.printStackTrace();
                     }
                 }
             });
 
-            // Nota: retornamos true porque la creación/programación del popup fue exitosa.
-            // Si necesitas comportamiento estrictamente síncrono (esperar hasta que el popup termine),
-            // debes evitar llamar a este método desde un handler de animación/layout y en su lugar
-            // llamar a este método desde Platform.runLater() a nivel superior.
             return true;
 
         } catch (IOException e) {
-            System.err.println("Error en popup: " + fxmlFile);
             e.printStackTrace();
-            // si algo falló antes de llegar al popup, quitar overlay si fue agregado
-            if (overlay != null && mainContainer.getChildren().contains(overlay)) {
-                mainContainer.getChildren().remove(overlay);
-            }
             return false;
         }
     }

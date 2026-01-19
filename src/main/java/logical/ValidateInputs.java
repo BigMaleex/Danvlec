@@ -2,33 +2,27 @@ package logical;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ValidateInputs {
 
     /**
-     * Verifica si una fecha (cumpleaños) es anterior al día de hoy, pero después que hace 100 años
-     * @param birthday cumpleaños en String con formato dd/MM/yyyy
+     * Verifica si una fecha es anterior al día de hoy (opcional), pero después que hace 100 años
+     * @param date fecha en LocalDate
      * @return true si es una fecha valida, false si no
      */
 
-    public static boolean isValidBirthday(String birthday){
+    public static boolean isValidDate(LocalDate date, boolean todayIsValid){
 
-        if(birthday == null) return false;
+        if(date == null) return false;
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if(todayIsValid){
 
-        try{
+            return !date.isAfter(LocalDate.now()) && date.isAfter(LocalDate.now().minusYears(100));
 
-            LocalDate birthdayDate = LocalDate.parse(birthday, formatter);
+        }else{
 
-            return birthdayDate.isBefore(LocalDate.now()) && birthdayDate.isAfter(LocalDate.now().minusYears(100));
-
-        }catch(DateTimeException e){
-
-            e.printStackTrace();
-            return false;
+            return date.isBefore(LocalDate.now()) && date.isAfter(LocalDate.now().minusYears(100));
 
         }
 

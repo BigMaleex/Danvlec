@@ -488,7 +488,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy1OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -502,7 +502,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy1OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -532,7 +532,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy2OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -546,7 +546,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy2OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -576,7 +576,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy3OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -590,7 +590,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy3OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -620,7 +620,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy4OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -634,7 +634,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy4OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -664,7 +664,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy5OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -678,7 +678,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy5OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -708,7 +708,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy6OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -722,7 +722,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy6OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -752,7 +752,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy7OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -766,7 +766,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy7OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -796,7 +796,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy8OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -810,7 +810,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy8OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -840,7 +840,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy9OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -853,7 +853,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy9OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -883,7 +883,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy10OnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackground, popupCardButtonBackgroundHover,
                 popupCardButtonBorder, popupCardButtonBorderHover,
@@ -896,7 +896,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopy10OnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupCardButtonBackgroundHover, popupCardButtonBackground,
                 popupCardButtonBorderHover, popupCardButtonBorder,
@@ -926,7 +926,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopyAllCodesOnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 secondaryButtonBackground, secondaryButtonBackgroundHover,
                 secondaryButtonBorder, secondaryButtonBorderHover,
@@ -939,7 +939,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNCopyAllCodesOnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 secondaryButtonBackgroundHover, secondaryButtonBackground,
                 secondaryButtonBorderHover, secondaryButtonBorder,
@@ -1001,7 +1001,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNDownloadCodesOnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 principalButtonBackground, principalButtonBackgroundHover,
                 principalButtonBorder, principalButtonBorderHover,
@@ -1014,7 +1014,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNDownloadCodesOnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 principalButtonBackgroundHover, principalButtonBackground,
                 principalButtonBorderHover, principalButtonBorder,
@@ -1034,7 +1034,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNGenerateNewCodesOnMouseEntered(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupThirdButtonBackground, popupThirdButtonBackgroundHover,
                 popupThirdButtonBorder, popupThirdButtonBorderHover,
@@ -1047,7 +1047,7 @@ public class PopupSecurityCodesController extends ConfigureInitializeStyles {
     @FXML
     void BTNGenerateNewCodesOnMouseExited(MouseEvent event) {
 
-        StyleBuilder.animateButtonColorsWithImagesAndLabels(
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
 
                 popupThirdButtonBackgroundHover, popupThirdButtonBackground,
                 popupThirdButtonBorderHover, popupThirdButtonBorder,

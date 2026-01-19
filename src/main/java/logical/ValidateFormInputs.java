@@ -1,11 +1,46 @@
 package logical;
 
 import connections.Users;
+import jakarta.mail.Message;
 import messagebuilder.MessageBuilder;
 import stylebuilder.StyleBuilder;
 import user.UserData;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class ValidateFormInputs {
+
+    public static boolean validateInputsFromSetClock(String titleClock, LocalDate date, LocalTime time){
+
+        boolean [] aspects = new boolean[4];
+
+        aspects[0] = ValidateInputs.haveAnyWord(StyleBuilder.clearStringFormat(titleClock));
+        aspects[1] = aspects[0] ? ValidateInputs.validateStringLength(StyleBuilder.clearStringFormat(titleClock),60) : true;
+        aspects[2] = ValidateInputs.isValidDate(date,true);
+        aspects[3] = time != null;
+
+        boolean result = isAllBooleanArrayTrue(aspects);
+
+        if(result){
+
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            LocalDateTime localDateTime = LocalDateTime.of(date, time);
+
+            //El usuario ingresó todo correctamente
+            MessageBuilder.showConfirmMessageFromPopupSetClock(new String [] {titleClock, localDateTime.format(dateTimeFormatter)});
+
+        }else{
+
+            MessageBuilder.showErrorMessageFromPopupSetClock(aspects);
+
+        }
+
+        return result;
+
+    }
 
     public static void validateInputsFromLogin(String email, String password){
 
@@ -35,7 +70,7 @@ public class ValidateFormInputs {
 
     }
 
-    public static void validateInputsFromGuest(String name, String lastname, String nickname, UserData.Sex sex, String birthday){
+    public static void validateInputsFromGuest(String name, String lastname, String nickname, UserData.Sex sex, LocalDate birthday){
 
         boolean [] aspects = new boolean[5];
 
@@ -47,13 +82,13 @@ public class ValidateFormInputs {
         aspects[1] = ValidateInputs.haveAnyWord(lastname);
         aspects[2] = nickname == null || ValidateInputs.haveAnyWord(nickname);
         aspects[3] = sex != null;
-        aspects[4] = ValidateInputs.isValidBirthday(birthday);
+        aspects[4] = ValidateInputs.isValidDate(birthday, false);
 
 
         if(isAllBooleanArrayTrue(aspects)){
 
             //El usuario ingresó todo correctamente
-            MessageBuilder.showConfirmMessageFromGuest(new String [] {name, lastname, nickname, sex == UserData.Sex.MAN ? "Hombre" : "Mujer", birthday});
+            MessageBuilder.showConfirmMessageFromGuest(new String [] {name, lastname, nickname, sex == UserData.Sex.MAN ? "Hombre" : "Mujer", birthday.toString()});
 
         }else{
 
@@ -64,7 +99,7 @@ public class ValidateFormInputs {
 
     }
 
-    public static void validateInputsFromSignUp(String name, String lastname, String nickname, String email, String password, String confirmPassword, UserData.Sex sex, String birthday){
+    public static void validateInputsFromSignUp(String name, String lastname, String nickname, String email, String password, String confirmPassword, UserData.Sex sex, LocalDate birthday){
 
         Users user = new Users();
 
@@ -87,7 +122,7 @@ public class ValidateFormInputs {
         aspects [10] = ValidateInputs.haveAnyWord(confirmPassword);
         aspects [11] = password.equals(confirmPassword);
         aspects [12] = sex != null;
-        aspects [13] = ValidateInputs.isValidBirthday(birthday);//Validar fecha de nacimiento
+        aspects [13] = ValidateInputs.isValidDate(birthday, false);
 
         if(isAllBooleanArrayTrue(aspects)){
 
@@ -100,7 +135,7 @@ public class ValidateFormInputs {
                     email,
                     password,
                     sex == UserData.Sex.MAN ? "hombre" : "mujer",
-                    birthday
+                    birthday.toString()
 
             });
 
