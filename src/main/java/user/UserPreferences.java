@@ -22,6 +22,23 @@ public class UserPreferences {
     private static String secondClockColor = "Default";
     private static String backgroundSecondClockColor = "Default";
 
+    public static void logout(){
+
+        yearClockColor = "Default";
+        backgroundYearClockColor = "Default";
+        monthClockColor = "Default";
+        backgroundMonthClockColor = "Default";
+        dayClockColor = "Default";
+        backgroundDayClockColor = "Default";
+        hourClockColor = "Default";
+        backgroundHourClockColor = "Default";
+        minuteClockColor = "Default";
+        backgroundMinuteClockColor = "Default";
+        secondClockColor = "Default";
+        backgroundSecondClockColor = "Default";
+
+    }
+
     protected static themeMode getUserTheme() {
         return userTheme;
     }
