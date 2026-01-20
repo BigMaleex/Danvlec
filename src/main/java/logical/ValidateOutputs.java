@@ -3,6 +3,8 @@ package logical;
 import connections.Users;
 import user.UserData;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.time.LocalTime;
@@ -240,6 +242,29 @@ public class ValidateOutputs {
 
         return code.toString();
 
+    }
+
+    /**
+     * Encripta una contraseña usando BCrypt
+     * @param password contraseña a encriptar
+     * @return hash de la contraseña
+     */
+    public static String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    /**
+     * Verifica una contraseña contra un hash de BCrypt
+     * @param password contraseña en texto plano
+     * @param hashed hash almacenado
+     * @return true si coinciden, false en caso contrario
+     */
+    public static boolean checkPassword(String password, String hashed) {
+        try {
+            return BCrypt.checkpw(password, hashed);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
