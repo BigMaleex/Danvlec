@@ -5,6 +5,8 @@ import user.UserData;
 import utilities.FileConstants;
 import utilities.ScreenManager;
 import utilities.Titles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.crypto.Data;
 import java.sql.*;
@@ -13,6 +15,8 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class Users {
+
+    private static final Logger logger = LoggerFactory.getLogger(Users.class);
 
     private final String table = "users";
 
@@ -28,14 +32,14 @@ public class Users {
 
             if (rs.next()) {
 
-                System.out.println(rs.getBoolean("EmailVerified"));
+                logger.info("EmailVerified: {}", rs.getBoolean("EmailVerified"));
 
                 return rs.getBoolean("EmailVerified");
             }
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error("Error checking email verification", e);
             DataManager.showError(e.toString());
 
         }
@@ -67,7 +71,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error("Error getting user ID", e);
 
             DataManager.showError(e.toString());
 
@@ -91,7 +95,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error("Error toggling email status", e);
 
             DataManager.showError(e.toString());
 
@@ -121,7 +125,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error("Error getting days passed", e);
 
             DataManager.showError(e.toString());
 
@@ -171,7 +175,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error("Error logging in with user ID", e);
             DataManager.showError(e.toString());
 
         }
@@ -203,7 +207,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error("Error registering user", e);
 
             DataManager.showError(e.toString());
 
@@ -247,7 +251,7 @@ public class Users {
 
         }catch(SQLException e) {
 
-            e.printStackTrace();
+            logger.error("Error in isUnique check", e);
 
             DataManager.showError(e.toString());
 
