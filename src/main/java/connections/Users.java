@@ -1,6 +1,8 @@
 package connections;
 
 import logical.ValidateOutputs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import user.UserData;
 import utilities.FileConstants;
 import utilities.ScreenManager;
@@ -15,6 +17,7 @@ import java.time.temporal.ChronoUnit;
 public class Users {
 
     private final String table = "users";
+    private final Logger logger = LoggerFactory.getLogger(Users.class);
 
     public boolean theUserHaveVerifiedTheirEmail(){
 
@@ -28,14 +31,12 @@ public class Users {
 
             if (rs.next()) {
 
-                System.out.println(rs.getBoolean("EmailVerified"));
-
                 return rs.getBoolean("EmailVerified");
             }
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
 
         }
@@ -67,7 +68,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
 
             DataManager.showError(e.toString());
 
@@ -91,7 +92,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
 
             DataManager.showError(e.toString());
 
@@ -121,7 +122,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
 
             DataManager.showError(e.toString());
 
@@ -171,7 +172,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
 
         }
@@ -203,7 +204,7 @@ public class Users {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
 
             DataManager.showError(e.toString());
 
@@ -247,7 +248,7 @@ public class Users {
 
         }catch(SQLException e) {
 
-            e.printStackTrace();
+            logger.error(e.toString());
 
             DataManager.showError(e.toString());
 

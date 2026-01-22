@@ -1,19 +1,43 @@
 package connections;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import user.UserClock;
 import user.UserData;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class Clock {
 
     private final static String table = "clock";
+    private final Logger logger = LoggerFactory.getLogger(Clock.class);
+
+    public void resetClock(){
+
+        String query = "UPDATE danvlec." + table + " SET Date=? WHERE UserID=?";
+
+        try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
+            ps.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setString(2, UserData.getUserID());
+
+            ps.executeUpdate();
+
+        }catch(SQLException e){
+
+            logger.error(e.toString());
+            DataManager.showError(e.toString());
+
+        }
+
+    }
 
     public void updateColors(String field, String hexColor){
 
         if(hexColor.length() != 7){
 
-            System.out.println("Color inválido " + hexColor);
+            logger.error("Color inválido " + hexColor);
 
             return;
 
@@ -35,11 +59,11 @@ public class Clock {
             ps.setString(2,hexColor + "33");
             ps.setString(3, UserData.getUserID());
 
-
+            ps.executeUpdate();
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
 
         }
@@ -92,7 +116,7 @@ public class Clock {
 
                 default ->{
 
-                    System.out.println("Ninguna celda es " +  column);
+                    logger.error("Ninguna celda es " +  column);
 
                 }
 
@@ -104,7 +128,7 @@ public class Clock {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
 
         }
@@ -123,7 +147,7 @@ public class Clock {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
 
         }
@@ -146,7 +170,7 @@ public class Clock {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
 
             DataManager.showError(e.toString());
 

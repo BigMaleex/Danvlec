@@ -1695,8 +1695,8 @@ public class PopupSetClockController extends ConfigureInitializeStyles{
 
         if(TXTDate.getLocalDate() != null && TXTHour.getLocalTime() != null){
 
-            //La fecha es completa
-            LBLBuildDateAndHour.setText("La fecha ingresada es el " + ValidateOutputs.buildDateAndHour(TXTDate.getLocalDate(), TXTHour.getLocalTime(), false, false));
+            //La fecha está completa
+            LBLBuildDateAndHour.setText("La fecha ingresada es el " + ValidateOutputs.buildDateAndHour(TXTDate.getLocalDate(), TXTHour.getLocalTime(), false, true));
 
         }else{
 
@@ -1752,7 +1752,7 @@ public class PopupSetClockController extends ConfigureInitializeStyles{
 
         if(minute != previousMinute){
 
-            LBLDateHour.setText(ValidateOutputs.buildDateAndHour(LocalDate.now(), LocalTime.now(), false, true));
+            LBLDateHour.setText(ValidateOutputs.buildDateAndHour(LocalDate.now(), LocalTime.now(), true, true));
 
             previousMinute = minute;
 

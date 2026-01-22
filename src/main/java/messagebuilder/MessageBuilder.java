@@ -69,7 +69,7 @@ public class MessageBuilder {
 
                     controller.setTFLFooter(Complements.addStringFromTextList("\n\nSi toda tu información es correcta puedes continuar, sino puedes editarla ahora o más tarde", Styles.px12, contentColor));
 
-                    controller.setOption(UserData.isHaveAnyAccount() ? Options.options.allClockInformationIsCorrectWithAccount : Options.options.allClockInformationIsCorrectWithoutAccount);
+                    controller.setOption(Options.options.allClockInformationIsCorrect);
 
                     controller.setIcon(FileConstants.personRaisedHandIconDm, FileConstants.personRaisedHandIconLm);
 

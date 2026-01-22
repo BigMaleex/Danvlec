@@ -88,10 +88,6 @@ public class UserDataFile {
                         //Se pudo acceder, envíar al FXML del inicio
                         StepsAfterLoggingIn.stepsAfterLoggingInWithAccount();
 
-                    }else{
-
-
-
                     }
 
                 }

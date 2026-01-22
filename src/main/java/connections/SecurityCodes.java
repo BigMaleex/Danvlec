@@ -1,5 +1,7 @@
 package connections;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import user.UserData;
 
 import java.sql.Connection;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 public class SecurityCodes {
 
     private final String table = "securitycodes";
+    private final Logger logger = LoggerFactory.getLogger(SecurityCodes.class);
 
     public boolean deleteCodes(){
 
@@ -24,7 +27,7 @@ public class SecurityCodes {
 
         }catch (SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
 
         }
@@ -59,7 +62,7 @@ public class SecurityCodes {
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
             return false;
         }
@@ -81,7 +84,7 @@ public class SecurityCodes {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
 
         }
@@ -120,7 +123,7 @@ public class SecurityCodes {
 
         }catch(SQLException e){
 
-            e.printStackTrace();
+            logger.error(e.toString());
             DataManager.showError(e.toString());
 
         }

@@ -1,9 +1,11 @@
 package logical;
 
+import connections.Clock;
 import connections.Users;
 import controllers.LoginController;
 import files.UserDataFile;
 import messagebuilder.MessageBuilder;
+import user.UserClock;
 import user.UserData;
 import utilities.FileConstants;
 import utilities.ScreenManager;
@@ -18,7 +20,31 @@ public class PopupTwoButtonInputs {
 
     private static ScreenManager sm = ScreenManager.getInstance();
 
-    private static DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final static DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final static DateTimeFormatter localDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    public static void allClockInformationIsCorrect (ArrayList<String> data){
+
+        UserClock.setTitleClock(data.get(0));
+        UserClock.setDate(LocalDateTime.parse(data.get(1), localDateTimeFormatter));
+
+        if(UserData.isHaveAnyAccount()){
+
+            //Hay una cuenta
+            Clock clock = new Clock();
+
+            clock.updateOrCreateRow();
+
+
+
+        }else{
+
+            //No hay cuenta
+
+
+        }
+
+    }
 
     public static void askTheUserIfTheyWantToSaveTheirInformation(boolean saveInfo){
 

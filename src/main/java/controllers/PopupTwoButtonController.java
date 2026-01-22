@@ -315,15 +315,9 @@ public class PopupTwoButtonController {
 
             }
 
-            case allClockInformationIsCorrectWithAccount -> {
+            case allClockInformationIsCorrect -> {
 
 
-
-            }
-
-            case allClockInformationIsCorrectWithoutAccount -> {
-
-                
 
             }
 

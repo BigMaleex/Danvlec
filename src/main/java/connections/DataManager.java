@@ -1,10 +1,13 @@
 package connections;
 
 import controllers.PopupBDErrController;
-import messagebuilder.MessageBuilder;
 import utilities.FileConstants;
 import utilities.ScreenManager;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,13 +17,42 @@ public class DataManager {
 
     private static ScreenManager sm = ScreenManager.getInstance();
 
+
+    private static final Logger logger = LoggerFactory.getLogger(DataManager.class);
+
     private static final String user = System.getenv("DanvlecBDUser");
     private static final String password = System.getenv("DanvlecBDPassword");
-    private static final String port = "3306";
-    private static String ip = "localhost";
-    private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String bd = "danvlec";
-    private static String url = "jdbc:mysql://"+ip+":"+port+"/"+bd;
+    private static String port;
+    private static String ip;
+    private static String driver;
+    private static String bd;
+    private static String url;
+
+    static {
+        loadConfig();
+    }
+
+    private static void loadConfig() {
+        Properties props = new Properties();
+        try (InputStream is = DataManager.class.getResourceAsStream("/database.properties")) {
+            if (is != null) {
+                props.load(is);
+                ip = props.getProperty("db.ip", "localhost");
+                port = props.getProperty("db.port", "3306");
+                bd = props.getProperty("db.name", "danvlec");
+                driver = props.getProperty("db.driver", "com.mysql.cj.jdbc.Driver");
+            } else {
+                logger.warn("No se encontró database.properties, usando valores por defecto.");
+                ip = "localhost";
+                port = "3306";
+                bd = "danvlec";
+                driver = "com.mysql.cj.jdbc.Driver";
+            }
+            url = "jdbc:mysql://" + ip + ":" + port + "/" + bd;
+        } catch (IOException e) {
+            logger.error("Error al cargar database.properties", e);
+        }
+    }
 
     static Connection conexion;
 
@@ -66,16 +98,16 @@ public class DataManager {
         ip = newIP;
         url = "jdbc:mysql://"+ip+":"+port+"/"+bd;
 
-        System.out.println("[DataManager] Intentando cambiar IP. Nueva url = " + url);
+        logger.info("Intentando cambiar IP. Nueva url = {}", url);
 
         try {
             boolean ok = reloadConnection();
             if (ok) {
-                System.out.println("[DataManager] Conexión exitosa a " + ip);
+                logger.info("Conexión exitosa a {}", ip);
 
                 return true;
             } else {
-                System.out.println("[DataManager] reloadConnection devolvió false");
+                logger.info("reloadConnection devolvió false");
                 return false;
             }
         } catch (Exception e) {

@@ -26,11 +26,11 @@ public class ValidateOutputs {
     private static final String ALGORITHM = "AES";
     private static final byte[] KEY = "1234567890123456".getBytes();
 
-    public static String buildDateAndHour(LocalDate date, LocalTime time, boolean day, boolean month){
+    public static String buildDateAndHour(LocalDate date, LocalTime time, boolean dayMinus, boolean monthMinus){
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append(getDayOfWeekString(date, day)).append(" " + date.getDayOfMonth() + " de ").append(getMonthOfYearString(date, month)).append(date.getYear() < 200 ? " de " : " del ").append(date.getYear());
+        builder.append(getDayOfWeekString(date, dayMinus)).append(" " + date.getDayOfMonth() + " de ").append(getMonthOfYearString(date, monthMinus)).append(date.getYear() < 200 ? " de " : " del ").append(date.getYear());
         builder.append(" a las ").append(getHourAndMinutesString12HRSFormat(time));
 
         return builder.toString();

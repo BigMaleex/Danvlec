@@ -17,7 +17,7 @@ public class StepsAfterLoggingIn {
 
     public static void stepsAfterLoggingInWithAccount() {
         if (UserData.isHaveAnyAccount()) {
-            checkEmailVerification(); // Empezamos por el primero
+            checkEmailVerification();
         }
     }
 
