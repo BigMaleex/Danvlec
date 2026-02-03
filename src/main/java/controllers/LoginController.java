@@ -705,6 +705,13 @@ public class LoginController extends ConfigureInitializeStyles {
     void LBLProblemsLoggingInOnMouseClicked(MouseEvent event) {
 
         //Llevar al popup de recuperar cuenta
+        sm.openDynamicPopup(
+
+                FileConstants.PopupRecoveryAccount,
+                "Recupera el acceso a tu cuenta",
+                control->{}
+
+        );
 
     }
 

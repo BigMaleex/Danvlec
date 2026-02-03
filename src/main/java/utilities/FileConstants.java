@@ -15,6 +15,7 @@ public class FileConstants {
     public static final String PopupVerifyEmailFXML = "PopupVerifyEmail.fxml";
     public static final String PopupSecurityCodesFXML = "PopupSecurityCodes.fxml";
     public static final String PopupSetClockFXML = "PopupSetClock.fxml";
+    public static final String PopupRecoveryAccount = "PopupRecoveryAccount.fxml";
 
     //ScreenID
     public static final String LoadScreens = "LoadScreens";

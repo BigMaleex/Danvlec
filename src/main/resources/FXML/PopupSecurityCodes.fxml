@@ -39,7 +39,6 @@
                                           <Label styleClass="LBLSecurityHeaderTitle" text="Importante: Almacenamiento seguro" />
                                           <Label styleClass="LBLSecurityHeaderContent" text="Estos códigos te permitirán recuperar el acceso a tu cuenta. Guárdalos en un lugar seguro y nunca los" />
                                           <Label layoutX="10.0" layoutY="27.0" styleClass="LBLSecurityHeaderContent" text="compartas con nadie. Cada código solo puede usarse una vez." />
-                                          <Label layoutX="10.0" layoutY="52.0" styleClass="LBLSecurityHeaderContent" text="Al cambiar tu contraseña, tus códigos de seguridad se regeneran por tu protección." />
                                        </children>
                                     </VBox>
                                  </children>
@@ -411,7 +410,6 @@
                                     <Label layoutX="30.0" layoutY="71.0" styleClass="LBLSecurityFooterContent" text="• Cada código solo puede usarse una sola vez" />
                                     <Label layoutX="30.0" layoutY="88.0" styleClass="LBLSecurityFooterContent" text="• Genera nuevos códigos si crees que han sido comprometidos" />
                                     <Label layoutX="30.0" layoutY="105.0" styleClass="LBLSecurityFooterContent" text="• Aunque generes códigos nuevos no se guardarán en el sistema a menos de que los descargues en PDF" />
-                                    <Label layoutX="30.0" layoutY="134.0" styleClass="LBLSecurityFooterContent" text="• Al cambiar tu contraseña, tus códigos de seguridad se regeneran por tu protección." />
                                  </children>
                                  <padding>
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

@@ -3,6 +3,7 @@ package logical;
 import connections.Clock;
 import connections.Users;
 import controllers.LoginController;
+import files.ClockFile;
 import files.UserDataFile;
 import messagebuilder.MessageBuilder;
 import user.UserClock;
@@ -29,20 +30,14 @@ public class PopupTwoButtonInputs {
         UserClock.setDate(LocalDateTime.parse(data.get(1), localDateTimeFormatter));
 
         if(UserData.isHaveAnyAccount()){
-
             //Hay una cuenta
             Clock clock = new Clock();
-
             clock.updateOrCreateRow();
 
-
-
-        }else{
-
-            //No hay cuenta
-
-
         }
+
+        ClockFile file = new ClockFile();
+        file.createOrUpdateFile();
 
     }
 

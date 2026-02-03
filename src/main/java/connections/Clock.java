@@ -137,13 +137,15 @@ public class Clock {
 
     public void createData(){
 
-        String query = "INSERT INTO danvlec." + table + " (UserID, TitleClock, Date), (?,?,?)";
+        String query = "INSERT INTO danvlec." + table + " (UserID, TitleClock, Date) VALUES (?,?,?)";
 
         try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
 
             ps.setString(1, UserData.getUserID());
             ps.setString(2, UserClock.getTitleClock());
             ps.setTimestamp(3, Timestamp.valueOf(UserClock.getDate()));
+
+            ps.executeUpdate();
 
         }catch(SQLException e){
 

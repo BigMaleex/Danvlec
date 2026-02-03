@@ -317,7 +317,7 @@ public class PopupTwoButtonController {
 
             case allClockInformationIsCorrect -> {
 
-
+                PopupTwoButtonInputs.allClockInformationIsCorrect(data);
 
             }
 
