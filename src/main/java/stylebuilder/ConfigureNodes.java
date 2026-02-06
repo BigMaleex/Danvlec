@@ -1,5 +1,6 @@
 package stylebuilder;
 
+import controllers.PopupRecoveryAccountController;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -166,6 +167,48 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
         popupToggleButtonBackground = Colors.getColor("popup-toggle-button-background", isDarkMode);
         popupToggleButtonBorder = Colors.getColor("popup-toggle-button-border", isDarkMode);
         popupToggleButtonFontColor = Colors.getColor("popup-toggle-button-font-color", isDarkMode);
+
+    }
+
+    public static void configureNodesForPopupRecoveryAccount(Button BTNClose, Button BTNPrimary, Button BTNSecondary, ImageView IMGChangePassword, ImageView IMGChangePasswordConfirm, ImageView IMGCodeButton, ImageView IMGConfirmPassword, ImageView IMGConfirmPasswordHover, ImageView IMGEmailButton, ImageView IMGIcon, ImageView IMGPassword, ImageView IMGPasswordHover, Label LBLButtonPrimary, Label LBLButtonSecondary, boolean isDM, boolean passwordVisible, boolean confirmPasswordVisible, PopupRecoveryAccountController.Selection selection){
+
+            changeColors(isDM);
+
+            setImages(FileConstants.keyIconDM, FileConstants.keyIconLM, isDM, IMGIcon);
+
+            setImages(FileConstants.envelopeMethodButtonDm, FileConstants.envelopeMethodButtonLm, isDM, IMGEmailButton);
+
+            setPasswordImages(
+
+                FileConstants.eyeThirdDm, FileConstants.eyeThirdHoverDm,
+                FileConstants.eyeThirdLm, FileConstants.eyeThirdHoverLm,
+                FileConstants.eyeSlashThirdDm, FileConstants.eyeSlashThirdHoverDm,
+                FileConstants.eyeSlashThirdLm, FileConstants.eyeSlashThirdHoverLm,
+                isDM, confirmPasswordVisible,
+                IMGConfirmPassword, IMGConfirmPasswordHover
+
+        );
+
+        setPasswordImages(
+
+                FileConstants.eyeThirdDm, FileConstants.eyeThirdHoverDm,
+                FileConstants.eyeThirdLm, FileConstants.eyeThirdHoverLm,
+                FileConstants.eyeSlashThirdDm, FileConstants.eyeSlashThirdHoverDm,
+                FileConstants.eyeSlashThirdLm, FileConstants.eyeSlashThirdHoverLm,
+                isDM, passwordVisible,
+                IMGPassword, IMGPasswordHover
+
+        );
+
+            setImages(FileConstants.shieldMethodButtonDm, FileConstants.shieldMethodButtonLm, isDM, IMGCodeButton);
+
+            setImages(FileConstants.shieldIconDm, FileConstants.shieldIconLm, isDM, IMGChangePassword, IMGChangePasswordConfirm);
+
+            applyStylesToButtonsWithLabel(secondaryButtonBackground, secondaryButtonBorder, secondaryButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNSecondary}, new Label [] {LBLButtonSecondary});
+
+            applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNPrimary}, new Label [] {LBLButtonPrimary});
+
+            applyStylesToButtons(popupTitleBarCloseButtonBackground, popupTitleBarCloseButtonBorder, popupTitleBarCloseButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNClose);
 
     }
 

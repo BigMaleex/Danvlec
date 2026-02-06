@@ -13,21 +13,30 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
+import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserPreferences;
 
 public class PopupRecoveryAccountController {
 
     //Enum del paso
-    private enum Selection {
+    public enum Selection {
 
         EmailMode, CodeMode
 
     }
 
+    public enum Step {
+
+        First, Second, Third
+
+    }
+
     //Variables
-    private boolean isDarkMode, allConditionsMet = false;
-    private Selection selection = Selection.EmailMode;
+    private boolean isDarkMode, passwordVisible = false, confirmPasswordVisible = false;
+    private Selection selection;
+    private Step currentStep;
 
 
     @FXML
@@ -58,13 +67,16 @@ public class PopupRecoveryAccountController {
     private ImageView IMGButtonSecondary;
 
     @FXML
+    private ImageView IMGButtonSecondaryHover;
+
+    @FXML
     private ImageView IMGChangePassword;
 
     @FXML
     private ImageView IMGChangePasswordConfirm;
 
     @FXML
-    private ImageView IMGCodeButton1;
+    private ImageView IMGCodeButton;
 
     @FXML
     private ImageView IMGConfirmPassword;
@@ -115,7 +127,13 @@ public class PopupRecoveryAccountController {
     private StackPane SPEmailButton;
 
     @FXML
+    private StackPane SPEmailFind;
+
+    @FXML
     private StackPane SPFooterBar;
+    
+    @FXML
+    private StackPane SPModeSelector;
 
     @FXML
     private StackPane SPTitleBar;
@@ -161,6 +179,14 @@ public class PopupRecoveryAccountController {
 
         TXT24Chars.setPromptText("Escribe el código de seguridad de tu cuenta aquí");
 
+        SPCode.managedProperty().bind(SPCode.visibleProperty());
+        SPEmail.managedProperty().bind(SPEmail.visibleProperty());
+        SPChangePassword.managedProperty().bind(SPChangePassword.visibleProperty());
+        TXT24Chars.managedProperty().bind(TXT24Chars.visibleProperty());
+
+        currentStep = Step.First;
+        selection = Selection.EmailMode;
+
         if(!VBXCodeSelector.getChildren().contains(TXT24Chars)) {
 
             VBXCodeSelector.getChildren().add(TXT24Chars);
@@ -169,11 +195,9 @@ public class PopupRecoveryAccountController {
 
         isDarkMode = UserPreferences.getUserThemeMode();
 
-
-
-        theUserCanChangeThePassword();
-
         changeSelection();
+
+        selectStepAndInitialize();
 
         changeTheme();
 
@@ -183,7 +207,7 @@ public class PopupRecoveryAccountController {
 
         StyleBuilder.setAnchorPaneClass(APMain);
 
-
+        ConfigureNodes.configureNodesForPopupRecoveryAccount(BTNClose, BTNPrimary, BTNSecondary, IMGChangePassword, IMGChangePasswordConfirm, IMGCodeButton, IMGConfirmPassword, IMGConfirmPasswordHover, IMGEmailButton, IMGIcon, IMGPassword, IMGPasswordHover, LBLButtonPrimary, LBLButtonSecondary, isDarkMode, passwordVisible, confirmPasswordVisible, selection);
 
         changeColor();
 
@@ -198,15 +222,22 @@ public class PopupRecoveryAccountController {
     @FXML
     void BTNCloseOnMouseClicked(MouseEvent event) {
 
+        Stage stage = (Stage) BTNClose.getScene().getWindow();
+        stage.close();
+
     }
 
     @FXML
     void BTNCloseOnMouseEntered(MouseEvent event) {
 
+
+
     }
 
     @FXML
     void BTNCloseOnMouseExited(MouseEvent event) {
+
+
 
     }
 
@@ -312,10 +343,22 @@ public class PopupRecoveryAccountController {
 
     }
 
-    private void theUserCanChangeThePassword(){
+    private void selectStepAndInitialize(){
 
-        SPChangePassword.setVisible(allConditionsMet);
-        SPChangePassword.setManaged(allConditionsMet);
+        switch(selection){
+
+            case EmailMode->{
+
+
+
+            }
+            case CodeMode ->{
+
+
+
+            }
+
+        }
 
     }
 

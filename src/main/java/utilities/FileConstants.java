@@ -117,6 +117,12 @@ public class FileConstants {
     public static final String hammerPrimaryHoverDm = "hammer-primary-hover-dm.png";
     public static final String bullseyeIconLm = "bullseye-icon-lm.png";
     public static final String bullseyeIconDm = "bullseye-icon-dm.png";
+    public static final String envelopeMethodButtonLm = "envelope-method-button-lm.png";
+    public static final String envelopeMethodButtonDm = "envelope-method-button-dm.png";
+    public static final String shieldMethodButtonLm = "shield-method-button-lm.png";
+    public static final String shieldMethodButtonDm = "shield-method-button-dm.png";
+    public static final String keyIconLM = "key-icon-lm.png";
+    public static final String keyIconDM = "key-icon-dm.png";
 
     //Fuente
     public static final String oswaldSemiBold = "Oswald-SemiBold.ttf";

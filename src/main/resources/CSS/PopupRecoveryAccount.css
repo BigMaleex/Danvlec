@@ -237,7 +237,7 @@
 .rootActive  .LBLEmailAdviceHeader{
 
     -fx-font-size: 1.2em;
-    -fx-text-fill: #1b5ec4;
+    -fx-text-fill: #226ee1;
     -fx-font-family: 'Oswald SemiBold';
 
 }
@@ -282,7 +282,7 @@
 .rootActive  .LBLCodeAdviceHeader {
 
     -fx-font-size: 1.2em;
-    -fx-text-fill: #9241ca;
+    -fx-text-fill: #ad5ae8;
     -fx-font-family: 'Oswald SemiBold';
 
 }

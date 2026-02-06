@@ -21,7 +21,7 @@
          <content>
             <VBox fx:id="VBXMain" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="SPMethodSelection">
+                  <StackPane fx:id="SPModeSelector" prefHeight="150.0" prefWidth="200.0" styleClass="SPMethodSelection">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <padding>
@@ -32,7 +32,7 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" StackPane.alignment="CENTER">
                                        <StackPane.margin>
-                                          <Insets />
+                                          <Insets left="5.0" right="5.0" />
                                        </StackPane.margin>
                                        <children>
                                           <ImageView fx:id="IMGEmailButton" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
@@ -51,10 +51,10 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" StackPane.alignment="CENTER">
                                        <StackPane.margin>
-                                          <Insets />
+                                          <Insets left="5.0" right="5.0" />
                                        </StackPane.margin>
                                        <children>
-                                          <ImageView fx:id="IMGCodeButton1" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="IMGCodeButton" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
                                           <Label maxWidth="1.7976931348623157E308" styleClass="LBLMethodSelection" text="Código de seguridad" HBox.hgrow="ALWAYS" />
                                        </children>
                                     </HBox>
@@ -153,7 +153,7 @@
                                     </HBox>
                                  </children>
                               </StackPane>
-                              <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" styleClass="SPEmailFound">
+                              <StackPane fx:id="SPEmailFind" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" styleClass="SPEmailFound">
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <padding>
@@ -168,7 +168,7 @@
                                           <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label styleClass="LBLEmailFoundedAdviceHeader" text="Cuenta encontrada" />
-                                                <TextFlow fx:id="TFLEmailFounded" prefHeight="200.0" prefWidth="200.0" textAlignment="JUSTIFY" />
+                                                <TextFlow fx:id="TFLEmailFound" prefHeight="200.0" prefWidth="200.0" textAlignment="JUSTIFY" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -294,7 +294,7 @@
                               <StackPane prefHeight="0.0" prefWidth="0.0">
                                  <children>
                                     <ImageView fx:id="IMGButtonSecondary" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="IMGButtonSecondary" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="IMGButtonSecondaryHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </StackPane>
                               <Label fx:id="LBLButtonSecondary" text="Label" />
