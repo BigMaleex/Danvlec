@@ -170,13 +170,11 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
 
     }
 
-    public static void configureNodesForPopupRecoveryAccount(Button BTNClose, Button BTNPrimary, Button BTNSecondary, ImageView IMGChangePassword, ImageView IMGChangePasswordConfirm, ImageView IMGCodeButton, ImageView IMGConfirmPassword, ImageView IMGConfirmPasswordHover, ImageView IMGEmailButton, ImageView IMGIcon, ImageView IMGPassword, ImageView IMGPasswordHover, Label LBLButtonPrimary, Label LBLButtonSecondary, boolean isDM, boolean passwordVisible, boolean confirmPasswordVisible, PopupRecoveryAccountController.Selection selection){
+    public static void configureNodesForPopupRecoveryAccount(Button BTNClose, ImageView IMGButtonCodeMethod, ImageView IMGButtonEmailMethod,  ImageView IMGChangePasswordHover, ImageView IMGChangePasswordIcon, ImageView IMGChangePassword, ImageView IMGConfirmChangePasswordHover, ImageView IMGConfirmChangePasswordIcon, ImageView IMGConfirmChangePassword, ImageView IMGIcon, boolean isDM, boolean passwordVisible, boolean confirmPasswordVisible){
 
             changeColors(isDM);
 
             setImages(FileConstants.keyIconDM, FileConstants.keyIconLM, isDM, IMGIcon);
-
-            setImages(FileConstants.envelopeMethodButtonDm, FileConstants.envelopeMethodButtonLm, isDM, IMGEmailButton);
 
             setPasswordImages(
 
@@ -184,29 +182,25 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
                 FileConstants.eyeThirdLm, FileConstants.eyeThirdHoverLm,
                 FileConstants.eyeSlashThirdDm, FileConstants.eyeSlashThirdHoverDm,
                 FileConstants.eyeSlashThirdLm, FileConstants.eyeSlashThirdHoverLm,
-                isDM, confirmPasswordVisible,
-                IMGConfirmPassword, IMGConfirmPasswordHover
+                isDM, confirmPasswordVisible, IMGConfirmChangePassword, IMGConfirmChangePasswordHover
 
-        );
+            );
 
-        setPasswordImages(
+            setImages(FileConstants.shieldIconDm, FileConstants.shieldIconLm, isDM, IMGChangePasswordIcon, IMGConfirmChangePasswordIcon);
+
+            setPasswordImages(
 
                 FileConstants.eyeThirdDm, FileConstants.eyeThirdHoverDm,
                 FileConstants.eyeThirdLm, FileConstants.eyeThirdHoverLm,
                 FileConstants.eyeSlashThirdDm, FileConstants.eyeSlashThirdHoverDm,
                 FileConstants.eyeSlashThirdLm, FileConstants.eyeSlashThirdHoverLm,
-                isDM, passwordVisible,
-                IMGPassword, IMGPasswordHover
+                isDM, passwordVisible, IMGChangePassword, IMGChangePasswordHover
 
-        );
+            );
 
-            setImages(FileConstants.shieldMethodButtonDm, FileConstants.shieldMethodButtonLm, isDM, IMGCodeButton);
+            setImages(FileConstants.shieldMethodButtonDm, FileConstants.shieldMethodButtonLm, isDM, IMGButtonEmailMethod);
 
-            setImages(FileConstants.shieldIconDm, FileConstants.shieldIconLm, isDM, IMGChangePassword, IMGChangePasswordConfirm);
-
-            applyStylesToButtonsWithLabel(secondaryButtonBackground, secondaryButtonBorder, secondaryButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNSecondary}, new Label [] {LBLButtonSecondary});
-
-            applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNPrimary}, new Label [] {LBLButtonPrimary});
+            setImages(FileConstants.envelopeMethodButtonDm, FileConstants.envelopeMethodButtonLm, isDM, IMGButtonCodeMethod);
 
             applyStylesToButtons(popupTitleBarCloseButtonBackground, popupTitleBarCloseButtonBorder, popupTitleBarCloseButtonFontColor, Styles.px12, Styles.px1, Styles.px10, BTNClose);
 

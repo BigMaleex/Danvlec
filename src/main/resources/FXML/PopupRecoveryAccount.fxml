@@ -15,126 +15,70 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="APMain" prefHeight="500.0" prefWidth="400.0" stylesheets="@../CSS/PopupRecoveryAccount.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PopupRecoveryAccountController">
+<AnchorPane fx:id="APMain" prefHeight="500.0" prefWidth="400.0" styleClass="rootActive" stylesheets="@../CSS/PopupRecoveryAccount.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PopupRecoveryAccountController">
    <children>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="36.0" layoutY="109.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <content>
-            <VBox fx:id="VBXMain" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
+               <padding>
+                  <Insets bottom="30.0" left="20.0" right="20.0" top="30.0" />
+               </padding>
                <children>
-                  <StackPane fx:id="SPModeSelector" prefHeight="150.0" prefWidth="200.0" styleClass="SPMethodSelection">
+                  <StackPane fx:id="SPMethodSelector" prefHeight="0.0" prefWidth="0.0" styleClass="SPMethodSelector">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="10.0">
                            <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets left="10.0" right="10.0" />
                            </padding>
                            <children>
-                              <StackPane fx:id="SPEmailButton" onMouseClicked="#SPEmailButtonOnMouseClicked" prefHeight="150.0" prefWidth="200.0" styleClass="methodButton" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" StackPane.alignment="CENTER">
-                                       <StackPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </StackPane.margin>
-                                       <children>
-                                          <ImageView fx:id="IMGEmailButton" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Label maxWidth="1.7976931348623157E308" styleClass="LBLMethodSelection" text="Correo Electrónico" HBox.hgrow="ALWAYS" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
+                              <Button fx:id="BTNEmailMethod" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNEmailMethodOnMouseClicked" styleClass="BTNMethodSelector" HBox.hgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
-                              </StackPane>
-                              <StackPane fx:id="SPCodeButton" onMouseClicked="#SPCodeButtonOnMouseClicked" prefHeight="150.0" prefWidth="200.0" styleClass="methodButton" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" StackPane.alignment="CENTER">
-                                       <StackPane.margin>
+                                 <graphic>
+                                    <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="5.0">
+                                       <padding>
                                           <Insets left="5.0" right="5.0" />
-                                       </StackPane.margin>
+                                       </padding>
                                        <children>
-                                          <ImageView fx:id="IMGCodeButton" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                          <Label maxWidth="1.7976931348623157E308" styleClass="LBLMethodSelection" text="Código de seguridad" HBox.hgrow="ALWAYS" />
+                                          <ImageView fx:id="IMGButtonEmailMethod" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label styleClass="LBLButtonSelector" text="Correo electrónico" />
                                        </children>
                                     </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="BTNCodeMethod" layoutX="20.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#BTNCodeMethodOnMouseClicked" styleClass="BTNMethodSelector" HBox.hgrow="ALWAYS">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
-                              </StackPane>
+                                 <graphic>
+                                    <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="5.0">
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                       <children>
+                                          <ImageView fx:id="IMGButtonCodeMethod" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+                                          <Label styleClass="LBLButtonSelector" text="Código de seguridad" />
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
                            </children>
                         </HBox>
                      </children>
-                  </StackPane>
-                  <StackPane fx:id="SPChangePassword" layoutX="20.0" layoutY="392.0" prefHeight="0.0" prefWidth="0.0">
-                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
-                           <children>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                 <children>
-                                    <ImageView fx:id="IMGChangePassword" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label maxWidth="1.7976931348623157E308" styleClass="LBLDescript" text="Contraseña nueva" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-                                 <children>
-                                    <StackPane maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <TextField promptText="Escribe tu nueva contraseña aquí" />
-                                          <PasswordField promptText="Escribe tu nueva contraseña aquí" />
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="95.0" layoutY="10.0" onMouseClicked="#IMGPasswordOnMouseClicked" onMouseEntered="#IMGPasswordOnMouseEntered" onMouseExited="#IMGPasswordOnMouseExited" prefHeight="0.0" prefWidth="0.0">
-                                       <children>
-                                          <ImageView fx:id="IMGPassword" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="IMGPasswordHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                       </children>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </StackPane>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                                 <children>
-                                    <ImageView fx:id="IMGChangePasswordConfirm" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label maxWidth="1.7976931348623157E308" styleClass="LBLDescript" text="Confirma tu contraseña nueva" HBox.hgrow="ALWAYS" />
-                                 </children></HBox>
-                              <HBox alignment="CENTER" layoutX="10.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-                                 <children>
-                                    <StackPane maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <TextField promptText="Confirma tu nueva contraseña aquí" />
-                                          <PasswordField promptText="Confirma tu nueva contraseña aquí" />
-                                       </children>
-                                    </StackPane>
-                                    <StackPane layoutX="95.0" layoutY="10.0" onMouseClicked="#IMGConfirmPasswordOnMouseClicked" onMouseEntered="#IMGConfirmPasswordOnMouseEntered" onMouseExited="#IMGConfirmPasswordOnMouseExited" prefHeight="0.0" prefWidth="0.0">
-                                       <children>
-                                          <ImageView fx:id="IMGConfirmPassword" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView fx:id="IMGConfirmPasswordHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-                                       </children>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </StackPane>
-                                 </children>
-                              </HBox>
-                           </children></VBox>
-                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                   </StackPane>
                   <StackPane fx:id="SPEmail" prefHeight="0.0" prefWidth="0.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
+                        <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
                            <children>
                               <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="SPEmailAdvice">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                        <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                        <children>
                                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
@@ -142,22 +86,23 @@
                                                 <Image url="@../Images/envelope-advice-icon-lmdm.png" />
                                              </image>
                                           </ImageView>
-                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                          <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="LBLEmailAdviceHeader" text="Recuperación por correo" />
-                                                <Label layoutX="98.0" layoutY="10.0" maxWidth="1.7976931348623157E308" styleClass="LBLEmailAdviceContent" text="Te enviaremos un código de 6 dígitos a tu correo electrónico " />
-                                                <Label layoutX="23.0" layoutY="32.0" maxWidth="1.7976931348623157E308" styleClass="LBLEmailAdviceContent" text="registrado. Este código expira en 15 minutos." />
+                                                <Label styleClass="LBLEmailAdviceHeader" text="Recuperación por correo electrónico" />
+                                                <Label layoutX="132.0" layoutY="10.0" maxWidth="1.7976931348623157E308" styleClass="LBLEmailAdviceContent" text="Te enviaremos un código de 6 dígitos a tu correo" />
+                                                <Label layoutX="28.0" layoutY="37.0" maxWidth="1.7976931348623157E308" styleClass="LBLEmailAdviceContent" text="electrónico registrado." />
+                                                <Label layoutX="10.0" layoutY="62.0" maxWidth="1.7976931348623157E308" styleClass="LBLEmailAdviceContent" text="Este código expira en 15 minutos." />
                                              </children>
                                           </VBox>
                                        </children>
                                     </HBox>
                                  </children>
                               </StackPane>
-                              <StackPane fx:id="SPEmailFind" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" styleClass="SPEmailFound">
+                              <StackPane fx:id="SPEmailFound" prefHeight="150.0" prefWidth="200.0" styleClass="SPEmailFound">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                        <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                        </padding>
                                        <children>
                                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
@@ -165,9 +110,9 @@
                                                 <Image url="@../Images/check-icon-email-advice-lmdm.png" />
                                              </image>
                                           </ImageView>
-                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                          <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Label styleClass="LBLEmailFoundedAdviceHeader" text="Cuenta encontrada" />
+                                                <Label styleClass="LBLEmailFoundHeader" text="Código enviado exitosamente" />
                                                 <TextFlow fx:id="TFLEmailFound" prefHeight="200.0" prefWidth="200.0" textAlignment="JUSTIFY" />
                                              </children>
                                           </VBox>
@@ -175,73 +120,153 @@
                                     </HBox>
                                  </children>
                               </StackPane>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
                                  <children>
-                                    <ImageView fx:id="IMGAspectEmail" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label fx:id="LBLDescriptionEmail" maxWidth="1.7976931348623157E308" styleClass="LBLDescript" text="Texto descriptivo" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGEmailMethodDescription" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label fx:id="LBLEmailMethodDescription" styleClass="LBLTitle" text="Texto descriptivo" />
                                  </children>
                               </HBox>
-                              <TextField fx:id="TXTEmail" promptText="Escribe tu correo electróniuco aquí" />
-                              <HBox fx:id="HBXEmailCode" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                              <TextField fx:id="TXTEmailOfTheEmailMethod" promptText="Escribe tu correo electrónico aquí" />
+                              <HBox fx:id="HBXCodeEmailMethod" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                  <children>
-                                    <TextField fx:id="TXTEmailCode1" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                                    <TextField fx:id="TXTEmailCode2" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
-                                    <TextField fx:id="TXTEmailCode3" layoutX="237.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
-                                    <TextField fx:id="TXTEmailCode4" layoutX="260.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
-                                    <TextField fx:id="TXTEmailCode5" layoutX="292.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
-                                    <TextField fx:id="TXTEmailCode6" layoutX="310.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
+                                    <TextField fx:id="TXTCode1EmailMethod" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="TXTCode2EmailMethod" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
+                                    <TextField fx:id="TXTCode3EmailMethod" layoutX="210.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
+                                    <TextField fx:id="TXTCode4EmailMethod" layoutX="242.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
+                                    <TextField fx:id="TXTCode5EmailMethod" layoutX="271.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
+                                    <TextField fx:id="TXTCode6EmailMethod" layoutX="289.0" layoutY="10.0" maxWidth="1.7976931348623157E308" />
                                  </children>
                               </HBox>
                            </children>
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane fx:id="SPCode" layoutX="20.0" layoutY="84.0" prefHeight="0.0" prefWidth="0.0">
+                  <StackPane fx:id="SPChangePassword" layoutX="30.0" layoutY="50.0" prefHeight="0.0" prefWidth="0.0">
                      <children>
-                        <VBox fx:id="VBXCodeSelector" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
+                        <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
+                                 <children>
+                                    <ImageView fx:id="IMGChangePasswordIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label styleClass="LBLTitle" text="Nueva contraseña" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="10.0">
+                                 <children>
+                                    <StackPane maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <TextField fx:id="TXTChangePassword" promptText="Escribe tu nueva contraseña aquí" />
+                                          <PasswordField fx:id="PSFChangePassword" promptText="Escribe tu nueva contraseña aquí" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="SPChangePasswordButton" onMouseClicked="#SPChangePasswordOnMouseClicked" onMouseEntered="#SPChangePasswordOnMouseEntered" onMouseExited="#SPChangePasswordOnMouseExited" prefHeight="0.0" prefWidth="0.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <children>
+                                          <ImageView fx:id="IMGChangePassword" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="IMGChangePasswordHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
+                                 <children>
+                                    <ImageView fx:id="IMGConfirmChangePasswordIcon" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label styleClass="LBLTitle" text="Confirma tu nueva contraseña" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="54.0" prefHeight="0.0" prefWidth="0.0" spacing="10.0">
+                                 <children>
+                                    <StackPane maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <TextField fx:id="TXTConfirmChangePassword" promptText="Escribe tu nueva contraseña aquí" />
+                                          <PasswordField fx:id="PSFConfirmChangePassword" promptText="Escribe tu nueva contraseña aquí" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="SPConfirmChangePasswordButton" onMouseClicked="#SPConfirmChangePasswordOnMouseClicked" onMouseEntered="#SPConfirmChangePasswordOnMouseEntered" onMouseExited="#SPConfirmChangePasswordOnMouseExited" prefHeight="0.0" prefWidth="0.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <children>
+                                          <ImageView fx:id="IMGConfirmChangePassword" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fx:id="IMGConfirmChangePasswordHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+                           </children></VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="SPCode" layoutX="30.0" layoutY="30.0" prefHeight="0.0" prefWidth="0.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
                            <children>
                               <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="SPCodeAdvice">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                       <StackPane.margin>
+                                          <Insets />
+                                       </StackPane.margin>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
                                        <children>
                                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../Images/shield-icon-advice-lmdm.png" />
                                              </image>
                                           </ImageView>
-                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                          <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="LBLCodeAdviceHeader" text="Recuperación por códiugo de seguridad" textAlignment="CENTER" />
-                                                <Label layoutX="61.0" layoutY="10.0" maxWidth="1.7976931348623157E308" styleClass="LBLCodeAdviceContent" text="Usa uno de los 10 códigos de seguridad que generaste " />
-                                                <Label layoutX="20.0" layoutY="27.0" maxWidth="1.7976931348623157E308" styleClass="LBLCodeAdviceContent" text="al crear tu cuenta. Cada código solo puede usarse una vez." />
+                                                <Label styleClass="LBLCodeAdviceHeader" text="Recuperación por código de seguridad" />
+                                                <Label layoutX="125.0" layoutY="11.0" maxWidth="1.7976931348623157E308" styleClass="LBLCodeAdviceContent" text="Usa uno de los 10 códigos de seguridad que " />
+                                                <Label layoutX="35.0" layoutY="32.0" maxWidth="1.7976931348623157E308" styleClass="LBLCodeAdviceContent" text="generaste al crear tu cuenta. Cada código solo " />
+                                                <Label layoutX="28.0" layoutY="52.0" maxWidth="1.7976931348623157E308" styleClass="LBLCodeAdviceContent" text="puede usarse una vez." />
                                              </children>
                                           </VBox>
                                        </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </padding>
                                     </HBox>
                                  </children>
                               </StackPane>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                  <children>
-                                    <ImageView fx:id="IMGCodeAspect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label fx:id="LBLCodeDescription" maxWidth="1.7976931348623157E308" styleClass="LBLDescript" text="Texto descriptivo" HBox.hgrow="ALWAYS" />
+                                    <ImageView fx:id="IMGCodeDescription" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label fx:id="LBLCodeDescription" styleClass="LBLTitle" text="Texto descriptivo" />
                                  </children>
                               </HBox>
-                              <TextField fx:id="TXTCodeSectionEmail" promptText="Escribe tu correo electróniuco aquí" />
-                           </children></VBox>
+                              <TextField promptText="Escribe tu correo electrónico aquí" />
+                              <StackPane fx:id="SPCodeOfTheCodeMethod" prefHeight="150.0" prefWidth="200.0" />
+                              <StackPane fx:id="SPCodeNotWorkAdvice" prefHeight="0.0" prefWidth="0.0" styleClass="SPCodeNotWorkAdvice">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                       <children>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Images/exclamation-triangle-icon-popup-security-codes.png" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" styleClass="LBLCodeNotWorkAdviceHeader" text="Importante" />
+                                                <Label layoutX="127.0" layoutY="10.0" maxWidth="1.7976931348623157E308" styleClass="LBLCodeNotWorkAdviceContent" text="Una vez usado, este código será invalidado" VBox.vgrow="ALWAYS" />
+                                                <Label layoutX="10.0" layoutY="27.0" maxWidth="1.7976931348623157E308" styleClass="LBLCodeNotWorkAdviceContent" text="permanentemente. Asegúrate de tener los" />
+                                                <Label layoutX="10.0" layoutY="44.0" maxWidth="1.7976931348623157E308" styleClass="LBLCodeNotWorkAdviceContent" text="demás códigos guardados de forma segura." />
+                                             </children>
+                                          </VBox>
+                                       </children></HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
                      </children>
                   </StackPane>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
             </VBox>
          </content>
-         <padding>
-            <Insets bottom="10.0" top="10.0" />
-         </padding>
       </ScrollPane>
        <StackPane fx:id="SPTitleBar" layoutX="33.0" layoutY="-53.0" prefHeight="0.0" prefWidth="600.0" styleClass="titleBar" AnchorPane.bottomAnchor="450.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -297,7 +322,7 @@
                                     <ImageView fx:id="IMGButtonSecondaryHover" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </StackPane>
-                              <Label fx:id="LBLButtonSecondary" text="Label" />
+                              <Label fx:id="LBLButtonSecondary" text="Texto descriptivo" />
                            </children>
                         </HBox>
                      </graphic>
@@ -315,7 +340,7 @@
                                     <ImageView fx:id="IMGButtonPrimary" fitHeight="24.0" fitWidth="24.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </StackPane>
-                              <Label fx:id="LBLButtonPrimary" text="mmmnnmmmm" />
+                              <Label fx:id="LBLButtonPrimary" text="Texto descriptivo" />
                            </children>
                         </HBox>
                      </graphic>

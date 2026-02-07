@@ -14,103 +14,171 @@
 
 }
 
-.SPMethodSelection {
+.SPMethodSelector {
 
-    -fx-background-color: #dfdfdf;
     -fx-background-radius: 999;
+    -fx-background-color: #efefef;
 
 }
 
-.LBLMethodSelection {
+.BTNMethodSelector{
 
-    -fx-text-fill: #323232;
+    -fx-background-radius: 999;
+    -fx-background-color: #efefef;
+
+}
+
+.BTNMethodSelector:Active {
+
+    -fx-background-radius: 999;
+    -fx-background-color: #ffffff;
+
+}
+
+.LBLButtonSelector {
+
+    -fx-font-family: 'Oswald SemiBold';
+    -fx-text-fill: #2e2e2e;
+    -fx-font-size: 1.0em;
+
+}
+
+.SPEmailAdvice {
+
+    -fx-border-width: 2px;
+    -fx-border-color: #c8deff;
+    -fx-background-color: #eff6ff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.LBLEmailAdviceHeader {
+
+    -fx-text-fill: #2748bd;
+    -fx-font-size: 1.2em;
     -fx-font-family: "Oswald SemiBold";
+
+}
+
+.LBLEmailAdviceContent {
+
+    -fx-text-fill: #4870ec;
     -fx-font-size: 1.0em;
+    -fx-font-family: "Oswald SemiBold";
 
 }
 
-.methodButton {
-
-    -fx-background-color: #dfdfdf;
-    -fx-background-radius: 999;
-
-}
-
-.methodButton:active {
-
-    -fx-background-color: #f5f5f5;
-    -fx-background-radius: 999;
-
-}
-
-.SPEmailAdvice{
+.SPEmailFound {
 
     -fx-border-width: 2px;
+    -fx-border-color: #c0f3d3;
+    -fx-background-color: #f0fdf4;
     -fx-border-radius: 10px;
-    -fx-border-color: #2b7fffff;
-    -fx-background-color:#2b7fff33;
     -fx-background-radius: 10px;
 
 }
 
-.LBLEmailAdviceHeader{
+.LBLEmailFoundHeader {
 
+    -fx-text-fill: #008236;
     -fx-font-size: 1.2em;
-    -fx-text-fill: #1b5ec4;
-    -fx-font-family: 'Oswald SemiBold';
-
-}
-
-.LBLEmailAdviceContent{
-
-    -fx-font-size: 1.0em;
-    -fx-text-fill: #2b7fffff;
-    -fx-font-family: 'Oswald SemiBold';
-
-}
-
-.SPEmailFound{
-
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-    -fx-border-color: #5add8e;
-    -fx-background-color:#5add8e33;
-    -fx-background-radius: 10px;
-
-}
-
-.LBLEmailFoundedAdviceHeader {
-
-    -fx-font-size: 1.2em;
-    -fx-text-fill: #5add8e;
-    -fx-font-family: 'Oswald SemiBold';
+    -fx-font-family: "Oswald SemiBold";
 
 }
 
 .SPCodeAdvice {
 
-
     -fx-border-width: 2px;
+    -fx-border-color: #ebd2ff;
+    -fx-background-color: #faf5ff;
     -fx-border-radius: 10px;
-    -fx-border-color: #ba64ffff;
-    -fx-background-color:#ba64ff33;
     -fx-background-radius: 10px;
 
 }
 
 .LBLCodeAdviceHeader {
 
+    -fx-text-fill: #7a25b7;
     -fx-font-size: 1.2em;
-    -fx-text-fill: #8838bd;
-    -fx-font-family: 'Oswald SemiBold';
+    -fx-font-family: "Oswald SemiBold";
 
 }
 
 .LBLCodeAdviceContent {
 
+    -fx-text-fill: #af5be8;
     -fx-font-size: 1.0em;
-    -fx-text-fill: #ba64ffff;
-    -fx-font-family: 'Oswald SemiBold';
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.SPCodeNotWorkAdvice {
+
+    -fx-border-width: 2px;
+    -fx-border-color: #ffdbbe;
+    -fx-background-color: #fff7ed;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.LBLCodeNotWorkAdviceHeader {
+
+    -fx-text-fill: #a85a3c;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.LBLCodeNotWorkAdviceContent {
+
+    -fx-text-fill: #c37858;
+    -fx-font-size: 1.0em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.LBLTitle {
+
+    -fx-text-fill: #121212;
+    -fx-font-size: 1.0em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.titleBar{
+
+    -fx-background-color: #f5f5f5fe;
+    -fx-background-radius: 10px 10px 0px 0px;
+    -fx-border-color: #192d91;
+    -fx-border-width: 0px 0px 1px 0px;
+
+}
+
+.footerBar{
+
+    -fx-background-color: #f5f5f5fe;
+    -fx-background-radius: 0px 0px 10px 10px;
+    -fx-border-color: #192d91;
+    -fx-border-width: 1px 0px 0px 0px;
+
+
+}
+
+.LBLTitleBarHeader{
+
+    -fx-text-fill: #192d91;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.1em;
+
+}
+
+.LBLTitleBarContent{
+
+    -fx-text-fill: #6c757d;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
 
 }
 
@@ -143,47 +211,7 @@
 
 }
 
-.LBLDescript {
-
-    -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 1.0em;
-    -fx-text-fill: #121212;
-
-}
-
-.titleBar{
-
-    -fx-background-color: #f5f5f5fe;
-    -fx-background-radius: 10px 10px 0px 0px;
-    -fx-border-color: #192d91;
-    -fx-border-width: 0px 0px 1px 0px;
-
-}
-
-.footerBar{
-
-    -fx-background-color: #f5f5f5fe;
-    -fx-background-radius: 0px 0px 10px 10px;
-    -fx-border-color: #192d91;
-    -fx-border-width: 1px 0px 0px 0px;
-
-}
-
-.LBLTitleBarHeader{
-
-    -fx-text-fill: #192d91;
-    -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 1.1em;
-
-}
-
-.LBLTitleBarContent{
-
-    -fx-text-fill: #6c757d;
-    -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 1.0em;
-
-}
+/*Modo oscuro*/
 
 .rootActive {
 
@@ -195,140 +223,136 @@
 
 }
 
-.rootActive .SPMethodSelection {
+.rootActive .SPMethodSelector {
 
-    -fx-background-color: #42474e;
     -fx-background-radius: 999;
+    -fx-background-color: #3c4454;
 
 }
 
-.rootActive  .LBLMethodSelection {
+.rootActive  .BTNMethodSelector{
+
+    -fx-background-radius: 999;
+    -fx-background-color: #3c4454;
+
+}
+
+.rootActive  .BTNMethodSelector:Active {
+
+    -fx-background-radius: 999;
+    -fx-background-color: #495569;
+
+}
+
+.rootActive .LBLButtonSelector {
+
+    -fx-font-family: 'Oswald SemiBold';
+    -fx-text-fill: #d5d5d5;
+    -fx-font-size: 1.0em;
+
+}
+
+.rootActive .SPEmailAdvice {
+
+    -fx-border-width: 2px;
+    -fx-border-color: #2a497fff;
+    -fx-background-color: #2a3146ff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .LBLEmailAdviceHeader {
+
+    -fx-text-fill: #b8d4f8ff;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.rootActive .LBLEmailAdviceContent {
+
+    -fx-text-fill: #7aa7daff;
+    -fx-font-size: 1.0em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.rootActive .SPEmailFound {
+
+    -fx-border-width: 2px;
+    -fx-border-color: #1b6140ff;
+    -fx-background-color: #273339ff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .LBLEmailFoundHeader {
+
+    -fx-text-fill: #a7dfbcff;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.rootActive .SPCodeAdvice {
+
+    -fx-border-width: 2px;
+    -fx-border-color: #563482ff;
+    -fx-background-color: #322b49ff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .LBLCodeAdviceHeader {
+
+    -fx-text-fill: #d5c2ebff;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.rootActive .LBLCodeAdviceContent {
+
+    -fx-text-fill: #cca7f0ff;
+    -fx-font-size: 1.0em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.rootActive .SPCodeNotWorkAdvice {
+
+    -fx-border-width: 2px;
+    -fx-border-color: #6f3f26ff;
+    -fx-background-color: #342e36ff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .LBLCodeNotWorkAdviceHeader {
+
+    -fx-text-fill: #fbd2a6ff;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.rootActive .LBLCodeNotWorkAdviceContent {
+
+    -fx-text-fill: #e4c099ff;
+    -fx-font-size: 1.0em;
+    -fx-font-family: "Oswald SemiBold";
+
+}
+
+.rootActive .LBLTitle {
 
     -fx-text-fill: #d5d5d5;
+    -fx-font-size: 1.0em;
     -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 1.0em;
-
-}
-
-.rootActive  .methodButton {
-
-    -fx-background-color: #42474e;
-    -fx-background-radius: 999;
-
-}
-
-.rootActive  .methodButton:active {
-
-    -fx-background-color: #666972;
-    -fx-background-radius: 999;
-
-}
-
-.rootActive  .SPEmailAdvice{
-
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-    -fx-border-color: #2b7fffff;
-    -fx-background-color:#2b7fff33;
-    -fx-background-radius: 10px;
-
-}
-
-.rootActive  .LBLEmailAdviceHeader{
-
-    -fx-font-size: 1.2em;
-    -fx-text-fill: #226ee1;
-    -fx-font-family: 'Oswald SemiBold';
-
-}
-
-.rootActive  .LBLEmailAdviceContent{
-
-    -fx-font-size: 1.0em;
-    -fx-text-fill: #2b7fffff;
-    -fx-font-family: 'Oswald SemiBold';
-
-}
-
-.rootActive  .SPEmailFound{
-
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-    -fx-border-color: #5add8e;
-    -fx-background-color:#5add8e33;
-    -fx-background-radius: 10px;
-
-}
-
-.rootActive  .LBLEmailFoundedAdviceHeader {
-
-    -fx-font-size: 1.2em;
-    -fx-text-fill: #5add8e;
-    -fx-font-family: 'Oswald SemiBold';
-
-}
-
-.rootActive  .SPCodeAdvice {
-
-
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-    -fx-border-color: #ba64ffff;
-    -fx-background-color:#ba64ff33;
-    -fx-background-radius: 10px;
-
-}
-
-.rootActive  .LBLCodeAdviceHeader {
-
-    -fx-font-size: 1.2em;
-    -fx-text-fill: #ad5ae8;
-    -fx-font-family: 'Oswald SemiBold';
-
-}
-
-.LBLCodeAdviceContent {
-
-    -fx-font-size: 1.0em;
-    -fx-text-fill: #ba64ffff;
-    -fx-font-family: 'Oswald SemiBold';
-
-}
-
-.rootActive .text-field, .rootActive .password-field {
-
-    -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 1.0em;
-    -fx-text-fill: #f5f5f5;
-    -fx-background-color: #1D1F23;
-    -fx-background-radius: 10px;
-    -fx-prompt-text-fill: #d5d5d5;
-    -fx-border-color: transparent;
-    -fx-border-width: 1px;
-    -fx-border-radius: 10px;
-    -fx-background-insets: 0;
-    -fx-padding: 6 8 6 8;
-
-}
-
-.rootActive .text-field:focused, .rootActive .password-field:focused {
-
-    -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 1.0em;
-    -fx-text-fill: #73DCE6;
-    -fx-background-radius: 10px;
-    -fx-border-color: #73DCE6;
-    -fx-prompt-text-fill: #73DCE6;
-    -fx-border-width: 1px;
-    -fx-border-radius: 10px;
-
-}
-
-.rootActive .LBLDescript {
-
-    -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 1.0em;
-    -fx-text-fill: #d5d5d5;
 
 }
 
@@ -365,6 +389,35 @@
     -fx-text-fill: #d5d5d5;
     -fx-font-family: "Oswald SemiBold";
     -fx-font-size: 1.0em;
+
+}
+
+.rootActive .text-field, .rootActive .password-field {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #f5f5f5;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 10px;
+    -fx-prompt-text-fill: #d5d5d5;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 6 8 6 8;
+
+}
+
+.rootActive .text-field:focused, .rootActive .password-field:focused {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #73DCE6;
+    -fx-background-radius: 10px;
+    -fx-border-color: #73DCE6;
+    -fx-prompt-text-fill: #73DCE6;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
 
 }
 
