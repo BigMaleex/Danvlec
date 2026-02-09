@@ -595,7 +595,11 @@ public class PopupSetClockController extends ConfigureInitializeStyles{
     void BTNStartOnMouseClicked(MouseEvent event) {
 
         //Validar información
-        ValidateFormInputs.validateInputsFromSetClock(TBTButtonOther.isSelected() ? TXTDescription.getText() : getSelectedObjective(), switchButton.isSelected() ? LocalDate.now() : TXTDate.getLocalDate(), switchButton.isSelected() ? LocalTime.now() : TXTHour.getLocalTime());
+        if(ValidateFormInputs.validateInputsFromSetClock(TBTButtonOther.isSelected() ? TXTDescription.getText() : getSelectedObjective(), switchButton.isSelected() ? LocalDate.now() : TXTDate.getLocalDate(), switchButton.isSelected() ? LocalTime.now() : TXTHour.getLocalTime())){
+
+            BTNCloseOnMouseClicked(event);
+
+        }
 
     }
 

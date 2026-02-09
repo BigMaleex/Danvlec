@@ -3,23 +3,27 @@ package controllers;
 import controls.SerialTextField;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import logical.ValidateFormInputs;
+import messagebuilder.MessageBuilder;
 import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserPreferences;
 import utilities.Colors;
 import utilities.FileConstants;
+import utilities.Styles;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
@@ -42,7 +46,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     private PseudoClass methodButton = PseudoClass.getPseudoClass("Active");
 
     //Variables
-    private boolean isDarkMode = false, passwordVisible = false, confirmPasswordVisible = false;
+    private boolean isDarkMode = false, passwordVisible = false, confirmPasswordVisible = false, allConditionsMet = false;
     private Step currentStep;
     private Mode currentMode;
 
@@ -234,6 +238,9 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     private TextField TXTEmailOfTheEmailMethod;
 
     @FXML
+    private TextField TXTEmailOfTheCodeMethod;
+
+    @FXML
     void initialize(){
 
         isDarkMode = UserPreferences.getUserThemeMode();
@@ -245,6 +252,15 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
         SPChangePassword.managedProperty().bind(SPChangePassword.visibleProperty());
         TXT24Chars.managedProperty().bind(TXT24Chars.visibleProperty());
         BTNSecondary.managedProperty().bind(BTNSecondary.visibleProperty());
+        SPEmailFound.managedProperty().bind(SPEmailFound.visibleProperty());
+        HBXCodeEmailMethod.managedProperty().bind(HBXCodeEmailMethod.visibleProperty());
+        TXTEmailOfTheEmailMethod.managedProperty().bind(TXTEmailOfTheEmailMethod.visibleProperty());
+        SPCodeNotWorkAdvice.managedProperty().bind(SPCodeNotWorkAdvice.visibleProperty());
+        TXTEmailOfTheCodeMethod.managedProperty().bind(TXTEmailOfTheCodeMethod.visibleProperty());
+
+        //Agregar listeners
+        TXTEmailOfTheEmailMethod.textProperty().addListener((obs, oldVal, newVal) ->{validateConditions();});
+        TXTEmailOfTheCodeMethod.textProperty().addListener((obs, oldVal, newVal) ->{validateConditions();});
 
         //Ocultar elementos
         TXTConfirmChangePassword.setVisible(false);
@@ -264,6 +280,8 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
         changeSelection();
 
         changeTheme();
+
+        validateConditions();
 
     }
 
@@ -365,6 +383,8 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
             changeSelection();
 
+            validateConditions();
+
         }
 
     }
@@ -378,6 +398,8 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
             changeSelection();
 
+            validateConditions();
+
         }
 
     }
@@ -385,32 +407,155 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     @FXML
     void BTNPrimaryOnMouseClicked(MouseEvent event) {
 
+        if(allConditionsMet){
 
+            switch(currentStep){
+
+                case First -> {
+
+                    switch(currentMode){
+
+                        case EmailMode -> {
+
+                            if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(1, true, TXTEmailOfTheEmailMethod.getText())){
+
+                                currentStep = Step.Second;
+                                changeStep();
+
+                            }else{
+
+                                //Mostrar mensaje de que no se encontró la cuenta
+                                MessageBuilder.showErrorMessageFromPopupRecoveryAccountFirstStep();
+
+                            }
+
+                        }
+
+                        case CodeMode -> {
+
+                            if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(1, true, TXTEmailOfTheCodeMethod.getText())){
+
+                                currentStep = Step.Second;
+                                changeStep();
+
+                            }else{
+
+                                //Mostrar mensaje de que no se encontró la cuenta
+                                MessageBuilder.showErrorMessageFromPopupRecoveryAccountFirstStep();
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                case Second -> {
+
+                     switch(currentMode){
+
+                        case EmailMode -> {
+
+
+
+                        }
+
+                        case CodeMode -> {
+
+
+
+                        }
+
+                    }
+
+                }
+
+                case Third -> {
+
+                     switch(currentMode){
+
+                        case EmailMode -> {
+
+
+
+                        }
+
+                        case CodeMode -> {
+
+
+
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
 
     }
 
     @FXML
     void BTNPrimaryOnMouseEntered(MouseEvent event) {
 
+        if(allConditionsMet){
+
+            StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                    principalButtonBackground, principalButtonBackgroundHover,
+                    principalButtonBorder, principalButtonBorderHover,
+                    principalButtonFontColor, principalButtonFontColorHover,
+                    BTNPrimary,
+                    IMGButtonPrimary, IMGButtonPrimaryHover,
+                    LBLButtonPrimary
+
+            );
+
+        }
+
     }
 
     @FXML
     void BTNPrimaryOnMouseExited(MouseEvent event) {
+
+        if(allConditionsMet){
+
+            StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                    principalButtonBackgroundHover, principalButtonBackground,
+                    principalButtonBorderHover, principalButtonBorder,
+                    principalButtonFontColorHover, principalButtonFontColor,
+                    BTNPrimary,
+                    IMGButtonPrimaryHover, IMGButtonPrimary,
+                    LBLButtonPrimary
+
+            );
+
+        }
 
     }
 
     @FXML
     void BTNSecondaryOnMouseClicked(MouseEvent event) {
 
+
+
     }
 
     @FXML
     void BTNSecondaryOnMouseEntered(MouseEvent event) {
 
+
+
     }
 
     @FXML
     void BTNSecondaryOnMouseExited(MouseEvent event) {
+
+
 
     }
 
@@ -519,12 +664,154 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
             BTNEmailMethod.pseudoClassStateChanged(methodButton, true);
             BTNCodeMethod.pseudoClassStateChanged(methodButton, false);
 
+            SPEmail.setVisible(true);
+            SPCode.setVisible(false);
+            SPChangePassword.setVisible(false);
+
         }else{
 
             BTNEmailMethod.pseudoClassStateChanged(methodButton, false);
             BTNCodeMethod.pseudoClassStateChanged(methodButton, true);
 
+            SPEmail.setVisible(false);
+            SPCode.setVisible(true);
+            SPChangePassword.setVisible(false);
+
         }
+
+        changeStep();
+        validateConditions();
+
+    }
+
+    private void changeStep(){
+
+        switch(currentStep){
+
+            case First ->{
+
+                switch(currentMode){
+
+                    case EmailMode ->{
+
+                        SPEmailFound.setVisible(false);
+                        HBXCodeEmailMethod.setVisible(false);
+
+                        BTNSecondary.setVisible(false);
+
+                        LBLButtonPrimary.setText("Verificar correo electrónico");
+                        LBLEmailMethodDescription.setText("Correo electrónico");
+                        setImages(FileConstants.atIconDm, FileConstants.atIconLm, isDarkMode, IMGEmailMethodDescription);
+                        setImages(FileConstants.envelopeAtPrimaryDm, FileConstants.envelopeAtPrimaryLm, isDarkMode, IMGButtonPrimary);
+                        setImages(FileConstants.envelopeAtPrimaryHoverDm, FileConstants.envelopeAtPrimaryHoverLm, isDarkMode, IMGButtonPrimaryHover);
+                        TXTEmailOfTheEmailMethod.setVisible(true);
+
+                    }
+
+                    case CodeMode ->{
+
+                        TXT24Chars.setVisible(false);
+                        SPCodeNotWorkAdvice.setVisible(false);
+                        LBLButtonPrimary.setText("Verificar correo electrónico");
+                        setImages(FileConstants.atIconDm, FileConstants.atIconLm, isDarkMode, IMGCodeDescription);
+                        setImages(FileConstants.envelopeAtPrimaryDm, FileConstants.envelopeAtPrimaryLm, isDarkMode, IMGButtonPrimary);
+                        setImages(FileConstants.envelopeAtPrimaryHoverDm, FileConstants.envelopeAtPrimaryHoverLm, isDarkMode, IMGButtonPrimaryHover);
+
+                        TXTEmailOfTheCodeMethod.setVisible(true);
+
+                        LBLCodeDescription.setText("Correo electrónico");
+
+                    }
+
+                }
+
+            }
+
+            case Second -> {
+
+                switch(currentMode){
+
+                    case EmailMode -> {
+
+                        TXTEmailOfTheEmailMethod.setVisible(false);
+                        BTNSecondary.setVisible(true);
+                        HBXCodeEmailMethod.setVisible(true);
+
+                        LBLEmailMethodDescription.setText("Código de seguridad");
+
+                        buildTFL();
+
+                    }
+
+                    case CodeMode -> {
+
+
+
+                    }
+
+                }
+
+            }
+
+            case Third -> {
+
+
+
+            }
+
+        }
+
+    }
+
+    private void validateConditions(){
+
+        switch(currentStep){
+
+            case First ->{
+
+                switch(currentMode){
+
+                    case EmailMode -> {
+
+                        allConditionsMet = !TXTEmailOfTheEmailMethod.getText().isBlank();
+
+                    }
+
+                    case CodeMode ->{
+
+
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        if(allConditionsMet){
+
+            applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase[] {BTNPrimary}, new Label [] {LBLButtonPrimary});
+            BTNPrimary.setOpacity(1.0);
+            LBLButtonPrimary.setOpacity(1.0);
+            IMGButtonPrimary.setOpacity(1.0);
+
+        }else{
+
+            applyStylesToButtonsWithLabel(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, new ButtonBase[] {BTNPrimary}, new Label [] {LBLButtonPrimary});
+            BTNPrimary.setOpacity(0.66);
+            LBLButtonPrimary.setOpacity(0.66);
+            IMGButtonPrimary.setOpacity(0.0);
+
+        }
+
+    }
+
+    private void buildTFL(){
+
+        List<Text> texts = new ArrayList<>();
+
+
 
     }
 

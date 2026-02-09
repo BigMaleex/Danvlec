@@ -24,6 +24,41 @@ public class MessageBuilder {
     private static String headerColor;
     private static String contentColor;
 
+    public static void showErrorMessageFromPopupRecoveryAccountFirstStep(){
+
+        sm.openDynamicPopup(
+
+                FileConstants.PopupOneButtonFXML,
+                Complements.errorTitle,
+                alertController -> {
+
+                    PopupOneButtonController controller = (PopupOneButtonController) alertController;
+
+                    controller.initialize();
+                    isDarkMode = controller.getMode();
+
+                    changeColors();
+
+                    controller.setIcon(FileConstants.databaseFillExclamationIconDm, FileConstants.databaseFillExclamationIconLm);
+
+                    controller.setTextButton("Intentar nuevamente");
+
+                    controller.setTFLHeader(Complements.addStringFromTextList("¡Nos hemos encontrado con un problema!", Styles.px12, headerColor));
+
+                   List<Text> texts = new ArrayList<>();
+
+                   texts.add(Complements.addStringFromTextList("La dirección de correo electrónico ", Styles.px12, contentColor));
+                   texts.add(Complements.addStringFromTextList(UserData.getEmail(), Styles.px12, headerColor));
+                   texts.add(Complements.addStringFromTextList(" no está registrada en nuestra bade de datos, por favor intentalo con una cuenta diferente. ", Styles.px12, contentColor));
+
+                   controller.setTFLContent(texts);
+
+                }
+
+        );
+
+    }
+
     public static void showConfirmMessageFromPopupSetClock(String [] data){
 
         sm.openDynamicPopup(

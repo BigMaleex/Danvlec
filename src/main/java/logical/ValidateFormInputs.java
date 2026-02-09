@@ -1,7 +1,6 @@
 package logical;
 
 import connections.Users;
-import jakarta.mail.Message;
 import messagebuilder.MessageBuilder;
 import stylebuilder.StyleBuilder;
 import user.UserData;
@@ -11,6 +10,38 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class ValidateFormInputs {
+
+    public static boolean validateInputsFromPopupRecoveryAccount(int step, boolean emailMode, String input){
+
+        boolean result = false;
+
+        Users users = new Users();
+
+        switch(step){
+
+            case 1 ->{
+
+                UserData.setEmail(StyleBuilder.clearStringFormat(input));
+
+                result = !users.isUniqueEmail(StyleBuilder.clearStringFormat(input));
+
+            }
+
+            case 2 ->{}
+
+            case 3->{}
+
+            default ->{
+
+                System.out.println("La opción " + step + " no está configurada, por lo que no se verifico desde validateInputsFromPopupRecoveryAccount");
+
+            }
+
+        }
+
+        return result;
+
+    }
 
     public static boolean validateInputsFromSetClock(String titleClock, LocalDate date, LocalTime time){
 
@@ -142,7 +173,6 @@ public class ValidateFormInputs {
         }else{
 
             //Hay un dato o más incorrecto
-
             MessageBuilder.showErrorMessageFromSignUp(aspects, new String [] {name, lastname});
 
         }

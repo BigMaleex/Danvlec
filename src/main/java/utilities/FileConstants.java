@@ -123,6 +123,10 @@ public class FileConstants {
     public static final String shieldMethodButtonDm = "shield-method-button-dm.png";
     public static final String keyIconLM = "key-icon-lm.png";
     public static final String keyIconDM = "key-icon-dm.png";
+    public static final String envelopeAtPrimaryDm = "envelope-at-primary-dm.png";
+    public static final String envelopeAtPrimaryLm = "envelope-at-primary-lm.png";
+    public static final String envelopeAtPrimaryHoverDm = "envelope-at-primary-hover-dm.png";
+    public static final String envelopeAtPrimaryHoverLm = "envelope-at-primary-hover-lm.png";
 
     //Fuente
     public static final String oswaldSemiBold = "Oswald-SemiBold.ttf";

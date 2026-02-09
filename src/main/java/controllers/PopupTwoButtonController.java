@@ -20,9 +20,7 @@ import logical.PopupTwoButtonInputs;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserPreferences;
-import utilities.Colors;
-import utilities.Options;
-import utilities.PathManager;
+import utilities.*;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -30,6 +28,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PopupTwoButtonController {
+
+    //Objetos
+    ScreenManager sm = ScreenManager.getInstance();
 
     //Variables
     private boolean isDarkMode;
@@ -368,6 +369,18 @@ public class PopupTwoButtonController {
             case askTheUserIfTheyWantToSaveTheirInformation ->{
 
                 PopupTwoButtonInputs.askTheUserIfTheyWantToSaveTheirInformation(false);
+
+            }
+
+            case allClockInformationIsCorrect -> {
+
+                sm.openDynamicPopup(
+
+                        FileConstants.PopupSetClockFXML,
+                        "Configura tu objetivo",
+                        controller -> {}
+
+                );
 
             }
 
