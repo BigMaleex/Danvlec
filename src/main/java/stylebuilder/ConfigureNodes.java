@@ -262,9 +262,9 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
 
         setImages(FileConstants.arrowClockwisePopupThirdLmdmnormalhover, FileConstants.arrowClockwisePopupThirdLmdmnormalhover, isDM, IMGGenerateNewCodes, IMGGenerateNewCodesHover);
 
-        setImages(FileConstants.filetypePdfPrincipalHoverDm, FileConstants.filetypePdfPrincipalHoverLm, isDM, IMGDownloadCodesHover);
+        setImages(FileConstants.filetypePdfPrimaryHoverDm, FileConstants.filetypePdfPrimaryHoverLm, isDM, IMGDownloadCodesHover);
 
-        setImages(FileConstants.filetypePdfPrincipalDm, FileConstants.filetypePdfPrincipalLm, isDM, IMGDownloadCodes);
+        setImages(FileConstants.filetypePdfPrimaryDm, FileConstants.filetypePdfPrimaryLm, isDM, IMGDownloadCodes);
 
         setImages(FileConstants.copySecondaryHoverDm, FileConstants.copySecondaryHoverLm, isDM, IMGCopyAllCodesHover);
 

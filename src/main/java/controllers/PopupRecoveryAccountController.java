@@ -1,6 +1,11 @@
 package controllers;
 
+import connections.SendEmail;
 import controls.SerialTextField;
+import jakarta.mail.MessagingException;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,18 +17,24 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import logical.ValidateFormInputs;
+import logical.ValidateOutputs;
+import messagebuilder.Complements;
 import messagebuilder.MessageBuilder;
 import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
+import user.UserData;
 import user.UserPreferences;
 import utilities.Colors;
 import utilities.FileConstants;
 import utilities.Styles;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
@@ -46,9 +57,10 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     private PseudoClass methodButton = PseudoClass.getPseudoClass("Active");
 
     //Variables
-    private boolean isDarkMode = false, passwordVisible = false, confirmPasswordVisible = false, allConditionsMet = false;
+    private boolean isDarkMode = false, passwordVisible = false, confirmPasswordVisible = false, allConditionsMet = false, theUserCanForwardTheEmail=true;
     private Step currentStep;
     private Mode currentMode;
+    private static String code;
 
     //Variables de color
     //Botón primario
@@ -89,6 +101,13 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
     private static String hideButtonBackgroundHover;
     private static String hideButtonBorderHover;
+
+    //Label Email
+    private static String emailFoundContent;
+    private static String emailFoundHeader;
+
+    //Toast notification
+    private static String toastNotificationFontColor;
 
     @FXML
     private AnchorPane APMain;
@@ -241,9 +260,25 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     private TextField TXTEmailOfTheCodeMethod;
 
     @FXML
+    private HBox HBXToast;
+
+    @FXML
+    private StackPane SPToast;
+
+    @FXML
+    private TextFlow TFLToast;
+
+    @FXML
     void initialize(){
 
         isDarkMode = UserPreferences.getUserThemeMode();
+
+        if(!SPCodeOfTheCodeMethod.getChildren().contains(TXT24Chars)){
+
+            SPCodeOfTheCodeMethod.getChildren().add(TXT24Chars);
+            TXT24Chars.setPromptText("Escribe tu código de seguridad aquí");
+
+        }
 
         //Ligar Managed con visibility
         SPCode.managedProperty().bind(SPCode.visibleProperty());
@@ -335,6 +370,13 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
         hideButtonBackgroundHover = Colors.getColor("hide-button-background-hover", isDarkMode);
         hideButtonBorderHover = Colors.getColor("hide-button-border-hover", isDarkMode);
+
+        //Email found
+        emailFoundContent = Colors.getColor("email-found-content", isDarkMode);
+        emailFoundHeader = Colors.getColor("email-found-header", isDarkMode);
+
+        //Toast Notifications
+        toastNotificationFontColor = Colors.getColor("toast-notification-font-color", isDarkMode);
 
     }
 
@@ -686,6 +728,8 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
     private void changeStep(){
 
+        BTNSecondary.setVisible(false);
+
         switch(currentStep){
 
             case First ->{
@@ -697,7 +741,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
                         SPEmailFound.setVisible(false);
                         HBXCodeEmailMethod.setVisible(false);
 
-                        BTNSecondary.setVisible(false);
+                        StyleBuilder.clearControls(TXTEmailOfTheEmailMethod);
 
                         LBLButtonPrimary.setText("Verificar correo electrónico");
                         LBLEmailMethodDescription.setText("Correo electrónico");
@@ -719,6 +763,8 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                         TXTEmailOfTheCodeMethod.setVisible(true);
 
+                        StyleBuilder.clearControls(TXTEmailOfTheCodeMethod);
+
                         LBLCodeDescription.setText("Correo electrónico");
 
                     }
@@ -737,15 +783,37 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
                         BTNSecondary.setVisible(true);
                         HBXCodeEmailMethod.setVisible(true);
 
+                        StyleBuilder.clearControls(TXTCode1EmailMethod, TXTCode2EmailMethod, TXTCode3EmailMethod, TXTCode4EmailMethod, TXTCode5EmailMethod, TXTCode6EmailMethod);
+
+                        setImages(FileConstants.shieldIconDm, FileConstants.shieldIconLm, isDarkMode, IMGEmailMethodDescription);
+                        setImages(FileConstants.shieldPrimaryDm, FileConstants.shieldPrimaryLm, isDarkMode, IMGButtonPrimary);
+                        setImages(FileConstants.shieldPrimaryHoverDm, FileConstants.shieldPrimaryHoverLm, isDarkMode, IMGButtonPrimaryHover);
+
                         LBLEmailMethodDescription.setText("Código de seguridad");
 
+                        LBLButtonPrimary.setText("Verificar código de autenticación");
+
                         buildTFL();
+
+                        SPEmailFound.setVisible(true);
 
                     }
 
                     case CodeMode -> {
 
+                        StyleBuilder.clearControls(TXT24Chars);
 
+
+                        TXT24Chars.setVisible(true);
+                        SPCodeNotWorkAdvice.setVisible(true);
+                        LBLButtonPrimary.setText("Verificar código de seguridad");
+                        setImages(FileConstants.shieldIconDm, FileConstants.shieldIconLm, isDarkMode, IMGCodeDescription);
+                        setImages(FileConstants.shieldPrimaryDm, FileConstants.shieldPrimaryLm, isDarkMode, IMGButtonPrimary);
+                        setImages(FileConstants.shieldPrimaryHoverDm, FileConstants.shieldPrimaryHoverLm, isDarkMode, IMGButtonPrimaryHover);
+
+                        TXTEmailOfTheCodeMethod.setVisible(false);
+
+                        LBLCodeDescription.setText("Código de seguridad");
 
                     }
 
@@ -755,7 +823,14 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
             case Third -> {
 
+                SPCode.setVisible(false);
+                SPEmail.setVisible(false);
+                SPChangePassword.setVisible(true);
 
+                LBLButtonPrimary.setText("Cambiar contraseña");
+
+                setImages(FileConstants.keyPrimaryDm, FileConstants.keyPrimaryLm, isDarkMode, IMGButtonPrimary);
+                setImages(FileConstants.keyPrimaryHoverDm, FileConstants.keyPrimaryHoverLm, isDarkMode, IMGButtonPrimaryHover);
 
             }
 
@@ -779,11 +854,37 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                     case CodeMode ->{
 
-
+                        allConditionsMet = !TXTEmailOfTheCodeMethod.getText().isBlank();
 
                     }
 
                 }
+
+            }
+
+            case Second -> {
+
+                switch(currentMode){
+
+                    case EmailMode -> {
+
+                        allConditionsMet = !TXTCode1EmailMethod.getText().isBlank() && !TXTCode2EmailMethod.getText().isBlank() && !TXTCode3EmailMethod.getText().isBlank() && !TXTCode4EmailMethod.getText().isBlank() && !TXTCode5EmailMethod.getText().isBlank() && !TXTCode6EmailMethod.getText().isBlank();
+
+                    }
+
+                    case CodeMode -> {
+
+                        allConditionsMet = !TXT24Chars.getText().isBlank();
+
+                    }
+
+                }
+
+            }
+
+            case Third -> {
+
+                allConditionsMet = (passwordVisible ? !TXTChangePassword.getText().isBlank() : !PSFChangePassword.getText().isBlank()) && (confirmPasswordVisible ? !TXTConfirmChangePassword.getText().isBlank() : !PSFConfirmChangePassword.getText().isBlank());
 
             }
 
@@ -811,7 +912,241 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
         List<Text> texts = new ArrayList<>();
 
+        texts.add(Complements.addStringFromTextList("Hemos enviado un correo con el código de verificación a la dirección ", Styles.px12, emailFoundContent));
+        texts.add(Complements.addStringFromTextList(UserData.getEmail(), Styles.px12, emailFoundHeader));
 
+        TFLEmailFound.getChildren().clear();
+        TFLEmailFound.getChildren().addAll(texts);
+
+    }
+
+    private void theUserForwardedTheEmail() {
+
+        theUserCanForwardTheEmail = false;
+
+        IMGButtonSecondary.setOpacity(0);
+        IMGButtonSecondaryHover.setOpacity(0);
+
+        BTNSecondary.setDisable(true);
+
+
+        final int[] secondsRemaining = {60};
+
+        code = ValidateOutputs.generateCodeWithDynamicSize(6);
+        sendEmail();
+
+        LBLButtonSecondary.setText("Puedes reenviar un nuevo código dentro de " + secondsRemaining[0] + "s");
+
+
+        Timeline timeline = new Timeline();
+
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), e -> {
+            secondsRemaining[0]--;
+
+            if (secondsRemaining[0] > 0) {
+                LBLButtonSecondary.setText("Puedes reenviar un nuevo código dentro de " + secondsRemaining[0] + "s");
+            } else {
+                theUserCanForwardTheEmail = true;
+
+                IMGButtonSecondary.setOpacity(1);
+                IMGButtonSecondaryHover.setOpacity(0);
+
+                LBLButtonSecondary.setText("Reenviar código");
+
+
+                BTNSecondary.setDisable(false);
+
+                timeline.stop();
+            }
+        });
+
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setCycleCount(secondsRemaining[0]);
+        timeline.play();
+
+    }
+
+     private void configureCodeFields() {
+        TextField[] codeFields = new TextField[]{TXTCode1EmailMethod, TXTCode2EmailMethod, TXTCode3EmailMethod, TXTCode4EmailMethod, TXTCode5EmailMethod, TXTCode6EmailMethod};
+
+
+        final boolean[] isUpdating = new boolean[] { false };
+
+        for (int i = 0; i < codeFields.length; i++) {
+            final int index = i;
+            TextField tf = codeFields[i];
+
+
+            tf.setFocusTraversable(true);
+
+
+            tf.textProperty().addListener((obs, oldVal, newVal) -> {
+                if (isUpdating[0]) return;
+                if (newVal == null) return;
+
+
+                String trimmed = newVal.replaceAll("\\s", "");
+
+
+                if (trimmed.length() > 1) {
+                    isUpdating[0] = true;
+                    try {
+                        handlePasteToFields(trimmed, index, codeFields);
+                    } finally {
+                        isUpdating[0] = false;
+                    }
+
+                    validateConditions();
+                    return;
+                }
+
+
+                if (trimmed.length() == 1) {
+                    isUpdating[0] = true;
+                    try {
+
+                        tf.setText(trimmed.substring(0, 1));
+
+                        if (index + 1 < codeFields.length) {
+                            final TextField next = codeFields[index + 1];
+                            Platform.runLater(() -> {
+                                next.requestFocus();
+                                next.positionCaret(next.getText().length());
+                            });
+                        } else {
+
+                            Platform.runLater(() -> tf.positionCaret(1));
+                        }
+                    } finally {
+                        isUpdating[0] = false;
+                    }
+                } else if (trimmed.isEmpty()) {
+
+                }
+
+                validateConditions();
+            });
+
+
+            tf.setOnKeyPressed(keyEvent -> {
+                switch (keyEvent.getCode()) {
+                    case BACK_SPACE -> {
+
+                        if (tf.getText().isEmpty() && index - 1 >= 0) {
+                            TextField prev = codeFields[index - 1];
+                            isUpdating[0] = true;
+                            try {
+                                prev.clear();
+                            } finally {
+                                isUpdating[0] = false;
+                            }
+                            prev.requestFocus();
+                            Platform.runLater(() -> prev.positionCaret(prev.getText().length()));
+                            keyEvent.consume();
+                            validateConditions();
+                        } else {
+
+                        }
+                    }
+                    case LEFT -> {
+                        if (index - 1 >= 0) {
+                            TextField prev = codeFields[index - 1];
+                            prev.requestFocus();
+                            prev.positionCaret(prev.getText().length());
+                            keyEvent.consume();
+                        }
+                    }
+                    case RIGHT -> {
+                        if (index + 1 < codeFields.length) {
+                            TextField next = codeFields[index + 1];
+                            next.requestFocus();
+                            next.positionCaret(next.getText().length());
+                            keyEvent.consume();
+                        }
+                    }
+                    default -> { }
+                }
+            });
+
+
+            tf.addEventFilter(javafx.scene.input.KeyEvent.KEY_TYPED, e -> {
+                if (e.getCharacter().equals(" ")) {
+                    e.consume();
+                }
+            });
+        }
+    }
+
+    private void handlePasteToFields(String s, int startIndex, TextField[] codeFields) {
+        if (s == null || s.isEmpty()) return;
+
+        String text = s.replaceAll("\\s", "");
+
+
+        if (text.length() >= codeFields.length) {
+
+            text = text.substring(0, codeFields.length);
+            for (int k = 0; k < codeFields.length; k++) {
+                codeFields[k].setText(String.valueOf(text.charAt(k)));
+            }
+
+            int nextIndex = Math.min(codeFields.length - 1, text.length() - 1);
+            final TextField toFocus = codeFields[nextIndex];
+            Platform.runLater(() -> {
+                toFocus.requestFocus();
+                toFocus.positionCaret(toFocus.getText().length());
+            });
+        } else {
+
+            int writeIndex = startIndex;
+            for (int j = 0; j < text.length() && writeIndex < codeFields.length; j++, writeIndex++) {
+                codeFields[writeIndex].setText(String.valueOf(text.charAt(j)));
+            }
+
+            int focusIndex = Math.min(writeIndex, codeFields.length - 1);
+            final TextField toFocus = codeFields[focusIndex];
+            Platform.runLater(() -> {
+                toFocus.requestFocus();
+                toFocus.positionCaret(toFocus.getText().length());
+            });
+        }
+    }
+
+    private void sendEmail(){
+
+        try {
+
+            Map<String, String> placeholders = Map.of(
+                    "title", "Verifica tu identidad",
+                    "header", "¿Perdiste el acceso a tu cuenta?",
+                    "code",code,
+                    "user", UserData.getNickname() == null ? ValidateOutputs.getUserFirstName() : UserData.getNickname(),
+                    "message", "Recientemente has creado una cuenta en Danvlec, necesitamos que verifiques que eres tú. Ingresa este código en tu aplicación móvil o de escritorio.\nEn caso de que no hayas creado una cuenta con nosotros, puedes hacer caso omiso a este correo."
+            );
+
+            String gmailUser = System.getenv("DanvlecEmail");
+            String appPassword = System.getenv("DanvlecEmailPassword");
+
+            SendEmail mailer = new SendEmail(gmailUser, appPassword);
+
+            mailer.sendTemplateEmail(
+                    UserData.getEmail(),
+                    "CÓDIGO DE VERIFICACIÓN | DANVLEC",
+                    FileConstants.verificateEmailTemplate,
+                    placeholders
+            );
+
+            MessageBuilder.addToastNotification(TFLToast, "¡Código enviado con éxito a " + ValidateOutputs.getEmailHide() + "!", toastNotificationFontColor);
+
+
+        } catch (MessagingException | IOException e) {
+            e.printStackTrace();
+            MessageBuilder.addToastNotification(TFLToast, "¡Tuvimos un problema al reenviar tu correo!", toastNotificationFontColor);
+
+        }
+
+        StyleBuilder.showAndHideToastNotification(SPToast, false);
 
     }
 

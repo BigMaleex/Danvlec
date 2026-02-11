@@ -13,7 +13,7 @@ public class Complements {
     protected static final String errorTitle = "¡Nos hemos encontrado con un problema!";
     protected static final String okTitle = "¡Todo se encuentra bien!";
 
-    protected static Text addStringFromTextList(String text, String size, String color){
+    public static Text addStringFromTextList(String text, String size, String color){
 
         Text t = new Text(text);
 

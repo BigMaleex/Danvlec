@@ -296,6 +296,13 @@ public class Colors {
             Map.entry("switch-button-on-dm", "#4DC0D4FF"), //COLOR DEL FONDO DEL SWITCH BUTTON CUANDO ESTÁ ACTIVO
             Map.entry("switch-button-thumb-dm", "#2E3442FF"), //COLOR DEL FONDO DEL THUMB DEL SWITCH BUTTON CUANDO NO ESTÁ ACTIVO
 
+            //Email Found
+            Map.entry("email-found-content-lm", "#168D47FF"), //COLOR DEL LABEL DE CONTENIDO CUANDO SE ENVÍA EL CÓDIGO DE RECUPERACIÓN
+            Map.entry("email-found-header-lm", "#1B904BFF"), //COLOR DEL LABEL DE BRILLO CUANDO SE ENVÍA EL CÓDIGO DE RECUPERACIÓN
+
+            Map.entry("email-found-content-dm", "#569F77FF"), //COLOR DEL LABEL DE CONTENIDO CUANDO SE ENVÍA EL CÓDIGO DE RECUPERACIÓN
+            Map.entry("email-found-header-dm", "#77E8A3FF"), //COLOR DEL LABEL DE BRILLO CUANDO SE ENVÍA EL CÓDIGO DE RECUPERACIÓN
+
             //Error
             Map.entry("error", "#1818FFFF") //COLOR QUE APARECERÁ CUANDO NO SE ENCUENTRE UNA VARIABLE
 

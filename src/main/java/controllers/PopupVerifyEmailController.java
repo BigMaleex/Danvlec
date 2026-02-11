@@ -205,7 +205,7 @@ public class PopupVerifyEmailController extends ConfigureInitializeStyles {
 
         changeTheme();
 
-        code = ValidateOutputs.generateCode10Chars();
+        code = ValidateOutputs.generateCodeWithDynamicSize(10);
         sendEmail();
 
     }
@@ -482,7 +482,7 @@ public class PopupVerifyEmailController extends ConfigureInitializeStyles {
 
         final int[] secondsRemaining = {60};
 
-        code = ValidateOutputs.generateCode10Chars();
+        code = ValidateOutputs.generateCodeWithDynamicSize(10);
         sendEmail();
 
         LBLResendEmail.setText("Puedes reenviar un nuevo código dentro de " + secondsRemaining[0] + "s");

@@ -222,17 +222,17 @@ public class ValidateOutputs {
     }
 
     /**
-     * Genera un código de 10 carácteres aleatorios
+     * Genera un código de carácteres aleatorios
      * @return Código generado
      */
 
-    public static String generateCode10Chars(){
+    public static String generateCodeWithDynamicSize(int size){
 
         StringBuilder code = new StringBuilder();
 
         Random rand = new Random();
 
-        for(int i = 0; i <10 ; i++){
+        for(int i = 0; i <size ; i++){
 
             code.append(chars[rand.nextInt(chars.length)]);
 

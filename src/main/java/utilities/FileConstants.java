@@ -102,10 +102,10 @@ public class FileConstants {
     public static final String copyPopupCardButtonLm = "copy-popup-card-button-lm.png";
     public static final String copyPopupCardButtonHoverLm = "copy-popup-card-button-hover-lm.png";
     public static final String copyPopupCardButtonHoverDm = "copy-popup-card-button-hover-dm.png";
-    public static final String filetypePdfPrincipalLm = "filetype-pdf-principal-lm.png";
-    public static final String filetypePdfPrincipalDm = "filetype-pdf-principal-dm.png";
-    public static final String filetypePdfPrincipalHoverLm = "filetype-pdf-principal-hover-lm.png";
-    public static final String filetypePdfPrincipalHoverDm = "filetype-pdf-principal-hover-dm.png";
+    public static final String filetypePdfPrimaryLm = "filetype-pdf-primary-lm.png";
+    public static final String filetypePdfPrimaryDm = "filetype-pdf-primary-dm.png";
+    public static final String filetypePdfPrimaryHoverLm = "filetype-pdf-primary-hover-lm.png";
+    public static final String filetypePdfPrimaryHoverDm = "filetype-pdf-primary-hover-dm.png";
     public static final String arrowClockwisePopupThirdLmdmnormalhover = "arrow-clockwise-popup-third-lmdmnormalhover.png";
     public static final String checkCircleFillPopupToggleButtonActiveLM = "check-circle-fill-popup-toggle-button-active-lm.png";
     public static final String checkCircleFillPopupToggleButtonActiveDM = "check-circle-fill-popup-toggle-button-active-dm.png";
@@ -127,6 +127,14 @@ public class FileConstants {
     public static final String envelopeAtPrimaryLm = "envelope-at-primary-lm.png";
     public static final String envelopeAtPrimaryHoverDm = "envelope-at-primary-hover-dm.png";
     public static final String envelopeAtPrimaryHoverLm = "envelope-at-primary-hover-lm.png";
+    public static final String shieldPrimaryDm = "shield-primary-dm.png";
+    public static final String shieldPrimaryLm = "shield-primary-Lm.png";
+    public static final String shieldPrimaryHoverDm = "shield-primary-hover-dm.png";
+    public static final String shieldPrimaryHoverLm = "shield-primary-hover-Lm.png";
+    public static final String keyPrimaryLm = "key-primary-lm.png";
+    public static final String keyPrimaryDm = "key-primary-dm.png";
+    public static final String keyPrimaryHoverLm = "key-primary-hover-lm.png";
+    public static final String keyPrimaryHoverDm = "key-primary-hover-dm.png";
 
     //Fuente
     public static final String oswaldSemiBold = "Oswald-SemiBold.ttf";
