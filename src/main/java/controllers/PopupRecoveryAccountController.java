@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -280,6 +281,8 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
         }
 
+        HBXToast.setMouseTransparent(true);
+
         //Ligar Managed con visibility
         SPCode.managedProperty().bind(SPCode.visibleProperty());
         SPEmail.managedProperty().bind(SPEmail.visibleProperty());
@@ -294,8 +297,14 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
         TXTEmailOfTheCodeMethod.managedProperty().bind(TXTEmailOfTheCodeMethod.visibleProperty());
 
         //Agregar listeners
-        TXTEmailOfTheEmailMethod.textProperty().addListener((obs, oldVal, newVal) ->{validateConditions();});
-        TXTEmailOfTheCodeMethod.textProperty().addListener((obs, oldVal, newVal) ->{validateConditions();});
+        javafx.beans.value.ChangeListener<String> validatorListener = (obs, oldVal, newVal) -> {validateConditions();};
+        TextInputControl [] listenerNodes = {TXTChangePassword, TXT24Chars, TXTConfirmChangePassword, TXTEmailOfTheEmailMethod, TXTEmailOfTheCodeMethod, PSFChangePassword, PSFConfirmChangePassword};
+
+        for(TextInputControl node : listenerNodes){
+
+            node.textProperty().addListener(validatorListener);
+
+        }
 
         //Ocultar elementos
         TXTConfirmChangePassword.setVisible(false);
@@ -316,7 +325,11 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
         changeTheme();
 
+        configureCodeFields();
+
         validateConditions();
+
+        changeStylesToSecondaryButton();
 
     }
 
@@ -459,6 +472,16 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                         case EmailMode -> {
 
+                            try{
+
+                                System.out.println(ValidateOutputs.encrypt("vuat gevv eype hvzu"));
+
+                            }catch(Exception e){
+
+                                e.printStackTrace();
+
+                            }
+
                             if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(1, true, TXTEmailOfTheEmailMethod.getText())){
 
                                 currentStep = Step.Second;
@@ -583,21 +606,51 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     @FXML
     void BTNSecondaryOnMouseClicked(MouseEvent event) {
 
+        if(theUserCanForwardTheEmail){
 
+            theUserForwardedTheEmail();
+
+        }
 
     }
 
     @FXML
     void BTNSecondaryOnMouseEntered(MouseEvent event) {
 
+        if(theUserCanForwardTheEmail){
 
+             StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                    secondaryButtonBackground, secondaryButtonBackgroundHover,
+                    secondaryButtonBorder, secondaryButtonBorderHover,
+                    secondaryButtonFontColor, secondaryButtonFontColorHover,
+                    BTNSecondary,
+                    IMGButtonSecondary, IMGButtonSecondaryHover,
+                    LBLButtonSecondary
+
+            );
+
+        }
 
     }
 
     @FXML
     void BTNSecondaryOnMouseExited(MouseEvent event) {
 
+        if(theUserCanForwardTheEmail){
 
+            StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                    secondaryButtonBackgroundHover, secondaryButtonBackground,
+                    secondaryButtonBorderHover, secondaryButtonBorder,
+                    secondaryButtonFontColorHover, secondaryButtonFontColor,
+                    BTNSecondary,
+                    IMGButtonSecondaryHover, IMGButtonSecondary,
+                    LBLButtonSecondary
+
+            );
+
+        }
 
     }
 
@@ -728,6 +781,8 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
     private void changeStep(){
 
+        validateConditions();
+
         BTNSecondary.setVisible(false);
 
         switch(currentStep){
@@ -791,7 +846,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                         LBLEmailMethodDescription.setText("Código de seguridad");
 
-                        LBLButtonPrimary.setText("Verificar código de autenticación");
+                        LBLButtonPrimary.setText("Verificar código");
 
                         buildTFL();
 
@@ -924,11 +979,9 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
         theUserCanForwardTheEmail = false;
 
-        IMGButtonSecondary.setOpacity(0);
-        IMGButtonSecondaryHover.setOpacity(0);
-
         BTNSecondary.setDisable(true);
 
+        changeStylesToSecondaryButton();
 
         final int[] secondsRemaining = {60};
 
@@ -949,11 +1002,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
             } else {
                 theUserCanForwardTheEmail = true;
 
-                IMGButtonSecondary.setOpacity(1);
-                IMGButtonSecondaryHover.setOpacity(0);
-
-                LBLButtonSecondary.setText("Reenviar código");
-
+                 changeStylesToSecondaryButton();
 
                 BTNSecondary.setDisable(false);
 
@@ -1122,7 +1171,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
                     "header", "¿Perdiste el acceso a tu cuenta?",
                     "code",code,
                     "user", UserData.getNickname() == null ? ValidateOutputs.getUserFirstName() : UserData.getNickname(),
-                    "message", "Recientemente has creado una cuenta en Danvlec, necesitamos que verifiques que eres tú. Ingresa este código en tu aplicación móvil o de escritorio.\nEn caso de que no hayas creado una cuenta con nosotros, puedes hacer caso omiso a este correo."
+                    "message", "Recientemente has solicitado la recuperación del acceso a tu cuenta, necesitamos que verifiques que eres tú. Ingresa este código en tu aplicación móvil o de escritorio.\nEn caso de que no hayas sido tú, puedes hacer caso omiso a este correo."
             );
 
             String gmailUser = System.getenv("DanvlecEmail");
@@ -1147,6 +1196,35 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
         }
 
         StyleBuilder.showAndHideToastNotification(SPToast, false);
+
+    }
+
+    private void changeStylesToSecondaryButton(){
+
+        setImages(FileConstants.sendSecondaryDm, FileConstants.sendSecondaryLm, isDarkMode, IMGButtonSecondary);
+        setImages(FileConstants.sendSecondaryHoverDm, FileConstants.sendSecondaryHoverLm, isDarkMode, IMGButtonSecondaryHover);
+
+        if(theUserCanForwardTheEmail){
+
+            IMGButtonSecondary.setOpacity(1);
+            IMGButtonSecondaryHover.setOpacity(0);
+
+            BTNSecondary.setOpacity(1);
+
+            applyStylesToButtonsWithLabel(secondaryButtonBackground, secondaryButtonBorder, secondaryButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNSecondary}, new Label [] {LBLButtonSecondary});
+
+            LBLButtonSecondary.setText("Reenviar código");
+
+        }else{
+
+            IMGButtonSecondary.setOpacity(0);
+            IMGButtonSecondaryHover.setOpacity(1);
+
+            BTNSecondary.setOpacity(0.66);
+
+            applyStylesToButtonsWithLabel(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNSecondary}, new Label [] {LBLButtonSecondary});
+
+        }
 
     }
 

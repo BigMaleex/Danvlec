@@ -1,6 +1,7 @@
 package connections;
 
 import controllers.PopupBDErrController;
+import utilities.EnvironmentVariables;
 import utilities.FileConstants;
 import utilities.ScreenManager;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ public class DataManager {
 
     private static final Logger logger = LoggerFactory.getLogger(DataManager.class);
 
-    private static final String user = System.getenv("DanvlecBDUser");
+    private static final String user = System.getenv(EnvironmentVariables.XKmZvhCzkALXSwpwfznoe6PAcs6Njz2CzB5z9qzob7DiLyACvzAbii5okw4ANHkr);
     private static final String password = System.getenv("DanvlecBDPassword");
     private static String port;
     private static String ip;
