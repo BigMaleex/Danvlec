@@ -22,7 +22,7 @@ public class DataManager {
     private static final Logger logger = LoggerFactory.getLogger(DataManager.class);
 
     private static final String user = System.getenv(EnvironmentVariables.XKmZvhCzkALXSwpwfznoe6PAcs6Njz2CzB5z9qzob7DiLyACvzAbii5okw4ANHkr);
-    private static final String password = System.getenv("DanvlecBDPassword");
+    private static final String password = System.getenv(EnvironmentVariables.rtsRvpcFquN3VGDoakCxG6pTxoZEWVQoiwdz5JdoG885UGTUaUSqBSMxPK5pRwGs);
     private static String port;
     private static String ip;
     private static String driver;

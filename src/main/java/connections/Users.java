@@ -148,13 +148,16 @@ public class Users {
                     UserData ud = new UserData(
 
                             rs.getString("UserID"),
-                            rs.getString("Name"),rs.getString("Lastname"),
-                            rs.getString("Nickname"),rs.getString("Password"),
+                            rs.getString("Name"),
+                            rs.getString("Lastname"),
+                            rs.getString("Nickname"),
+                            rs.getString("Password"),
                             rs.getDate("Birthday").toLocalDate(),
                             rs.getTimestamp("FirstConnection").toLocalDateTime(),
                             rs.getTimestamp("LastConnection").toLocalDateTime(),
                             rs.getInt("Sex") == 1 ? UserData.Sex.MAN : UserData.Sex.WOMAN,
-                            rs.getString("Email"), rs.getString("Motivation"),
+                            rs.getString("Email"),
+                            rs.getString("Motivation"),
                             rs.getBoolean("EmailVerified"), true
 
                     );
@@ -183,7 +186,7 @@ public class Users {
 
     public boolean registerUser(){
 
-        String query = "INSERT INTO danvlec." + table + " (UserID, Name, Lastname, Nickname, Password, Birthday, FirstConnection, LastConnection, Sex, Email, FirstEmail, LatestPassword) VALUES(?,?,?,?,?,?,?,?,?,?, ?, ?)" ;
+        String query = "INSERT INTO danvlec." + table + " (UserID, Name, Lastname, Nickname, Password, Birthday, Sex, Email, FirstEmail, LatestEmail,LatestPassword) VALUES(?,?,?,?,?,?,?,?,?,?,?)" ;
 
         try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
 
@@ -193,12 +196,11 @@ public class Users {
             ps.setString(4, UserData.getNickname());
             ps.setString(5, UserData.getPassword());
             ps.setDate(6, Date.valueOf(UserData.getBirthday()));
-            ps.setTimestamp(7, Timestamp.valueOf(UserData.getFirstConnection()));
-            ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-            ps.setInt(9, UserData.getSex() == UserData.Sex.MAN ? 1 : 0);
-            ps.setString(10, UserData.getEmail());
-            ps.setString(11, ValidateOutputs.sha256Hex(UserData.getEmail()));
-            ps.setString(12, UserData.getPassword());
+            ps.setInt(7, UserData.getSex() == UserData.Sex.MAN ? 1 : 0);
+            ps.setString(8, UserData.getEmail());
+            ps.setString(9, ValidateOutputs.sha256Hex(UserData.getEmail()));
+            ps.setString(10, ValidateOutputs.sha256Hex(UserData.getEmail()));
+            ps.setString(11, UserData.getPassword());
 
             return ps.executeUpdate() == 1;
 
