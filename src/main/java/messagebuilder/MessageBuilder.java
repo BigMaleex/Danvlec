@@ -24,6 +24,41 @@ public class MessageBuilder {
     private static String headerColor;
     private static String contentColor;
 
+    public static void showErrorMessageFromPopupRecoveryAccountSecondStep(boolean emailMode) {
+
+        sm.openDynamicPopup(
+
+                FileConstants.PopupOneButtonFXML,
+                Complements.errorTitle,
+                alertController -> {
+
+                    PopupOneButtonController controller = (PopupOneButtonController) alertController;
+
+                    controller.initialize();
+                    isDarkMode = controller.getMode();
+
+                    changeColors();
+
+                    controller.setIcon(FileConstants.exclamationOctagonIconDm, FileConstants.exclamationOctagonIconLm);
+
+                    controller.setTextButton("Intentar nuevamente");
+
+                    controller.setTFLHeader(Complements.addStringFromTextList("¡Nos hemos encontrado con un problema!", Styles.px12, headerColor));
+
+                   List<Text> texts = new ArrayList<>();
+
+                   texts.add(Complements.addStringFromTextList("El código de ", Styles.px12, contentColor));
+                   texts.add(Complements.addStringFromTextList((emailMode ? "verificación" : "seguridad")+" ", Styles.px12, contentColor));
+                   texts.add(Complements.addStringFromTextList("Es inválido o ya caducó, intentalo nuevamente", Styles.px12, contentColor));
+
+                   controller.setTFLContent(texts);
+
+                }
+
+        );
+
+    }
+
     public static void showErrorMessageFromPopupRecoveryAccountFirstStep(){
 
         sm.openDynamicPopup(

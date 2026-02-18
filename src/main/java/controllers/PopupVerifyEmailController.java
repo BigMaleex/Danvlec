@@ -26,6 +26,7 @@ import stylebuilder.StyleBuilder;
 import user.UserData;
 import user.UserPreferences;
 import utilities.Colors;
+import utilities.EnvironmentVariables;
 import utilities.FileConstants;
 import utilities.Styles;
 
@@ -696,8 +697,19 @@ public class PopupVerifyEmailController extends ConfigureInitializeStyles {
                     "message", "Recientemente has creado una cuenta en Danvlec, necesitamos que verifiques que eres tú. Ingresa este código en tu aplicación móvil o de escritorio.\nEn caso de que no hayas creado una cuenta con nosotros, puedes hacer caso omiso a este correo."
             );
 
-            String gmailUser = System.getenv("DanvlecEmail");
-            String appPassword = System.getenv("DanvlecEmailPassword");
+            String gmailUser = "";
+            String appPassword = "";
+
+            try{
+
+                appPassword = ValidateOutputs.decrypt(System.getenv(EnvironmentVariables.aGC56SeknSka5AGVWtvbmR5A2BcYX7zaCtJgnjYKo5EDkjiK49SfufjxpNd88V9c));
+                gmailUser = ValidateOutputs.decrypt(System.getenv(EnvironmentVariables.d5XbHGPL9tbcf8L3sUuSUAxHhqKkJeTfqaTrSQ8bTFWSXmBSNyT9DmTmWVupbvsN));
+
+            }catch(Exception e){
+
+                e.printStackTrace();
+
+            }
 
             SendEmail mailer = new SendEmail(gmailUser, appPassword);
 

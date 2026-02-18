@@ -1,6 +1,8 @@
 package controllers;
 
+import connections.SecurityCodes;
 import connections.SendEmail;
+import connections.Users;
 import controls.SerialTextField;
 import jakarta.mail.MessagingException;
 import javafx.animation.KeyFrame;
@@ -29,6 +31,7 @@ import stylebuilder.StyleBuilder;
 import user.UserData;
 import user.UserPreferences;
 import utilities.Colors;
+import utilities.EnvironmentVariables;
 import utilities.FileConstants;
 import utilities.Styles;
 
@@ -61,7 +64,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     private boolean isDarkMode = false, passwordVisible = false, confirmPasswordVisible = false, allConditionsMet = false, theUserCanForwardTheEmail=true;
     private Step currentStep;
     private Mode currentMode;
-    private static String code;
+    private static String code, securityCode;
 
     //Variables de color
     //Botón primario
@@ -331,6 +334,9 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
         changeStylesToSecondaryButton();
 
+        code = ValidateOutputs.generateCodeWithDynamicSize(6);
+
+
     }
 
     private void changeTheme(){
@@ -472,16 +478,6 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                         case EmailMode -> {
 
-                            try{
-
-                                System.out.println(ValidateOutputs.encrypt("vuat gevv eype hvzu"));
-
-                            }catch(Exception e){
-
-                                e.printStackTrace();
-
-                            }
-
                             if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(1, true, TXTEmailOfTheEmailMethod.getText())){
 
                                 currentStep = Step.Second;
@@ -518,17 +514,50 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                 case Second -> {
 
+                    Users users = new Users();
+
+                    users.getUserIDWithEmail();
+
                      switch(currentMode){
 
-                        case EmailMode -> {
+                         case EmailMode -> {
+
+                            if(code.equalsIgnoreCase(TXTCode1EmailMethod.getText()+TXTCode2EmailMethod.getText()+TXTCode3EmailMethod.getText()+TXTCode4EmailMethod.getText()+TXTCode5EmailMethod.getText()+TXTCode6EmailMethod.getText())){
+
+                                //El código es el mismo
 
 
+                            }else{
+
+                                //El código es distinto
+                                MessageBuilder.showErrorMessageFromPopupRecoveryAccountSecondStep(true);
+
+                            }
 
                         }
 
                         case CodeMode -> {
 
+                            SecurityCodes securityCodes =  new SecurityCodes();
 
+                            try{
+
+                                if(securityCodes.getValidCode(ValidateOutputs.encrypt(TXT24Chars.getText()))){
+
+                                    //El código es el mismo y es válido
+
+                                }else{
+
+                                    //El código es distinto
+                                    MessageBuilder.showErrorMessageFromPopupRecoveryAccountSecondStep(false);
+
+                                }
+
+                            }catch(Exception e){
+
+                                e.printStackTrace();
+
+                            }
 
                         }
 
@@ -1174,8 +1203,19 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
                     "message", "Recientemente has solicitado la recuperación del acceso a tu cuenta, necesitamos que verifiques que eres tú. Ingresa este código en tu aplicación móvil o de escritorio.\nEn caso de que no hayas sido tú, puedes hacer caso omiso a este correo."
             );
 
-            String gmailUser = System.getenv("DanvlecEmail");
-            String appPassword = System.getenv("DanvlecEmailPassword");
+            String gmailUser = "";
+            String appPassword = "";
+
+            try{
+
+                appPassword = ValidateOutputs.decrypt(System.getenv(EnvironmentVariables.aGC56SeknSka5AGVWtvbmR5A2BcYX7zaCtJgnjYKo5EDkjiK49SfufjxpNd88V9c));
+                gmailUser = ValidateOutputs.decrypt(System.getenv(EnvironmentVariables.d5XbHGPL9tbcf8L3sUuSUAxHhqKkJeTfqaTrSQ8bTFWSXmBSNyT9DmTmWVupbvsN));
+
+            }catch(Exception e){
+
+                e.printStackTrace();
+
+            }
 
             SendEmail mailer = new SendEmail(gmailUser, appPassword);
 

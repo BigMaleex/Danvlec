@@ -15,6 +15,33 @@ public class SecurityCodes {
     private final String table = "securitycodes";
     private final Logger logger = LoggerFactory.getLogger(SecurityCodes.class);
 
+    public boolean getValidCode(String code){
+
+        String query = "SELECT 1 FROM danvlec."+table+" WHERE UserID=? AND Code=? AND TheCodeWasUsed=0";
+        boolean isValid = false;
+
+        try(Connection conn = DataManager.validateConnection();PreparedStatement ps = conn.prepareStatement(query)){
+
+            ps.setString(1, UserData.getUserID());
+            ps.setString(2, code);
+
+            try(ResultSet rs = ps.executeQuery()){
+
+                    isValid = rs.next();
+
+            }
+
+        }catch(SQLException e){
+
+            logger.error(e.toString());
+            DataManager.showError(e.toString());
+
+        }
+
+        return isValid;
+
+    }
+
     public boolean deleteCodes(){
 
         String query = "DELETE FROM danvlec." + table + " Where UserID=?";
