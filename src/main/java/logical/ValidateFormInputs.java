@@ -1,5 +1,6 @@
 package logical;
 
+import connections.SecurityCodes;
 import connections.Users;
 import messagebuilder.MessageBuilder;
 import stylebuilder.StyleBuilder;
@@ -11,25 +12,69 @@ import java.time.format.DateTimeFormatter;
 
 public class ValidateFormInputs {
 
-    public static boolean validateInputsFromPopupRecoveryAccount(int step, boolean emailMode, String input){
+    public static boolean validateInputsFromPopupRecoveryAccount(int step, boolean emailMode, String [] inputs){
 
         boolean result = false;
 
         Users users = new Users();
+        SecurityCodes securityCodes = new SecurityCodes();
 
         switch(step){
 
             case 1 ->{
 
-                UserData.setEmail(StyleBuilder.clearStringFormat(input));
+                UserData.setEmail(StyleBuilder.clearStringFormat(inputs[0]));
 
-                result = !users.isUniqueEmail(StyleBuilder.clearStringFormat(input));
+                result = !users.isUniqueEmail(StyleBuilder.clearStringFormat(inputs[0]));
 
             }
 
-            case 2 ->{}
+            case 2 ->{
 
-            case 3->{}
+                if(emailMode){
+
+                    //Modo con el correo electrónico
+                    result = inputs[0].equalsIgnoreCase(inputs[1]);
+
+                }else{
+
+                    //Modo con el código de seguridad
+                    try{
+
+                        result = securityCodes.getValidCode(ValidateOutputs.encrypt(inputs[0]));
+
+                    }catch(Exception e){
+
+                        e.printStackTrace();
+
+                    }
+
+                }
+
+            }
+
+            case 3->{
+
+                result =  inputs[0].equals(inputs[1]);
+
+                users.getNameAndNickname();
+                users.changePassword(ValidateOutputs.sha256Hex(inputs[0]));
+
+                if(!emailMode){
+
+                    try{
+
+                        securityCodes.toggleCode(ValidateOutputs.encrypt(inputs[2]));
+
+                    }catch(Exception e){
+
+                        e.printStackTrace();
+
+                    }
+
+                }
+
+            }
 
             default ->{
 

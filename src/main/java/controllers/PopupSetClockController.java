@@ -1700,7 +1700,7 @@ public class PopupSetClockController extends ConfigureInitializeStyles{
         if(TXTDate.getLocalDate() != null && TXTHour.getLocalTime() != null){
 
             //La fecha está completa
-            LBLBuildDateAndHour.setText("La fecha ingresada es el " + ValidateOutputs.buildDateAndHour(TXTDate.getLocalDate(), TXTHour.getLocalTime(), false, true));
+            LBLBuildDateAndHour.setText("La fecha ingresada es el " + ValidateOutputs.buildDateAndHour(TXTDate.getLocalDate(), TXTHour.getLocalTime(), true, true));
 
         }else{
 

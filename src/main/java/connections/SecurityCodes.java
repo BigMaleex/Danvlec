@@ -15,6 +15,31 @@ public class SecurityCodes {
     private final String table = "securitycodes";
     private final Logger logger = LoggerFactory.getLogger(SecurityCodes.class);
 
+    public void toggleCode(String code){
+
+        String query = "UPDATE danvlec." + table + " SET TheCodeWasUsed=1 WHERE UserID=? AND Code=?";
+
+        try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
+            System.out.println("UserID: " + UserData.getUserID());
+            System.out.println("Code: " + code);;
+
+            ps.setString(1, UserData.getUserID());
+            ps.setString(2, code);
+
+            int areUpdated = ps.executeUpdate();
+
+            System.out.println(areUpdated >0 ? "Se pudo actualizar la validez del código" : "No se actualizo la validez del código");
+
+        }catch(SQLException e){
+
+            logger.error(e.toString());
+            DataManager.showError(e.toString());
+
+        }
+
+    }
+
     public boolean getValidCode(String code){
 
         String query = "SELECT 1 FROM danvlec."+table+" WHERE UserID=? AND Code=? AND TheCodeWasUsed=0";

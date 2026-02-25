@@ -19,6 +19,70 @@ public class Users {
     private final String table = "users";
     private final Logger logger = LoggerFactory.getLogger(Users.class);
 
+    public void getNameAndNickname(){
+
+        String query = "SELECT UserID, Name, Nickname FROM danvlec." + table + " WHERE Email=?";
+
+        try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
+            ps.setString(1, UserData.getEmail());
+
+            try(ResultSet rs = ps.executeQuery()){
+
+                if(rs.next()){
+
+                    System.out.println("Se pudo obtener la información");
+
+                    UserData.setName(rs.getString("Name"));
+                    UserData.setNickname(rs.getString("Nickname"));
+                    UserData.setUserID(rs.getString("UserID"));
+                    System.out.println(rs.getString("UserID"));
+
+                }
+
+            }
+
+        }catch(SQLException e){
+
+            logger.error(e.toString());
+            DataManager.showError(e.toString());
+
+        }
+
+    }
+
+    public boolean changePassword(String input){
+
+        String query = "UPDATE danvlec." + table + " SET Password=? WHERE UserID=?";
+
+        try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
+            ps.setString(1, input);
+            ps.setString(2, UserData.getUserID());
+
+            int isValid = ps.executeUpdate();
+
+            if(isValid > 0){
+
+                return true;
+
+            }else{
+
+                return false;
+
+            }
+
+        }catch(SQLException e){
+
+            logger.error(e.toString());
+            DataManager.showError(e.toString());
+
+        }
+
+        return false;
+
+    }
+
     public void getUserIDWithEmail(){
 
         String query = "SELECT * FROM danvlec."+table+" WHERE Email=?";

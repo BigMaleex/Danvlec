@@ -24,6 +24,72 @@ public class MessageBuilder {
     private static String headerColor;
     private static String contentColor;
 
+        public static void showConfirmMessageFromPopupRecoveryAccountThirdStep(){
+
+        sm.openDynamicPopup(
+
+                FileConstants.PopupOneButtonFXML,
+                Complements.errorTitle,
+                alertController -> {
+
+                    PopupOneButtonController controller = (PopupOneButtonController) alertController;
+
+                    controller.initialize();
+                    isDarkMode = controller.getMode();
+
+                    changeColors();
+
+                    controller.setIcon(FileConstants.databaseFillCheckIconDm, FileConstants.databaseFillCheckIconLm);
+
+                    controller.setTextButton("Intentar nuevamente");
+
+                    controller.setTFLHeader(Complements.addStringFromTextList("¡Todo ha ido de maravilla!", Styles.px12, headerColor));
+
+                   List<Text> texts = new ArrayList<>();
+
+                   texts.add(Complements.addStringFromTextList("Hemos establecido tu nueva contraseña, puedes intentar acceder a tu cuenta con la nueva contraseña de ahora en adelante", Styles.px12, contentColor));
+
+                   controller.setTFLContent(texts);
+
+                }
+
+        );
+
+    }
+
+    public static void showErrorMessageFromPopupRecoveryAccountThirdStep(){
+
+        sm.openDynamicPopup(
+
+                FileConstants.PopupOneButtonFXML,
+                Complements.errorTitle,
+                alertController -> {
+
+                    PopupOneButtonController controller = (PopupOneButtonController) alertController;
+
+                    controller.initialize();
+                    isDarkMode = controller.getMode();
+
+                    changeColors();
+
+                    controller.setIcon(FileConstants.exclamationOctagonIconDm, FileConstants.exclamationOctagonIconLm);
+
+                    controller.setTextButton("Intentar nuevamente");
+
+                    controller.setTFLHeader(Complements.addStringFromTextList("¡Nos hemos encontrado con un problema!", Styles.px12, headerColor));
+
+                   List<Text> texts = new ArrayList<>();
+
+                   texts.add(Complements.addStringFromTextList("No hemos podido establecer tu nueva contraseña debido a que las contraseñas que ingresaste no coinciden, intentalo nuevamente. ", Styles.px12, contentColor));
+
+                   controller.setTFLContent(texts);
+
+                }
+
+        );
+
+    }
+
     public static void showErrorMessageFromPopupRecoveryAccountSecondStep(boolean emailMode) {
 
         sm.openDynamicPopup(

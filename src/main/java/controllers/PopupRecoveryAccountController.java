@@ -64,7 +64,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     private boolean isDarkMode = false, passwordVisible = false, confirmPasswordVisible = false, allConditionsMet = false, theUserCanForwardTheEmail=true;
     private Step currentStep;
     private Mode currentMode;
-    private static String code, securityCode;
+    private static String code;
 
     //Variables de color
     //Botón primario
@@ -468,45 +468,22 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     @FXML
     void BTNPrimaryOnMouseClicked(MouseEvent event) {
 
-        if(allConditionsMet){
+        if(allConditionsMet) {
 
-            switch(currentStep){
+            switch(currentStep) {
 
-                case First -> {
+                case First ->{
 
-                    switch(currentMode){
+                    if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(1, currentMode == Mode.EmailMode, new String [] {currentMode == Mode.EmailMode ? StyleBuilder.clearStringFormat(TXTEmailOfTheEmailMethod.getText()) : StyleBuilder.clearStringFormat(TXTEmailOfTheCodeMethod.getText())})){
 
-                        case EmailMode -> {
+                        //El correo electrónico si existe
+                        currentStep = Step.Second;
+                        changeStep();
 
-                            if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(1, true, TXTEmailOfTheEmailMethod.getText())){
+                    }else{
 
-                                currentStep = Step.Second;
-                                changeStep();
-
-                            }else{
-
-                                //Mostrar mensaje de que no se encontró la cuenta
-                                MessageBuilder.showErrorMessageFromPopupRecoveryAccountFirstStep();
-
-                            }
-
-                        }
-
-                        case CodeMode -> {
-
-                            if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(1, true, TXTEmailOfTheCodeMethod.getText())){
-
-                                currentStep = Step.Second;
-                                changeStep();
-
-                            }else{
-
-                                //Mostrar mensaje de que no se encontró la cuenta
-                                MessageBuilder.showErrorMessageFromPopupRecoveryAccountFirstStep();
-
-                            }
-
-                        }
+                        //El correo electrónico no existe
+                        MessageBuilder.showErrorMessageFromPopupRecoveryAccountFirstStep();
 
                     }
 
@@ -514,52 +491,15 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                 case Second -> {
 
-                    Users users = new Users();
+                    if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(2, currentMode == Mode.EmailMode, currentMode == Mode.EmailMode ? new String [] {(TXTCode1EmailMethod.getText() + TXTCode2EmailMethod.getText() + TXTCode3EmailMethod.getText() + TXTCode4EmailMethod.getText() + TXTCode5EmailMethod.getText() + TXTCode6EmailMethod.getText()), code} : new String [] {TXT24Chars.getText()} )){
 
-                    users.getUserIDWithEmail();
+                        //El código es igual
+                        currentStep = Step.Third;
+                        changeStep();
 
-                     switch(currentMode){
+                    }else{
 
-                         case EmailMode -> {
-
-                            if(code.equalsIgnoreCase(TXTCode1EmailMethod.getText()+TXTCode2EmailMethod.getText()+TXTCode3EmailMethod.getText()+TXTCode4EmailMethod.getText()+TXTCode5EmailMethod.getText()+TXTCode6EmailMethod.getText())){
-
-                                //El código es el mismo
-
-
-                            }else{
-
-                                //El código es distinto
-                                MessageBuilder.showErrorMessageFromPopupRecoveryAccountSecondStep(true);
-
-                            }
-
-                        }
-
-                        case CodeMode -> {
-
-                            SecurityCodes securityCodes =  new SecurityCodes();
-
-                            try{
-
-                                if(securityCodes.getValidCode(ValidateOutputs.encrypt(TXT24Chars.getText()))){
-
-                                    //El código es el mismo y es válido
-
-                                }else{
-
-                                    //El código es distinto
-                                    MessageBuilder.showErrorMessageFromPopupRecoveryAccountSecondStep(false);
-
-                                }
-
-                            }catch(Exception e){
-
-                                e.printStackTrace();
-
-                            }
-
-                        }
+                        MessageBuilder.showErrorMessageFromPopupRecoveryAccountSecondStep(currentMode == Mode.EmailMode);
 
                     }
 
@@ -567,24 +507,23 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                 case Third -> {
 
-                     switch(currentMode){
+                    if(ValidateFormInputs.validateInputsFromPopupRecoveryAccount(3, currentMode == Mode.EmailMode, new String[] {passwordVisible ? TXTChangePassword.getText() : PSFChangePassword.getText(), confirmPasswordVisible ? TXTConfirmChangePassword.getText() : PSFConfirmChangePassword.getText(), TXT24Chars.getText()})){
 
-                        case EmailMode -> {
+                        //Las contraseñas coinciden
 
+                        UserData.logout();
 
+                        MessageBuilder.showConfirmMessageFromPopupRecoveryAccountThirdStep();
 
-                        }
+                        BTNCloseOnMouseClicked(event);
 
-                        case CodeMode -> {
+                    }else{
 
-
-
-                        }
+                        MessageBuilder.showErrorMessageFromPopupRecoveryAccountThirdStep();
 
                     }
 
                 }
-
 
             }
 
@@ -859,6 +798,10 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
             case Second -> {
 
+                Users users = new Users();
+
+                users.getNameAndNickname();
+
                 switch(currentMode){
 
                     case EmailMode -> {
@@ -881,6 +824,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
                         SPEmailFound.setVisible(true);
 
+                        sendEmail();
                     }
 
                     case CodeMode -> {
@@ -1192,6 +1136,11 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
     }
 
     private void sendEmail(){
+
+        System.out.println("code = " + code);
+        System.out.println("nickname = " + UserData.getNickname());
+        System.out.println("firstname = " + ValidateOutputs.getUserFirstName());
+        System.out.println("email = " + UserData.getEmail());
 
         try {
 
