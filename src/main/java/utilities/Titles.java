@@ -7,5 +7,6 @@ public class Titles {
     public static final String SignUp = "Crea tu cuenta";
     public static final String Guest = "Modo invitado";
     public static final String Login = "Inicia sesión";
+    public static final String MainWindow = "Danvlec";
 
 }

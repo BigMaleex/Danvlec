@@ -707,7 +707,7 @@ public class LoginController extends ConfigureInitializeStyles {
         //Llevar al popup de recuperar cuenta
         sm.openDynamicPopup(
 
-                FileConstants.PopupRecoveryAccount,
+                FileConstants.PopupRecoveryAccountFXML,
                 "Recupera el acceso a tu cuenta",
                 control->{}
 

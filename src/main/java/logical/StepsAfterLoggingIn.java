@@ -3,10 +3,12 @@ package logical;
 import connections.Clock;
 import connections.SecurityCodes;
 import connections.Users;
+import controllers.MainWindowController;
 import controllers.PopupSecurityCodesController;
 import user.UserData;
 import utilities.FileConstants;
 import utilities.ScreenManager;
+import utilities.Titles;
 
 public class StepsAfterLoggingIn {
 
@@ -56,8 +58,25 @@ public class StepsAfterLoggingIn {
                     FileConstants.PopupSetClockFXML,
                     "Define tu objetivo",
                     alertController -> {},
-                    () -> System.out.println("Secuencia terminada") // Fin
+                    () -> {
+
+                        System.out.println("Secuencia terminada");
+                        loadAllData();
+
+                    }
             );
         }
+    }
+
+    private static void loadAllData(){
+
+
+
+        MainWindowController controller = (MainWindowController) sm.getController(FileConstants.MainWindow);
+
+        controller.initialize();
+
+        sm.setScreen(FileConstants.MainWindow, Titles.MainWindow);
+
     }
 }

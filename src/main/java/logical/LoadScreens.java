@@ -23,6 +23,7 @@ public class LoadScreens {
             {FileConstants.SignUp, FileConstants.SignUpFXML},
             {FileConstants.Guest, FileConstants.GuestFXML},
             {FileConstants.Login, FileConstants.LoginFXML},
+            {FileConstants.MainWindow, FileConstants.MainWindowFXLM},
 
     };
 
