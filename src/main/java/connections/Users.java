@@ -83,33 +83,6 @@ public class Users {
 
     }
 
-    public void getUserIDWithEmail(){
-
-        String query = "SELECT * FROM danvlec."+table+" WHERE Email=?";
-
-        try(Connection conn = DataManager.validateConnection();PreparedStatement ps = conn.prepareStatement(query)){
-
-            ps.setString(1, UserData.getEmail());
-
-            try(ResultSet rs = ps.executeQuery()){
-
-                if(rs.next()){
-
-                    UserData.setUserID(rs.getString("UserID"));
-
-                }
-
-            }
-
-        }catch(SQLException e){
-
-            logger.error(e.toString());
-            DataManager.showError(e.toString());
-
-        }
-
-    }
-
     public boolean theUserHaveVerifiedTheirEmail(){
 
         String query = "SELECT EmailVerified FROM danvlec." + table + " WHERE UserID=?";

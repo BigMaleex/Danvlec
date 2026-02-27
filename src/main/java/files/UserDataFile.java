@@ -86,7 +86,7 @@ public class UserDataFile {
                     if(us.loginWithUserID()){
 
                         //Se pudo acceder, envíar al FXML del inicio
-                        StepsAfterLoggingIn.stepsAfterLoggingInWithAccount();
+                        StepsAfterLoggingIn.stepsAfterLoggingIn();
 
                     }
 

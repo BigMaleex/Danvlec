@@ -53,7 +53,7 @@ public class PopupTwoButtonInputs {
 
         }
 
-        StepsAfterLoggingIn.stepsAfterLoggingInWithAccount();
+        StepsAfterLoggingIn.stepsAfterLoggingIn();
 
     }
 

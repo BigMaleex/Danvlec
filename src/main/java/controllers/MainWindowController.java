@@ -8,8 +8,85 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.TextFlow;
+import stylebuilder.StyleBuilder;
+import user.UserPreferences;
+import utilities.Colors;
+import utilities.Images;
+import utilities.ScreenManager;
 
 public class MainWindowController {
+
+    //Objetos
+    ScreenManager sm = ScreenManager.getInstance();
+
+    //Variables
+    private static boolean isDarkMode;
+
+    //variables de color
+    //Botón primario
+    private static String principalButtonBackground;
+    private static String principalButtonBorder;
+    private static String principalButtonFontColor;
+
+    private static String principalButtonBackgroundHover;
+    private static String principalButtonBorderHover;
+    private static String principalButtonFontColorHover;
+
+    //Botón secundario
+    private static String secondaryButtonBackground;
+    private static String secondaryButtonBorder;
+    private static String secondaryButtonFontColor;
+
+    private static String secondaryButtonBackgroundHover;
+    private static String secondaryButtonBorderHover;
+    private static String secondaryButtonFontColorHover;
+
+    //Barra de título
+    //Sin focus
+    private static String titleBarBackgroundWithoutFocus;
+    private static String titleBarBorderWithoutFocus;
+    private static String titleBarFontColorWithoutFocus;
+
+    //Con focus
+    private static String titleBarBackgroundWithFocus;
+    private static String titleBarBorderWithFocus;
+    private static String titleBarFontColorWithFocus;
+
+    //Botón principal de la barra de título
+    //Sin focus
+    private static String titleBarButtonBackgroundWithoutFocus;
+    private static String titleBarButtonBorderWithoutFocus;
+    private static String titleBarButtonFontColorWithoutFocus;
+
+    //Con focus
+    private static String titleBarButtonBackgroundWithFocus;
+    private static String titleBarButtonBorderWithFocus;
+    private static String titleBarButtonFontColorWithFocus;
+
+    //Con hover
+    private static String titleBarButtonBackgroundWithFocusHover;
+    private static String titleBarButtonBorderWithFocusHover;
+    private static String titleBarButtonFontColorWithFocusHover;
+
+    //Botón para cerrar de la barra de título
+    //Sin focus
+    private static String titleBarCloseButtonBackgroundWithoutFocus;
+    private static String titleBarCloseButtonBorderWithoutFocus;
+    private static String titleBarCloseButtonFontColorWithoutFocus;
+
+    //Con focus
+    private static String titleBarCloseButtonBackgroundWithFocus;
+    private static String titleBarCloseButtonBorderWithFocus;
+    private static String titleBarCloseButtonFontColorWithFocus;
+
+    //Con hover
+    private static String titleBarCloseButtonBackgroundWithFocusHover;
+    private static String titleBarCloseButtonBorderWithFocusHover;
+    private static String titleBarCloseButtonFontColorWithFocusHover;
+
+
+    @FXML
+    private AnchorPane APMain;
 
     @FXML
     private AnchorPane APTitleBar;
@@ -131,7 +208,85 @@ public class MainWindowController {
     @FXML
     public void initialize(){
 
-        
+        Images.clearImages();
+        isDarkMode = UserPreferences.getUserThemeMode();
+
+
+        changeTheme();
+
+    }
+
+    private void changeTheme(){
+
+        StyleBuilder.setAnchorPaneClass(APMain);
+
+        changeColors();
+
+
+    }
+
+    private void changeColors(){
+
+        //Botón primario
+        principalButtonBackground = Colors.getColor("principal-button-background", isDarkMode);
+        principalButtonBorder = Colors.getColor("principal-button-border", isDarkMode);
+        principalButtonFontColor = Colors.getColor("principal-button-font-color", isDarkMode);
+
+        principalButtonBackgroundHover = Colors.getColor("principal-button-background-hover", isDarkMode);
+        principalButtonBorderHover = Colors.getColor("principal-button-border-hover", isDarkMode);
+        principalButtonFontColorHover = Colors.getColor("principal-button-font-color-hover", isDarkMode);
+
+        //Botón secundario
+        secondaryButtonBackground = Colors.getColor("secondary-button-background", isDarkMode);
+        secondaryButtonBorder = Colors.getColor("secondary-button-border", isDarkMode);
+        secondaryButtonFontColor = Colors.getColor("secondary-button-font-color", isDarkMode);
+
+        secondaryButtonBackgroundHover = Colors.getColor("secondary-button-background-hover", isDarkMode);
+        secondaryButtonBorderHover = Colors.getColor("secondary-button-border-hover", isDarkMode);
+        secondaryButtonFontColorHover = Colors.getColor("secondary-button-font-color-hover", isDarkMode);
+
+        //Barra de título
+        //Sin focus
+        titleBarBackgroundWithoutFocus = Colors.getColor("title-bar-background-without-focus", isDarkMode);
+        titleBarBorderWithoutFocus = Colors.getColor("title-bar-border-without-focus", isDarkMode);
+        titleBarFontColorWithoutFocus = Colors.getColor("title-bar-font-color-whithout-focus", isDarkMode);
+
+        //Con focus
+        titleBarBackgroundWithFocus = Colors.getColor("title-bar-background-with-focus", isDarkMode);
+        titleBarBorderWithFocus = Colors.getColor("title-bar-border-with-focus", isDarkMode);
+        titleBarFontColorWithFocus = Colors.getColor("title-bar-font-color-whith-focus", isDarkMode);
+
+        //Botón principal de la barra de título
+        //Sin focus
+        titleBarButtonBackgroundWithoutFocus = Colors.getColor("title-bar-button-background-without-focus", isDarkMode);
+        titleBarButtonBorderWithoutFocus = Colors.getColor("title-bar-button-border-without-focus", isDarkMode);
+        titleBarButtonFontColorWithoutFocus = Colors.getColor("title-bar-button-font-color-without-focus", isDarkMode);
+
+        //Con focus
+        titleBarButtonBackgroundWithFocus = Colors.getColor("title-bar-button-background-with-focus", isDarkMode);
+        titleBarButtonBorderWithFocus = Colors.getColor("title-bar-button-border-with-focus", isDarkMode);
+        titleBarButtonFontColorWithFocus = Colors.getColor("title-bar-button-font-color-with-focus", isDarkMode);
+
+        //Con hover
+        titleBarButtonBackgroundWithFocusHover = Colors.getColor("title-bar-button-background-with-focus-hover", isDarkMode);
+        titleBarButtonBorderWithFocusHover = Colors.getColor("title-bar-button-border-with-focus-hover", isDarkMode);
+        titleBarButtonFontColorWithFocusHover = Colors.getColor("title-bar-button-font-color-with-focus-hover", isDarkMode);
+
+        //Botón para cerrar de la barra de título
+        //Sin focus
+        titleBarCloseButtonBackgroundWithoutFocus = Colors.getColor("title-bar-close-button-background-without-focus", isDarkMode);
+        titleBarCloseButtonBorderWithoutFocus = Colors.getColor("title-bar-close-button-border-without-focus", isDarkMode);
+        titleBarCloseButtonFontColorWithoutFocus = Colors.getColor("title-bar-close-button-font-color-without-focus", isDarkMode);
+
+        //Con focus
+        titleBarCloseButtonBackgroundWithFocus = Colors.getColor("title-bar-close-button-background-with-focus", isDarkMode);
+        titleBarCloseButtonBorderWithFocus = Colors.getColor("title-bar-close-button-border-with-focus", isDarkMode);
+        titleBarCloseButtonFontColorWithFocus = Colors.getColor("title-bar-close-button-font-color-with-focus", isDarkMode);
+
+        //Con hover
+        titleBarCloseButtonBackgroundWithFocusHover = Colors.getColor("title-bar-close-button-background-with-focus-hover", isDarkMode);
+        titleBarCloseButtonBorderWithFocusHover = Colors.getColor("title-bar-close-button-border-with-focus-hover", isDarkMode);
+        titleBarCloseButtonFontColorWithFocusHover = Colors.getColor("title-bar-close-button-font-color-with-focus-hover", isDarkMode);
 
     }
 

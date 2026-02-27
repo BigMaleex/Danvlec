@@ -50,16 +50,18 @@ public class ClockFile {
 
     }
 
-    public void readFile(){
+    public boolean isTheFileExists(){
 
         if(FileManager.fileExists(FileManager.projectFolder, fileName, "json")){
 
             //El archivo existe
            try{
 
-               mapper.readValue(new File(FileManager.projectFolder.resolve(fileName + ".json").toString()), UserClock.class);
+               UserClockLS loader = mapper.readValue(new File(FileManager.projectFolder.resolve(fileName + ".json").toString()), UserClockLS.class);
 
-               clock.loadAllData();
+               loader.loadAllData();
+
+               return true;
 
            }catch(Exception e){
 
@@ -71,9 +73,11 @@ public class ClockFile {
 
           //El archivo no existe
             logger.error("El archivo no existe, ClockFile");
-            sm.openDynamicPopup(FileConstants.PopupSetClockFXML, "Inicia tu objetivo", controller ->{});
+            return false;
 
         }
+
+        return false;
 
     }
 

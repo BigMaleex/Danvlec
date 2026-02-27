@@ -13,6 +13,34 @@ public class Clock {
     private final static String table = "clock";
     private final Logger logger = LoggerFactory.getLogger(Clock.class);
 
+    public void getClockData(){
+
+        String query = "SELECT TitleClock, DATE FROM danvlec." + table + " WHERE UserID=?";
+
+        try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
+            ps.setString(1, UserData.getUserID());
+
+            try(ResultSet rs = ps.executeQuery()){
+
+                if(rs.next()){
+
+                    UserClock.setTitleClock(rs.getString("TitleClock"));
+                    UserClock.setDate(rs.getTimestamp("Date").toLocalDateTime());
+
+                }
+
+            }
+
+        }catch(SQLException e){
+
+            logger.error(e.toString());
+            DataManager.showError(e.toString());
+
+        }
+
+    }
+
     public void resetClock(){
 
         String query = "UPDATE danvlec." + table + " SET Date=? WHERE UserID=?";

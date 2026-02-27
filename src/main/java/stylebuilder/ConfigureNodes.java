@@ -1,18 +1,11 @@
 package stylebuilder;
 
-import controllers.PopupRecoveryAccountController;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.TextFlow;
-import javafx.util.Duration;
 import utilities.Colors;
 import utilities.FileConstants;
-import utilities.Images;
 import utilities.Styles;
 
 public class ConfigureNodes extends ConfigureInitializeStyles{
@@ -170,7 +163,13 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
 
     }
 
-    public static void configureNodesForPopupRecoveryAccount(Button BTNClose, ImageView IMGButtonCodeMethod, ImageView IMGButtonEmailMethod,  ImageView IMGChangePasswordHover, ImageView IMGChangePasswordIcon, ImageView IMGChangePassword, ImageView IMGConfirmChangePasswordHover, ImageView IMGConfirmChangePasswordIcon, ImageView IMGConfirmChangePassword, ImageView IMGIcon, boolean isDM, boolean passwordVisible, boolean confirmPasswordVisible){
+    private static void configureNodesForMainWindowController(AnchorPane APTitleBar, Button BTNClose, Button BTNCustomClock, Button BTNExportExcel, Button BTNMinimize, Button BTNMotivations, Button BTNNewEntry, Button BTNRestartClock, ImageView IMGAllEntries, ImageView IMGCustomClock, ImageView IMGCustomClockHover, ImageView IMGExportExcel, ImageView IMGExportExcelHover, ImageView IMGMonthlyEntries, ImageView IMGMotivations, ImageView IMGMotivationsHover, ImageView IMGNewEntry, ImageView IMGNewEntryHover, ImageView IMGPhrase, ImageView IMGRestartClock, ImageView IMGRestartClockHover, ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, Label LBLCustomClock, Label LBLExportExcel, Label LBLMotivations, Label LBLNewEntry, Label LBLRestartClock, StackPane SPTheme, boolean isDM){
+
+
+
+    }
+
+    public static void configureNodesForPopupRecoveryAccountController(Button BTNClose, ImageView IMGButtonCodeMethod, ImageView IMGButtonEmailMethod, ImageView IMGChangePasswordHover, ImageView IMGChangePasswordIcon, ImageView IMGChangePassword, ImageView IMGConfirmChangePasswordHover, ImageView IMGConfirmChangePasswordIcon, ImageView IMGConfirmChangePassword, ImageView IMGIcon, boolean isDM, boolean passwordVisible, boolean confirmPasswordVisible){
 
             changeColors(isDM);
 

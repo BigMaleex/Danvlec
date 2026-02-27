@@ -1,6 +1,5 @@
 package controllers;
 
-import connections.SecurityCodes;
 import connections.SendEmail;
 import connections.Users;
 import controls.SerialTextField;
@@ -10,7 +9,6 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -345,7 +343,7 @@ public class PopupRecoveryAccountController extends ConfigureInitializeStyles {
 
         changeColors();
 
-        ConfigureNodes.configureNodesForPopupRecoveryAccount(BTNClose, IMGButtonCodeMethod, IMGButtonEmailMethod, IMGChangePasswordHover, IMGChangePasswordIcon, IMGChangePassword, IMGConfirmChangePasswordHover, IMGConfirmChangePasswordIcon, IMGConfirmChangePassword, IMGIcon, isDarkMode, passwordVisible, confirmPasswordVisible);
+        ConfigureNodes.configureNodesForPopupRecoveryAccountController(BTNClose, IMGButtonCodeMethod, IMGButtonEmailMethod, IMGChangePasswordHover, IMGChangePasswordIcon, IMGChangePassword, IMGConfirmChangePasswordHover, IMGConfirmChangePasswordIcon, IMGConfirmChangePassword, IMGIcon, isDarkMode, passwordVisible, confirmPasswordVisible);
 
     }
 
