@@ -3,7 +3,6 @@ package stylebuilder;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,9 +13,40 @@ import utilities.FileConstants;
 import utilities.Images;
 import utilities.Styles;
 
-import java.sql.SQLOutput;
 
 public class ConfigureInitializeStyles {
+
+    protected static void linkVisiblePropertyWithManagedProperty(Node... nodes) {
+
+        for (Node node : nodes) {
+
+            if (node != null) {
+
+                if (node.managedProperty().isBound()) {
+
+                    node.managedProperty().unbind();
+
+                }
+
+                node.managedProperty().bind(node.visibleProperty());
+            }
+        }
+
+    }
+
+    protected static void removeTheOpacityFromTheImageViews(ImageView... images){
+
+        for(ImageView image :  images){
+
+            if(image != null){
+
+                image.setOpacity(0);
+
+            }
+
+        }
+
+    }
 
     protected static void applyStylesToButtonsWithLabel(String background, String border, String fontColor, String fontSize, String borderWidth, String radius, ButtonBase [] buttons, Label [] labels){
 

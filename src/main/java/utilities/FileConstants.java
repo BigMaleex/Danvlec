@@ -137,6 +137,28 @@ public class FileConstants {
     public static final String keyPrimaryDm = "key-primary-dm.png";
     public static final String keyPrimaryHoverLm = "key-primary-hover-lm.png";
     public static final String keyPrimaryHoverDm = "key-primary-hover-dm.png";
+    public static final String plusPrincipalHoverLm = "plus-principal-hover-lm.png";
+    public static final String plusPrincipalLm = "plus-principal-lm.png";
+    public static final String plusPrincipalHoverDm = "plus-principal-hover-dm.png";
+    public static final String plusPrincipalDm = "plus-principal-dm.png";
+    public static final String fileEarmarkSpreadsheetSecondaryLm = "file-earmark-spreadsheet-secondary-lm.png";
+    public static final String fileEarmarkSpreadsheetSecondaryDm = "file-earmark-spreadsheet-secondary-dm.png";
+    public static final String fileEarmarkSpreadsheetSecondaryHoverLm = "file-earmark-spreadsheet-secondary-hover-lm.png";
+    public static final String fileEarmarkSpreadsheetSecondaryHoverDm = "file-earmark-spreadsheet-secondary-hover-dm.png";
+    public static final String palettePrincipalLm = "palette-principal-lm.png";
+    public static final String palettePrincipalDm = "palette-principal-dm.png";
+    public static final String palettePrincipalHoverLm = "palette-principal-hover-lm.png";
+    public static final String palettePrincipalHoverDm = "palette-principal-hover-dm.png";
+    public static final String pencilPrincipalLm = "pencil-principal-lm.png";
+    public static final String pencilPrincipalDm = "pencil-principal-dm.png";
+    public static final String pencilPrincipalHoverLm = "pencil-principal-hover-lm.png";
+    public static final String pencilPrincipalHoverDm = "pencil-principal-hover-dm.png";
+    public static final String vectorPenIconDm = "vector-pen-icon-dm.png";
+    public static final String VectorPenIconLm = "vector-pen-icon-Lm.png";
+    public static final String arrowCounterclockwiseSecondaryLm = "arrow-counterclockwise-secondary-lm.png";
+    public static final String arrowCounterclockwiseSecondaryDm = "arrow-counterclockwise-secondary-dm.png";
+    public static final String arrowCounterclockwiseSecondaryHoverLm = "arrow-counterclockwise-secondary-hover-lm.png";
+    public static final String arrowCounterclockwiseSecondaryHoverDm = "arrow-counterclockwise-secondary-hover-dm.png";
 
     //Fuente
     public static final String oswaldSemiBold = "Oswald-SemiBold.ttf";

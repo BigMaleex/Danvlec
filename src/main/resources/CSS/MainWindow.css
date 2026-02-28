@@ -52,7 +52,7 @@
 
 }
 
-.LBLSubtitleCount{
+.rootActive .LBLSubtitleCount{
 
     -fx-font-family: "Oswald SemiBold";
     -fx-font-size: 1.0em;
@@ -60,7 +60,7 @@
 
 }
 
-.LBLCount {
+.rootActive .LBLCount {
 
     -fx-font-family: "Oswald SemiBold";
     -fx-font-size: 1.2em;
@@ -68,7 +68,7 @@
 
 }
 
-.SPCount {
+.rootActive .SPCount {
 
     -fx-background-color: #2F3542FF;
     -fx-background-radius: 10px;
@@ -78,7 +78,7 @@
 
 }
 
-.LBLSubtitle {
+.rootActive .LBLSubtitle {
 
     -fx-font-family: "Oswald SemiBold";
     -fx-font-size: 1em;

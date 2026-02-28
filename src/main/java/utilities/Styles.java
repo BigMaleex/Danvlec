@@ -24,6 +24,7 @@ public class Styles {
     public static final String px10 = "10px";
     public static final String px12 = "12px";
     public static final String px14 = "14px";
+    public static final String px16 = "16px";
     public static final String px3 = "3px";
     public static final String px2 = "2px";
     public static final String px18 = "18px";

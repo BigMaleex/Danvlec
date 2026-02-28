@@ -163,9 +163,55 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
 
     }
 
-    private static void configureNodesForMainWindowController(AnchorPane APTitleBar, Button BTNClose, Button BTNCustomClock, Button BTNExportExcel, Button BTNMinimize, Button BTNMotivations, Button BTNNewEntry, Button BTNRestartClock, ImageView IMGAllEntries, ImageView IMGCustomClock, ImageView IMGCustomClockHover, ImageView IMGExportExcel, ImageView IMGExportExcelHover, ImageView IMGMonthlyEntries, ImageView IMGMotivations, ImageView IMGMotivationsHover, ImageView IMGNewEntry, ImageView IMGNewEntryHover, ImageView IMGPhrase, ImageView IMGRestartClock, ImageView IMGRestartClockHover, ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, Label LBLCustomClock, Label LBLExportExcel, Label LBLMotivations, Label LBLNewEntry, Label LBLRestartClock, StackPane SPTheme, boolean isDM){
+    public static void configureNodesForMainWindowController(AnchorPane APTitleBar, Button BTNClose, Button BTNCustomClock, Button BTNExportExcel, Button BTNMinimize, Button BTNMotivations, Button BTNNewEntry, Button BTNRestartClock, ImageView IMGAllEntries, ImageView IMGCustomClock, ImageView IMGCustomClockHover, ImageView IMGExportExcel, ImageView IMGExportExcelHover, ImageView IMGMonthlyEntries, ImageView IMGMotivations, ImageView IMGMotivationsHover, ImageView IMGNewEntry, ImageView IMGNewEntryHover, ImageView IMGPhrase, ImageView IMGRestartClock, ImageView IMGRestartClockHover, ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, ImageView IMGWeeklyEntries,Label LBLCustomClock, Label LBLExportExcel, Label LBLMotivations, Label LBLNewEntry, Label LBLRestartClock, StackPane SPTheme, boolean isDM, boolean haveAnyMotivation){
 
+        changeColors(isDM);
 
+        addToolTip("Minimizar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNMinimize);
+
+        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), tooltipBackground, tooltipBorder, tooltipFontColor, SPTheme);
+
+        addToolTip("Cerrar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNClose);
+
+        applyStylesToTitleBar(titleBarBackgroundWithoutFocus, titleBarBorderWithoutFocus, APTitleBar);
+
+        applyStylesToButtons(titleBarButtonBackgroundWithoutFocus, titleBarButtonBorderWithoutFocus, titleBarButtonFontColorWithoutFocus, Styles.px12, Styles.px1, Styles.px10, BTNMinimize);
+
+        applyStylesToButtons(titleBarCloseButtonBackgroundWithoutFocus, titleBarCloseButtonBorderWithoutFocus, titleBarCloseButtonFontColorWithoutFocus, Styles.px12, Styles.px1, Styles.px10, BTNClose);
+
+        applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNCustomClock, BTNNewEntry, BTNMotivations}, new Label [] {LBLCustomClock, LBLNewEntry, LBLMotivations});
+
+        applyStylesToButtonsWithLabel(secondaryButtonBackground, secondaryButtonBorder, secondaryButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNExportExcel, BTNRestartClock}, new Label [] {LBLExportExcel, LBLRestartClock});
+
+        setThemeImages(IMGTheme, IMGThemeHover, IMGThemeInit, isDM);
+
+        setImages(FileConstants.calendarTimeRemainingFirstFaseIconDm, FileConstants.calendarTimeRemainingFirstFaseIconLm,isDM,IMGAllEntries);
+
+        setImages(FileConstants.palettePrincipalDm, FileConstants.palettePrincipalLm, isDM, IMGCustomClock);
+
+        setImages(FileConstants.palettePrincipalHoverDm, FileConstants.palettePrincipalHoverLm, isDM, IMGCustomClockHover);
+
+        setImages(FileConstants.fileEarmarkSpreadsheetSecondaryDm, FileConstants.fileEarmarkSpreadsheetSecondaryLm, isDM, IMGExportExcel);
+
+        setImages(FileConstants.fileEarmarkSpreadsheetSecondaryHoverDm, FileConstants.fileEarmarkSpreadsheetSecondaryHoverLm, isDM, IMGExportExcelHover);
+
+        setImages(FileConstants.heartIconDm, FileConstants.heartIconLm, isDM, IMGMonthlyEntries);
+
+        setImages(haveAnyMotivation ? FileConstants.pencilPrincipalDm : FileConstants.plusPrincipalDm, haveAnyMotivation ? FileConstants.pencilPrincipalLm : FileConstants.plusPrincipalLm, isDM, IMGMotivations);
+
+        setImages(haveAnyMotivation ? FileConstants.pencilPrincipalHoverDm : FileConstants.plusPrincipalHoverDm, haveAnyMotivation ? FileConstants.pencilPrincipalHoverLm : FileConstants.plusPrincipalHoverLm, isDM, IMGMotivationsHover);
+
+        setImages(FileConstants.plusPrincipalDm, FileConstants.plusPrincipalLm, isDM, IMGNewEntry);
+
+        setImages(FileConstants.plusPrincipalHoverDm, FileConstants.plusPrincipalHoverLm, isDM, IMGNewEntryHover);
+
+        setImages(FileConstants.vectorPenIconDm, FileConstants.VectorPenIconLm, isDM, IMGPhrase);
+
+        setImages(FileConstants.arrowCounterclockwiseSecondaryDm, FileConstants.arrowCounterclockwiseSecondaryLm, isDM,IMGRestartClock);
+
+        setImages(FileConstants.arrowCounterclockwiseSecondaryHoverDm, FileConstants.arrowCounterclockwiseSecondaryHoverLm, isDM,IMGRestartClockHover);
+
+        setImages(FileConstants.bullseyeIconDm, FileConstants.bullseyeIconLm, isDM, IMGWeeklyEntries);
 
     }
 

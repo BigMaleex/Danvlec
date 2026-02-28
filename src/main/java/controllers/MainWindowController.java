@@ -1,26 +1,35 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
+import messagebuilder.Complements;
+import stylebuilder.ConfigureInitializeStyles;
+import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
+import user.UserClock;
+import user.UserData;
 import user.UserPreferences;
-import utilities.Colors;
-import utilities.Images;
-import utilities.ScreenManager;
+import utilities.*;
 
-public class MainWindowController {
+public class MainWindowController extends ConfigureInitializeStyles {
 
     //Objetos
     ScreenManager sm = ScreenManager.getInstance();
 
     //Variables
-    private static boolean isDarkMode;
+    private static boolean isDarkMode, haveAnyMotivation;
+    private int xOffset, yOffset;
 
     //variables de color
     //Botón primario
@@ -84,6 +93,9 @@ public class MainWindowController {
     private static String titleBarCloseButtonBorderWithFocusHover;
     private static String titleBarCloseButtonFontColorWithFocusHover;
 
+    //Fuente
+    private static String titleFontColor;
+    private static String contentFontColor;
 
     @FXML
     private AnchorPane APMain;
@@ -210,9 +222,19 @@ public class MainWindowController {
 
         Images.clearImages();
         isDarkMode = UserPreferences.getUserThemeMode();
+        haveAnyMotivation = UserData.getMotivation() != null && !UserData.getMotivation().isBlank();
 
+        removeTheOpacityFromTheImageViews(IMGCustomClockHover, IMGExportExcelHover, IMGMotivationsHover, IMGRestartClockHover, IMGNewEntryHover);
+
+        LBLMotivations.setText(haveAnyMotivation ? "Modifica tu motivación para mejorar" : "Añade tu motivación para mejorar");
 
         changeTheme();
+
+        setTFLTextWithOneColor(UserClock.getTitleClock() == null || UserClock.getTitleClock().isBlank() ? "Añade un título para que tengas un mejor control del progreso de tu proceso" : UserClock.getTitleClock(), Styles.px14, titleFontColor, TFLTitleClock);
+
+        setTFLTextWithOneColor(haveAnyMotivation ? UserData.getMotivation() : "Añade una motivación para que puedas tener una ancla para seguir avanzando", Styles.px14, contentFontColor, TFLMotivations);
+
+        setTFLTextWithOneColor(Phrases.getPhrase(),Styles.px16, titleFontColor,TFLPhrase);
 
     }
 
@@ -221,6 +243,8 @@ public class MainWindowController {
         StyleBuilder.setAnchorPaneClass(APMain);
 
         changeColors();
+
+        ConfigureNodes.configureNodesForMainWindowController(APTitleBar,BTNClose,BTNCustomClock,BTNExportExcel,BTNMinimize, BTNMotivations, BTNNewEntry, BTNRestartClock, IMGAllEntries, IMGCustomClock,IMGCustomClockHover, IMGExportExcel, IMGExportExcelHover, IMGMonthlyEntries,IMGMotivations,IMGMotivationsHover,IMGNewEntry,IMGNewEntryHover,IMGPhrase,IMGRestartClock,IMGRestartClockHover,IMGTheme,IMGThemeHover,IMGThemeInit, IMGWeeklyEntries,LBLCustomClock,LBLExportExcel,LBLMotivations,LBLNewEntry,LBLRestartClock,SPTheme,isDarkMode, haveAnyMotivation);
 
 
     }
@@ -288,40 +312,165 @@ public class MainWindowController {
         titleBarCloseButtonBorderWithFocusHover = Colors.getColor("title-bar-close-button-border-with-focus-hover", isDarkMode);
         titleBarCloseButtonFontColorWithFocusHover = Colors.getColor("title-bar-close-button-font-color-with-focus-hover", isDarkMode);
 
+        //Color de los títulos
+        titleFontColor = Colors.getColor("title-font-color", isDarkMode);
+
+        //Color del contenido
+        contentFontColor = Colors.getColor("content-font-color", isDarkMode);
+
     }
 
     @FXML
     void APTitleBarOnMouseDragged(MouseEvent event) {
+
+        Stage stage = (Stage) APTitleBar.getScene().getWindow();
+
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
 
     }
 
     @FXML
     void APTitleBarOnMouseEntered(MouseEvent event) {
 
+        StyleBuilder.fadeAndChangeImage(IMGThemeInit, IMGTheme);
+
+        StyleBuilder.animateAnchorPaneBackground(
+
+                APTitleBar,
+                titleBarBackgroundWithoutFocus, titleBarBackgroundWithFocus,
+                titleBarBorderWithoutFocus, titleBarBorderWithFocus
+
+        );
+
+        StyleBuilder.animateLabelTextColor(
+
+                LBLTitleBar,
+                titleBarFontColorWithoutFocus, titleBarFontColorWithFocus
+
+        );
+
+        StyleBuilder.animateStackPaneBackground(
+
+                SPTheme,
+                titleBarButtonBackgroundWithoutFocus, titleBarButtonBackgroundWithFocus,
+                titleBarButtonBorderWithoutFocus, titleBarButtonBorderWithFocus
+
+        );
+
+        StyleBuilder.animateButtonColors(
+
+                BTNMinimize,
+                titleBarButtonBackgroundWithoutFocus, titleBarButtonBackgroundWithFocus,
+                titleBarButtonBorderWithoutFocus, titleBarButtonBorderWithFocus,
+                titleBarButtonFontColorWithoutFocus, titleBarButtonFontColorWithFocus
+
+        );
+
+        StyleBuilder.animateButtonColors(
+
+                BTNClose,
+                titleBarCloseButtonBackgroundWithoutFocus, titleBarCloseButtonBackgroundWithFocus,
+                titleBarCloseButtonBorderWithoutFocus, titleBarCloseButtonBorderWithFocus,
+                titleBarCloseButtonFontColorWithoutFocus, titleBarCloseButtonFontColorWithFocus
+
+        );
+
     }
 
     @FXML
     void APTitleBarOnMouseExited(MouseEvent event) {
+
+        StyleBuilder.fadeAndChangeImage(IMGTheme,IMGThemeInit);
+
+        StyleBuilder.animateAnchorPaneBackground(
+
+                APTitleBar,
+                titleBarBackgroundWithFocus, titleBarBackgroundWithoutFocus,
+                titleBarBorderWithFocus, titleBarBorderWithoutFocus
+
+        );
+
+        StyleBuilder.animateLabelTextColor(
+
+                LBLTitleBar,
+                titleBarFontColorWithFocus,titleBarFontColorWithoutFocus
+
+        );
+
+        StyleBuilder.animateStackPaneBackground(
+
+                SPTheme,
+                titleBarButtonBackgroundWithFocus, titleBarButtonBackgroundWithoutFocus,
+                titleBarButtonBorderWithFocus,titleBarButtonBorderWithoutFocus
+
+        );
+
+        StyleBuilder.animateButtonColors(
+
+                BTNMinimize,
+                titleBarButtonBackgroundWithFocus, titleBarButtonBackgroundWithoutFocus,
+                titleBarButtonBorderWithFocus, titleBarButtonBorderWithoutFocus,
+                titleBarButtonFontColorWithFocus, titleBarButtonFontColorWithoutFocus
+
+        );
+
+        StyleBuilder.animateButtonColors(
+
+                BTNClose,
+                titleBarCloseButtonBackgroundWithFocus, titleBarCloseButtonBackgroundWithoutFocus,
+                titleBarCloseButtonBorderWithFocus, titleBarCloseButtonBorderWithoutFocus,
+                titleBarCloseButtonFontColorWithFocus, titleBarCloseButtonFontColorWithoutFocus
+
+        );
 
     }
 
     @FXML
     void APTitleBarOnMousePressed(MouseEvent event) {
 
+        xOffset = (int) event.getSceneX();
+        yOffset = (int) event.getSceneY();
+
     }
 
     @FXML
     void BTNCloseOnMouseClicked(MouseEvent event) {
+
+        Platform.exit();
+        System.exit(0);
 
     }
 
     @FXML
     void BTNCloseOnMouseEntered(MouseEvent event) {
 
+        StyleBuilder.animateButtonColors(
+
+                BTNClose,
+                titleBarCloseButtonBackgroundWithFocus, titleBarCloseButtonBackgroundWithFocusHover,
+                titleBarCloseButtonBorderWithFocus, titleBarCloseButtonBorderWithFocusHover,
+                titleBarCloseButtonFontColorWithFocus, titleBarCloseButtonFontColorWithFocusHover
+
+        );
+
     }
 
     @FXML
     void BTNCloseOnMouseExited(MouseEvent event) {
+
+        if(APTitleBar.isHover()){
+
+            StyleBuilder.animateButtonColors(
+
+                    BTNClose,
+                    titleBarCloseButtonBackgroundWithFocusHover, titleBarCloseButtonBackgroundWithFocus,
+                    titleBarCloseButtonBorderWithFocusHover, titleBarCloseButtonBorderWithFocus,
+                    titleBarCloseButtonFontColorWithFocusHover, titleBarCloseButtonFontColorWithFocus
+
+            );
+
+        }
 
     }
 
@@ -427,6 +576,22 @@ public class MainWindowController {
 
     @FXML
     void IMGThemeOnMouseExited(MouseEvent event) {
+
+    }
+
+    private void setTFLTextWithOneColor(String input, String size, String color, TextFlow TFL) {
+
+        TFL.getChildren().clear();
+
+        Text text = new Text(input);
+        text.setStyle(Styles.fontFamily + Styles.fontSize + size + Styles.end);
+        text.setFill(Color.web(color));
+
+        text.wrappingWidthProperty().bind(TFL.widthProperty().subtract(5));
+
+        TFL.getChildren().add(text);
+
+        TFL.setMaxHeight(Region.USE_PREF_SIZE);
 
     }
 
