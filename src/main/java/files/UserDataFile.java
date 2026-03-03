@@ -74,9 +74,7 @@ public class UserDataFile {
                 if(!UserData.isHaveAnyAccount()){
 
                     //El usuario es Local, envíar al FXML del inicio
-                    System.out.println("Sesión local");
-
-
+                    StepsAfterLoggingIn.stepsAfterLoggingIn();
 
 
                 } else {

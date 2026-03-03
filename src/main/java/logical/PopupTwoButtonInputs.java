@@ -67,6 +67,8 @@ public class PopupTwoButtonInputs {
 
         UserDataFile.createFile(true);
 
+        StepsAfterLoggingIn.stepsAfterLoggingIn();
+
     }
 
     public static void allUserInformationIsCorrectUploadToTheBD(ArrayList<String> data){

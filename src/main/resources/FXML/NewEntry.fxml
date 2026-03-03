@@ -103,7 +103,7 @@
                                     </VBox>
                                     <TitledPane prefHeight="200.0" prefWidth="200.0">
                                        <graphic>
-                                          <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
+                                          <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="20.0">
                                              <children>
                                                 <StackPane prefHeight="0.0" prefWidth="0.0">
                                                    <padding>
@@ -113,8 +113,11 @@
                                                       <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
                                                    </children>
                                                 </StackPane>
-                                                <Label text="Label" />
+                                                <Label styleClass="LBLEmotion" text="Felicidad" />
                                              </children>
+                                             <padding>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </padding>
                                           </HBox>
                                        </graphic>
                                        <padding>
