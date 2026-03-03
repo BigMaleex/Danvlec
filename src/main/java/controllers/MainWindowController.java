@@ -1,5 +1,8 @@
 package controllers;
 
+import files.Preferences;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,29 +10,55 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import messagebuilder.Complements;
+import javafx.util.Duration;
+import logical.CalculateTimeElapsed;
+import logical.ValidateOutputs;
 import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
+import stylebuilder.DrawClocks;
 import stylebuilder.StyleBuilder;
 import user.UserClock;
 import user.UserData;
 import user.UserPreferences;
 import utilities.*;
 
+import java.time.LocalDateTime;
+
 public class MainWindowController extends ConfigureInitializeStyles {
 
     //Objetos
     ScreenManager sm = ScreenManager.getInstance();
+    Timeline timeline;
 
     //Variables
     private static boolean isDarkMode, haveAnyMotivation;
     private int xOffset, yOffset;
+    private static LocalDateTime dateOfClock;
+    private static PartOfDay currentPartOfDay = PartOfDay.DEFAULT;
+    private static String phrase;
+
+    //Relojes
+    private DrawClocks yearClock;
+    private DrawClocks monthClock;
+    private DrawClocks dayClock;
+    private DrawClocks hourClock;
+    private DrawClocks minuteClock;
+    private DrawClocks secondClock;
+
+    private DrawClocks [] clocks;
+
+    public enum PartOfDay {
+
+        MORNING, AFTERNOON, NIGHT, DEFAULT
+
+    }
 
     //variables de color
     //Botón primario
@@ -218,23 +247,100 @@ public class MainWindowController extends ConfigureInitializeStyles {
     private TextFlow TFLTitleClock;
 
     @FXML
+    private HBox HBXYearsAndMonthsAndDays;
+
+    @FXML
+    private HBox HBXHoursAndMinutesAndSeconds;
+
+    public void initializeAnimation(){
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+
+            updateClocks();
+
+            if(!ValidateOutputs.isTheSamePartOfDayIfNotBuildGreetingTextLabel(currentPartOfDay, TFLGreeting)) currentPartOfDay = ValidateOutputs.getOrSetCurrentPartOfDay();
+
+        }));
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        timeline.play();
+
+    }
+
+    public void stopAnimation(){
+
+        timeline.stop();
+
+    }
+
+    private void updateClocks (){
+
+        DrawClocks.updateAll(CalculateTimeElapsed.timeElapsed(dateOfClock), clocks);
+
+    }
+
+    @FXML
     public void initialize(){
+
+        phrase = Phrases.getPhrase();
 
         Images.clearImages();
         isDarkMode = UserPreferences.getUserThemeMode();
+        dateOfClock = UserClock.getDate();
         haveAnyMotivation = UserData.getMotivation() != null && !UserData.getMotivation().isBlank();
 
         removeTheOpacityFromTheImageViews(IMGCustomClockHover, IMGExportExcelHover, IMGMotivationsHover, IMGRestartClockHover, IMGNewEntryHover);
 
         LBLMotivations.setText(haveAnyMotivation ? "Modifica tu motivación para mejorar" : "Añade tu motivación para mejorar");
 
+        yearClock = new DrawClocks(DrawClocks.ClockUnitType.YEAR,UserPreferences.getYearClockColor(false), UserPreferences.getBackgroundYearClockColor(false), 200);
+        monthClock = new DrawClocks(DrawClocks.ClockUnitType.MONTH,UserPreferences.getMonthClockColor(false), UserPreferences.getBackgroundMonthClockColor(false), 200);
+        dayClock = new DrawClocks(DrawClocks.ClockUnitType.DAY,UserPreferences.getDayClockColor(false), UserPreferences.getBackgroundDayClockColor(false), 200);
+        hourClock = new DrawClocks(DrawClocks.ClockUnitType.HOUR,UserPreferences.getHourClockColor(false), UserPreferences.getBackgroundHourClockColor(false), 200);
+        minuteClock = new DrawClocks(DrawClocks.ClockUnitType.MINUTE,UserPreferences.getMinuteClockColor(false), UserPreferences.getBackgroundMinuteClockColor(false), 200);
+        secondClock = new DrawClocks(DrawClocks.ClockUnitType.SECOND,UserPreferences.getSecondClockColor(false), UserPreferences.getBackgroundSecondClockColor(false), 200);
+
+        clocks = new DrawClocks[] {yearClock, monthClock, dayClock, hourClock, minuteClock, secondClock};
+
+        //Añadirlos al HBox
+
+        HBXYearsAndMonthsAndDays.getChildren().clear();
+        HBXHoursAndMinutesAndSeconds.getChildren().clear();
+
+        for(int i = 0; i<6; i++){
+
+            if(i < 3){
+
+                //HBox superior
+                if(!HBXYearsAndMonthsAndDays.getChildren().contains(clocks[i])){
+
+                    HBXYearsAndMonthsAndDays.getChildren().add(clocks[i]);
+
+                }
+
+            }else{
+
+                //HBox inferior
+                if(!HBXHoursAndMinutesAndSeconds.getChildren().contains(clocks[i])){
+
+                    HBXHoursAndMinutesAndSeconds.getChildren().add(clocks[i]);
+
+                }
+
+            }
+
+        }
+
+        initializeAnimation();
+
         changeTheme();
 
-        setTFLTextWithOneColor(UserClock.getTitleClock() == null || UserClock.getTitleClock().isBlank() ? "Añade un título para que tengas un mejor control del progreso de tu proceso" : UserClock.getTitleClock(), Styles.px14, titleFontColor, TFLTitleClock);
+        setTFLTextWithOneColor(UserClock.getTitleClock() == null || UserClock.getTitleClock().isBlank() ? "Añade un título para que tengas un mejor control del progreso de tu proceso" : UserClock.getTitleClock(), Styles.px16, titleFontColor, TFLTitleClock);
 
-        setTFLTextWithOneColor(haveAnyMotivation ? UserData.getMotivation() : "Añade una motivación para que puedas tener una ancla para seguir avanzando", Styles.px14, contentFontColor, TFLMotivations);
+        setTFLTextWithOneColor(haveAnyMotivation ? UserData.getMotivation() : "Añade una motivación para que puedas tener una ancla para seguir avanzando", Styles.px16, contentFontColor, TFLMotivations);
 
-        setTFLTextWithOneColor(Phrases.getPhrase(),Styles.px16, titleFontColor,TFLPhrase);
+        setTFLTextWithOneColor(phrase,Styles.px16, titleFontColor,TFLPhrase);
 
     }
 
@@ -482,100 +588,339 @@ public class MainWindowController extends ConfigureInitializeStyles {
     @FXML
     void BTNCustomClockOnMouseEntered(MouseEvent event) {
 
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                principalButtonBackground, principalButtonBackgroundHover,
+                principalButtonBorder, principalButtonBorderHover,
+                principalButtonFontColor, principalButtonFontColorHover,
+                BTNCustomClock,
+                IMGCustomClock, IMGCustomClockHover,
+                LBLCustomClock
+
+        );
+
     }
 
     @FXML
     void BTNCustomClockOnMouseExited(MouseEvent event) {
+
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                principalButtonBackgroundHover, principalButtonBackground,
+                principalButtonBorderHover, principalButtonBorder,
+                principalButtonFontColorHover, principalButtonFontColor,
+                BTNCustomClock,
+                IMGCustomClockHover, IMGCustomClock,
+                LBLCustomClock
+
+        );
 
     }
 
     @FXML
     void BTNExportExcelOnMouseClicked(MouseEvent event) {
 
+
+
     }
 
     @FXML
     void BTNExportExcelOnMouseEntered(MouseEvent event) {
+
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                secondaryButtonBackground, secondaryButtonBackgroundHover,
+                secondaryButtonBorder, secondaryButtonBorderHover,
+                secondaryButtonFontColor, secondaryButtonFontColorHover,
+                BTNExportExcel,
+                IMGExportExcel, IMGExportExcelHover,
+                LBLExportExcel
+
+        );
 
     }
 
     @FXML
     void BTNExportExcelOnMouseExited(MouseEvent event) {
 
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                secondaryButtonBackgroundHover, secondaryButtonBackground,
+                secondaryButtonBorderHover, secondaryButtonBorder,
+                secondaryButtonFontColorHover, secondaryButtonFontColor,
+                BTNExportExcel,
+                IMGExportExcelHover, IMGExportExcel,
+                LBLExportExcel
+
+        );
+
     }
 
-    @FXML
+     @FXML
     void BTNMinimizeOnMouseClicked(MouseEvent event) {
+
+        Stage stage = (Stage)BTNMinimize.getScene().getWindow();
+        stage.setIconified(true);
 
     }
 
     @FXML
     void BTNMinimizeOnMouseEntered(MouseEvent event) {
 
+        StyleBuilder.animateButtonColors(
+
+                BTNMinimize,
+                titleBarButtonBackgroundWithFocus, titleBarButtonBackgroundWithFocusHover,
+                titleBarButtonBorderWithFocus, titleBarButtonBorderWithFocusHover,
+                titleBarButtonFontColorWithFocus, titleBarButtonFontColorWithFocusHover
+
+        );
+
     }
 
     @FXML
     void BTNMinimizeOnMouseExited(MouseEvent event) {
+
+        if(APTitleBar.isHover()){
+
+            StyleBuilder.animateButtonColors(
+
+                    BTNMinimize,
+                    titleBarButtonBackgroundWithFocusHover, titleBarButtonBackgroundWithFocus,
+                    titleBarButtonBorderWithFocusHover, titleBarButtonBorderWithFocus,
+                    titleBarButtonFontColorWithFocusHover, titleBarButtonFontColorWithFocus
+
+            );
+
+        }
 
     }
 
     @FXML
     void BTNMotivationsOnMouseClicked(MouseEvent event) {
 
+
+
     }
 
     @FXML
     void BTNMotivationsOnMouseEntered(MouseEvent event) {
+
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                principalButtonBackground, principalButtonBackgroundHover,
+                principalButtonBorder, principalButtonBorderHover,
+                principalButtonFontColor, principalButtonFontColorHover,
+                BTNMotivations,
+                IMGMotivations, IMGMotivationsHover,
+                LBLMotivations
+
+        );
 
     }
 
     @FXML
     void BTNMotivationsOnMouseExited(MouseEvent event) {
 
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                principalButtonBackgroundHover, principalButtonBackground,
+                principalButtonBorderHover, principalButtonBorder,
+                principalButtonFontColorHover, principalButtonFontColor,
+                BTNMotivations,
+                IMGMotivationsHover, IMGMotivations,
+                LBLMotivations
+
+        );
+
     }
 
     @FXML
     void BTNNewEntryOnMouseClicked(MouseEvent event) {
+
+
 
     }
 
     @FXML
     void BTNNewEntryOnMouseEntered(MouseEvent event) {
 
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                principalButtonBackground, principalButtonBackgroundHover,
+                principalButtonBorder, principalButtonBorderHover,
+                principalButtonFontColor, principalButtonFontColorHover,
+                BTNNewEntry,
+                IMGNewEntry, IMGNewEntryHover,
+                LBLNewEntry
+
+        );
+
     }
 
     @FXML
     void BTNNewEntryOnMouseExited(MouseEvent event) {
+
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                principalButtonBackgroundHover, principalButtonBackground,
+                principalButtonBorderHover, principalButtonBorder,
+                principalButtonFontColorHover, principalButtonFontColor,
+                BTNNewEntry,
+                IMGNewEntryHover, IMGNewEntry,
+                LBLNewEntry
+
+        );
 
     }
 
     @FXML
     void BTNRestartClockOnMouseClicked(MouseEvent event) {
 
+
+
     }
 
     @FXML
     void BTNRestartClockOnMouseEntered(MouseEvent event) {
+
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                secondaryButtonBackground, secondaryButtonBackgroundHover,
+                secondaryButtonBorder, secondaryButtonBorderHover,
+                secondaryButtonFontColor, secondaryButtonFontColorHover,
+                BTNRestartClock,
+                IMGRestartClock, IMGRestartClockHover,
+                LBLRestartClock
+
+        );
 
     }
 
     @FXML
     void BTNRestartClockOnMouseExited(MouseEvent event) {
 
+        StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                secondaryButtonBackgroundHover, secondaryButtonBackground,
+                secondaryButtonBorderHover, secondaryButtonBorder,
+                secondaryButtonFontColorHover, secondaryButtonFontColor,
+                BTNRestartClock,
+                IMGRestartClockHover, IMGRestartClock,
+                LBLRestartClock
+
+        );
+
     }
 
     @FXML
     void IMGThemeOnMouseClicked(MouseEvent event) {
+
+        stopAnimation();
+
+        isDarkMode = !isDarkMode;
+
+        Preferences preferences = new Preferences();
+        preferences.toggleTheme();
+
+        changeTheme();
+
+        setTFLTextWithOneColor(UserClock.getTitleClock() == null || UserClock.getTitleClock().isBlank() ? "Añade un título para que tengas un mejor control del progreso de tu proceso" : UserClock.getTitleClock(), Styles.px16, titleFontColor, TFLTitleClock);
+
+        setTFLTextWithOneColor(haveAnyMotivation ? UserData.getMotivation() : "Añade una motivación para que puedas tener una ancla para seguir avanzando", Styles.px16, contentFontColor, TFLMotivations);
+
+        setTFLTextWithOneColor(phrase,Styles.px16, titleFontColor,TFLPhrase);
+
+        currentPartOfDay = PartOfDay.DEFAULT;
+
+        ValidateOutputs.isTheSamePartOfDayIfNotBuildGreetingTextLabel(currentPartOfDay, TFLGreeting);
+
+        DrawClocks.updateColor(
+
+                clocks,
+                //Colores de la barra
+                new String [] {
+
+                        UserPreferences.getYearClockColor(false),
+                        UserPreferences.getMonthClockColor(false),
+                        UserPreferences.getDayClockColor(false),
+                        UserPreferences.getHourClockColor(false),
+                        UserPreferences.getMinuteClockColor(false),
+                        UserPreferences.getSecondClockColor(false)
+
+                },
+
+                //Colores de fondo
+                new String [] {
+
+                        UserPreferences.getBackgroundYearClockColor(false),
+                        UserPreferences.getBackgroundMonthClockColor(false),
+                        UserPreferences.getBackgroundDayClockColor(false),
+                        UserPreferences.getBackgroundHourClockColor(false),
+                        UserPreferences.getBackgroundMinuteClockColor(false),
+                        UserPreferences.getBackgroundSecondClockColor(false)
+
+                }
+
+        );
+
+        applyStylesToTitleBar(titleBarBackgroundWithFocus, titleBarBorderWithFocus, APTitleBar);
+
+        applyStylesToButtons(
+
+                titleBarButtonBackgroundWithFocus,
+                titleBarButtonBorderWithFocus,
+                titleBarButtonFontColorWithFocus,
+                Styles.px12,
+                Styles.px1,
+                Styles.px10,
+                BTNClose, BTNMinimize
+
+        );
+
+        applyStylesToLabels(titleBarFontColorWithFocus, Styles.px12, LBLTitleBar);
+
+        applyStylesToContents(
+
+                titleBarButtonBackgroundWithFocusHover,
+                titleBarButtonBorderWithFocusHover,
+                Styles.px1,
+                Styles.px10,
+                SPTheme
+
+        );
+
+        initializeAnimation();
 
     }
 
     @FXML
     void IMGThemeOnMouseEntered(MouseEvent event) {
 
+        StyleBuilder.fadeAndChangeImage(IMGTheme, IMGThemeHover);
+
+        StyleBuilder.animateStackPaneBackground(
+
+                SPTheme,
+                titleBarButtonBackgroundWithFocus, titleBarButtonBackgroundWithFocusHover,
+                titleBarButtonBorderWithFocus, titleBarButtonBorderWithFocus
+
+        );
+
     }
 
     @FXML
     void IMGThemeOnMouseExited(MouseEvent event) {
+
+        StyleBuilder.fadeAndChangeImage(IMGThemeHover,IMGTheme);
+
+        StyleBuilder.animateStackPaneBackground(
+
+                SPTheme,
+                titleBarButtonBackgroundWithFocusHover, titleBarButtonBackgroundWithFocus,
+                titleBarButtonBorderWithFocus,titleBarButtonBorderWithFocus
+
+        );
 
     }
 

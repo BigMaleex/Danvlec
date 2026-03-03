@@ -120,8 +120,6 @@ public class StepsAfterLoggingIn {
 
         }
 
-        System.out.println(UserPreferences.getBackgroundYearClockColor());
-
         MainWindowController controller = (MainWindowController) sm.getController(FileConstants.MainWindow);
 
         controller.initialize();

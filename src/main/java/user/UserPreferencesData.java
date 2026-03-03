@@ -19,18 +19,18 @@ public class UserPreferencesData {
         public void copy(){
 
             userTheme = UserPreferences.getUserTheme();
-            backgroundYearClockColor = UserPreferences.getBackgroundYearClockColor();
-            backgroundMonthClockColor = UserPreferences.getBackgroundMonthClockColor();
-            backgroundDayClockColor = UserPreferences.getBackgroundDayClockColor();
-            backgroundHourClockColor = UserPreferences.getBackgroundHourClockColor();
-            backgroundMinuteClockColor = UserPreferences.getBackgroundMinuteClockColor();
-            backgroundSecondClockColor = UserPreferences.getBackgroundSecondClockColor();
-            YearClockColor = UserPreferences.getYearClockColor();
-            monthClockColor = UserPreferences.getMonthClockColor();
-            dayClockColor = UserPreferences.getDayClockColor();
-            hourClockColor = UserPreferences.getHourClockColor();
-            minuteClockColor = UserPreferences.getMinuteClockColor();
-            secondClockColor = UserPreferences.getSecondClockColor();
+            backgroundYearClockColor = UserPreferences.getBackgroundYearClockColor(true);
+            backgroundMonthClockColor = UserPreferences.getBackgroundMonthClockColor(true);
+            backgroundDayClockColor = UserPreferences.getBackgroundDayClockColor(true);
+            backgroundHourClockColor = UserPreferences.getBackgroundHourClockColor(true);
+            backgroundMinuteClockColor = UserPreferences.getBackgroundMinuteClockColor(true);
+            backgroundSecondClockColor = UserPreferences.getBackgroundSecondClockColor(true);
+            YearClockColor = UserPreferences.getYearClockColor(true);
+            monthClockColor = UserPreferences.getMonthClockColor(true);
+            dayClockColor = UserPreferences.getDayClockColor(true);
+            hourClockColor = UserPreferences.getHourClockColor(true);
+            minuteClockColor = UserPreferences.getMinuteClockColor(true);
+            secondClockColor = UserPreferences.getSecondClockColor(true);
 
         }
 

@@ -1,30 +1,85 @@
 package logical;
 
 import connections.Users;
+import controllers.MainWindowController;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import messagebuilder.Complements;
 import user.UserData;
+import user.UserPreferences;
+import utilities.Colors;
+import utilities.Styles;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import java.time.LocalTime;
-import java.util.Base64;
 import java.awt.*;
+import java.time.*;
+import java.util.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.TextStyle;
-import java.util.Locale;
-import java.util.Random;
 
 public class ValidateOutputs {
 
     private static final String ALGORITHM = "AES";
     private static final byte[] KEY = "1234567890123456".getBytes();
+
+    public static boolean isTheSamePartOfDayIfNotBuildGreetingTextLabel (MainWindowController.PartOfDay currentPartOfDay, TextFlow TFL) {
+
+        if(currentPartOfDay != getOrSetCurrentPartOfDay()){
+
+            MainWindowController.PartOfDay realPartOfDay = getOrSetCurrentPartOfDay();
+
+            String partOfDay = switch(realPartOfDay){
+
+                case MORNING -> "Buenos días";
+                case AFTERNOON -> "Buenas tardes";
+                case NIGHT -> "Buenas noches";
+
+                case DEFAULT -> "No se consiguió establecer la parte del día";
+
+            };
+
+            TFL.getChildren().clear();
+            TFL.getChildren().add((Complements.addStringFromTextList("¡" + partOfDay + ", " + getPreferredWayToCallThem() + "!", Styles.px16, Colors.getColor("title-font-color", UserPreferences.getUserThemeMode()))));
+
+            return false;
+
+        }else{
+
+            return true;
+
+        }
+
+    }
+
+    public static MainWindowController.PartOfDay getOrSetCurrentPartOfDay(){
+
+        int hour = LocalDateTime.now().getHour();
+
+        if(hour >= 0 && hour <12){
+
+            return MainWindowController.PartOfDay.MORNING;
+
+        }else if (hour >= 12 && hour < 19){
+
+            return MainWindowController.PartOfDay.AFTERNOON;
+
+        }else if (hour >= 19){
+
+            return MainWindowController.PartOfDay.NIGHT;
+
+        }else{
+
+            return MainWindowController.PartOfDay.DEFAULT;
+
+        }
+
+    }
 
     public static String buildDateAndHour(LocalDate date, LocalTime time, boolean dayMinus, boolean monthMinus){
 
