@@ -252,6 +252,46 @@ public class MainWindowController extends ConfigureInitializeStyles {
     @FXML
     private HBox HBXHoursAndMinutesAndSeconds;
 
+    public void loadData(){
+
+        dateOfClock = UserClock.getDate();
+        haveAnyMotivation = UserData.getMotivation() != null && !UserData.getMotivation().isBlank();
+
+        setTFLTextWithOneColor(UserClock.getTitleClock() == null || UserClock.getTitleClock().isBlank() ? "Añade un título para que tengas un mejor control del progreso de tu proceso" : UserClock.getTitleClock(), Styles.px16, titleFontColor, TFLTitleClock);
+
+        setTFLTextWithOneColor(haveAnyMotivation ? UserData.getMotivation() : "Añade una motivación para que puedas tener una ancla para seguir avanzando", Styles.px16, contentFontColor, TFLMotivations);
+
+        DrawClocks.updateColor(
+
+                clocks,
+                //Colores de la barra
+                new String [] {
+
+                        UserPreferences.getYearClockColor(false),
+                        UserPreferences.getMonthClockColor(false),
+                        UserPreferences.getDayClockColor(false),
+                        UserPreferences.getHourClockColor(false),
+                        UserPreferences.getMinuteClockColor(false),
+                        UserPreferences.getSecondClockColor(false)
+
+                },
+
+                //Colores de fondo
+                new String [] {
+
+                        UserPreferences.getBackgroundYearClockColor(false),
+                        UserPreferences.getBackgroundMonthClockColor(false),
+                        UserPreferences.getBackgroundDayClockColor(false),
+                        UserPreferences.getBackgroundHourClockColor(false),
+                        UserPreferences.getBackgroundMinuteClockColor(false),
+                        UserPreferences.getBackgroundSecondClockColor(false)
+
+                }
+
+        );
+
+    }
+
     public void initializeAnimation(){
 
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
@@ -331,8 +371,6 @@ public class MainWindowController extends ConfigureInitializeStyles {
             }
 
         }
-
-        initializeAnimation();
 
         changeTheme();
 

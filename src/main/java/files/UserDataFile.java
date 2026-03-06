@@ -68,14 +68,13 @@ public class UserDataFile {
             //Leer Archivo
             try {
 
-                UserDataLS userData = mapper.readValue(new File(FileManager.projectFolder.resolve("UserData.json").toString()), UserDataLS.class);
                 mapper.registerModule(new JavaTimeModule());
+                UserDataLS userData = mapper.readValue(new File(FileManager.projectFolder.resolve("UserData.json").toString()), UserDataLS.class);
                 userData.load();
                 if(!UserData.isHaveAnyAccount()){
 
                     //El usuario es Local, envíar al FXML del inicio
                     StepsAfterLoggingIn.stepsAfterLoggingIn();
-
 
                 } else {
 

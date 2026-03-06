@@ -90,19 +90,166 @@
 
 }
 
+.titled-pane {
+
+    -fx-background-color: #ededed;
+    -fx-background-radius: 10px;
+    -fx-padding: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+
+}
+
+.titled-pane > .title {
+
+    -fx-background-color: #ededed;
+    -fx-background-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d5e9ff;
+    -fx-border-radius: 10px;
+
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+
+    -fx-background-color: #7b838aff;
+    -fx-shape: "M 0 0 L 4 4 L 8 0 L 6 0 L 4 2 L 2 0 Z";
+    -fx-font-size: 2em;
+
+}
+
+.titled-pane:expanded > .title {
+
+    -fx-background-color: #ededed;
+    -fx-background-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d5e9ff;
+    -fx-border-radius: 10px 10px 0px 0px;
+
+}
+
+.titled-pane > .content {
+
+    -fx-background-color: #edededff;
+    -fx-background-radius: 0px 0px 10px 10px;
+    -fx-padding: 0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 0px 0px 10px 10px;
+    -fx-border-color: #d1d5e9ff;
+}
+
 .LBLEmotion {
 
     -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 2.0em;
+    -fx-font-size: 1.3em;
     -fx-text-fill: #121212;
+
+}
+
+.LBLEmotionCount {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.1em;
+    -fx-text-fill: #7b838aff;
 
 }
 
 .SPHappy {
 
-    -fx-background-color: #F8F272;
+    -fx-background-color: #10b981ff;
     -fx-background-radius: 50%;
 
+}
+
+.SPSurprise {
+
+    -fx-background-color: #f59e0bff;
+    -fx-background-radius: 50%;
+
+}
+
+.SPFear {
+
+    -fx-background-color: #840bf5;
+    -fx-background-radius: 50%;
+
+}
+
+.SPAnger {
+
+    -fx-background-color: #ba2c0e;
+    -fx-background-radius: 50%;
+
+}
+
+.SPDisgust {
+
+    -fx-background-color: #649f0a;
+    -fx-background-radius: 50%;
+
+}
+
+.SPSad {
+
+    -fx-background-color: #0c92c1;
+    -fx-background-radius: 50%;
+
+}
+
+.SPCard {
+
+    -fx-background-color: #edededff;
+    -fx-border-color: #d1d5e9ff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.LBLCardTitle {
+
+    -fx-text-fill: #1a1a1aff;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.LBLCardSubTitle {
+
+    -fx-text-fill: #737c83ff;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.LBLMaxChars {
+
+    -fx-text-fill: #737c83ff;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.slider .track {
+    -fx-background-color: #dcdcdc;
+    -fx-background-radius: 5;
+}
+
+.slider .filled-track {
+    -fx-background-color: #192d91;
+    -fx-background-radius: 5;
+}
+
+.slider .thumb {
+    -fx-background-color: white;
+    -fx-border-color: #192d91;
+    -fx-border-radius: 50%;
+}
+
+.slider .axis .tick-label {
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.1em;
+    -fx-fill: #555;
 }
 
 .text-area {

@@ -3,6 +3,7 @@ package logical;
 import connections.Clock;
 import connections.Users;
 import controllers.LoginController;
+import controllers.MainWindowController;
 import files.ClockFile;
 import files.UserDataFile;
 import messagebuilder.MessageBuilder;
@@ -38,6 +39,10 @@ public class PopupTwoButtonInputs {
 
         ClockFile file = new ClockFile();
         file.createOrUpdateFile();
+
+        MainWindowController controller = (MainWindowController) sm.getController(FileConstants.MainWindow);
+
+        controller.loadData();
 
     }
 

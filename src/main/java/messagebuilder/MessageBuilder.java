@@ -182,8 +182,6 @@ public class MessageBuilder {
 
                     };
 
-
-
                     controller.setTFLHeader(Complements.addStringFromTextList("¡Todo ha ido de maravilla!", Styles.px14, headerColor));
 
                     List<Text> texts = new ArrayList<>();

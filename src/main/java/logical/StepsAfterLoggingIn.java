@@ -124,6 +124,10 @@ public class StepsAfterLoggingIn {
 
         controller.initialize();
 
+        controller.loadData();
+
+        controller.initializeAnimation();
+
         sm.setScreen(FileConstants.MainWindow, Titles.MainWindow);
 
     }
