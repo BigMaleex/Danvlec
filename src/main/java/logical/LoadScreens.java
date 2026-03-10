@@ -6,9 +6,6 @@ import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 import utilities.FileConstants;
 import utilities.ScreenManager;
-import utilities.Titles;
-
-import java.io.File;
 
 public class LoadScreens {
 
@@ -23,7 +20,8 @@ public class LoadScreens {
             {FileConstants.SignUp, FileConstants.SignUpFXML},
             {FileConstants.Guest, FileConstants.GuestFXML},
             {FileConstants.Login, FileConstants.LoginFXML},
-            {FileConstants.MainWindow, FileConstants.MainWindowFXLM},
+            {FileConstants.MainWindow, FileConstants.MainWindowFXML},
+            {FileConstants.NewEntry, FileConstants.NewEntryFXML},
 
     };
 

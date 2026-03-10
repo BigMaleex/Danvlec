@@ -776,7 +776,11 @@ public class MainWindowController extends ConfigureInitializeStyles {
     @FXML
     void BTNNewEntryOnMouseClicked(MouseEvent event) {
 
+        stopAnimation();
+        NewEntryController controller = (NewEntryController) sm.getController(FileConstants.NewEntry);
+        controller.initialize();
 
+        sm.setScreenAtPosition(FileConstants.NewEntry, Titles.NewEntry);
 
     }
 

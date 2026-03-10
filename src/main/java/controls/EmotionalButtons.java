@@ -1,16 +1,23 @@
 package controls;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import user.UserData;
+
 import java.util.ArrayList;
 
 public class EmotionalButtons {
+
+    private static final int maxPosHappiness = 24;
+    private static final int maxPosSurprise = 37;
+    private static final int maxPosFear = 56;
+    private static final int maxPosAnger = 80;
+    private static final int maxPosDisgust = 93;
+    private static final int maxPosSadness = 111;
+
+    public static int [] getArrayPos (){
+
+        return new int [] {maxPosHappiness, maxPosSurprise, maxPosFear, maxPosAnger, maxPosDisgust, maxPosSadness};
+
+    }
 
     private String[] emotionsEN = {
 
@@ -267,48 +274,33 @@ public class EmotionalButtons {
 
 };
 
-   public Node[] getToggleButtons(){
+   public EmotionToggleButton[] getEmotionNodes(){
 
-        ArrayList<ToggleButton> buttons = new ArrayList<ToggleButton>();
-        ArrayList<Label> labels = new ArrayList<Label>();
-        ArrayList<ImageView> images = new ArrayList<ImageView>();
+       ArrayList<EmotionToggleButton> emotionButtons = new ArrayList<>();
 
-        int sex = UserData.getSex() == UserData.Sex.MAN ? 1 : 0;
+       int sex = UserData.getSex() == UserData.Sex.MAN ? 1 : 0;
 
-        for(int i = 0; i < emotions.length; i++){
+       if(UserData.getSex() != null){
 
-            HBox hbox = new HBox();
+           for(int i = 0; i < emotions.length; i++){
 
-            hbox.setAlignment(Pos.CENTER);
+               emotionButtons.add(new EmotionToggleButton(emotions[i][sex]));
 
-            hbox.setSpacing(10);
+           }
 
-            Label label = new Label(emotions[i][sex]);
+       }else{
 
-            ImageView image = new ImageView();
+           System.out.println("Aún no se agrega ningún sexo");
 
-            hbox.getChildren().addAll(label, image);
+       }
 
-            ToggleButton button = new ToggleButton();
-            button.setText(null);
+       return emotionButtons.toArray(new EmotionToggleButton[emotionButtons.size()]);
 
-            button.setPadding(new Insets(5));
+   }
 
-            button.setGraphic(hbox);
+   public int [] getEmotionMaxPos() {
 
-            buttons.add(button);
-            labels.add(label);
-            images.add(image);
-
-        }
-
-        ArrayList <Node> all = new ArrayList<Node>();
-
-        all.addAll(buttons);
-        all.addAll(labels);
-        all.addAll(images);
-
-        return all.toArray(new Node [all.size()]);
+       return new int [] {25, 38, 57, 81, 94, 112};
 
    }
 

@@ -263,10 +263,12 @@
     -fx-border-radius: 50%;
 }
 
-.slider .axis .tick-label {
-    -fx-font-family: "Oswald SemiBold";
-    -fx-font-size: 1.1em;
-    -fx-fill: #555;
+.slider .axis {
+
+    -fx-tick-label-font: 1.0em "Oswald SemiBold";
+    -fx-tick-mark-stroke:  #555;
+    -fx-tick-label-fill: #555;
+
 }
 
 .text-area {
@@ -308,6 +310,269 @@
 
 .text-area:focused {
     -fx-prompt-text-fill: #8592d2;
+}
+
+.rootActive {
+
+    -fx-background-color: #282c34;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .SPStep {
+
+    -fx-background-color: #3c4454ff;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-border-width: 2px;
+    -fx-border-color: #3c4454ff;
+
+}
+
+.rootActive .SPStep:Active {
+
+    -fx-background-color: #4dc0d4;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #4dc0d4;
+
+}
+
+.rootActive .SPStep:Past {
+
+    -fx-background-color: #35505fff;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #4dc0d4;
+
+}
+
+.rootActive .LBLStep {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #a5adbeff;
+
+}
+
+.rootActive .LBLStep:Active {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #4dc0d4;
+
+}
+
+.rootActive .LBLHeader {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #ffffff;
+
+}
+
+.rootActive .LBLSubHeader {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.3em;
+    -fx-text-fill: #9da5b6ff;
+
+}
+
+.rootActive .LBLTitle {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+    -fx-text-fill: #d5d5d5;
+
+}
+
+.rootActive .FooterBar {
+
+    -fx-background-color: #282c34;
+    -fx-background-radius: 0px 0px 10px 10px;
+    -fx-border-color: #4dc0d4;
+    -fx-border-width: 1px 0px 0px 0px;
+
+}
+
+.rootActive .titled-pane {
+
+    -fx-background-color: #2f3542ff;
+    -fx-background-radius: 10px;
+    -fx-padding: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+
+}
+
+.rootActive .titled-pane > .title {
+
+    -fx-background-color: #2f3542ff;
+    -fx-background-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #34505eff;
+    -fx-border-radius: 10px;
+
+}
+
+.rootActive .titled-pane > .title > .arrow-button .arrow {
+
+    -fx-background-color: #a4acbcff;
+    -fx-shape: "M 0 0 L 4 4 L 8 0 L 6 0 L 4 2 L 2 0 Z";
+    -fx-font-size: 2em;
+
+}
+
+.rootActive .titled-pane:expanded > .title {
+
+    -fx-background-color: #2f3542ff;
+    -fx-background-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #34505eff;
+    -fx-border-radius: 10px 10px 0px 0px;
+
+}
+
+.rootActive .titled-pane > .content {
+
+    -fx-background-color: #2f3542ff;
+    -fx-background-radius: 0px 0px 10px 10px;
+    -fx-padding: 0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 0px 0px 10px 10px;
+    -fx-border-color: #34505eff;
+}
+
+.rootActive .LBLEmotion {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.3em;
+    -fx-text-fill: #ffffff;
+
+}
+
+.rootActive .LBLEmotionCount {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.1em;
+    -fx-text-fill: #a4acbdff;
+
+}
+
+.rootActive .SPCard {
+
+    -fx-background-color: #2f3542ff;
+    -fx-border-color: #34505eff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+
+}
+
+.rootActive .SPGeneralEmotionalState {
+
+    -fx-border-color: #354753;
+    -fx-border-width: 2px 0 0 0;
+
+}
+
+.rootActive .LBLScore {
+
+    -fx-background-color: #324350ff;
+    -fx-background-radius: 999;
+    -fx-text-fill: #4dc0d4;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.rootActive .LBLCardTitle {
+
+    -fx-text-fill: #f5f5f5;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.rootActive .LBLCardSubTitle {
+
+    -fx-text-fill: #a4acbdff;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+
+}
+
+.rootActive .LBLMaxChars {
+
+    -fx-text-fill: #d5d5d5;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
+.rootActive .slider .track {
+    -fx-background-color: #3c4454ff;
+    -fx-background-radius: 5;
+}
+
+.rootActive .slider .filled-track {
+    -fx-background-color: #4dc0d4;
+    -fx-background-radius: 5;
+}
+
+.rootActive .slider .thumb {
+    -fx-background-color: #121212;
+    -fx-border-color: #4dc0d4;
+    -fx-border-radius: 50%;
+}
+
+.rootActive .slider .axis {
+    -fx-tick-label-font: 1.0em "Oswald SemiBold";
+    -fx-tick-mark-stroke:  #d5d5d5;
+    -fx-tick-label-fill: #d5d5d5ff;
+}
+
+.rootActive .text-area {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 0;
+
+    -fx-prompt-text-fill: #d5d5d5;
+    -fx-padding: 6 8 6 8;
+}
+
+/* Fondo interno real del TextArea */
+.rootActive .text-area .content {
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 10px;
+}
+
+/* Estado focus */
+.rootActive .text-area:focused {
+
+    -fx-text-fill: #73DCE6;
+    -fx-border-color: #73DCE6;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+}
+
+/* Fondo interno cuando está enfocado */
+.rootActive .text-area:focused .content {
+    -fx-background-color: #1D1F23;
+}
+
+.rootActive .text-area:focused {
+    -fx-prompt-text-fill: #73DCE6;
 }
 
 /* ---------------------- ScrollPane (solo lo necesario) ---------------------- */

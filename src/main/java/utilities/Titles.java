@@ -8,5 +8,6 @@ public class Titles {
     public static final String Guest = "Modo invitado";
     public static final String Login = "Inicia sesión";
     public static final String MainWindow = "Danvlec";
+    public static final String NewEntry = "Nuevo Registro";
 
 }
