@@ -24,8 +24,8 @@
 .SPStep:Active {
 
     -fx-background-color: #191d91;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
     -fx-border-width: 2px;
     -fx-border-color: #191d91;
 
@@ -34,8 +34,8 @@
 .SPStep:Past {
 
     -fx-background-color: #191d9133;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
     -fx-border-width: 2px;
     -fx-border-color: #191d91;
 
@@ -247,6 +247,14 @@
 
 }
 
+.LBLMaxChars:Error {
+
+    -fx-text-fill: #E66F6F;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
 .slider .track {
     -fx-background-color: #dcdcdc;
     -fx-background-radius: 5;
@@ -312,6 +320,47 @@
     -fx-prompt-text-fill: #8592d2;
 }
 
+.text-area.error {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #E66F6F;
+
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 0;
+
+    -fx-prompt-text-fill: #747474;
+    -fx-padding: 6 8 6 8;
+}
+
+/* Fondo interno real del TextArea */
+.text-area.error .content {
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 10px;
+}
+
+/* Estado focus */
+text-area.error:focused {
+
+    -fx-text-fill: #E66F6F;
+    -fx-border-color: #E66F6F;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+}
+
+/* Fondo interno cuando está enfocado */
+.text-area.error:focused .content {
+    -fx-background-color: #e6e6e6;
+}
+
+.text-area.error:focused {
+    -fx-prompt-text-fill: #E66F6F;
+}
+
 .rootActive {
 
     -fx-background-color: #282c34;
@@ -332,8 +381,8 @@
 .rootActive .SPStep:Active {
 
     -fx-background-color: #4dc0d4;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
     -fx-border-width: 2px;
     -fx-border-color: #4dc0d4;
 
@@ -342,8 +391,8 @@
 .rootActive .SPStep:Past {
 
     -fx-background-color: #35505fff;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
     -fx-border-width: 2px;
     -fx-border-color: #4dc0d4;
 
@@ -513,6 +562,14 @@
 
 }
 
+.rootActive .LBLMaxChars:Error {
+
+    -fx-text-fill: #E66F6F;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.2em;
+
+}
+
 .rootActive .slider .track {
     -fx-background-color: #3c4454ff;
     -fx-background-radius: 5;
@@ -573,6 +630,46 @@
 
 .rootActive .text-area:focused {
     -fx-prompt-text-fill: #73DCE6;
+}
+
+.rootActive .text-area.error {
+
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 1.0em;
+    -fx-text-fill: #E66F6F;
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 0;
+
+    -fx-prompt-text-fill: #d5d5d5;
+    -fx-padding: 6 8 6 8;
+}
+
+/* Fondo interno real del TextArea */
+.rootActive .text-area.error .content {
+    -fx-background-color: #1D1F23;
+    -fx-background-radius: 10px;
+}
+
+/* Estado focus */
+.rootActive .text-area.error:focused {
+
+    -fx-text-fill: #E66F6F;
+    -fx-border-color: #E66F6F;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+}
+
+/* Fondo interno cuando está enfocado */
+.rootActive .text-area.error:focused .content {
+    -fx-background-color: #1D1F23;
+}
+
+.rootActive .text-area.error:focused {
+    -fx-prompt-text-fill: #E66F6F;
 }
 
 /* ---------------------- ScrollPane (solo lo necesario) ---------------------- */

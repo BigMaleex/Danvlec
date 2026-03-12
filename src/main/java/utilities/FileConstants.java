@@ -161,6 +161,41 @@ public class FileConstants {
     public static final String arrowCounterclockwiseSecondaryDm = "arrow-counterclockwise-secondary-dm.png";
     public static final String arrowCounterclockwiseSecondaryHoverLm = "arrow-counterclockwise-secondary-hover-lm.png";
     public static final String arrowCounterclockwiseSecondaryHoverDm = "arrow-counterclockwise-secondary-hover-dm.png";
+    public static final String chatLeftActiveLm = "chat-left-active-lm.png";
+    public static final String chatLeftIconLm = "chat-left-icon-lm.png";
+    public static final String chatLeftPastLm = "chat-left-past-lm.png";
+    public static final String chatLeftActiveDm = "chat-left-active-dm.png";
+    public static final String chatLeftIconDm = "chat-left-icon-dm.png";
+    public static final String chatLeftPastDm = "chat-left-past-dm.png";
+    public static final String heartActiveLm = "heart-active-lm.png";
+    public static final String heartLm = "heart-lm.png";
+    public static final String heartSubIconLm = "heart-sub-icon-lm.png";
+    public static final String heartPastLm = "heart-past-lm.png";
+    public static final String heartActiveDm = "heart-active-dm.png";
+    public static final String heartDm = "heart-dm.png";
+    public static final String heartSubIconDm = "heart-sub-icon-dm.png";
+    public static final String heartPastDm = "heart-past-dm.png";
+    public static final String lightningChargeActiveDm = "lightning-charge-active-dm.png";
+    public static final String lightningChargeDm = "lightning-charge-dm.png";
+    public static final String lightningChargePastDm = "lightning-charge-past-dm.png";
+    public static final String lightningChargeActiveLm = "lightning-charge-active-lm.png";
+    public static final String lightningChargeLm = "lightning-charge-lm.png";
+    public static final String lightningChargePastLm = "lightning-charge-past-lm.png";
+    public static final String checkPastLm = "check-past-lm.png";
+    public static final String checkPastActiveLm = "check-active-lm.png";
+    public static final String checkLm = "check-lm.png";
+    public static final String checkPastDm = "check-past-dm.png";
+    public static final String checkPastActiveDm = "check-active-dm.png";
+    public static final String checkDm = "check-dm.png";
+    public static final String arrowLeftSecondaryLm = "arrow-left-secondary-lm.png";
+    public static final String arrowLeftSecondaryHoverLm = "arrow-left-secondary-hover-lm.png";
+    public static final String arrowLeftSecondaryDm = "arrow-left-secondary-dm.png";
+    public static final String arrowLeftSecondaryHoverDm = "arrow-left-secondary-hover-dm.png";
+    public static final String arrowRightPrimaryLm = "arrow-right-primary-lm.png";
+    public static final String arrowRightPrimaryHoverLm = "arrow-right-primary-hover-lm.png";
+    public static final String arrowRightPrimaryDm = "arrow-right-primary-dm.png";
+    public static final String arrowRightPrimaryHoverDm = "arrow-right-primary-hover-dm.png";
+
 
     //Fuente
     public static final String oswaldSemiBold = "Oswald-SemiBold.ttf";

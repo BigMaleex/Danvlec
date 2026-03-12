@@ -325,12 +325,14 @@ public class MainWindowController extends ConfigureInitializeStyles {
 
         phrase = Phrases.getPhrase();
 
+        LBLTitleBar.setText(Titles.MainWindow);
+
         Images.clearImages();
         isDarkMode = UserPreferences.getUserThemeMode();
         dateOfClock = UserClock.getDate();
         haveAnyMotivation = UserData.getMotivation() != null && !UserData.getMotivation().isBlank();
 
-        removeTheOpacityFromTheImageViews(IMGCustomClockHover, IMGExportExcelHover, IMGMotivationsHover, IMGRestartClockHover, IMGNewEntryHover);
+        removeTheOpacityFromTheImageViews(IMGCustomClockHover, IMGExportExcelHover, IMGMotivationsHover, IMGRestartClockHover, IMGNewEntryHover, IMGThemeHover, IMGTheme);
 
         LBLMotivations.setText(haveAnyMotivation ? "Modifica tu motivación para mejorar" : "Añade tu motivación para mejorar");
 
@@ -388,7 +390,7 @@ public class MainWindowController extends ConfigureInitializeStyles {
 
         changeColors();
 
-        ConfigureNodes.configureNodesForMainWindowController(APTitleBar,BTNClose,BTNCustomClock,BTNExportExcel,BTNMinimize, BTNMotivations, BTNNewEntry, BTNRestartClock, IMGAllEntries, IMGCustomClock,IMGCustomClockHover, IMGExportExcel, IMGExportExcelHover, IMGMonthlyEntries,IMGMotivations,IMGMotivationsHover,IMGNewEntry,IMGNewEntryHover,IMGPhrase,IMGRestartClock,IMGRestartClockHover,IMGTheme,IMGThemeHover,IMGThemeInit, IMGWeeklyEntries,LBLCustomClock,LBLExportExcel,LBLMotivations,LBLNewEntry,LBLRestartClock,SPTheme,isDarkMode, haveAnyMotivation);
+        ConfigureNodes.configureNodesForMainWindowController(APTitleBar,BTNClose,BTNCustomClock,BTNExportExcel,BTNMinimize, BTNMotivations, BTNNewEntry, BTNRestartClock, IMGAllEntries, IMGCustomClock,IMGCustomClockHover, IMGExportExcel, IMGExportExcelHover, IMGMonthlyEntries,IMGMotivations,IMGMotivationsHover,IMGNewEntry,IMGNewEntryHover,IMGPhrase,IMGRestartClock,IMGRestartClockHover,IMGTheme,IMGThemeHover,IMGThemeInit, IMGWeeklyEntries,LBLCustomClock,LBLExportExcel,LBLMotivations,LBLNewEntry,LBLRestartClock, LBLTitleBar,SPTheme,isDarkMode, haveAnyMotivation);
 
 
     }
@@ -694,7 +696,7 @@ public class MainWindowController extends ConfigureInitializeStyles {
 
     }
 
-     @FXML
+    @FXML
     void BTNMinimizeOnMouseClicked(MouseEvent event) {
 
         Stage stage = (Stage)BTNMinimize.getScene().getWindow();

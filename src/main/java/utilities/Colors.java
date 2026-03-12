@@ -303,6 +303,20 @@ public class Colors {
             Map.entry("email-found-content-dm", "#569F77FF"), //COLOR DEL LABEL DE CONTENIDO CUANDO SE ENVÍA EL CÓDIGO DE RECUPERACIÓN
             Map.entry("email-found-header-dm", "#77E8A3FF"), //COLOR DEL LABEL DE BRILLO CUANDO SE ENVÍA EL CÓDIGO DE RECUPERACIÓN
 
+            Map.entry("background-emotional-toggle-button-lm", "#EDEDEDFF"), //COLOR DE FONDO DEL BOTÓN DE EMOCIONES
+            Map.entry("border-emotional-toggle-button-lm", "#EDEDEDFF"), //COLOR DE BORDE DEL BOTÓN DE EMOCIONES
+            Map.entry("font-color-emotional-toggle-button-lm", "#626265FF"), //COLOR DE LA FUENTE DEL BOTÓN DE EMOCIONES
+            Map.entry("background-hover-emotional-toggle-button-lm", "#192D91FF"), //COLOR DE FONDO DEL BOTÓN DE EMOCIONES CUANDO EL USUARIO HACE HOVER
+            Map.entry("border-hover-emotional-toggle-button-lm", "#192D91FF"), //COLOR DE BORDE DEL BOTÓN DE EMOCIONES CUANDO EL USUARIO HACE HOVER
+            Map.entry("font-color-hover-emotional-toggle-button-lm", "#F5F5F5"), //COLOR DE LA FUENTE DEL BOTÓN DE EMOCIONES CUANDO EL USUARIO HACE HOVER
+
+            Map.entry("background-emotional-toggle-button-dm", "#2F3542FF"), //COLOR DE FONDO DEL BOTÓN DE EMOCIONES
+            Map.entry("border-emotional-toggle-button-dm", "#2F3542FF"), //COLOR DE BORDE DEL BOTÓN DE EMOCIONES
+            Map.entry("font-color-emotional-toggle-button-dm", "#FFFFFFFF"), //COLOR DE LA FUENTE DEL BOTÓN DE EMOCIONES
+            Map.entry("background-hover-emotional-toggle-button-dm", "#4DC0D4FF"), //COLOR DE FONDO DEL BOTÓN DE EMOCIONES CUANDO EL USUARIO HACE HOVER
+            Map.entry("border-hover-emotional-toggle-button-dm", "#4DC0D4FF"), //COLOR DE BORDE DEL BOTÓN DE EMOCIONES CUANDO EL USUARIO HACE HOVER
+            Map.entry("font-color-hover-emotional-toggle-button-dm", "#121212FF"), //COLOR DE LA FUENTE DEL BOTÓN DE EMOCIONES CUANDO EL USUARIO HACE HOVER
+
             //Error
             Map.entry("error", "#1818FFFF") //COLOR QUE APARECERÁ CUANDO NO SE ENCUENTRE UNA VARIABLE
 

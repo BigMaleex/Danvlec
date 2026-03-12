@@ -87,6 +87,11 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
     private static String popupToggleButtonBorder;
     private static String popupToggleButtonFontColor;
 
+    //Botón de emociones
+    private static String backgroundEmotionalToggleButton;
+    private static String borderEmotionalToggleButton;
+    private static String fontColorEmotionalToggleButton;
+
     private static void changeColors(boolean isDarkMode){
 
         //Botón secundario
@@ -161,11 +166,68 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
         popupToggleButtonBorder = Colors.getColor("popup-toggle-button-border", isDarkMode);
         popupToggleButtonFontColor = Colors.getColor("popup-toggle-button-font-color", isDarkMode);
 
+        //Botón de emociones
+        backgroundEmotionalToggleButton = Colors.getColor("background-emotional-toggle-button", isDarkMode);
+        borderEmotionalToggleButton = Colors.getColor("border-emotional-toggle-button", isDarkMode);
+        fontColorEmotionalToggleButton = Colors.getColor("font-color-emotional-toggle-button", isDarkMode);
+
     }
 
-    public static void configureNodesForMainWindowController(AnchorPane APTitleBar, Button BTNClose, Button BTNCustomClock, Button BTNExportExcel, Button BTNMinimize, Button BTNMotivations, Button BTNNewEntry, Button BTNRestartClock, ImageView IMGAllEntries, ImageView IMGCustomClock, ImageView IMGCustomClockHover, ImageView IMGExportExcel, ImageView IMGExportExcelHover, ImageView IMGMonthlyEntries, ImageView IMGMotivations, ImageView IMGMotivationsHover, ImageView IMGNewEntry, ImageView IMGNewEntryHover, ImageView IMGPhrase, ImageView IMGRestartClock, ImageView IMGRestartClockHover, ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, ImageView IMGWeeklyEntries,Label LBLCustomClock, Label LBLExportExcel, Label LBLMotivations, Label LBLNewEntry, Label LBLRestartClock, StackPane SPTheme, boolean isDM, boolean haveAnyMotivation){
+    public static void configureNodesForNewEntryController(AnchorPane APTitleBar, Button BTNClose, Button BTNMinimize, Button BTNNext, Button BTNPrevious, ImageView IMGButtonNext, ImageView IMGButtonNextHover, ImageView IMGButtonPrevious, ImageView IMGButtonPreviousHover, ImageView IMGContextWhatDidYouFeel, ImageView IMGContextWhatWasHappening, ImageView IMGSummaryAdditionalNotes, ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, Label LBLButtonPrevious, Label LBLNext, Label LBLTitleBar, StackPane SPTheme, ToggleButton [] buttons , boolean isDM, boolean allConditionsMet){
 
         changeColors(isDM);
+
+        applyStylesToLabels(titleBarFontColorWithoutFocus, Styles.px14, LBLTitleBar);
+
+        addToolTip("Minimizar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNMinimize);
+
+        addToolTip(("Cambiar al modo " + (!isDM ? "oscuro": "claro")), tooltipBackground, tooltipBorder, tooltipFontColor, SPTheme);
+
+        addToolTip("Cerrar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNClose);
+
+        applyStylesToTitleBar(titleBarBackgroundWithoutFocus, titleBarBorderWithoutFocus, APTitleBar);
+
+        applyStylesToButtons(titleBarButtonBackgroundWithoutFocus, titleBarButtonBorderWithoutFocus, titleBarButtonFontColorWithoutFocus, Styles.px12, Styles.px1, Styles.px10, BTNMinimize);
+
+        applyStylesToButtons(titleBarCloseButtonBackgroundWithoutFocus, titleBarCloseButtonBorderWithoutFocus, titleBarCloseButtonFontColorWithoutFocus, Styles.px12, Styles.px1, Styles.px10, BTNClose);
+
+        setThemeImages(IMGTheme, IMGThemeHover, IMGThemeInit, isDM);
+
+        setImages(FileConstants.chatLeftIconDm, FileConstants.chatLeftIconLm, isDM, IMGContextWhatDidYouFeel, IMGContextWhatWasHappening,IMGSummaryAdditionalNotes);
+
+        setImages(FileConstants.arrowRightPrimaryDm, FileConstants.arrowRightPrimaryLm, isDM, IMGButtonNext);
+
+        setImages(FileConstants.arrowRightPrimaryHoverDm, FileConstants.arrowRightPrimaryHoverLm, isDM, IMGButtonNextHover);
+
+        setImages(FileConstants.arrowLeftSecondaryDm, FileConstants.arrowLeftSecondaryLm, isDM, IMGButtonPrevious);
+
+        setImages(FileConstants.arrowLeftSecondaryHoverDm, FileConstants.arrowLeftSecondaryHoverLm, isDM, IMGButtonPreviousHover);
+
+        if(allConditionsMet){
+
+            applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNNext}, new Label [] {LBLNext});
+            BTNNext.setOpacity(1);
+            IMGButtonNext.setOpacity(1);
+
+        }else{
+
+            applyStylesToButtonsWithLabel(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNNext}, new Label [] {LBLNext});
+            BTNNext.setOpacity(0.66);
+            IMGButtonNext.setOpacity(0);
+
+        }
+
+        applyStylesToButtonsWithLabel(secondaryButtonBackground, secondaryButtonBorder, secondaryButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNPrevious}, new Label [] {LBLButtonPrevious});
+
+        applyStylesToButtons(backgroundEmotionalToggleButton, borderEmotionalToggleButton, fontColorEmotionalToggleButton, Styles.px12, Styles.px1, Styles.px10, buttons);
+
+    }
+
+    public static void configureNodesForMainWindowController(AnchorPane APTitleBar, Button BTNClose, Button BTNCustomClock, Button BTNExportExcel, Button BTNMinimize, Button BTNMotivations, Button BTNNewEntry, Button BTNRestartClock, ImageView IMGAllEntries, ImageView IMGCustomClock, ImageView IMGCustomClockHover, ImageView IMGExportExcel, ImageView IMGExportExcelHover, ImageView IMGMonthlyEntries, ImageView IMGMotivations, ImageView IMGMotivationsHover, ImageView IMGNewEntry, ImageView IMGNewEntryHover, ImageView IMGPhrase, ImageView IMGRestartClock, ImageView IMGRestartClockHover, ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, ImageView IMGWeeklyEntries,Label LBLCustomClock, Label LBLExportExcel, Label LBLMotivations, Label LBLNewEntry, Label LBLRestartClock, Label LBLTitleBar, StackPane SPTheme, boolean isDM, boolean haveAnyMotivation) {
+
+        changeColors(isDM);
+
+        applyStylesToLabels(titleBarFontColorWithoutFocus, Styles.px14, LBLTitleBar);
 
         addToolTip("Minimizar", tooltipBackground, tooltipBorder, tooltipFontColor, BTNMinimize);
 

@@ -2,6 +2,9 @@ package controllers;
 
 import controls.EmotionToggleButton;
 import controls.EmotionalButtons;
+import files.Preferences;
+import javafx.application.Platform;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -11,18 +14,112 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import stylebuilder.ConfigureInitializeStyles;
+import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
+import user.UserPreferences;
+import utilities.Colors;
+import utilities.FileConstants;
+import utilities.Styles;
 import utilities.Titles;
 
 import java.util.ArrayList;
 
-public class NewEntryController {
+public class NewEntryController extends ConfigureInitializeStyles {
 
     public enum Step {
 
         First, Second, Third, Fourth
 
     }
+
+    //variables
+    private static Step currentStep;
+    private static boolean isDarkMode, allConditionsMet = false, pastAllConditionsMet = true, TXTContextWhatHappeningPastState = false, TXTContextWhatDidYouFeelPastState = false, TXTSummaryAdditionalNotesPastState = false;
+
+    private int xOffset, yOffset;
+    private static boolean [] emotionsSelected = new boolean [112];
+
+    //Pseudoclases
+    private static final PseudoClass LBLErr = PseudoClass.getPseudoClass("Error");
+    private static final PseudoClass active = PseudoClass.getPseudoClass("Active");
+    private static final PseudoClass past = PseudoClass.getPseudoClass("Past");
+
+    //Variables de color
+    //Botón primario
+    private static String principalButtonBackground;
+    private static String principalButtonBorder;
+    private static String principalButtonFontColor;
+
+    private static String principalButtonBackgroundHover;
+    private static String principalButtonBorderHover;
+    private static String principalButtonFontColorHover;
+
+    //Botón secundario
+    private static String secondaryButtonBackground;
+    private static String secondaryButtonBorder;
+    private static String secondaryButtonFontColor;
+
+    private static String secondaryButtonBackgroundHover;
+    private static String secondaryButtonBorderHover;
+    private static String secondaryButtonFontColorHover;
+
+    //Barra de título
+    //Sin focus
+    private static String titleBarBackgroundWithoutFocus;
+    private static String titleBarBorderWithoutFocus;
+    private static String titleBarFontColorWithoutFocus;
+
+    //Con focus
+    private static String titleBarBackgroundWithFocus;
+    private static String titleBarBorderWithFocus;
+    private static String titleBarFontColorWithFocus;
+
+    //Botón principal de la barra de título
+    //Sin focus
+    private static String titleBarButtonBackgroundWithoutFocus;
+    private static String titleBarButtonBorderWithoutFocus;
+    private static String titleBarButtonFontColorWithoutFocus;
+
+    //Con focus
+    private static String titleBarButtonBackgroundWithFocus;
+    private static String titleBarButtonBorderWithFocus;
+    private static String titleBarButtonFontColorWithFocus;
+
+    //Con hover
+    private static String titleBarButtonBackgroundWithFocusHover;
+    private static String titleBarButtonBorderWithFocusHover;
+    private static String titleBarButtonFontColorWithFocusHover;
+
+    //Botón para cerrar de la barra de título
+    //Sin focus
+    private static String titleBarCloseButtonBackgroundWithoutFocus;
+    private static String titleBarCloseButtonBorderWithoutFocus;
+    private static String titleBarCloseButtonFontColorWithoutFocus;
+
+    //Con focus
+    private static String titleBarCloseButtonBackgroundWithFocus;
+    private static String titleBarCloseButtonBorderWithFocus;
+    private static String titleBarCloseButtonFontColorWithFocus;
+
+    //Con hover
+    private static String titleBarCloseButtonBackgroundWithFocusHover;
+    private static String titleBarCloseButtonBorderWithFocusHover;
+    private static String titleBarCloseButtonFontColorWithFocusHover;
+
+    //Botón desactivado
+    private static String buttonBackgroundDisabled;
+    private static String buttonBorderDisabled;
+    private static String buttonFontColorDisabled;
+
+    //Botón de emociones
+    private static String backgroundEmotionalToggleButton;
+    private static String borderEmotionalToggleButton;
+    private static String fontColorEmotionalToggleButton;
+    private static String backgroundHoverEmotionalToggleButton;
+    private static String borderHoverEmotionalToggleButton;
+    private static String fontColorHoverEmotionalToggleButton;
 
     @FXML
     private AnchorPane APMain;
@@ -196,6 +293,15 @@ public class NewEntryController {
     private TextArea TXTSummaryAdditionalNotes;
 
     @FXML
+    private Label LBLContextWhatWasHappening;
+
+    @FXML
+    private Label LBLContextWhatDidYouFeel;
+
+    @FXML
+    private Label LBLSummaryAdditionalNotes;
+
+    @FXML
     private VBox VBXScoreEmotionsAnger;
 
     @FXML
@@ -214,13 +320,21 @@ public class NewEntryController {
     private VBox VBXScoreEmotionsSurprised;
 
     private EmotionToggleButton[] toggleButtons;
-    private Label [] labels;
-    private ImageView [] imageViews;
 
     @FXML
     public void initialize () {
 
+        removeTheOpacityFromTheImageViews(IMGButtonNextHover, IMGButtonPreviousHover, IMGThemeHover, IMGTheme);
+
+        allConditionsMet = false;
+
+        pastAllConditionsMet = true;
+
         LBLTitleBar.setText(Titles.NewEntry);
+
+        isDarkMode = UserPreferences.getUserThemeMode();
+
+        currentStep = Step.First;
 
         EmotionalButtons buttons = new EmotionalButtons();
 
@@ -262,19 +376,11 @@ public class NewEntryController {
 
         int [] maxPosArray = buttons.getEmotionMaxPos();
 
-        for(int i = 0; i < toggleButtons.length; i++) {
+        for(boolean emotion : emotionsSelected){
 
-            if(toggleButtons[i] != null) {
-
-                labelsToArray.add(toggleButtons[i].getToggleButtonLabel());
-                imagesToArray.add(toggleButtons[i].getToggleButtonImageView());
-
-            }
+            emotion = false;
 
         }
-
-        labels = labelsToArray.toArray(new Label[labelsToArray.size()]);
-        imageViews = imagesToArray.toArray(new ImageView[imagesToArray.size()]);
 
         int [] maxHPos = {0,0,0,0,0,0};
         int [] maxVPos = {0,0,0,0,0,0};
@@ -393,18 +499,47 @@ public class NewEntryController {
 
         }
 
-        //Vincular managed a visibility
-        SPContext.managedProperty().bind(SPContext.visibleProperty());
-        SPEmotions.managedProperty().bind(SPEmotions.visibleProperty());
-        SPScoreEmotions.managedProperty().bind(SPScoreEmotions.visibleProperty());
-        SPSummary.managedProperty().bind(SPSummary.visibleProperty());
+        for(ToggleButton button : toggleButtons){
 
-        SPScoreEmotionsHappy.managedProperty().bind(SPScoreEmotionsHappy.visibleProperty());
-        SPScoreEmotionsSurprised.managedProperty().bind(SPScoreEmotionsSurprised.visibleProperty());
-        SPScoreEmotionsFear.managedProperty().bind(SPScoreEmotionsFear.visibleProperty());
-        SPScoreEmotionsAnger.managedProperty().bind(SPScoreEmotionsAnger.visibleProperty());
-        SPScoreEmotionsDisgust.managedProperty().bind(SPScoreEmotionsDisgust.visibleProperty());
-        SPScoreEmotionsSad.managedProperty().bind(SPScoreEmotionsSad.visibleProperty());
+           button.setOnMouseEntered( e-> {
+
+                if(!button.isSelected()){
+
+                    StyleBuilder.animateButtonColors(
+
+                       button,
+                       backgroundEmotionalToggleButton, backgroundHoverEmotionalToggleButton,
+                       borderEmotionalToggleButton, borderHoverEmotionalToggleButton,
+                       fontColorEmotionalToggleButton, fontColorHoverEmotionalToggleButton
+
+                    );
+
+                }
+
+           });
+
+           button.setOnMouseExited( l-> {
+
+                       if (!button.isSelected()) {
+
+                           StyleBuilder.animateButtonColors(
+
+                                   button,
+                                   backgroundHoverEmotionalToggleButton, backgroundEmotionalToggleButton,
+                                   borderHoverEmotionalToggleButton, borderEmotionalToggleButton,
+                                   fontColorHoverEmotionalToggleButton, fontColorEmotionalToggleButton
+
+                           );
+
+                       }
+
+            }
+
+           );
+
+        }
+
+        linkVisiblePropertyWithManagedProperty(SPContext, SPEmotions, SPScoreEmotions, SPSummary, SPScoreEmotionsHappy, SPScoreEmotionsSurprised, SPScoreEmotionsFear, SPScoreEmotionsAnger, SPScoreEmotionsDisgust, SPScoreEmotionsSad);
 
         SPContext.setVisible(false);
         SPEmotions.setVisible(false);
@@ -413,6 +548,115 @@ public class NewEntryController {
 
         StyleBuilder.clearControls(TXTContextWhatDidYouFeel, TXTContextWhatHappening, TXTSummaryAdditionalNotes);
 
+        TXTContextWhatDidYouFeel.textProperty().addListener((obs, oldVal, newVal) ->{
+
+            TXTContextWhatDidYouFeelPastState = isValidLength(LBLContextWhatDidYouFeel, LBLContextCountMaxCharsWhatDidYouFeel, TXTContextWhatDidYouFeel, TXTContextWhatDidYouFeelPastState);
+
+        });
+
+        TXTContextWhatHappening.textProperty().addListener((obs, oldVal, newVal) ->{
+
+            TXTContextWhatHappeningPastState = isValidLength(LBLContextWhatWasHappening, LBLContextCountMaxCharsWhatWasHappening, TXTContextWhatHappening, TXTContextWhatHappeningPastState);
+
+        });
+
+        TXTSummaryAdditionalNotes.textProperty().addListener((obs, oldVal, newVal) ->{
+
+            TXTSummaryAdditionalNotesPastState = isValidLength(LBLSummaryAdditionalNotes, LBLSummaryCountMaxCharsAdditionalNotes, TXTSummaryAdditionalNotes, TXTSummaryAdditionalNotesPastState);
+
+        });
+
+        changeStep();
+
+        changeTheme();
+
+    }
+
+    private void changeTheme(){
+
+        changeColors();
+
+        StyleBuilder.setAnchorPaneClass(APMain);
+
+        ConfigureNodes.configureNodesForNewEntryController(APTitleBar, BTNClose, BTNMinimize,BTNNext, BTNPrevious, IMGButtonNext, IMGButtonNextHover, IMGButtonPrevious, IMGButtonPreviousHover,IMGContextWhatDidYouFeel, IMGContextWhatWasHappening, IMGSummaryAdditionalNotes, IMGTheme, IMGThemeHover,IMGThemeInit,LBLButtonPrevious,LBLNext,LBLTitleBar,SPTheme, toggleButtons, isDarkMode, allConditionsMet);
+
+    }
+
+    private void changeColors(){
+
+        //Botón desactivado
+        buttonBackgroundDisabled = Colors.getColor("button-background-disabled", isDarkMode);
+        buttonBorderDisabled = Colors.getColor("button-border-disabled", isDarkMode);
+        buttonFontColorDisabled = Colors.getColor("button-font-color-disabled", isDarkMode);
+
+        //Botón primario
+        principalButtonBackground = Colors.getColor("principal-button-background", isDarkMode);
+        principalButtonBorder = Colors.getColor("principal-button-border", isDarkMode);
+        principalButtonFontColor = Colors.getColor("principal-button-font-color", isDarkMode);
+
+        principalButtonBackgroundHover = Colors.getColor("principal-button-background-hover", isDarkMode);
+        principalButtonBorderHover = Colors.getColor("principal-button-border-hover", isDarkMode);
+        principalButtonFontColorHover = Colors.getColor("principal-button-font-color-hover", isDarkMode);
+
+        //Botón secundario
+        secondaryButtonBackground = Colors.getColor("secondary-button-background", isDarkMode);
+        secondaryButtonBorder = Colors.getColor("secondary-button-border", isDarkMode);
+        secondaryButtonFontColor = Colors.getColor("secondary-button-font-color", isDarkMode);
+
+        secondaryButtonBackgroundHover = Colors.getColor("secondary-button-background-hover", isDarkMode);
+        secondaryButtonBorderHover = Colors.getColor("secondary-button-border-hover", isDarkMode);
+        secondaryButtonFontColorHover = Colors.getColor("secondary-button-font-color-hover", isDarkMode);
+
+        //Barra de título
+        //Sin focus
+        titleBarBackgroundWithoutFocus = Colors.getColor("title-bar-background-without-focus", isDarkMode);
+        titleBarBorderWithoutFocus = Colors.getColor("title-bar-border-without-focus", isDarkMode);
+        titleBarFontColorWithoutFocus = Colors.getColor("title-bar-font-color-whithout-focus", isDarkMode);
+
+        //Con focus
+        titleBarBackgroundWithFocus = Colors.getColor("title-bar-background-with-focus", isDarkMode);
+        titleBarBorderWithFocus = Colors.getColor("title-bar-border-with-focus", isDarkMode);
+        titleBarFontColorWithFocus = Colors.getColor("title-bar-font-color-whith-focus", isDarkMode);
+
+        //Botón principal de la barra de título
+        //Sin focus
+        titleBarButtonBackgroundWithoutFocus = Colors.getColor("title-bar-button-background-without-focus", isDarkMode);
+        titleBarButtonBorderWithoutFocus = Colors.getColor("title-bar-button-border-without-focus", isDarkMode);
+        titleBarButtonFontColorWithoutFocus = Colors.getColor("title-bar-button-font-color-without-focus", isDarkMode);
+
+        //Con focus
+        titleBarButtonBackgroundWithFocus = Colors.getColor("title-bar-button-background-with-focus", isDarkMode);
+        titleBarButtonBorderWithFocus = Colors.getColor("title-bar-button-border-with-focus", isDarkMode);
+        titleBarButtonFontColorWithFocus = Colors.getColor("title-bar-button-font-color-with-focus", isDarkMode);
+
+        //Con hover
+        titleBarButtonBackgroundWithFocusHover = Colors.getColor("title-bar-button-background-with-focus-hover", isDarkMode);
+        titleBarButtonBorderWithFocusHover = Colors.getColor("title-bar-button-border-with-focus-hover", isDarkMode);
+        titleBarButtonFontColorWithFocusHover = Colors.getColor("title-bar-button-font-color-with-focus-hover", isDarkMode);
+
+        //Botón para cerrar de la barra de título
+        //Sin focus
+        titleBarCloseButtonBackgroundWithoutFocus = Colors.getColor("title-bar-close-button-background-without-focus", isDarkMode);
+        titleBarCloseButtonBorderWithoutFocus = Colors.getColor("title-bar-close-button-border-without-focus", isDarkMode);
+        titleBarCloseButtonFontColorWithoutFocus = Colors.getColor("title-bar-close-button-font-color-without-focus", isDarkMode);
+
+        //Con focus
+        titleBarCloseButtonBackgroundWithFocus = Colors.getColor("title-bar-close-button-background-with-focus", isDarkMode);
+        titleBarCloseButtonBorderWithFocus = Colors.getColor("title-bar-close-button-border-with-focus", isDarkMode);
+        titleBarCloseButtonFontColorWithFocus = Colors.getColor("title-bar-close-button-font-color-with-focus", isDarkMode);
+
+        //Con hover
+        titleBarCloseButtonBackgroundWithFocusHover = Colors.getColor("title-bar-close-button-background-with-focus-hover", isDarkMode);
+        titleBarCloseButtonBorderWithFocusHover = Colors.getColor("title-bar-close-button-border-with-focus-hover", isDarkMode);
+        titleBarCloseButtonFontColorWithFocusHover = Colors.getColor("title-bar-close-button-font-color-with-focus-hover", isDarkMode);
+
+        //Botón de emociones
+        backgroundEmotionalToggleButton = Colors.getColor("background-emotional-toggle-button", isDarkMode);
+        borderEmotionalToggleButton = Colors.getColor("border-emotional-toggle-button", isDarkMode);
+        fontColorEmotionalToggleButton = Colors.getColor("font-color-emotional-toggle-button", isDarkMode);
+        backgroundHoverEmotionalToggleButton = Colors.getColor("background-hover-emotional-toggle-button", isDarkMode);
+        borderHoverEmotionalToggleButton = Colors.getColor("border-hover-emotional-toggle-button", isDarkMode);
+        fontColorHoverEmotionalToggleButton = Colors.getColor("font-color-hover-emotional-toggle-button", isDarkMode);
 
 
     }
@@ -420,95 +664,459 @@ public class NewEntryController {
     @FXML
     void APTitleBarOnMouseDragged(MouseEvent event) {
 
+        Stage stage = (Stage) APTitleBar.getScene().getWindow();
+
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+
     }
 
     @FXML
     void APTitleBarOnMouseEntered(MouseEvent event) {
+
+        StyleBuilder.fadeAndChangeImage(IMGThemeInit, IMGTheme);
+
+        StyleBuilder.animateAnchorPaneBackground(
+
+                APTitleBar,
+                titleBarBackgroundWithoutFocus, titleBarBackgroundWithFocus,
+                titleBarBorderWithoutFocus, titleBarBorderWithFocus
+
+        );
+
+        StyleBuilder.animateLabelTextColor(
+
+                LBLTitleBar,
+                titleBarFontColorWithoutFocus, titleBarFontColorWithFocus
+
+        );
+
+        StyleBuilder.animateStackPaneBackground(
+
+                SPTheme,
+                titleBarButtonBackgroundWithoutFocus, titleBarButtonBackgroundWithFocus,
+                titleBarButtonBorderWithoutFocus, titleBarButtonBorderWithFocus
+
+        );
+
+        StyleBuilder.animateButtonColors(
+
+                BTNMinimize,
+                titleBarButtonBackgroundWithoutFocus, titleBarButtonBackgroundWithFocus,
+                titleBarButtonBorderWithoutFocus, titleBarButtonBorderWithFocus,
+                titleBarButtonFontColorWithoutFocus, titleBarButtonFontColorWithFocus
+
+        );
+
+        StyleBuilder.animateButtonColors(
+
+                BTNClose,
+                titleBarCloseButtonBackgroundWithoutFocus, titleBarCloseButtonBackgroundWithFocus,
+                titleBarCloseButtonBorderWithoutFocus, titleBarCloseButtonBorderWithFocus,
+                titleBarCloseButtonFontColorWithoutFocus, titleBarCloseButtonFontColorWithFocus
+
+        );
 
     }
 
     @FXML
     void APTitleBarOnMouseExited(MouseEvent event) {
 
+        StyleBuilder.fadeAndChangeImage(IMGTheme,IMGThemeInit);
+
+        StyleBuilder.animateAnchorPaneBackground(
+
+                APTitleBar,
+                titleBarBackgroundWithFocus, titleBarBackgroundWithoutFocus,
+                titleBarBorderWithFocus, titleBarBorderWithoutFocus
+
+        );
+
+        StyleBuilder.animateLabelTextColor(
+
+                LBLTitleBar,
+                titleBarFontColorWithFocus,titleBarFontColorWithoutFocus
+
+        );
+
+        StyleBuilder.animateStackPaneBackground(
+
+                SPTheme,
+                titleBarButtonBackgroundWithFocus, titleBarButtonBackgroundWithoutFocus,
+                titleBarButtonBorderWithFocus,titleBarButtonBorderWithoutFocus
+
+        );
+
+        StyleBuilder.animateButtonColors(
+
+                BTNMinimize,
+                titleBarButtonBackgroundWithFocus, titleBarButtonBackgroundWithoutFocus,
+                titleBarButtonBorderWithFocus, titleBarButtonBorderWithoutFocus,
+                titleBarButtonFontColorWithFocus, titleBarButtonFontColorWithoutFocus
+
+        );
+
+        StyleBuilder.animateButtonColors(
+
+                BTNClose,
+                titleBarCloseButtonBackgroundWithFocus, titleBarCloseButtonBackgroundWithoutFocus,
+                titleBarCloseButtonBorderWithFocus, titleBarCloseButtonBorderWithoutFocus,
+                titleBarCloseButtonFontColorWithFocus, titleBarCloseButtonFontColorWithoutFocus
+
+        );
+
     }
 
     @FXML
     void APTitleBarOnMousePressed(MouseEvent event) {
+
+        xOffset = (int) event.getSceneX();
+        yOffset = (int) event.getSceneY();
 
     }
 
     @FXML
     void BTNCloseOnMouseClicked(MouseEvent event) {
 
+        Platform.exit();
+        System.exit(0);
+
     }
 
     @FXML
     void BTNCloseOnMouseEntered(MouseEvent event) {
+
+        StyleBuilder.animateButtonColors(
+
+                BTNClose,
+                titleBarCloseButtonBackgroundWithFocus, titleBarCloseButtonBackgroundWithFocusHover,
+                titleBarCloseButtonBorderWithFocus, titleBarCloseButtonBorderWithFocusHover,
+                titleBarCloseButtonFontColorWithFocus, titleBarCloseButtonFontColorWithFocusHover
+
+        );
 
     }
 
     @FXML
     void BTNCloseOnMouseExited(MouseEvent event) {
 
+        if(APTitleBar.isHover()){
+
+            StyleBuilder.animateButtonColors(
+
+                    BTNClose,
+                    titleBarCloseButtonBackgroundWithFocusHover, titleBarCloseButtonBackgroundWithFocus,
+                    titleBarCloseButtonBorderWithFocusHover, titleBarCloseButtonBorderWithFocus,
+                    titleBarCloseButtonFontColorWithFocusHover, titleBarCloseButtonFontColorWithFocus
+
+            );
+
+        }
+
     }
 
     @FXML
     void BTNMinimizeOnMouseClicked(MouseEvent event) {
+
+        Stage stage = (Stage)BTNMinimize.getScene().getWindow();
+        stage.setIconified(true);
 
     }
 
     @FXML
     void BTNMinimizeOnMouseEntered(MouseEvent event) {
 
+        StyleBuilder.animateButtonColors(
+
+                BTNMinimize,
+                titleBarButtonBackgroundWithFocus, titleBarButtonBackgroundWithFocusHover,
+                titleBarButtonBorderWithFocus, titleBarButtonBorderWithFocusHover,
+                titleBarButtonFontColorWithFocus, titleBarButtonFontColorWithFocusHover
+
+        );
+
     }
 
     @FXML
     void BTNMinimizeOnMouseExited(MouseEvent event) {
+
+        if(APTitleBar.isHover()){
+
+            StyleBuilder.animateButtonColors(
+
+                    BTNMinimize,
+                    titleBarButtonBackgroundWithFocusHover, titleBarButtonBackgroundWithFocus,
+                    titleBarButtonBorderWithFocusHover, titleBarButtonBorderWithFocus,
+                    titleBarButtonFontColorWithFocusHover, titleBarButtonFontColorWithFocus
+
+            );
+
+        }
 
     }
 
     @FXML
     void BTNNextOnMouseClicked(MouseEvent event) {
 
+        switch(currentStep){
+
+
+
+        }
+
     }
 
     @FXML
     void BTNNextOnMouseEntered(MouseEvent event) {
+
+        if(allConditionsMet){
+
+            StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                    principalButtonBackground, principalButtonBackgroundHover,
+                    principalButtonBorder, principalButtonBorderHover,
+                    principalButtonFontColor, principalButtonFontColorHover,
+                    BTNNext, IMGButtonNext, IMGButtonNextHover, LBLNext
+
+            );
+
+        }
 
     }
 
     @FXML
     void BTNNextOnMouseExited(MouseEvent event) {
 
+        if(allConditionsMet){
+
+            StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                    principalButtonBackgroundHover, principalButtonBackground,
+                    principalButtonBorderHover, principalButtonBorder,
+                    principalButtonFontColorHover, principalButtonFontColor,
+                    BTNNext, IMGButtonNextHover, IMGButtonNext, LBLNext
+
+            );
+
+        }
+
     }
 
     @FXML
     void BTNPreviousOnMouseClicked(MouseEvent event) {
+
+        switch(currentStep){
+
+
+
+        }
 
     }
 
     @FXML
     void BTNPreviousOnMouseEntered(MouseEvent event) {
 
+           StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                    secondaryButtonBackground, secondaryButtonBackgroundHover,
+                    secondaryButtonBorder, secondaryButtonBorderHover,
+                    secondaryButtonFontColor, secondaryButtonFontColorHover,
+                    BTNPrevious, IMGButtonPrevious, IMGButtonPreviousHover, LBLButtonPrevious
+
+           );
+
     }
 
     @FXML
     void BTNPreviousOnMouseExited(MouseEvent event) {
+
+            StyleBuilder.animateButtonColorsWithImagesAndLabel(
+
+                    secondaryButtonBackgroundHover, secondaryButtonBackground,
+                    secondaryButtonBorderHover, secondaryButtonBorder,
+                    secondaryButtonFontColorHover, secondaryButtonFontColor,
+                    BTNPrevious, IMGButtonPreviousHover, IMGButtonPrevious, LBLButtonPrevious
+
+            );
 
     }
 
     @FXML
     void IMGThemeOnMouseClicked(MouseEvent event) {
 
+        isDarkMode = !isDarkMode;
+
+        Preferences preferences = new Preferences();
+        preferences.toggleTheme();
+
+        changeTheme();
+
+        applyStylesToTitleBar(titleBarBackgroundWithFocus, titleBarBorderWithFocus, APTitleBar);
+
+        applyStylesToButtons(
+
+                titleBarButtonBackgroundWithFocus,
+                titleBarButtonBorderWithFocus,
+                titleBarButtonFontColorWithFocus,
+                Styles.px12,
+                Styles.px1,
+                Styles.px10,
+                BTNClose, BTNMinimize
+
+        );
+
+        applyStylesToLabels(titleBarFontColorWithFocus, Styles.px12, LBLTitleBar);
+
+        applyStylesToContents(
+
+                titleBarButtonBackgroundWithFocusHover,
+                titleBarButtonBorderWithFocusHover,
+                Styles.px1,
+                Styles.px10,
+                SPTheme
+
+        );
+
+        for(ToggleButton button : toggleButtons){
+
+            if(button.isSelected()){
+
+                applyStylesToButtons(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, button);
+
+            }
+
+        }
+
     }
 
     @FXML
     void IMGThemeOnMouseEntered(MouseEvent event) {
 
+        StyleBuilder.fadeAndChangeImage(IMGTheme, IMGThemeHover);
+
+        StyleBuilder.animateStackPaneBackground(
+
+                SPTheme,
+                titleBarButtonBackgroundWithFocus, titleBarButtonBackgroundWithFocusHover,
+                titleBarButtonBorderWithFocus, titleBarButtonBorderWithFocus
+
+        );
+
     }
 
     @FXML
     void IMGThemeOnMouseExited(MouseEvent event) {
+
+        StyleBuilder.fadeAndChangeImage(IMGThemeHover,IMGTheme);
+
+        StyleBuilder.animateStackPaneBackground(
+
+                SPTheme,
+                titleBarButtonBackgroundWithFocusHover, titleBarButtonBackgroundWithFocus,
+                titleBarButtonBorderWithFocus,titleBarButtonBorderWithFocus
+
+        );
+
+    }
+
+    private void changeStep(){
+
+        switch(currentStep){
+
+            case First ->{
+
+                SPContext.setVisible(true);
+                SPEmotions.setVisible(true);
+                SPScoreEmotions.setVisible(true);
+                SPSummary.setVisible(true);
+
+                setImages(FileConstants.chatLeftActiveDm, FileConstants.chatLeftActiveLm, isDarkMode,IMGContextIconSelectStackPane);
+                setImages(FileConstants.heartDm, FileConstants.heartLm, isDarkMode,IMGEmotionsIconSelectStackPane);
+                setImages(FileConstants.lightningChargeDm, FileConstants.lightningChargeLm, isDarkMode,IMGEmotionScoreIconSelectStackPane);
+                setImages(FileConstants.checkDm, FileConstants.checkLm, isDarkMode,IMGSummaryIconSelectStackPane);
+
+                SPContextStep.pseudoClassStateChanged(active, true);
+                SPEmotionsStep.pseudoClassStateChanged(active, false);
+                SPScoreEmotionsStep.pseudoClassStateChanged(active, false);
+                SPSummaryStep.pseudoClassStateChanged(active, false);
+
+                SPContextStep.pseudoClassStateChanged(past, false);
+                SPEmotionsStep.pseudoClassStateChanged(past, false);
+                SPScoreEmotionsStep.pseudoClassStateChanged(past, false);
+                SPSummaryStep.pseudoClassStateChanged(past, false);
+
+                LBLContextStep.pseudoClassStateChanged(active, true);
+                LBLEmotionsStep.pseudoClassStateChanged(active, false);
+                LBLScoreEmotionsStep.pseudoClassStateChanged(active, false);
+                LBLSummaryStep.pseudoClassStateChanged(active, false);
+
+
+
+            }
+
+        }
+
+    }
+
+    private static boolean isValidLength(Label label1, Label label2, TextArea textArea, boolean pastStatus){
+
+        label2.setText(textArea.getText().length() + "/4000");
+
+        boolean actualStatus = textArea.getText().length() > 4000;
+
+        if(actualStatus != pastStatus){
+
+            if(textArea.getText().length() > 4000){
+
+                label1.pseudoClassStateChanged(LBLErr, true);
+                label2.pseudoClassStateChanged(LBLErr, true);
+                textArea.getStyleClass().add("error");
+
+            }else{
+
+                label1.pseudoClassStateChanged(LBLErr, false);
+                label2.pseudoClassStateChanged(LBLErr, false);
+                textArea.getStyleClass().remove("error");
+
+            }
+
+        }
+
+        return actualStatus;
+
+    }
+
+    private void validateFields(){
+
+        switch(currentStep){
+
+            default -> {
+
+                System.out.println("La opción " + currentStep + " aún no se ha configurado");
+
+            }
+
+        }
+
+        if(allConditionsMet != pastAllConditionsMet){
+
+            if(allConditionsMet){
+
+                applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNNext}, new Label [] {LBLNext});
+                BTNNext.setOpacity(1);
+                IMGButtonNext.setOpacity(1);
+
+            }else{
+
+                applyStylesToButtonsWithLabel(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNNext}, new Label [] {LBLNext});
+                BTNNext.setOpacity(0.66);
+                IMGButtonNext.setOpacity(0);
+
+            }
+
+            pastAllConditionsMet = allConditionsMet;
+
+        }
 
     }
 

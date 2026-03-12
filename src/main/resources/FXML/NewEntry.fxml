@@ -140,7 +140,7 @@
                                       <TextArea fx:id="TXTSummaryAdditionalNotes" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" promptText="Escribe que sentiste aquí" wrapText="true" />
                                       <HBox alignment="CENTER" spacing="10.0">
                                          <children>
-                                            <Label maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="Máximo 4 000 caracteres permitidos" HBox.hgrow="ALWAYS" />
+                                            <Label fx:id="LBLSummaryAdditionalNotes" maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="Máximo 4 000 caracteres permitidos" HBox.hgrow="ALWAYS" />
                                             <Label fx:id="LBLSummaryCountMaxCharsAdditionalNotes" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="400/4000" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
                                          </children>
                                       </HBox>
@@ -264,7 +264,7 @@
                                       <TextArea fx:id="TXTContextWhatHappening" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" promptText="Escribe que estaba pasando aquí" wrapText="true" />
                                       <HBox alignment="CENTER" spacing="10.0">
                                          <children>
-                                            <Label maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="Máximo 4 000 caracteres permitidos" HBox.hgrow="ALWAYS" />
+                                            <Label fx:id="LBLContextWhatWasHappening" maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="Máximo 4 000 caracteres permitidos" HBox.hgrow="ALWAYS" />
                                             <Label fx:id="LBLContextCountMaxCharsWhatWasHappening" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="400/4000" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
                                          </children>
                                       </HBox>
@@ -281,7 +281,7 @@
                                       <TextArea fx:id="TXTContextWhatDidYouFeel" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" promptText="Escribe que sentiste aquí" wrapText="true" />
                                       <HBox alignment="CENTER" spacing="10.0">
                                          <children>
-                                            <Label maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="Máximo 4 000 caracteres permitidos" HBox.hgrow="ALWAYS" />
+                                            <Label fx:id="LBLContextWhatDidYouFeel" maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="Máximo 4 000 caracteres permitidos" HBox.hgrow="ALWAYS" />
                                             <Label fx:id="LBLContextCountMaxCharsWhatDidYouFeel" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" styleClass="LBLMaxChars" text="400/4000" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
                                          </children>
                                       </HBox>
