@@ -4,7 +4,7 @@ import user.UserData;
 
 import java.util.ArrayList;
 
-public class EmotionalButtons {
+public class EmotionalNodes {
 
     private static final int maxPosHappiness = 24;
     private static final int maxPosSurprise = 37;
@@ -273,6 +273,14 @@ public class EmotionalButtons {
     {"Indiferente", "Indiferente"}
 
 };
+
+   public ScoreEmotionNode getEmotionSlider(int arrayPos){
+
+       int sex = UserData.getSex() == UserData.Sex.MAN ? 1 : 0;
+
+       return new ScoreEmotionNode(emotions[arrayPos][sex]);
+
+   }
 
    public EmotionToggleButton[] getEmotionNodes(){
 

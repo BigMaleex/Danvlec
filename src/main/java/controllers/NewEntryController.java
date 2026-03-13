@@ -1,7 +1,8 @@
 package controllers;
 
 import controls.EmotionToggleButton;
-import controls.EmotionalButtons;
+import controls.EmotionalNodes;
+import controls.ScoreEmotionNode;
 import files.Preferences;
 import javafx.application.Platform;
 import javafx.css.PseudoClass;
@@ -14,15 +15,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import messagebuilder.Complements;
 import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
 import stylebuilder.StyleBuilder;
 import user.UserPreferences;
-import utilities.Colors;
-import utilities.FileConstants;
-import utilities.Styles;
-import utilities.Titles;
+import utilities.*;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,9 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
     }
 
+    //Objetos
+    ScreenManager sm = ScreenManager.getInstance();
+
     //variables
     private static Step currentStep;
     private static boolean isDarkMode, allConditionsMet = false, pastAllConditionsMet = true, TXTContextWhatHappeningPastState = false, TXTContextWhatDidYouFeelPastState = false, TXTSummaryAdditionalNotesPastState = false;
@@ -41,7 +45,7 @@ public class NewEntryController extends ConfigureInitializeStyles {
     private int xOffset, yOffset;
     private static boolean [] emotionsSelected = new boolean [112];
 
-    //Pseudoclases
+    //PseudoClases
     private static final PseudoClass LBLErr = PseudoClass.getPseudoClass("Error");
     private static final PseudoClass active = PseudoClass.getPseudoClass("Active");
     private static final PseudoClass past = PseudoClass.getPseudoClass("Past");
@@ -188,6 +192,12 @@ public class NewEntryController extends ConfigureInitializeStyles {
     private ImageView IMGSummaryAdditionalNotes;
 
     @FXML
+    private ImageView IMGSummaryContext;
+
+    @FXML
+    private ImageView IMGSummaryFeel;
+
+    @FXML
     private ImageView IMGSummaryIconSelectStackPane;
 
     @FXML
@@ -212,13 +222,25 @@ public class NewEntryController extends ConfigureInitializeStyles {
     private Label LBLContextStep;
 
     @FXML
+    private Label LBLContextWhatDidYouFeel;
+
+    @FXML
+    private Label LBLContextWhatWasHappening;
+
+    @FXML
     private Label LBLEmotionsStep;
+
+    @FXML
+    private Label LBLGeneralStateCount;
 
     @FXML
     private Label LBLNext;
 
     @FXML
     private Label LBLScoreEmotionsStep;
+
+    @FXML
+    private Label LBLSummaryAdditionalNotes;
 
     @FXML
     private Label LBLSummaryCountMaxCharsAdditionalNotes;
@@ -228,6 +250,9 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
     @FXML
     private Label LBLTitleBar;
+
+    @FXML
+    private Slider SLDGeneralState;
 
     @FXML
     private StackPane SPContext;
@@ -251,6 +276,9 @@ public class NewEntryController extends ConfigureInitializeStyles {
     private Separator SPRThirdStep;
 
     @FXML
+    private StackPane SPScoreEmotions;
+
+    @FXML
     private StackPane SPScoreEmotionsAnger;
 
     @FXML
@@ -266,13 +294,10 @@ public class NewEntryController extends ConfigureInitializeStyles {
     private StackPane SPScoreEmotionsSad;
 
     @FXML
-    private StackPane SPScoreEmotionsSurprised;
-
-    @FXML
-    private StackPane SPScoreEmotions;
-
-    @FXML
     private StackPane SPScoreEmotionsStep;
+
+    @FXML
+    private StackPane SPScoreEmotionsSurprised;
 
     @FXML
     private StackPane SPSummary;
@@ -284,22 +309,22 @@ public class NewEntryController extends ConfigureInitializeStyles {
     private StackPane SPTheme;
 
     @FXML
-    private TextArea TXTContextWhatHappening;
+    private TextFlow TFLSummaryContext;
+
+    @FXML
+    private TextFlow TFLSummaryFeel;
 
     @FXML
     private TextArea TXTContextWhatDidYouFeel;
 
     @FXML
+    private TextArea TXTContextWhatHappening;
+
+    @FXML
     private TextArea TXTSummaryAdditionalNotes;
 
     @FXML
-    private Label LBLContextWhatWasHappening;
-
-    @FXML
-    private Label LBLContextWhatDidYouFeel;
-
-    @FXML
-    private Label LBLSummaryAdditionalNotes;
+    private VBox VBXGeneralState;
 
     @FXML
     private VBox VBXScoreEmotionsAnger;
@@ -319,12 +344,25 @@ public class NewEntryController extends ConfigureInitializeStyles {
     @FXML
     private VBox VBXScoreEmotionsSurprised;
 
+    @FXML
+    private VBox VBXSummaryEmotions;
+
     private EmotionToggleButton[] toggleButtons;
+
+    private ArrayList<ScoreEmotionNode> emotionSliders = new ArrayList<>();
 
     @FXML
     public void initialize () {
 
         removeTheOpacityFromTheImageViews(IMGButtonNextHover, IMGButtonPreviousHover, IMGThemeHover, IMGTheme);
+
+        SLDGeneralState.valueChangingProperty().addListener((obs, oldVal, newVal) ->{
+
+            countScore();
+
+        });
+
+        countScore();
 
         allConditionsMet = false;
 
@@ -336,12 +374,9 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
         currentStep = Step.First;
 
-        EmotionalButtons buttons = new EmotionalButtons();
+        EmotionalNodes buttons = new EmotionalNodes();
 
         toggleButtons = buttons.getEmotionNodes();
-
-        ArrayList<Label> labelsToArray = new ArrayList<>();
-        ArrayList<ImageView> imagesToArray = new ArrayList<>();
 
         GPNEmotionsFear.getChildren().clear();
         GPNEmotionsHappy.getChildren().clear();
@@ -541,16 +576,13 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
         linkVisiblePropertyWithManagedProperty(SPContext, SPEmotions, SPScoreEmotions, SPSummary, SPScoreEmotionsHappy, SPScoreEmotionsSurprised, SPScoreEmotionsFear, SPScoreEmotionsAnger, SPScoreEmotionsDisgust, SPScoreEmotionsSad);
 
-        SPContext.setVisible(false);
-        SPEmotions.setVisible(false);
-        SPScoreEmotions.setVisible(false);
-        SPSummary.setVisible(false);
-
         StyleBuilder.clearControls(TXTContextWhatDidYouFeel, TXTContextWhatHappening, TXTSummaryAdditionalNotes);
 
         TXTContextWhatDidYouFeel.textProperty().addListener((obs, oldVal, newVal) ->{
 
             TXTContextWhatDidYouFeelPastState = isValidLength(LBLContextWhatDidYouFeel, LBLContextCountMaxCharsWhatDidYouFeel, TXTContextWhatDidYouFeel, TXTContextWhatDidYouFeelPastState);
+
+            validateFields();
 
         });
 
@@ -558,17 +590,29 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
             TXTContextWhatHappeningPastState = isValidLength(LBLContextWhatWasHappening, LBLContextCountMaxCharsWhatWasHappening, TXTContextWhatHappening, TXTContextWhatHappeningPastState);
 
+            validateFields();
+
         });
 
         TXTSummaryAdditionalNotes.textProperty().addListener((obs, oldVal, newVal) ->{
 
             TXTSummaryAdditionalNotesPastState = isValidLength(LBLSummaryAdditionalNotes, LBLSummaryCountMaxCharsAdditionalNotes, TXTSummaryAdditionalNotes, TXTSummaryAdditionalNotesPastState);
 
+            validateFields();
+
         });
 
-        changeStep();
-
         changeTheme();
+
+        for(ToggleButton button : toggleButtons){
+
+            button.selectedProperty().addListener((obs, oldVal, newVal) ->{
+
+                validateFields();
+
+            });
+
+        }
 
     }
 
@@ -578,7 +622,9 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
         StyleBuilder.setAnchorPaneClass(APMain);
 
-        ConfigureNodes.configureNodesForNewEntryController(APTitleBar, BTNClose, BTNMinimize,BTNNext, BTNPrevious, IMGButtonNext, IMGButtonNextHover, IMGButtonPrevious, IMGButtonPreviousHover,IMGContextWhatDidYouFeel, IMGContextWhatWasHappening, IMGSummaryAdditionalNotes, IMGTheme, IMGThemeHover,IMGThemeInit,LBLButtonPrevious,LBLNext,LBLTitleBar,SPTheme, toggleButtons, isDarkMode, allConditionsMet);
+        changeStep();
+
+        ConfigureNodes.configureNodesForNewEntryController(APTitleBar, BTNClose, BTNMinimize,BTNNext, BTNPrevious, IMGButtonNext, IMGButtonNextHover, IMGButtonPrevious, IMGButtonPreviousHover,IMGContextWhatDidYouFeel, IMGContextWhatWasHappening, IMGSummaryAdditionalNotes, IMGTheme, IMGThemeHover,IMGThemeInit,LBLButtonPrevious,LBLNext,LBLTitleBar,SPTheme, toggleButtons, IMGSummaryContext, IMGSummaryFeel, isDarkMode, allConditionsMet);
 
     }
 
@@ -858,9 +904,38 @@ public class NewEntryController extends ConfigureInitializeStyles {
     @FXML
     void BTNNextOnMouseClicked(MouseEvent event) {
 
-        switch(currentStep){
+        if(allConditionsMet){
 
+            switch(currentStep){
 
+                case First -> {
+
+                    currentStep = Step.Second;
+                    changeStep();
+
+                }
+
+                case Second -> {
+
+                    currentStep = Step.Third;
+                    changeStep();
+
+                }
+
+                case Third -> {
+
+                    currentStep = Step.Fourth;
+                    changeStep();
+
+                }
+
+                default -> {
+
+                    System.out.println("La opción " + currentStep +  "aún no ha sido configurada");
+
+                }
+
+        }
 
         }
 
@@ -907,7 +982,42 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
         switch(currentStep){
 
+            case First -> {
 
+                MainWindowController controller = (MainWindowController) sm.getController(FileConstants.MainWindow);
+                controller.initialize();
+                controller.initializeAnimation();
+
+                sm.setScreenAtPosition(FileConstants.MainWindow, Titles.MainWindow);
+
+            }
+
+            case Second -> {
+
+                currentStep = Step.First;
+                changeStep();
+
+            }
+
+            case Third -> {
+
+                currentStep = Step.Second;
+                changeStep();
+
+            }
+
+            case Fourth -> {
+
+                currentStep = Step.Third;
+                changeStep();
+
+            }
+
+            default -> {
+
+                System.out.println("La opción " + currentStep +  "aún no ha sido configurada");
+
+            }
 
         }
 
@@ -1025,34 +1135,305 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
             case First ->{
 
-                SPContext.setVisible(true);
-                SPEmotions.setVisible(true);
-                SPScoreEmotions.setVisible(true);
-                SPSummary.setVisible(true);
+                SPContext.setVisible(currentStep == Step.First);
+                SPEmotions.setVisible(currentStep == Step.Second);
+                SPScoreEmotions.setVisible(currentStep == Step.Third);
+                SPSummary.setVisible(currentStep == Step.Fourth);
+
+                LBLNext.setText("Siguiente paso");
+                LBLButtonPrevious.setText("Regresar");
 
                 setImages(FileConstants.chatLeftActiveDm, FileConstants.chatLeftActiveLm, isDarkMode,IMGContextIconSelectStackPane);
                 setImages(FileConstants.heartDm, FileConstants.heartLm, isDarkMode,IMGEmotionsIconSelectStackPane);
                 setImages(FileConstants.lightningChargeDm, FileConstants.lightningChargeLm, isDarkMode,IMGEmotionScoreIconSelectStackPane);
                 setImages(FileConstants.checkDm, FileConstants.checkLm, isDarkMode,IMGSummaryIconSelectStackPane);
 
-                SPContextStep.pseudoClassStateChanged(active, true);
-                SPEmotionsStep.pseudoClassStateChanged(active, false);
-                SPScoreEmotionsStep.pseudoClassStateChanged(active, false);
-                SPSummaryStep.pseudoClassStateChanged(active, false);
+                SPContextStep.pseudoClassStateChanged(active, currentStep == Step.First);
+                SPEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Second);
+                SPScoreEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Third);
+                SPSummaryStep.pseudoClassStateChanged(active, currentStep == Step.Fourth);
 
                 SPContextStep.pseudoClassStateChanged(past, false);
                 SPEmotionsStep.pseudoClassStateChanged(past, false);
                 SPScoreEmotionsStep.pseudoClassStateChanged(past, false);
                 SPSummaryStep.pseudoClassStateChanged(past, false);
 
-                LBLContextStep.pseudoClassStateChanged(active, true);
-                LBLEmotionsStep.pseudoClassStateChanged(active, false);
-                LBLScoreEmotionsStep.pseudoClassStateChanged(active, false);
-                LBLSummaryStep.pseudoClassStateChanged(active, false);
+                LBLContextStep.pseudoClassStateChanged(active, currentStep == Step.First);
+                LBLEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Second);
+                LBLScoreEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Third);
+                LBLSummaryStep.pseudoClassStateChanged(active, currentStep == Step.Fourth);
 
-
+                validateFields();
 
             }
+
+            case Second ->{
+
+                SPContext.setVisible(currentStep == Step.First);
+                SPEmotions.setVisible(currentStep == Step.Second);
+                SPScoreEmotions.setVisible(currentStep == Step.Third);
+                SPSummary.setVisible(currentStep == Step.Fourth);
+
+                LBLNext.setText("Siguiente paso");
+                LBLButtonPrevious.setText("Paso anterior");
+
+                setImages(FileConstants.chatLeftPastDm, FileConstants.chatLeftPastLm, isDarkMode,IMGContextIconSelectStackPane);
+                setImages(FileConstants.heartActiveDm, FileConstants.heartActiveLm, isDarkMode,IMGEmotionsIconSelectStackPane);
+                setImages(FileConstants.lightningChargeDm, FileConstants.lightningChargeLm, isDarkMode,IMGEmotionScoreIconSelectStackPane);
+                setImages(FileConstants.checkDm, FileConstants.checkLm, isDarkMode,IMGSummaryIconSelectStackPane);
+
+                SPContextStep.pseudoClassStateChanged(active, currentStep == Step.First);
+                SPEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Second);
+                SPScoreEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Third);
+                SPSummaryStep.pseudoClassStateChanged(active, currentStep == Step.Fourth);
+
+                SPContextStep.pseudoClassStateChanged(past, true);
+                SPEmotionsStep.pseudoClassStateChanged(past, false);
+                SPScoreEmotionsStep.pseudoClassStateChanged(past, false);
+                SPSummaryStep.pseudoClassStateChanged(past, false);
+
+                LBLContextStep.pseudoClassStateChanged(active, currentStep == Step.First);
+                LBLEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Second);
+                LBLScoreEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Third);
+                LBLSummaryStep.pseudoClassStateChanged(active, currentStep == Step.Fourth);
+
+                validateFields();
+
+            }
+
+            case Third ->{
+
+                SPContext.setVisible(currentStep == Step.First);
+                SPEmotions.setVisible(currentStep == Step.Second);
+                SPScoreEmotions.setVisible(currentStep == Step.Third);
+                SPSummary.setVisible(currentStep == Step.Fourth);
+
+                LBLNext.setText("Siguiente paso");
+                LBLButtonPrevious.setText("Paso anterior");
+
+                setImages(FileConstants.chatLeftPastDm, FileConstants.chatLeftPastLm, isDarkMode,IMGContextIconSelectStackPane);
+                setImages(FileConstants.heartPastDm, FileConstants.heartPastLm, isDarkMode,IMGEmotionsIconSelectStackPane);
+                setImages(FileConstants.lightningChargeActiveDm, FileConstants.lightningChargeActiveLm, isDarkMode,IMGEmotionScoreIconSelectStackPane);
+                setImages(FileConstants.checkDm, FileConstants.checkLm, isDarkMode,IMGSummaryIconSelectStackPane);
+
+                SPContextStep.pseudoClassStateChanged(active, currentStep == Step.First);
+                SPEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Second);
+                SPScoreEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Third);
+                SPSummaryStep.pseudoClassStateChanged(active, currentStep == Step.Fourth);
+
+                SPContextStep.pseudoClassStateChanged(past, true);
+                SPEmotionsStep.pseudoClassStateChanged(past, true);
+                SPScoreEmotionsStep.pseudoClassStateChanged(past, false);
+                SPSummaryStep.pseudoClassStateChanged(past, false);
+
+                LBLContextStep.pseudoClassStateChanged(active, currentStep == Step.First);
+                LBLEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Second);
+                LBLScoreEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Third);
+                LBLSummaryStep.pseudoClassStateChanged(active, currentStep == Step.Fourth);
+
+                VBXScoreEmotionsAnger.getChildren().clear();
+                VBXScoreEmotionsDisgust.getChildren().clear();
+                VBXScoreEmotionsFear.getChildren().clear();
+                VBXScoreEmotionsHappy.getChildren().clear();
+                VBXScoreEmotionsSad.getChildren().clear();
+                VBXScoreEmotionsSurprised.getChildren().clear();
+
+                emotionSliders.clear();
+
+                SPScoreEmotionsHappy.setVisible(false);
+                SPScoreEmotionsSurprised.setVisible(false);
+                SPScoreEmotionsFear.setVisible(false);
+                SPScoreEmotionsDisgust.setVisible(false);
+                SPScoreEmotionsAnger.setVisible(false);
+                SPScoreEmotionsSad.setVisible(false);
+
+
+                EmotionalNodes sliders = new EmotionalNodes();
+
+                int [] maxPosArray = sliders.getEmotionMaxPos();
+
+                for(int i = 0; i < emotionsSelected.length; i++){
+
+                    if(toggleButtons[i].isSelected()){
+
+                        emotionsSelected[i] = true;
+
+                        if(i < maxPosArray[0]){
+
+                            SPScoreEmotionsHappy.setVisible(true);
+
+                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            VBXScoreEmotionsHappy.getChildren().add(node);
+                            emotionSliders.add(node);
+
+                        }
+
+                        else if(i < maxPosArray[1]){
+
+                            SPScoreEmotionsSurprised.setVisible(true);
+
+                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            VBXScoreEmotionsSurprised.getChildren().add(node);
+                            emotionSliders.add(node);
+
+                        }
+                        else if(i < maxPosArray[2]){
+
+                            SPScoreEmotionsFear.setVisible(true);
+
+                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            VBXScoreEmotionsFear.getChildren().add(node);
+                            emotionSliders.add(node);
+
+                        }
+                        else if(i < maxPosArray[3]){
+
+                            SPScoreEmotionsAnger.setVisible(true);
+
+                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            VBXScoreEmotionsAnger.getChildren().add(node);
+                            emotionSliders.add(node);
+
+                        }
+                        else if(i < maxPosArray[4]){
+
+                            SPScoreEmotionsDisgust.setVisible(true);
+
+                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            VBXScoreEmotionsDisgust.getChildren().add(node);
+                            emotionSliders.add(node);
+
+                        }
+                        else if(i < maxPosArray[5]) {
+
+                            SPScoreEmotionsSad.setVisible(true);
+
+                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            VBXScoreEmotionsSad.getChildren().add(node);
+                            emotionSliders.add(node);
+
+                        }
+                    }else{
+
+                        emotionsSelected[i] = false;
+
+                    }
+
+                }
+
+                validateFields();
+
+            }
+
+            case Fourth -> {
+
+                SPContext.setVisible(currentStep == Step.First);
+                SPEmotions.setVisible(currentStep == Step.Second);
+                SPScoreEmotions.setVisible(currentStep == Step.Third);
+                SPSummary.setVisible(currentStep == Step.Fourth);
+
+                LBLNext.setText("Enviar");
+                LBLButtonPrevious.setText("Paso anterior");
+
+                setImages(FileConstants.chatLeftPastDm, FileConstants.chatLeftPastLm, isDarkMode,IMGContextIconSelectStackPane);
+                setImages(FileConstants.heartPastDm, FileConstants.heartPastLm, isDarkMode,IMGEmotionsIconSelectStackPane);
+                setImages(FileConstants.lightningChargePastDm, FileConstants.lightningChargePastLm, isDarkMode,IMGEmotionScoreIconSelectStackPane);
+                setImages(FileConstants.checkActiveDm, FileConstants.checkActiveLm, isDarkMode,IMGSummaryIconSelectStackPane);
+
+                SPContextStep.pseudoClassStateChanged(active, currentStep == Step.First);
+                SPEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Second);
+                SPScoreEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Third);
+                SPSummaryStep.pseudoClassStateChanged(active, currentStep == Step.Fourth);
+
+                SPContextStep.pseudoClassStateChanged(past, true);
+                SPEmotionsStep.pseudoClassStateChanged(past, true);
+                SPScoreEmotionsStep.pseudoClassStateChanged(past, true);
+                SPSummaryStep.pseudoClassStateChanged(past, false);
+
+                LBLContextStep.pseudoClassStateChanged(active, currentStep == Step.First);
+                LBLEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Second);
+                LBLScoreEmotionsStep.pseudoClassStateChanged(active, currentStep == Step.Third);
+                LBLSummaryStep.pseudoClassStateChanged(active, currentStep == Step.Fourth);
+
+                buildTextFlow(TXTContextWhatHappening.getText(),TFLSummaryContext);
+                buildTextFlow(TXTContextWhatDidYouFeel.getText(), TFLSummaryFeel);
+
+            }
+
+            default -> {
+
+                System.out.println("La opción " + currentStep + " aún no ha sido configurada");
+
+            }
+
+        }
+
+    }
+
+    private void validateFields(){
+
+        switch(currentStep){
+
+            case First -> {
+
+                allConditionsMet = (!TXTContextWhatHappening.getText().isBlank() && !TXTContextWhatDidYouFeel.getText().isBlank()) && (TXTContextWhatDidYouFeel.getText().length() < 4000 && TXTContextWhatHappening.getText().length() < 4000);
+
+            }
+
+            case Second -> {
+
+                allConditionsMet = false;
+
+                for(ToggleButton button : toggleButtons) {
+
+                    if (button.isSelected()) {
+
+                        allConditionsMet = true;
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            case Third -> {
+
+                allConditionsMet = true;
+
+            }
+
+            case Fourth -> {
+
+                allConditionsMet = TXTSummaryAdditionalNotes.getText().length() < 4000;
+
+            }
+
+            default -> {
+
+                System.out.println("La opción " + currentStep + " aún no se ha configurado");
+
+            }
+
+        }
+
+        if(allConditionsMet != pastAllConditionsMet){
+
+            if(allConditionsMet){
+
+                applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNNext}, new Label [] {LBLNext});
+                BTNNext.setOpacity(1);
+                IMGButtonNext.setOpacity(1);
+
+            }else{
+
+                applyStylesToButtonsWithLabel(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNNext}, new Label [] {LBLNext});
+                BTNNext.setOpacity(0.66);
+                IMGButtonNext.setOpacity(0);
+
+            }
+
+            pastAllConditionsMet = allConditionsMet;
 
         }
 
@@ -1086,37 +1467,17 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
     }
 
-    private void validateFields(){
+    private void countScore(){
 
-        switch(currentStep){
+        LBLGeneralStateCount.setText((int)SLDGeneralState.getValue() +"/10");
 
-            default -> {
+    }
 
-                System.out.println("La opción " + currentStep + " aún no se ha configurado");
+    private void buildTextFlow(String input, TextFlow TFL){
 
-            }
+        TFL.getChildren().clear();
 
-        }
-
-        if(allConditionsMet != pastAllConditionsMet){
-
-            if(allConditionsMet){
-
-                applyStylesToButtonsWithLabel(principalButtonBackground, principalButtonBorder, principalButtonFontColor, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNNext}, new Label [] {LBLNext});
-                BTNNext.setOpacity(1);
-                IMGButtonNext.setOpacity(1);
-
-            }else{
-
-                applyStylesToButtonsWithLabel(buttonBackgroundDisabled, buttonBorderDisabled, buttonFontColorDisabled, Styles.px12, Styles.px1, Styles.px10, new ButtonBase [] {BTNNext}, new Label [] {LBLNext});
-                BTNNext.setOpacity(0.66);
-                IMGButtonNext.setOpacity(0);
-
-            }
-
-            pastAllConditionsMet = allConditionsMet;
-
-        }
+        TFL.getChildren().add(Complements.addStringFromTextList(input, Styles.px12, Colors.getColor("content-font-color", isDarkMode)));
 
     }
 

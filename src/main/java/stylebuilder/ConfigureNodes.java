@@ -173,7 +173,7 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
 
     }
 
-    public static void configureNodesForNewEntryController(AnchorPane APTitleBar, Button BTNClose, Button BTNMinimize, Button BTNNext, Button BTNPrevious, ImageView IMGButtonNext, ImageView IMGButtonNextHover, ImageView IMGButtonPrevious, ImageView IMGButtonPreviousHover, ImageView IMGContextWhatDidYouFeel, ImageView IMGContextWhatWasHappening, ImageView IMGSummaryAdditionalNotes, ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, Label LBLButtonPrevious, Label LBLNext, Label LBLTitleBar, StackPane SPTheme, ToggleButton [] buttons , boolean isDM, boolean allConditionsMet){
+    public static void configureNodesForNewEntryController(AnchorPane APTitleBar, Button BTNClose, Button BTNMinimize, Button BTNNext, Button BTNPrevious, ImageView IMGButtonNext, ImageView IMGButtonNextHover, ImageView IMGButtonPrevious, ImageView IMGButtonPreviousHover, ImageView IMGContextWhatDidYouFeel, ImageView IMGContextWhatWasHappening, ImageView IMGSummaryAdditionalNotes, ImageView IMGTheme, ImageView IMGThemeHover, ImageView IMGThemeInit, Label LBLButtonPrevious, Label LBLNext, Label LBLTitleBar, StackPane SPTheme, ToggleButton [] buttons , ImageView IMGSummaryContext, ImageView IMGSummaryFeel, boolean isDM, boolean allConditionsMet){
 
         changeColors(isDM);
 
@@ -193,7 +193,7 @@ public class ConfigureNodes extends ConfigureInitializeStyles{
 
         setThemeImages(IMGTheme, IMGThemeHover, IMGThemeInit, isDM);
 
-        setImages(FileConstants.chatLeftIconDm, FileConstants.chatLeftIconLm, isDM, IMGContextWhatDidYouFeel, IMGContextWhatWasHappening,IMGSummaryAdditionalNotes);
+        setImages(FileConstants.chatLeftIconDm, FileConstants.chatLeftIconLm, isDM, IMGContextWhatDidYouFeel, IMGContextWhatWasHappening,IMGSummaryAdditionalNotes, IMGSummaryContext, IMGSummaryFeel);
 
         setImages(FileConstants.arrowRightPrimaryDm, FileConstants.arrowRightPrimaryLm, isDM, IMGButtonNext);
 
