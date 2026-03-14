@@ -2,9 +2,11 @@ package controllers;
 
 import controls.EmotionToggleButton;
 import controls.EmotionalNodes;
-import controls.ScoreEmotionNode;
+import controls.EmotionalScoreAdvice;
+import controls.ScoreEmotionSlider;
 import files.Preferences;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -15,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import messagebuilder.Complements;
@@ -195,7 +196,13 @@ public class NewEntryController extends ConfigureInitializeStyles {
     private ImageView IMGSummaryContext;
 
     @FXML
+    private ImageView IMGSummaryEmotions;
+
+    @FXML
     private ImageView IMGSummaryFeel;
+
+    @FXML
+    private ImageView IMGSummaryGeneralState;
 
     @FXML
     private ImageView IMGSummaryIconSelectStackPane;
@@ -244,6 +251,12 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
     @FXML
     private Label LBLSummaryCountMaxCharsAdditionalNotes;
+
+    @FXML
+    private Label LBLSummaryEmotions;
+
+    @FXML
+    private Label LBLSummaryGeneralState;
 
     @FXML
     private Label LBLSummaryStep;
@@ -349,20 +362,23 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
     private EmotionToggleButton[] toggleButtons;
 
-    private ArrayList<ScoreEmotionNode> emotionSliders = new ArrayList<>();
+    private ArrayList<ScoreEmotionSlider> emotionSliders = new ArrayList<>();
 
     @FXML
     public void initialize () {
 
         removeTheOpacityFromTheImageViews(IMGButtonNextHover, IMGButtonPreviousHover, IMGThemeHover, IMGTheme);
 
-        SLDGeneralState.valueChangingProperty().addListener((obs, oldVal, newVal) ->{
+        LBLGeneralStateCount.textProperty().bind(
 
-            countScore();
+                Bindings.createStringBinding(
 
-        });
+                        () -> (int) SLDGeneralState.getValue() + "/10",
+                        SLDGeneralState.valueProperty()
 
-        countScore();
+                )
+
+        );
 
         allConditionsMet = false;
 
@@ -624,7 +640,7 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
         changeStep();
 
-        ConfigureNodes.configureNodesForNewEntryController(APTitleBar, BTNClose, BTNMinimize,BTNNext, BTNPrevious, IMGButtonNext, IMGButtonNextHover, IMGButtonPrevious, IMGButtonPreviousHover,IMGContextWhatDidYouFeel, IMGContextWhatWasHappening, IMGSummaryAdditionalNotes, IMGTheme, IMGThemeHover,IMGThemeInit,LBLButtonPrevious,LBLNext,LBLTitleBar,SPTheme, toggleButtons, IMGSummaryContext, IMGSummaryFeel, isDarkMode, allConditionsMet);
+        ConfigureNodes.configureNodesForNewEntryController(APTitleBar, BTNClose, BTNMinimize,BTNNext, BTNPrevious, IMGButtonNext, IMGButtonNextHover, IMGButtonPrevious, IMGButtonPreviousHover,IMGContextWhatDidYouFeel, IMGContextWhatWasHappening, IMGSummaryAdditionalNotes, IMGTheme, IMGThemeHover,IMGThemeInit,LBLButtonPrevious,LBLNext,LBLTitleBar,SPTheme, toggleButtons, IMGSummaryContext, IMGSummaryFeel, IMGSummaryEmotions, IMGSummaryGeneralState, isDarkMode, allConditionsMet);
 
     }
 
@@ -1262,7 +1278,7 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
                             SPScoreEmotionsHappy.setVisible(true);
 
-                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            ScoreEmotionSlider node = sliders.getEmotionSlider(i);
                             VBXScoreEmotionsHappy.getChildren().add(node);
                             emotionSliders.add(node);
 
@@ -1272,7 +1288,7 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
                             SPScoreEmotionsSurprised.setVisible(true);
 
-                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            ScoreEmotionSlider node = sliders.getEmotionSlider(i);
                             VBXScoreEmotionsSurprised.getChildren().add(node);
                             emotionSliders.add(node);
 
@@ -1281,7 +1297,7 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
                             SPScoreEmotionsFear.setVisible(true);
 
-                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            ScoreEmotionSlider node = sliders.getEmotionSlider(i);
                             VBXScoreEmotionsFear.getChildren().add(node);
                             emotionSliders.add(node);
 
@@ -1290,7 +1306,7 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
                             SPScoreEmotionsAnger.setVisible(true);
 
-                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            ScoreEmotionSlider node = sliders.getEmotionSlider(i);
                             VBXScoreEmotionsAnger.getChildren().add(node);
                             emotionSliders.add(node);
 
@@ -1299,7 +1315,7 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
                             SPScoreEmotionsDisgust.setVisible(true);
 
-                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            ScoreEmotionSlider node = sliders.getEmotionSlider(i);
                             VBXScoreEmotionsDisgust.getChildren().add(node);
                             emotionSliders.add(node);
 
@@ -1308,7 +1324,7 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
                             SPScoreEmotionsSad.setVisible(true);
 
-                            ScoreEmotionNode node = sliders.getEmotionSlider(i);
+                            ScoreEmotionSlider node = sliders.getEmotionSlider(i);
                             VBXScoreEmotionsSad.getChildren().add(node);
                             emotionSliders.add(node);
 
@@ -1357,6 +1373,36 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
                 buildTextFlow(TXTContextWhatHappening.getText(),TFLSummaryContext);
                 buildTextFlow(TXTContextWhatDidYouFeel.getText(), TFLSummaryFeel);
+
+                VBXSummaryEmotions.getChildren().clear();
+
+                int posSlider = 0;
+                int emotions = 0;
+
+                for(boolean emotion : emotionsSelected){
+
+                    emotion = false;
+
+                }
+
+                for(int i= 0; i < toggleButtons.length; i++){
+
+                    if(toggleButtons[i].isSelected()){
+
+                        emotionsSelected[i] = true;
+
+                        VBXSummaryEmotions.getChildren().add(new EmotionalScoreAdvice(toggleButtons[i].getText(), emotionSliders.get(posSlider).getScore()));
+
+                        posSlider++;
+                        emotions++;
+
+                    }
+
+                }
+
+                LBLSummaryEmotions.setText(emotions == 1 ? "Emoción" : ("Emociones (" + emotions + ")") );
+
+                LBLSummaryGeneralState.setText((int) SLDGeneralState.getValue() + "/10");
 
             }
 
@@ -1464,12 +1510,6 @@ public class NewEntryController extends ConfigureInitializeStyles {
         }
 
         return actualStatus;
-
-    }
-
-    private void countScore(){
-
-        LBLGeneralStateCount.setText((int)SLDGeneralState.getValue() +"/10");
 
     }
 

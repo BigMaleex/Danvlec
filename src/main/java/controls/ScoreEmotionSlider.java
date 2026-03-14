@@ -7,13 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.*;
 
-public class ScoreEmotionNode extends StackPane {
+public class ScoreEmotionSlider extends StackPane {
 
     private Label labelEmotion = new Label();
     private Label labelScore = new Label();
     private Slider slider = new Slider();
 
-    public ScoreEmotionNode(String emotion){
+    public ScoreEmotionSlider(String emotion){
 
         this.labelEmotion.setText(emotion);
         this.labelEmotion.getStyleClass().add("LBLTitle");

@@ -19,131 +19,41 @@ public class EmotionalNodes {
 
     }
 
-    private String[] emotionsEN = {
+    private final String[] emotionIDs = {
+    // Happiness
+    "Happy", "Joyful", "Interested", "Proud", "Accepted", "Powerful", "Peaceful",
+    "Intimate", "Optimistic", "Free", "Euphoric", "Entertained", "Curious",
+    "Recognized", "Secure", "Respected", "Satisfied", "Brave", "Provocative",
+    "Loving", "Hopeful", "Sensitive", "Playful", "Open", "Inspired",
 
-    // Happiness (0–24)
-    "Happy",
-    "Joyful",
-    "Interested",
-    "Proud",
-    "Accepted",
-    "Powerful",
-    "Peaceful",
-    "Intimate",
-    "Optimistic",
-    "Free",
-    "Euphoric",
-    "Entertained",
-    "Curious",
-    "Recognized",
-    "Secure",
-    "Respected",
-    "Satisfied",
-    "Brave",
-    "Provocative",
-    "Loving",
-    "Hopeful",
-    "Sensitive",
-    "Playful",
-    "Open",
-    "Inspired",
+    // Surprise
+    "Surprised", "Startled", "Confused", "Amazed", "Excited", "Shocked",
+    "Dismayed", "Disillusioned", "Perplexed", "Astonished", "Stunned",
+    "AnxiousSurprise", "Energetic",
 
-    // Surprise (25–37)
-    "Surprised",
-    "Startled",
-    "Confused",
-    "Amazed",
-    "Excited",
-    "Shocked",
-    "Dismayed",
-    "Disillusioned",
-    "Perplexed",
-    "Astonished",
-    "Stunned",
-    "Anxious",
-    "Energetic",
+    // Fear
+    "Fearful", "Humiliated", "Rejected", "Submissive", "InsecureFear",
+    "AnxiousFear", "Scared", "Ridiculed", "Despised", "Alienated",
+    "Inadequate", "Insignificant", "Useless", "Inferior", "Deficient",
+    "Worried", "Overwhelmed", "Afraid", "Terrified",
 
-    // Fear (38–56)
-    "Fearful",
-    "Humiliated",
-    "Rejected",
-    "Submissive",
-    "Insecure",
-    "Anxious",
-    "Scared",
-    "Ridiculed",
-    "Despised",
-    "Alienated",
-    "Inadequate",
-    "Insignificant",
-    "Useless",
-    "Inferior",
-    "Deficient",
-    "Worried",
-    "Overwhelmed",
-    "Afraid",
-    "Terrified",
+    // Anger
+    "Irate", "Hurt", "Threatened", "Hateful", "Angry", "Aggressive",
+    "Frustrated", "Distant", "CriticalAnger", "AshamedAnger", "Devastated",
+    "InsecureAnger", "Jealous", "Resentful", "Violated", "Furious",
+    "Enraged", "Provoked", "Hostile", "Infuriated", "Withdrawn",
+    "Distrustful", "Skeptical", "Sarcastic",
 
-    // Anger (57–80)
-    "Irate",
-    "Hurt",
-    "Threatened",
-    "Hateful",
-    "Angry",
-    "Aggressive",
-    "Frustrated",
-    "Distant",
-    "Critical",
-    "Ashamed",
-    "Devastated",
-    "Insecure",
-    "Jealous",
-    "Resentful",
-    "Violated",
-    "Furious",
-    "Enraged",
-    "Provoked",
-    "Hostile",
-    "Infuriated",
-    "Withdrawn",
-    "Distrustful",
-    "Skeptical",
-    "Sarcastic",
+    // Disgust
+    "Disgusted", "Disapproving", "Disappointed", "Horrified", "Avoidant",
+    "CriticalDisgust", "Contemptuous", "Repulsed", "Revolted", "Sickened",
+    "Detestable", "Aversive", "Indecisive",
 
-    // Disgust (81–93)
-    "Disgusted",
-    "Disapproving",
-    "Disappointed",
-    "Horrified",
-    "Avoidant",
-    "Critical",
-    "Contemptuous",
-    "Repulsed",
-    "Revolted",
-    "Sickened",
-    "Detestable",
-    "Aversive",
-    "Indecisive",
-
-    // Sadness (94–111)
-    "Sad",
-    "Guilty",
-    "Abandoned",
-    "Desperate",
-    "Depressed",
-    "Lonely",
-    "Bored",
-    "Regretful",
-    "Ashamed",
-    "Ignored",
-    "Victimized",
-    "Helpless",
-    "Vulnerable",
-    "Introspective",
-    "Empty",
-    "Isolated",
-    "Apathetic",
-    "Indifferent"
+    // Sadness
+    "Sad", "Guilty", "Abandoned", "Desperate", "Depressed", "Lonely",
+    "Bored", "Regretful", "AshamedSadness", "Ignored", "Victimized",
+    "Helpless", "Vulnerable", "Introspective", "Empty", "Isolated",
+    "Apathetic", "Indifferent"
 };
 
    private String[][] emotions = {
@@ -274,11 +184,11 @@ public class EmotionalNodes {
 
 };
 
-   public ScoreEmotionNode getEmotionSlider(int arrayPos){
+   public ScoreEmotionSlider getEmotionSlider(int arrayPos){
 
        int sex = UserData.getSex() == UserData.Sex.MAN ? 1 : 0;
 
-       return new ScoreEmotionNode(emotions[arrayPos][sex]);
+       return new ScoreEmotionSlider(emotions[arrayPos][sex]);
 
    }
 
@@ -309,6 +219,24 @@ public class EmotionalNodes {
    public int [] getEmotionMaxPos() {
 
        return new int [] {25, 38, 57, 81, 94, 112};
+
+   }
+
+   public String getEmotionID(String emotion){
+
+       int sex = UserData.getSex() == UserData.Sex.MAN ? 1 : 0;
+
+       for(int i = 0; i < emotionIDs.length ; i++){
+
+           if (emotion.equalsIgnoreCase(emotions[i][sex])) {
+
+               return emotionIDs[i];
+
+           }
+
+       }
+
+       return null;
 
    }
 

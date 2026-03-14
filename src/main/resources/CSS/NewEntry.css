@@ -223,6 +223,16 @@
 
 }
 
+.LBLSummaryGeneralState {
+
+    -fx-background-color: #d1d5e9ff;
+    -fx-background-radius: 999;
+    -fx-text-fill: #192d91;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 2.0em;
+
+}
+
 .LBLCardTitle {
 
     -fx-text-fill: #1a1a1aff;
@@ -535,6 +545,16 @@ text-area.error:focused {
     -fx-text-fill: #4dc0d4;
     -fx-font-family: "Oswald SemiBold";
     -fx-font-size: 1.0em;
+
+}
+
+.rootActive .LBLSummaryGeneralState {
+
+    -fx-background-color: #324350ff;
+    -fx-background-radius: 999;
+    -fx-text-fill: #4dc0d4;
+    -fx-font-family: "Oswald SemiBold";
+    -fx-font-size: 2.0em;
 
 }
 

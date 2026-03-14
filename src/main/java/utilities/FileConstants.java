@@ -178,9 +178,11 @@ public class FileConstants {
     public static final String lightningChargeActiveDm = "lightning-charge-active-dm.png";
     public static final String lightningChargeDm = "lightning-charge-dm.png";
     public static final String lightningChargePastDm = "lightning-charge-past-dm.png";
+    public static final String lightningChargeSubIconDm = "lightning-charge-sub-icon-dm.png";
     public static final String lightningChargeActiveLm = "lightning-charge-active-lm.png";
     public static final String lightningChargeLm = "lightning-charge-lm.png";
     public static final String lightningChargePastLm = "lightning-charge-past-lm.png";
+    public static final String lightningChargeSubIconLm = "lightning-charge-sub-icon-lm.png";
     public static final String checkActiveLm = "check-active-lm.png";
     public static final String checkLm = "check-lm.png";
     public static final String checkActiveDm = "check-active-dm.png";

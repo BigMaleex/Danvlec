@@ -2,6 +2,8 @@ package logical;
 
 import connections.SecurityCodes;
 import connections.Users;
+import controls.EmotionToggleButton;
+import controls.ScoreEmotionSlider;
 import messagebuilder.MessageBuilder;
 import stylebuilder.StyleBuilder;
 import user.UserData;
@@ -11,6 +13,12 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class ValidateFormInputs {
+
+    public static boolean validateInputsFromNewEntryController(String context, String feelings, String additionalNotes, EmotionToggleButton [] buttons, ScoreEmotionSlider [] sliders){
+
+
+
+    }
 
     public static boolean validateInputsFromPopupRecoveryAccount(int step, boolean emailMode, String [] inputs){
 
