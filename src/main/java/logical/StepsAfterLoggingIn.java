@@ -7,7 +7,6 @@ import controllers.MainWindowController;
 import controllers.PopupSecurityCodesController;
 import files.ClockFile;
 import user.UserData;
-import user.UserPreferences;
 import utilities.FileConstants;
 import utilities.ScreenManager;
 import utilities.Titles;
@@ -20,7 +19,7 @@ public class StepsAfterLoggingIn {
     private static final ScreenManager sm = ScreenManager.getInstance();
 
     public static void stepsAfterLoggingIn() {
-        if (UserData.isHaveAnyAccount()) {
+        if (UserData.haveAnyAccount()) {
 
             //Hay cuenta
             checkEmailVerification();
@@ -109,7 +108,7 @@ public class StepsAfterLoggingIn {
 
     private static void loadAllData(){
 
-        if(UserData.isHaveAnyAccount()){
+        if(UserData.haveAnyAccount()){
 
             //hay una cuenta
             System.out.println("Proceso de datos con cuenta");

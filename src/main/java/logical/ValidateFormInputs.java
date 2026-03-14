@@ -1,22 +1,88 @@
 package logical;
 
+import connections.Entry;
+import connections.Intensity;
 import connections.SecurityCodes;
 import connections.Users;
 import controls.EmotionToggleButton;
+import controls.EmotionalNodes;
 import controls.ScoreEmotionSlider;
+import files.EntriesManager;
+import files.SubFolderManager;
 import messagebuilder.MessageBuilder;
 import stylebuilder.StyleBuilder;
+import user.LocalEntry;
 import user.UserData;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class ValidateFormInputs {
 
-    public static boolean validateInputsFromNewEntryController(String context, String feelings, String additionalNotes, EmotionToggleButton [] buttons, ScoreEmotionSlider [] sliders){
+    public static boolean validateInputsFromNewEntryController(String context, String feelings, String additionalNotes, EmotionToggleButton [] buttons, ScoreEmotionSlider [] sliders, int generalState){
 
+        EmotionalNodes nodes = new EmotionalNodes();
+        Entry entry = new Entry();
+        Intensity intensity = new Intensity();
 
+        String entryID;
+
+        ArrayList <String> emotions = new ArrayList<>();
+        ArrayList <Integer> scores = new ArrayList<>();
+
+        int scorePos = 0;
+
+        for(int i = 0; i < buttons.length; i++){
+
+            if(buttons[i].isSelected()){
+
+                emotions.add(nodes.getEmotionID(buttons[i].getText()));
+                scores.add(sliders[scorePos].getScore());
+
+                scorePos++;
+
+            }
+
+        }
+
+        if(UserData.haveAnyAccount()){
+
+            do {
+
+                entryID = ValidateOutputs.generateCodeWithDynamicSize(24);
+
+            }while(!entry.isUniqueEntryID(entryID));
+
+            if(entry.addEntry(entryID, context, feelings,additionalNotes.isBlank() ? null : additionalNotes, generalState)){
+
+                if(intensity.addEntry(entryID, emotions.toArray(new String[emotions.size()]), scores.stream().mapToInt(Integer::intValue).toArray())){
+
+                    return true;
+
+                }else{
+
+                    entry.deleteEntry(entryID);
+
+                }
+
+            }
+
+        }else{
+
+            //proceso sin cuenta
+
+            LocalEntry localEntry = new LocalEntry(context, feelings, additionalNotes.isBlank() ? null : additionalNotes, emotions.toArray(new String[emotions.size()]), scores.stream().mapToInt(Integer::intValue).toArray(), generalState);
+
+            EntriesManager manager = new EntriesManager();
+            manager.saveLocalEntry(localEntry);
+
+            return true;
+
+        }
+
+        return false;
 
     }
 

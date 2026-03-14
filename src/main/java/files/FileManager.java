@@ -18,7 +18,7 @@ public class FileManager {
         ensureProjectFolderExists();
     }
 
-    private static boolean ensureFolderExists(Path folder) {
+    protected static boolean ensureFolderExists(Path folder) {
         try {
             if (Files.exists(folder)) {
                 System.out.printf("✔ La carpeta ya existía: %s%n", folder);

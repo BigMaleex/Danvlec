@@ -30,7 +30,7 @@ public class PopupTwoButtonInputs {
         UserClock.setTitleClock(data.get(0));
         UserClock.setDate(LocalDateTime.parse(data.get(1), localDateTimeFormatter));
 
-        if(UserData.isHaveAnyAccount()){
+        if(UserData.haveAnyAccount()){
             //Hay una cuenta
             Clock clock = new Clock();
             clock.updateOrCreateRow();

@@ -21,7 +21,7 @@ public class UserDataLS {
 
     public void copyAllData(){
 
-        haveAnyAccount = UserData.isHaveAnyAccount();
+        haveAnyAccount = UserData.haveAnyAccount();
         userID = UserData.getUserID();
         name = UserData.getName();
         email = UserData.getEmail();
@@ -39,7 +39,7 @@ public class UserDataLS {
 
     public void copyOnlyUserID(){
 
-        haveAnyAccount = UserData.isHaveAnyAccount();
+        haveAnyAccount = UserData.haveAnyAccount();
         userID = UserData.getUserID();
         name = null;
         email = null;

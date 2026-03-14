@@ -171,7 +171,7 @@ public class UserData {
         return emailVerified;
     }
 
-    public static boolean isHaveAnyAccount() {
+    public static boolean haveAnyAccount() {
         return haveAnyAccount;
     }
 

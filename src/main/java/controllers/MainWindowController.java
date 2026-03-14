@@ -1,5 +1,7 @@
 package controllers;
 
+import connections.Entry;
+import files.EntriesManager;
 import files.Preferences;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -326,6 +328,23 @@ public class MainWindowController extends ConfigureInitializeStyles {
         phrase = Phrases.getPhrase();
 
         LBLTitleBar.setText(Titles.MainWindow);
+
+        if(UserData.haveAnyAccount()){
+
+            Entry entry = new Entry();
+            LBLAllEntriesCount.setText(entry.getAllEntriesCount() +"");
+            LBLMonthlyEntriesCount.setText(entry.getMonthEntriesCount()+"");
+            LBLWeeklyEntriesCount.setText(entry.getWeekEntriesCount()+"");
+
+        }else{
+
+            EntriesManager  manager = new EntriesManager();
+
+            LBLAllEntriesCount.setText(manager.getTotalCount() +"");
+            LBLMonthlyEntriesCount.setText(manager.getMonthCount()+"");
+            LBLWeeklyEntriesCount.setText(manager.getWeekCount()+"");
+
+        }
 
         Images.clearImages();
         isDarkMode = UserPreferences.getUserThemeMode();

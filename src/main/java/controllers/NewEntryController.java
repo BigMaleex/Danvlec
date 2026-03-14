@@ -1,5 +1,6 @@
 package controllers;
 
+import com.sun.tools.javac.Main;
 import controls.EmotionToggleButton;
 import controls.EmotionalNodes;
 import controls.EmotionalScoreAdvice;
@@ -19,6 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import logical.ValidateFormInputs;
 import messagebuilder.Complements;
 import stylebuilder.ConfigureInitializeStyles;
 import stylebuilder.ConfigureNodes;
@@ -942,6 +944,22 @@ public class NewEntryController extends ConfigureInitializeStyles {
 
                     currentStep = Step.Fourth;
                     changeStep();
+
+                }
+
+                case Fourth -> {
+
+                    System.out.println("Se entró al cuatro proceso");
+
+                    if(ValidateFormInputs.validateInputsFromNewEntryController(TXTContextWhatHappening.getText(), TXTContextWhatDidYouFeel.getText(), TXTSummaryAdditionalNotes.getText(), toggleButtons, emotionSliders.toArray(new ScoreEmotionSlider[emotionSliders.size()]), (int) SLDGeneralState.getValue())){
+
+                        MainWindowController controller = (MainWindowController) sm.getController(FileConstants.MainWindow);
+                        controller.initializeAnimation();
+                        controller.initialize();
+
+                        sm.setScreenAtPosition(FileConstants.MainWindow, Titles.MainWindow);
+
+                    }
 
                 }
 
