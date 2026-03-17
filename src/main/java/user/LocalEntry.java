@@ -30,4 +30,27 @@ public class LocalEntry {
 
     }
 
+    public String getContext() {
+        return context;
+    }
+
+    public String getFeeling() {
+        return feeling;
+    }
+
+    public String getAdditionalNotes() {
+        return additionalNotes;
+    }
+
+    public String[] getEmotions() {
+        return emotions;
+    }
+
+    public int[] getScores() {
+        return scores;
+    }
+
+    public int getGeneralState() {
+        return generalState;
+    }
 }

@@ -18,6 +18,8 @@ public class FileConstants {
     public static final String PopupRecoveryAccountFXML = "PopupRecoveryAccount.fxml";
     public static final String MainWindowFXML = "MainWindow.fxml";
     public static final String NewEntryFXML = "NewEntry.fxml";
+    public static final String PopupMotivationsFXML = "PopupMotivations.fxml";
+    public static final String PopupCustomClockFXML = "PopupCustomClock.fxml";
 
     //ScreenID
     public static final String LoadScreens = "LoadScreens";
@@ -195,7 +197,12 @@ public class FileConstants {
     public static final String arrowRightPrimaryHoverLm = "arrow-right-primary-hover-lm.png";
     public static final String arrowRightPrimaryDm = "arrow-right-primary-dm.png";
     public static final String arrowRightPrimaryHoverDm = "arrow-right-primary-hover-dm.png";
-
+    public static final String pencilIconDm = "pencil-icon-dm.png";
+    public static final String pencilIconLm = "pencil-icon-lm.png";
+    public static final String plusIconDm = "plus-icon-dm.png";
+    public static final String plusIconLm = "plus-icon-lm.png";
+    public static final String paletteIconLm = "palette-icon-lm.png";
+    public static final String paletteIconDm = "palette-icon-dm.png";
 
     //Fuente
     public static final String oswaldSemiBold = "Oswald-SemiBold.ttf";

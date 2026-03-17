@@ -1,7 +1,11 @@
 package controllers;
 
+import connections.Clock;
+import connections.CloudEntriesManager;
 import connections.Entry;
+import files.ClockFile;
 import files.EntriesManager;
+import files.ExcelExporter;
 import files.Preferences;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -334,7 +338,7 @@ public class MainWindowController extends ConfigureInitializeStyles {
             Entry entry = new Entry();
             LBLAllEntriesCount.setText(entry.getAllEntriesCount() +"");
             LBLMonthlyEntriesCount.setText(entry.getMonthEntriesCount()+"");
-            LBLWeeklyEntriesCount.setText(entry.getWeekEntriesCount()+"");
+            LBLWeeklyEntriesCount.setText(entry.getWeekEntriesCount() +"");
 
         }else{
 
@@ -347,6 +351,7 @@ public class MainWindowController extends ConfigureInitializeStyles {
         }
 
         Images.clearImages();
+
         isDarkMode = UserPreferences.getUserThemeMode();
         dateOfClock = UserClock.getDate();
         haveAnyMotivation = UserData.getMotivation() != null && !UserData.getMotivation().isBlank();
@@ -642,6 +647,14 @@ public class MainWindowController extends ConfigureInitializeStyles {
     @FXML
     void BTNCustomClockOnMouseClicked(MouseEvent event) {
 
+        sm.openDynamicPopup(
+
+                FileConstants.PopupCustomClockFXML,
+                "Personaliza tu reloj",
+                controller -> {}
+
+        );
+
     }
 
     @FXML
@@ -679,7 +692,28 @@ public class MainWindowController extends ConfigureInitializeStyles {
     @FXML
     void BTNExportExcelOnMouseClicked(MouseEvent event) {
 
+        try {
 
+            ExcelExporter exporter = new ExcelExporter();
+
+            if(UserData.haveAnyAccount()){
+
+                CloudEntriesManager mgr = new CloudEntriesManager();
+
+                exporter.exportFromCloud(mgr.getAllEntries());
+
+            }else{
+
+                EntriesManager mgr = new EntriesManager();
+                exporter.exportFromLocal(mgr.getAllEntries());
+
+            }
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+
+        }
 
     }
 
@@ -758,7 +792,13 @@ public class MainWindowController extends ConfigureInitializeStyles {
     @FXML
     void BTNMotivationsOnMouseClicked(MouseEvent event) {
 
+        sm.openDynamicPopup(
 
+                FileConstants.PopupMotivationsFXML,
+                "Motivaciones",
+                controller -> {}
+
+        );
 
     }
 
@@ -840,7 +880,26 @@ public class MainWindowController extends ConfigureInitializeStyles {
     @FXML
     void BTNRestartClockOnMouseClicked(MouseEvent event) {
 
+        stopAnimation();
 
+        dateOfClock = LocalDateTime.now();
+
+        UserClock.setDate(dateOfClock);
+
+        if(UserData.haveAnyAccount()){
+
+            Clock clock = new Clock();
+            clock.resetClock();
+
+        }else{
+
+            ClockFile file = new ClockFile();
+
+            file.createOrUpdateFile();
+
+        }
+
+        initializeAnimation();
 
     }
 
@@ -1000,6 +1059,55 @@ public class MainWindowController extends ConfigureInitializeStyles {
         TFL.getChildren().add(text);
 
         TFL.setMaxHeight(Region.USE_PREF_SIZE);
+
+    }
+
+    public void updateMotivation(){
+
+        haveAnyMotivation = UserData.getMotivation() != null && !UserData.getMotivation().isBlank();
+
+        LBLMotivations.setText(haveAnyMotivation ? "Modifica tu motivación para mejorar" : "Añade tu motivación para mejorar");
+
+        changeTheme();
+
+        setTFLTextWithOneColor(haveAnyMotivation ? UserData.getMotivation() : "Añade una motivación para que puedas tener una ancla para seguir avanzando", Styles.px16, contentFontColor, TFLMotivations);
+
+    }
+
+    public void updateClockColors(){
+
+        stopAnimation();
+
+        DrawClocks.updateColor(
+
+                clocks,
+                //Colores de la barra
+                new String [] {
+
+                        UserPreferences.getYearClockColor(false),
+                        UserPreferences.getMonthClockColor(false),
+                        UserPreferences.getDayClockColor(false),
+                        UserPreferences.getHourClockColor(false),
+                        UserPreferences.getMinuteClockColor(false),
+                        UserPreferences.getSecondClockColor(false)
+
+                },
+
+                //Colores de fondo
+                new String [] {
+
+                        UserPreferences.getBackgroundYearClockColor(false),
+                        UserPreferences.getBackgroundMonthClockColor(false),
+                        UserPreferences.getBackgroundDayClockColor(false),
+                        UserPreferences.getBackgroundHourClockColor(false),
+                        UserPreferences.getBackgroundMinuteClockColor(false),
+                        UserPreferences.getBackgroundSecondClockColor(false)
+
+                }
+
+        );
+
+        initializeAnimation();
 
     }
 

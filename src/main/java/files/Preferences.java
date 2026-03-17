@@ -13,6 +13,27 @@ public class Preferences {
 
     private static final String fileName = "Preferences";
 
+    public void updateClockColors(){
+
+        ObjectMapper mapper = new ObjectMapper();
+        UserPreferencesData upd =  new UserPreferencesData();
+
+        upd.copy();
+
+        try {
+
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.writeValue(new File(FileManager.projectFolder.resolve("Preferences.json").toString()), upd);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
+
+    }
+
     public void toggleTheme(){
 
         ObjectMapper mapper = new ObjectMapper();

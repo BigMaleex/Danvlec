@@ -1,9 +1,11 @@
 package connections;
 
+import files.Preferences;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import user.UserClock;
 import user.UserData;
+import user.UserPreferences;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -15,7 +17,7 @@ public class Clock {
 
     public void getClockData(){
 
-        String query = "SELECT TitleClock, DATE FROM danvlec." + table + " WHERE UserID=?";
+        String query = "SELECT * FROM danvlec." + table + " WHERE UserID=?";
 
         try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
 
@@ -27,6 +29,27 @@ public class Clock {
 
                     UserClock.setTitleClock(rs.getString("TitleClock"));
                     UserClock.setDate(rs.getTimestamp("Date").toLocalDateTime());
+                    UserPreferences.setYearClockColor(rs.getString("YearClockColor"));
+                    UserPreferences.setBackgroundYearClockColor(rs.getString("YearClockColorBackground"));
+
+                    UserPreferences.setMonthClockColor(rs.getString("MonthClockColor"));
+                    UserPreferences.setBackgroundMonthClockColor(rs.getString("MonthClockColorBackground"));
+
+                    UserPreferences.setDayClockColor(rs.getString("DayClockColor"));
+                    UserPreferences.setBackgroundDayClockColor(rs.getString("DayClockColorBackground"));
+
+                    UserPreferences.setHourClockColor(rs.getString("HourClockColor"));
+                    UserPreferences.setBackgroundHourClockColor(rs.getString("HourClockColorBackground"));
+
+                    UserPreferences.setMinuteClockColor(rs.getString("MinuteClockColor"));
+                    UserPreferences.setBackgroundMinuteClockColor(rs.getString("MinuteClockColorBackground"));
+
+                    UserPreferences.setSecondClockColor(rs.getString("SecondClockColor"));
+                    UserPreferences.setBackgroundSecondClockColor(rs.getString("SecondClockColorBackground"));
+
+                    Preferences file = new Preferences();
+
+                    file.updateClockColors();
 
                 }
 

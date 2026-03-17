@@ -19,6 +19,26 @@ public class Users {
     private final String table = "users";
     private final Logger logger = LoggerFactory.getLogger(Users.class);
 
+    public void setMotivation (){
+
+        String query = "UPDATE danvlec." + table + " SET Motivation=? WHERE UserID=?";
+
+        try(Connection conn = DataManager.validateConnection(); PreparedStatement ps = conn.prepareStatement(query)){
+
+            ps.setString(1, UserData.getMotivation());
+            ps.setString(2, UserData.getUserID());
+
+            ps.executeUpdate();
+
+        }catch(SQLException e){
+
+            logger.error(e.toString());
+            DataManager.showError(e.toString());
+
+        }
+
+    }
+
     public void getNameAndNickname(){
 
         String query = "SELECT UserID, Name, Nickname FROM danvlec." + table + " WHERE Email=?";

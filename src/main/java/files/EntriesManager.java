@@ -103,4 +103,16 @@ public class EntriesManager extends FileManager {
             return new ArrayList<>();
         }
     }
+
+    public List<LocalEntry> getAllEntries() {
+        List<LocalEntry> all = new ArrayList<>();
+        try (Stream<Path> paths = Files.list(entriesFolder)) {
+            paths.filter(path -> path.toString().endsWith(".json"))
+                 .forEach(path -> all.addAll(getEntriesFromFile(path)));
+        } catch (IOException e) {
+            System.err.println("✘ Error al leer las entradas: " + e.getMessage());
+        }
+        return all;
+    }
+
 }
